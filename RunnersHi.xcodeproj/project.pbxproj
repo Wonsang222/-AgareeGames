@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C119CBC529F8030600648638 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBC429F8030600648638 /* MainController.swift */; };
+		C119CBC729F8033300648638 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBC629F8033300648638 /* BaseController.swift */; };
+		C119CBC929F804FE00648638 /* GuessWhoDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBC829F804FE00648638 /* GuessWhoDataModel.swift */; };
+		C119CBCB29F805C000648638 /* IntroController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBCA29F805C000648638 /* IntroController.swift */; };
 		C1FFE7AF29E30425009FFD0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFE7AE29E30425009FFD0B /* AppDelegate.swift */; };
 		C1FFE7B129E30425009FFD0B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFE7B029E30425009FFD0B /* SceneDelegate.swift */; };
 		C1FFE7B629E30425009FFD0B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1FFE7B429E30425009FFD0B /* Main.storyboard */; };
@@ -16,6 +20,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C119CBC429F8030600648638 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainController.swift; path = RunnersHi/MainController.swift; sourceTree = SOURCE_ROOT; };
+		C119CBC629F8033300648638 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseController.swift; path = RunnersHi/BaseController.swift; sourceTree = SOURCE_ROOT; };
+		C119CBC829F804FE00648638 /* GuessWhoDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GuessWhoDataModel.swift; path = RunnersHi/GuessWhoDataModel.swift; sourceTree = SOURCE_ROOT; };
+		C119CBCA29F805C000648638 /* IntroController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IntroController.swift; path = RunnersHi/IntroController.swift; sourceTree = SOURCE_ROOT; };
 		C1FFE7AB29E30425009FFD0B /* RunnersHi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RunnersHi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1FFE7AE29E30425009FFD0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1FFE7B029E30425009FFD0B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +82,7 @@
 		C1FFE7C429E305BC009FFD0B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C119CBC829F804FE00648638 /* GuessWhoDataModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -95,6 +104,9 @@
 		C1FFE7C729E3060B009FFD0B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C119CBC629F8033300648638 /* BaseController.swift */,
+				C119CBC429F8030600648638 /* MainController.swift */,
+				C119CBCA29F805C000648638 /* IntroController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -194,8 +206,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C119CBC529F8030600648638 /* MainController.swift in Sources */,
+				C119CBCB29F805C000648638 /* IntroController.swift in Sources */,
 				C1FFE7AF29E30425009FFD0B /* AppDelegate.swift in Sources */,
+				C119CBC729F8033300648638 /* BaseController.swift in Sources */,
 				C1FFE7B129E30425009FFD0B /* SceneDelegate.swift in Sources */,
+				C119CBC929F804FE00648638 /* GuessWhoDataModel.swift in Sources */,
 				C1FFE7D629E8607D009FFD0B /* HttpBase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
