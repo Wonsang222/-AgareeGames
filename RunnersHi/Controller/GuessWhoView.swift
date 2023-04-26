@@ -27,6 +27,8 @@ class GuessWhoView:UIView{
         txtView.text = "sample"
         txtView.textColor = .black
         txtView.tintColor = .black
+        txtView.isSelectable = false
+        txtView.isEditable = false
         txtView.translatesAutoresizingMaskIntoConstraints = false
         return txtView
     }()
