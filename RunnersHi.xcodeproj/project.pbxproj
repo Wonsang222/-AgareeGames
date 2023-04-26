@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E159D3529F89FD900C7E601 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E159D3429F89FD900C7E601 /* Global.swift */; };
+		7E159D3829F8A01900C7E601 /* GuessWhoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E159D3729F8A01900C7E601 /* GuessWhoController.swift */; };
+		7E159D3A29F8A07F00C7E601 /* GuessWhoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E159D3929F8A07F00C7E601 /* GuessWhoView.swift */; };
+		7E159D3C29F8A0E400C7E601 /* GuessWhoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E159D3B29F8A0E400C7E601 /* GuessWhoViewModel.swift */; };
 		C119CBC529F8030600648638 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBC429F8030600648638 /* MainController.swift */; };
 		C119CBC729F8033300648638 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBC629F8033300648638 /* BaseController.swift */; };
 		C119CBC929F804FE00648638 /* GuessWhoDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBC829F804FE00648638 /* GuessWhoDataModel.swift */; };
@@ -20,6 +24,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E159D3429F89FD900C7E601 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		7E159D3729F8A01900C7E601 /* GuessWhoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoController.swift; sourceTree = "<group>"; };
+		7E159D3929F8A07F00C7E601 /* GuessWhoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GuessWhoView.swift; path = RunnersHi/Controller/GuessWhoView.swift; sourceTree = SOURCE_ROOT; };
+		7E159D3B29F8A0E400C7E601 /* GuessWhoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GuessWhoViewModel.swift; path = RunnersHi/Controller/GuessWhoViewModel.swift; sourceTree = SOURCE_ROOT; };
 		C119CBC429F8030600648638 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainController.swift; path = RunnersHi/MainController.swift; sourceTree = SOURCE_ROOT; };
 		C119CBC629F8033300648638 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseController.swift; path = RunnersHi/BaseController.swift; sourceTree = SOURCE_ROOT; };
 		C119CBC829F804FE00648638 /* GuessWhoDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GuessWhoDataModel.swift; path = RunnersHi/GuessWhoDataModel.swift; sourceTree = SOURCE_ROOT; };
@@ -45,6 +53,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E159D3329F89FCF00C7E601 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				7E159D3429F89FD900C7E601 /* Global.swift */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
 		C1FFE7A229E30424009FFD0B = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +106,7 @@
 		C1FFE7C529E305C4009FFD0B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				7E159D3B29F8A0E400C7E601 /* GuessWhoViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -97,6 +114,7 @@
 		C1FFE7C629E305CC009FFD0B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7E159D3929F8A07F00C7E601 /* GuessWhoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -107,6 +125,7 @@
 				C119CBC629F8033300648638 /* BaseController.swift */,
 				C119CBC429F8030600648638 /* MainController.swift */,
 				C119CBCA29F805C000648638 /* IntroController.swift */,
+				7E159D3729F8A01900C7E601 /* GuessWhoController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -114,6 +133,7 @@
 		C1FFE7C829E30615009FFD0B /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				7E159D3329F89FCF00C7E601 /* Global */,
 				C1FFE7D829E868B7009FFD0B /* Extension */,
 				C1FFE7D729E868AD009FFD0B /* Http */,
 			);
@@ -206,13 +226,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E159D3529F89FD900C7E601 /* Global.swift in Sources */,
+				7E159D3829F8A01900C7E601 /* GuessWhoController.swift in Sources */,
 				C119CBC529F8030600648638 /* MainController.swift in Sources */,
 				C119CBCB29F805C000648638 /* IntroController.swift in Sources */,
 				C1FFE7AF29E30425009FFD0B /* AppDelegate.swift in Sources */,
+				7E159D3C29F8A0E400C7E601 /* GuessWhoViewModel.swift in Sources */,
 				C119CBC729F8033300648638 /* BaseController.swift in Sources */,
 				C1FFE7B129E30425009FFD0B /* SceneDelegate.swift in Sources */,
 				C119CBC929F804FE00648638 /* GuessWhoDataModel.swift in Sources */,
 				C1FFE7D629E8607D009FFD0B /* HttpBase.swift in Sources */,
+				7E159D3A29F8A07F00C7E601 /* GuessWhoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
