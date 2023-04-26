@@ -8,21 +8,28 @@
 import UIKit
 import Speech
 
-class GuessWhoController:BaseController{
+final class GuessWhoController:BaseController{
     
     //MARK: - Properties
     
-    let guessWhoView = GuessWhoView()
+    private let guessWhoView = GuessWhoView()
+    private var engine:STTEngine?
     
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
-        
+        engine = STTEngineFactory.create(self)
+        engine?.speechRecognizer?.delegate = self
     }
     
     override func loadView() {
         view = guessWhoView
     }
+    
+    
+    //MARK: - Methods
+
+    
 }
 
 //MARK: - Extension
