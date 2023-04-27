@@ -8,11 +8,14 @@
 import UIKit
 
 class IntroController: BaseController {
-
+    
+    let introView = IntroView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-    
     }
-
+    
+    override func loadView() {
+        view = introView
+    }
 }

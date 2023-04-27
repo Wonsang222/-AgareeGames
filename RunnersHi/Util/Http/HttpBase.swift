@@ -8,7 +8,7 @@
 import Foundation
 
 // builder로 구현.
-// header에 보낼 자료들
+
 struct HttpBaseResource {
     let reqMethod:String
     let shouldHandleCookie:Bool
@@ -27,6 +27,7 @@ class ResourceBuilder{
         return self
     }
     
+    // Oauth도 쿠키로 하나?????
     func setCookie(_ bool:Bool)->Self{
         self.shouldHandleCookie = bool
         return self

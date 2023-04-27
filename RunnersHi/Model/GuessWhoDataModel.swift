@@ -7,6 +7,7 @@
 
 import UIKit
 
+// Entitiy
 struct GuessWhoDataModel{
     let name:String
     let photo:UIImage

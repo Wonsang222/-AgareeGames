@@ -15,7 +15,6 @@ class GuessWhoView:UIView{
     let imageView:UIImageView = {
        let imgView = UIImageView()
         imgView.clipsToBounds = true
-//        imgView.backgroundColor = .systemBlue
         imgView.image = UIImage(systemName: "trash")
         imgView.contentMode = .scaleAspectFill
         imgView.translatesAutoresizingMaskIntoConstraints = false
@@ -58,7 +57,6 @@ class GuessWhoView:UIView{
             txtView.heightAnchor.constraint(equalToConstant: 50),
             txtView.widthAnchor.constraint(equalToConstant: 50)
 //            txtView.topAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: 20)
-            
         ])
     }
 }
