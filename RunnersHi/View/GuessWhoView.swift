@@ -32,6 +32,14 @@ class GuessWhoView:UIView{
         return txtView
     }()
     
+    let button:UIButton = {
+       let button = UIButton()
+        button.setTitle("ready", for: .normal)
+        button.backgroundColor = .systemBlue
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -44,7 +52,7 @@ class GuessWhoView:UIView{
     }
     
     func configureUI(){
-        [imageView, txtView].forEach {addSubview($0)}
+        [imageView, txtView, button].forEach {addSubview($0)}
         let viewHeight = UIScreen.main.bounds.size.height * 0.3
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
@@ -55,8 +63,10 @@ class GuessWhoView:UIView{
             txtView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             txtView.topAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: 20),
             txtView.heightAnchor.constraint(equalToConstant: 50),
-            txtView.widthAnchor.constraint(equalToConstant: 50)
-//            txtView.topAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: 20)
+            txtView.widthAnchor.constraint(equalToConstant: 50),
+            
+            button.topAnchor.constraint(equalTo: self.topAnchor, constant: 50),
+            button.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
     }
 }

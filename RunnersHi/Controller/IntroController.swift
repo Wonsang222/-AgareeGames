@@ -7,7 +7,7 @@
 
 import UIKit
 
-class IntroController: BaseController {
+final class IntroController: BaseController {
     
     let introView = IntroView()
     

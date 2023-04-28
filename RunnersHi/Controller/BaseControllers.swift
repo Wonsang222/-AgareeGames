@@ -8,7 +8,7 @@
 import UIKit
 
 class BaseController:UIViewController{
-    
+        
     func alert(message:String, agree:((UIAlertAction)->Void)? = nil, disagree:((UIAlertAction)->Void)? = nil){
         let alert = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
         let agree = UIAlertAction(title: "확인", style: .default, handler: agree)
@@ -19,4 +19,12 @@ class BaseController:UIViewController{
         
         self.present(alert, animated: true)
     }
+}
+
+class GameController:BaseController{
+    
+}
+
+class SettingController:BaseController{
+    
 }
