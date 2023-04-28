@@ -10,7 +10,7 @@ import UIKit
 class IntroView: UIView {
     
     let imgView:UIImageView = {
-       let imgView = UIImageView()
+        let imgView = UIImageView()
         imgView.backgroundColor = .systemBlue
         imgView.contentMode = .scaleAspectFill
         imgView.translatesAutoresizingMaskIntoConstraints = false
@@ -19,9 +19,13 @@ class IntroView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        imgView.frame = self.bounds
         addSubview(imgView)
+        NSLayoutConstraint.activate([
+            imgView.topAnchor.constraint(equalTo: self.topAnchor),
+            imgView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            imgView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            imgView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+        ])
     }
     
     required init?(coder: NSCoder) {

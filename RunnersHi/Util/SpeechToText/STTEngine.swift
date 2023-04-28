@@ -8,20 +8,40 @@
 import UIKit
 import Speech
 
-class STTEngine{
-    let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "ko-KR"))
-    private var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
+// 사자성어 대비해서 subclassing해야하나...
+
+ class STTEngine{
+    private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "ko-KR"))!
+    private var recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
     private let controller:BaseController
     
     init(controller:BaseController){
-        
         self.controller = controller
-        self.speechRecognizer?.delegate = controller as? SFSpeechRecognizerDelegate
+        guard let speechController = controller as? SFSpeechRecognizerDelegate else {return}
+        self.speechRecognizer.delegate = speechController
+    }
+    
+    func runRecognizer(completion:()->Void){
+        if audioEngine.isRunning{
+            audioEngine.stop()
+            recognitionRequest.endAudio()
+            completion()
+        } else{
+            startRecording()
+            completion()
+        }
+    }
+    
+    func startRecording(){
+        if recognitionTask != nil{
+            recognitionTask?.cancel()
+            recognitionTask = nil
+        }
     }
 }
-// Engine Factory
+
 class STTEngineFactory{
     static func create(_ controller:BaseController)-> STTEngine{
         return STTEngine(controller: controller)

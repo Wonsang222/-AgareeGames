@@ -8,11 +8,11 @@
 import UIKit
 import Speech
 
-final class GuessWhoController:BaseController{
+final class GuessWhoController:GameController{
     
     //MARK: - Properties
     private let guessWhoView = GuessWhoView()
-    private var engine:STTEngine?
+    private var engine:STTEngine!
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -24,11 +24,16 @@ final class GuessWhoController:BaseController{
     }
     
     //MARK: - Methods
-
+    @objc func buttonTapped(){
+        
+    }
     
+
 }
 
 //MARK: - Extension
 extension GuessWhoController:SFSpeechRecognizerDelegate{
-    
+    func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
+        <#code#>
+    }
 }

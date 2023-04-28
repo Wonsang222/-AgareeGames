@@ -9,6 +9,10 @@ import Foundation
 
 // builder로 구현.
 
+protocol downloadParser{
+    
+}
+
 struct HttpBaseResource {
     let reqMethod:String
     let shouldHandleCookie:Bool
@@ -17,9 +21,9 @@ struct HttpBaseResource {
 }
 
 class ResourceBuilder{
-    private var reqMethod:String = ""
+    private var reqMethod:String = "GET"
     private var shouldHandleCookie = true
-    private var isMultiPart = true
+    private var isMultiPart = false
     private var params:[String:String] = [String:String]()
     
     func setReqMethod(_ method:String) -> Self{
