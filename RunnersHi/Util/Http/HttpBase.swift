@@ -42,8 +42,8 @@ class ResourceBuilder{
         return self
     }
     
-    func setParams(_ param:String...) ->Self{
-        self.params[param[0]] = param[1]
+    func setParams(_ param1:String, _ param2:String) ->Self{
+        self.params[param1] = param2
         return self
     }
 

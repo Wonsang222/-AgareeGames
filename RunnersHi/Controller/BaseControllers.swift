@@ -8,7 +8,7 @@
 import UIKit
 
 class BaseController:UIViewController{
-        
+            
     func alert(message:String, agree:((UIAlertAction)->Void)? = nil, disagree:((UIAlertAction)->Void)? = nil){
         let alert = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
         let agree = UIAlertAction(title: "확인", style: .default, handler: agree)
@@ -23,8 +23,29 @@ class BaseController:UIViewController{
 
 class GameController:BaseController{
     
+    override var prefersHomeIndicatorAutoHidden: Bool{
+        return true
+    }
+    
 }
 
 class SettingController:BaseController{
+    
+}
+
+
+class CustomUINavigationController:UINavigationController{
+    
+    override var childForStatusBarStyle: UIViewController?{
+        return topViewController
+    }
+    
+    override var childForStatusBarHidden: UIViewController?{
+        return topViewController
+    }
+    
+    override func viewDidLoad() {
+        
+    }
     
 }
