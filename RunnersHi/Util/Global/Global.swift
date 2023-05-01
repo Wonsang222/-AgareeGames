@@ -7,4 +7,7 @@
 
 import Foundation
 
-
+enum STTError:Error{
+    case wrongLanguage
+    case idkTheReason
+}
