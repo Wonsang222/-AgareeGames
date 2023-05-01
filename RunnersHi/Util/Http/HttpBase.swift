@@ -30,7 +30,6 @@ class ResourceBuilder{
         self.reqMethod = method
         return self
     }
-    
     // Oauth도 쿠키로 하나?????
     func setCookie(_ bool:Bool)->Self{
         self.shouldHandleCookie = bool
@@ -42,13 +41,18 @@ class ResourceBuilder{
         return self
     }
     
-    func setParams(_ param:String...) ->Self{
-        self.params[param[0]] = param[1]
+    func setParams(_ param1:String, _ param2:String) ->Self{
+        self.params[param1] = param2
         return self
     }
 
     func build() -> HttpBaseResource{
         return HttpBaseResource(reqMethod: reqMethod, shouldHandleCookie: shouldHandleCookie, isMultiPart: isMultiPart, params: params)
     }
+    
+    static let shared = ResourceBuilder()
+    
+    private init(){}
 }
+
 

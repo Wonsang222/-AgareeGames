@@ -8,7 +8,7 @@
 import UIKit
 
 class BaseController:UIViewController{
-        
+            
     func alert(message:String, agree:((UIAlertAction)->Void)? = nil, disagree:((UIAlertAction)->Void)? = nil){
         let alert = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
         let agree = UIAlertAction(title: "확인", style: .default, handler: agree)
@@ -19,12 +19,62 @@ class BaseController:UIViewController{
         
         self.present(alert, animated: true)
     }
+
 }
 
 class GameController:BaseController{
     
+    var timer:Timer?
+    var numToCount:Int?
+    
+    override var prefersHomeIndicatorAutoHidden: Bool{
+        return true
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        // 타이머 1개 유지
+        // 게임중 나가면 어케할건지... 걍 냅두면 이어지나 테스트
+        // 이게 맞나 고민요망
+        timer?.invalidate()
+        timer = nil
+    }
+    // background runloop 게임중 사용해야하나..
+    func setTimer(second:Int, selector:Selector, userinfo:Any? = nil, repeater:Bool, num:Int){
+        numToCount = num
+        timer = Timer(timeInterval: TimeInterval(second), target: self, selector: selector, userInfo: userinfo, repeats: repeater)
+        timer?.tolerance = 0.2
+        RunLoop.current.add(timer!, forMode: .common)
+        timer?.fire()
+    }
+    
 }
 
 class SettingController:BaseController{
+    
+}
+
+
+class CustomUINavigationController:UINavigationController{
+    
+    override var childForStatusBarStyle: UIViewController?{
+        return topViewController
+    }
+    
+    override var childForStatusBarHidden: UIViewController?{
+        return topViewController
+    }
+    
+    override func viewDidLoad() {
+        
+    }
     
 }
