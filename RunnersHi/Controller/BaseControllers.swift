@@ -19,11 +19,10 @@ class BaseController:UIViewController{
         
         self.present(alert, animated: true)
     }
-
 }
 
 class GameController:BaseController{
-    
+    let countView = CountView()
     var timer:Timer?
     var numToCount:Int?
     
@@ -55,7 +54,6 @@ class GameController:BaseController{
         RunLoop.current.add(timer!, forMode: .common)
         timer?.fire()
     }
-    
 }
 
 class SettingController:BaseController{

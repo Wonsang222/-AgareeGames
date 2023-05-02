@@ -13,9 +13,11 @@ import Speech
  
  3,2,1 시작 -> audio, request, task start! -> 3,2,1 -> result(단어 있으면 넘어가기) -> 3,2,1
  
+ text 필드 변할때마다 호출하는 메서드
+ 
  */
 
- 
+
 
 final class GuessWhoController:GameController{
     //MARK: - Properties
@@ -35,7 +37,19 @@ final class GuessWhoController:GameController{
     }
     
     //MARK: - Methods
-    @objc func buttonTapped(){
+    
+    private func configureCounterView(){
+        guessWhoView.addSubview(countView)
+        
+        NSLayoutConstraint.activate([
+            countView.topAnchor.constraint(equalTo: view.topAnchor),
+            countView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            countView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            countView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+    }
+    
+    @objc private func buttonTapped(){
         engine.runRecognizer { result in
             switch result{
             case .success(let res):
@@ -46,7 +60,7 @@ final class GuessWhoController:GameController{
         }
     }
     
-    @objc func startGameTimer(){
+    @objc private func startGameTimer(){
         guessWhoView.txtView.text = "\(numToCount!)"
         numToCount = numToCount! - 1
         
