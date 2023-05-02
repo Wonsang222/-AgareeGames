@@ -34,9 +34,6 @@ class MainView:UIView{
         }
         
         addSubview(stackView)
-        
-        
-        
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 20),
@@ -44,11 +41,8 @@ class MainView:UIView{
             stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
             stackView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3),
         ])
-        
     }
-    
 
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -56,6 +50,4 @@ class MainView:UIView{
     override func draw(_ rect: CGRect) {
         super.draw(rect)
     }
-
-    
 }

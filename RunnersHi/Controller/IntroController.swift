@@ -13,8 +13,6 @@ final class IntroController: BaseController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        introView.imgView.frame = view.bounds
-//        introView.addSubview(introView.imgView)
     }
     
     override func loadView() {
