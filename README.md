@@ -1,26 +1,34 @@
 # Runner-sHi
 
+계획
+
+1. 인물 맞추기 게임 UIKIT. <observer pattern>
+2. Node JS API - naver profile에 접근 크롤링
+3. 사자 성어 - RX SWIFT
+4. 게임 요청 게시판 - Objective C - table view - login 까지
+
+
+1. 인물 맞추기 게임
+
 MVVM 
 
-Data 사진, 이름
+Data 사진, 이름. - url
 
 사진보고 이름 맞추기게임
 
 
-다른 게임 추가 예정 (RX Swift)
 
 랜덤 ( 배우+유명인+만화캐릭터), 배우 <외국>, 배우 <한국> 인지도가 있는.. 
 
 인원수에 따라 인물 등장 숫자가 변함  총인원수 -1  마지막 줄 1인을 제외한 나머지는 2번씩
 
-맨첨 시작전 5초의 준비시간 5...4...3...2...1   소리파일 필요  <저작권>
+맨첨 시작전 3초의 준비시간 3...2...1   소리파일 필요  <저작권>
 
 틀리면 땡 소리난다. 나영석 성대모사해서 올리기 소리파일 필요
 
-human to human 5초 동일 progress bar 써서 시간 보여주고 
+맞추면 똥그라미
 
-사실은 5.5초 or 6초 버저비터 준다. 이건 랜덤
-5,4 초로색 3,2,1 빨간색
+human to human 5초 동일 progress bar 써서 시간 보여주고 
 
 입력시간과 처리시간 비교해서 1초 이내면 버저비터
 
@@ -38,4 +46,4 @@ API 서버 base node js
 
 lib
 1. Crashlytics  -> base controller
-2. 
+2. google ad

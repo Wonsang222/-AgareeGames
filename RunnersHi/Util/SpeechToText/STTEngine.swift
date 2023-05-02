@@ -24,6 +24,9 @@ import Speech
  
  Gracefully termination!!
  
+ 
+ 3,2,1 시작 -> audio, request, task start! -> 3,2,1 -> result(단어 있으면 넘어가기) -> 3,2,1
+ 
  */
 
  class STTEngine{

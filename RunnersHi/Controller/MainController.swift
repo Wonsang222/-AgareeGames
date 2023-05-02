@@ -9,7 +9,13 @@ import UIKit
 
 final class MainContoller:SettingController{
     
+    let mainView = MainView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func loadView() {
+        view = mainView
     }
 }

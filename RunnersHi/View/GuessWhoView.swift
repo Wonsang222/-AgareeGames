@@ -24,8 +24,9 @@ class GuessWhoView:UIView{
     let txtView:UITextView = {
        let txtView = UITextView()
         txtView.text = "sample"
-        txtView.textColor = .black
-        txtView.tintColor = .black
+        txtView.backgroundColor = .black
+        txtView.textColor = .white
+        // 텍스트 사이즈....
         txtView.isSelectable = false
         txtView.isEditable = false
         txtView.translatesAutoresizingMaskIntoConstraints = false
@@ -42,10 +43,10 @@ class GuessWhoView:UIView{
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        backgroundColor = .white
+        backgroundColor = .black
         configureUI()
     }
+    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

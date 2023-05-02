@@ -13,19 +13,17 @@ class IntroView: UIView {
         let imgView = UIImageView()
         imgView.backgroundColor = .systemBlue
         imgView.contentMode = .scaleAspectFill
-        imgView.translatesAutoresizingMaskIntoConstraints = false
         return imgView
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(imgView)
-        NSLayoutConstraint.activate([
-            imgView.topAnchor.constraint(equalTo: self.topAnchor),
-            imgView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-            imgView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            imgView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
-        ])
+    }
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        imgView.frame = self.bounds
     }
     
     required init?(coder: NSCoder) {

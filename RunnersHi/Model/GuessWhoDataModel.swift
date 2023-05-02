@@ -8,8 +8,10 @@
 import UIKit
 
 // Entitiy
+// uiimage를 받기엔 서버비용이 무섭다. naver 프로필
+
 struct GuessWhoDataModel{
     let name:String
-    let photo:UIImage
+    let photo:String
 }
 
