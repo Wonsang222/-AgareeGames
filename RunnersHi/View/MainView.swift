@@ -49,8 +49,4 @@ class MainView:UIView{
             stackView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3),
         ])
     }
-
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
-    }
 }

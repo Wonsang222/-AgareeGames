@@ -21,8 +21,8 @@ class IntroView: UIView {
         addSubview(imgView)
     }
     
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
+    override func layoutSubviews() {
+        super.layoutSubviews()
         imgView.frame = self.bounds
     }
     
