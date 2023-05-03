@@ -30,6 +30,7 @@ final class GuessWhoController:GameController{
         
 //        guessWhoView.button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         setTimer(second: 1, selector: #selector(startGameTimer), repeater: true, num: 3)
+        configureCounterView()
     }
     
     override func loadView() {
