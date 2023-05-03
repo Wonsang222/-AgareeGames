@@ -20,7 +20,6 @@ class MainView:UIView{
         return st
     }()
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .black
@@ -34,6 +33,14 @@ class MainView:UIView{
         }
         
         addSubview(stackView)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func updateConstraints() {
+        super.updateConstraints()
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 20),
@@ -43,10 +50,6 @@ class MainView:UIView{
         ])
     }
 
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
     }

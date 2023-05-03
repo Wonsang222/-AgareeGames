@@ -14,13 +14,13 @@ class CountView:UIView{
         isOpaque = false
         backgroundColor = .gray.withAlphaComponent(0.8)
         self.layer.opacity = 0.5
+        translatesAutoresizingMaskIntoConstraints = false
         
         ["1.circle", "2.circle", "3.circle"].forEach{ (icon) in
             let imgView = UIImageView(image: UIImage(systemName: icon))
             imgView.translatesAutoresizingMaskIntoConstraints = false
             addSubview(imgView)
         }
-        translatesAutoresizingMaskIntoConstraints = false
     }
     
     required init?(coder: NSCoder) {
@@ -29,7 +29,6 @@ class CountView:UIView{
     
     override func layoutSubviews() {
         super.layoutSubviews()
-            
         for i in self.subviews{
             i.frame = self.bounds
         }

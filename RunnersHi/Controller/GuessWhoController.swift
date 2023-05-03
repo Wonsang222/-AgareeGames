@@ -17,16 +17,16 @@ import Speech
  
  */
 
-
-
 final class GuessWhoController:GameController{
     //MARK: - Properties
     private let guessWhoView = GuessWhoView()
     private var engine:STTEngine!
+    private let viewModel:GuessWhoViewModel? = nil
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
         engine = STTEngineFactory.create(self)
+        guessWhoView.txtView.delegate = self
         
 //        guessWhoView.button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         setTimer(second: 1, selector: #selector(startGameTimer), repeater: true, num: 3)
@@ -76,6 +76,12 @@ final class GuessWhoController:GameController{
 extension GuessWhoController:SFSpeechRecognizerDelegate{
     func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
     
+    }
+}
+
+extension GuessWhoController:UITextViewDelegate{
+    func textViewDidEndEditing(_ textView: UITextView) {
+        // 텍스트 뷰 모든 텍스트 검사해야함
         
     }
 }

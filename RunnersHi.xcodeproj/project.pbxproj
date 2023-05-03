@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E0A83812A01F8A30031B3E3 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A83802A01F8A30031B3E3 /* Extension.swift */; };
 		7E125E7D2A00FF9D0044D881 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E125E7C2A00FF9D0044D881 /* MainView.swift */; };
 		7E159D3529F89FD900C7E601 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E159D3429F89FD900C7E601 /* Global.swift */; };
 		7E159D3829F8A01900C7E601 /* GuessWhoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E159D3729F8A01900C7E601 /* GuessWhoController.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E0A83802A01F8A30031B3E3 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		7E125E7C2A00FF9D0044D881 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		7E159D3429F89FD900C7E601 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		7E159D3729F8A01900C7E601 /* GuessWhoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoController.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 		C1FFE7D829E868B7009FFD0B /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				7E0A83802A01F8A30031B3E3 /* Extension.swift */,
 			);
 			name = Extension;
 			path = ../Extension;
@@ -270,6 +273,7 @@
 				C119CBCE29F951BF00648638 /* STTEngine.swift in Sources */,
 				C119CBCB29F805C000648638 /* IntroController.swift in Sources */,
 				C1FFE7AF29E30425009FFD0B /* AppDelegate.swift in Sources */,
+				7E0A83812A01F8A30031B3E3 /* Extension.swift in Sources */,
 				C14F272829FE08AE0007E7A6 /* STTEngineFactory.swift in Sources */,
 				7E125E7D2A00FF9D0044D881 /* MainView.swift in Sources */,
 				7E159D3C29F8A0E400C7E601 /* GuessWhoViewModel.swift in Sources */,

@@ -13,5 +13,6 @@ import UIKit
 struct GuessWhoDataModel{
     let name:String
     let photo:String
+    let realPhoto:UIImage?
 }
 
