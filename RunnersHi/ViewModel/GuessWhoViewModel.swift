@@ -7,9 +7,14 @@
 
 import UIKit
 
-struct GuessWhoViewModel{
+class GuessWhoViewModel{
     
-    let models:[GuessWhoDataModel]
+    var models:[GuessWhoDataModel]!
     
-    
+    func setDummyModel(){
+        ["이적", "빌게이츠", "강호동","유재석", "하하", "정준하"].forEach{(element) in
+            let data = GuessWhoDataModel(name: element, photo: nil, realPhoto: nil)
+            models.append(data)
+        }
+    }
 }

@@ -24,9 +24,21 @@ final class GuessWhoController:GameController{
     private let viewModel:GuessWhoViewModel? = nil
     
     //MARK: - Lifecycle
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // navigationbar 내림
+        guessWhoView.imageView.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    }
+    
     override func viewDidLoad() {
         engine = STTEngineFactory.create(self)
         guessWhoView.txtView.delegate = self
+        viewModel?.setDummyModel()
         
 //        guessWhoView.button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         setTimer(second: 1, selector: #selector(startGameTimer), repeater: true, num: 3)
@@ -71,6 +83,8 @@ final class GuessWhoController:GameController{
         }
         Thread.sleep(forTimeInterval: 1)
     }
+    
+
 }
 
 //MARK: - Extension
@@ -82,7 +96,7 @@ extension GuessWhoController:SFSpeechRecognizerDelegate{
 
 extension GuessWhoController:UITextViewDelegate{
     func textViewDidEndEditing(_ textView: UITextView) {
-        // 텍스트 뷰 모든 텍스트 검사해야함
+        // 텍스트 뷰 모든 텍스트 검사해야함, 빈칸없음, string indexing 
         
     }
 }

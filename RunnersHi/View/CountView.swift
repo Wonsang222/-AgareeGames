@@ -29,13 +29,25 @@ class CountView:UIView{
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        for i in self.subviews{
-            let width = UIScreen.main.bounds.size.width * 0.4
+        var flag = true
+        for i in self.subviews.reversed(){
+            if flag == true{
+                i.isHidden = false
+                flag = false
+            } else {
+                i.isHidden = true
+            }
+            
             let height = UIScreen.main.bounds.size.height * 0.4
             i.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
             i.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
             i.heightAnchor.constraint(equalToConstant: height).isActive = true
-            i.widthAnchor.constraint(equalToConstant: width).isActive = true
+            i.widthAnchor.constraint(equalToConstant: height).isActive = true
         }
+    }
+    
+    func startCountDown(){
+        UIView.animate(withDuration: 1, delay: 0, options: [.curveEaseInOut], animations: <#T##() -> Void#>, completion: <#T##((Bool) -> Void)?##((Bool) -> Void)?##(Bool) -> Void#>)
+
     }
 }

@@ -63,9 +63,7 @@ class SettingController:BaseController{
 
 
 class CustomUINavigationController:UINavigationController{
-    
-    
-    
+
     override var childForStatusBarStyle: UIViewController?{
         return topViewController
     }
