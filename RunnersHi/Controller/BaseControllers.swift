@@ -32,7 +32,8 @@ class GameController:BaseController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        modalPresentationStyle = .fullScreen
+        modalTransitionStyle = .partialCurl
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,6 +63,8 @@ class SettingController:BaseController{
 
 
 class CustomUINavigationController:UINavigationController{
+    
+    
     
     override var childForStatusBarStyle: UIViewController?{
         return topViewController

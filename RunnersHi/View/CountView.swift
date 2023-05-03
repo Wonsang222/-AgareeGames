@@ -12,8 +12,8 @@ class CountView:UIView{
     override init(frame: CGRect) {
         super.init(frame: frame)
         isOpaque = false
-        backgroundColor = .gray.withAlphaComponent(0.8)
-        self.layer.opacity = 0.5
+        backgroundColor = .gray.withAlphaComponent(0.9)
+        self.layer.opacity = 0.7
         translatesAutoresizingMaskIntoConstraints = false
         
         ["1.circle", "2.circle", "3.circle"].forEach{ (icon) in
@@ -30,7 +30,12 @@ class CountView:UIView{
     override func layoutSubviews() {
         super.layoutSubviews()
         for i in self.subviews{
-            i.frame = self.bounds
+            let width = UIScreen.main.bounds.size.width * 0.4
+            let height = UIScreen.main.bounds.size.height * 0.4
+            i.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+            i.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+            i.heightAnchor.constraint(equalToConstant: height).isActive = true
+            i.widthAnchor.constraint(equalToConstant: width).isActive = true
         }
     }
 }

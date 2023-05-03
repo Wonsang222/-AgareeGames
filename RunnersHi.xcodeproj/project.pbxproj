@@ -146,9 +146,9 @@
 		C1FFE7C629E305CC009FFD0B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				7E20755A29F9FBE4000BFE61 /* GuessWhoView.swift */,
 				7E20755C29F9FBF8000BFE61 /* IntroView.swift */,
 				7E125E7C2A00FF9D0044D881 /* MainView.swift */,
+				7E20755A29F9FBE4000BFE61 /* GuessWhoView.swift */,
 				C14F272D2A0140DE0007E7A6 /* CountView.swift */,
 			);
 			path = View;
