@@ -15,19 +15,21 @@ import Speech
  
  text 필드 변할때마다 호출하는 메서드
  
+ 뷰모델 셋팅해야함
+ 
  */
 
 final class GuessWhoController:GameController{
+    
     //MARK: - Properties
     private let guessWhoView = GuessWhoView()
     private var engine:STTEngine!
-    private let viewModel:GuessWhoViewModel? = nil
+    private let viewModel = GuessWhoViewModel()
     
     //MARK: - Lifecycle
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // navigationbar 내림
         guessWhoView.imageView.isHidden = true
     }
     
@@ -38,7 +40,7 @@ final class GuessWhoController:GameController{
     override func viewDidLoad() {
         engine = STTEngineFactory.create(self)
         guessWhoView.txtView.delegate = self
-        viewModel?.setDummyModel()
+        viewModel.setDummyModel()
         
 //        guessWhoView.button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         setTimer(second: 1, selector: #selector(startGameTimer), repeater: true, num: 3)
@@ -78,13 +80,14 @@ final class GuessWhoController:GameController{
         numToCount = numToCount! - 1
         
         if numToCount == 0{
+            guessWhoView.txtView.text = "\(numToCount!)"
             timer?.invalidate()
             timer = nil
         }
         Thread.sleep(forTimeInterval: 1)
     }
     
-
+  
 }
 
 //MARK: - Extension
@@ -96,7 +99,7 @@ extension GuessWhoController:SFSpeechRecognizerDelegate{
 
 extension GuessWhoController:UITextViewDelegate{
     func textViewDidEndEditing(_ textView: UITextView) {
-        // 텍스트 뷰 모든 텍스트 검사해야함, 빈칸없음, string indexing 
+        // 텍스트 뷰 모든 텍스트 검사해야함, 빈칸없음, string indexing
         
     }
 }

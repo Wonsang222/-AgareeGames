@@ -9,7 +9,13 @@ import UIKit
 
 class GuessWhoViewModel{
     
-    var models:[GuessWhoDataModel]!
+    var targetModel:GuessWhoDataModel? = nil
+    
+    var models:[GuessWhoDataModel]!{
+        didSet{
+            
+        }
+    }
     
     func setDummyModel(){
         ["이적", "빌게이츠", "강호동","유재석", "하하", "정준하"].forEach{(element) in

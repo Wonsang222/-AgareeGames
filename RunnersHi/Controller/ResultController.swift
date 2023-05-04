@@ -14,8 +14,6 @@ class ResultController:SettingController{
         super.viewDidLoad()
         tableView.delegate = self
     }
-    
-    
 }
 
 extension ResultController:UITableViewDelegate{
@@ -24,11 +22,11 @@ extension ResultController:UITableViewDelegate{
 
 extension ResultController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        return UITableViewCell()
     }
     
     

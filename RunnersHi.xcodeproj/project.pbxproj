@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E04C8E52A03342300357A0F /* PreGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E04C8E42A03342300357A0F /* PreGameController.swift */; };
+		7E04C8E72A033C4800357A0F /* PreGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E04C8E62A033C4800357A0F /* PreGameView.swift */; };
+		7E04C8EA2A0342C800357A0F /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E04C8E92A0342C800357A0F /* GameController.swift */; };
+		7E04C8EC2A0342FE00357A0F /* CustomUINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E04C8EB2A0342FE00357A0F /* CustomUINavigationController.swift */; };
+		7E04C8EE2A03432D00357A0F /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E04C8ED2A03432D00357A0F /* SettingController.swift */; };
 		7E0A83812A01F8A30031B3E3 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A83802A01F8A30031B3E3 /* Extension.swift */; };
 		7E125E7D2A00FF9D0044D881 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E125E7C2A00FF9D0044D881 /* MainView.swift */; };
 		7E159D3529F89FD900C7E601 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E159D3429F89FD900C7E601 /* Global.swift */; };
@@ -15,7 +20,7 @@
 		7E20755B29F9FBE4000BFE61 /* GuessWhoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E20755A29F9FBE4000BFE61 /* GuessWhoView.swift */; };
 		7E20755D29F9FBF8000BFE61 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E20755C29F9FBF8000BFE61 /* IntroView.swift */; };
 		C119CBC529F8030600648638 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBC429F8030600648638 /* MainController.swift */; };
-		C119CBC729F8033300648638 /* BaseControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBC629F8033300648638 /* BaseControllers.swift */; };
+		C119CBC729F8033300648638 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBC629F8033300648638 /* BaseController.swift */; };
 		C119CBC929F804FE00648638 /* GuessWhoDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBC829F804FE00648638 /* GuessWhoDataModel.swift */; };
 		C119CBCB29F805C000648638 /* IntroController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBCA29F805C000648638 /* IntroController.swift */; };
 		C119CBCE29F951BF00648638 /* STTEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBCD29F951BF00648638 /* STTEngine.swift */; };
@@ -32,6 +37,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E04C8E42A03342300357A0F /* PreGameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreGameController.swift; sourceTree = "<group>"; };
+		7E04C8E62A033C4800357A0F /* PreGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreGameView.swift; sourceTree = "<group>"; };
+		7E04C8E92A0342C800357A0F /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
+		7E04C8EB2A0342FE00357A0F /* CustomUINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUINavigationController.swift; sourceTree = "<group>"; };
+		7E04C8ED2A03432D00357A0F /* SettingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingController.swift; sourceTree = "<group>"; };
 		7E0A83802A01F8A30031B3E3 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		7E125E7C2A00FF9D0044D881 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		7E159D3429F89FD900C7E601 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
@@ -40,7 +50,7 @@
 		7E20755A29F9FBE4000BFE61 /* GuessWhoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuessWhoView.swift; sourceTree = "<group>"; };
 		7E20755C29F9FBF8000BFE61 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
 		C119CBC429F8030600648638 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainController.swift; path = RunnersHi/Controller/MainController.swift; sourceTree = SOURCE_ROOT; };
-		C119CBC629F8033300648638 /* BaseControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseControllers.swift; path = RunnersHi/Controller/BaseControllers.swift; sourceTree = SOURCE_ROOT; };
+		C119CBC629F8033300648638 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseController.swift; path = RunnersHi/Controller/BaseControllers/BaseController.swift; sourceTree = SOURCE_ROOT; };
 		C119CBC829F804FE00648638 /* GuessWhoDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GuessWhoDataModel.swift; path = RunnersHi/Model/GuessWhoDataModel.swift; sourceTree = SOURCE_ROOT; };
 		C119CBCA29F805C000648638 /* IntroController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IntroController.swift; path = RunnersHi/Controller/IntroController.swift; sourceTree = SOURCE_ROOT; };
 		C119CBCD29F951BF00648638 /* STTEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STTEngine.swift; sourceTree = "<group>"; };
@@ -69,6 +79,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E04C8E82A0342A900357A0F /* BaseControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C119CBC629F8033300648638 /* BaseController.swift */,
+				7E04C8E92A0342C800357A0F /* GameController.swift */,
+				7E04C8ED2A03432D00357A0F /* SettingController.swift */,
+				7E04C8EB2A0342FE00357A0F /* CustomUINavigationController.swift */,
+			);
+			path = BaseControllers;
+			sourceTree = "<group>";
+		};
 		7E159D3329F89FCF00C7E601 /* Global */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +173,7 @@
 				7E125E7C2A00FF9D0044D881 /* MainView.swift */,
 				7E20755A29F9FBE4000BFE61 /* GuessWhoView.swift */,
 				C14F272D2A0140DE0007E7A6 /* CountView.swift */,
+				7E04C8E62A033C4800357A0F /* PreGameView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -159,11 +181,12 @@
 		C1FFE7C729E3060B009FFD0B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				C119CBC629F8033300648638 /* BaseControllers.swift */,
+				7E04C8E82A0342A900357A0F /* BaseControllers */,
 				C119CBC429F8030600648638 /* MainController.swift */,
 				C119CBCA29F805C000648638 /* IntroController.swift */,
 				7E159D3729F8A01900C7E601 /* GuessWhoController.swift */,
 				C14F275D2A02C01B0007E7A6 /* ResultController.swift */,
+				7E04C8E42A03342300357A0F /* PreGameController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -267,6 +290,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E04C8E52A03342300357A0F /* PreGameController.swift in Sources */,
 				7E159D3529F89FD900C7E601 /* Global.swift in Sources */,
 				C14F272E2A0140DE0007E7A6 /* CountView.swift in Sources */,
 				7E20755B29F9FBE4000BFE61 /* GuessWhoView.swift in Sources */,
@@ -275,15 +299,19 @@
 				C119CBC529F8030600648638 /* MainController.swift in Sources */,
 				7E20755D29F9FBF8000BFE61 /* IntroView.swift in Sources */,
 				C119CBCE29F951BF00648638 /* STTEngine.swift in Sources */,
+				7E04C8EC2A0342FE00357A0F /* CustomUINavigationController.swift in Sources */,
 				C119CBCB29F805C000648638 /* IntroController.swift in Sources */,
 				C1FFE7AF29E30425009FFD0B /* AppDelegate.swift in Sources */,
+				7E04C8EE2A03432D00357A0F /* SettingController.swift in Sources */,
+				7E04C8E72A033C4800357A0F /* PreGameView.swift in Sources */,
 				7E0A83812A01F8A30031B3E3 /* Extension.swift in Sources */,
 				C14F272829FE08AE0007E7A6 /* STTEngineFactory.swift in Sources */,
 				7E125E7D2A00FF9D0044D881 /* MainView.swift in Sources */,
 				7E159D3C29F8A0E400C7E601 /* GuessWhoViewModel.swift in Sources */,
 				C14F272C29FEA3E00007E7A6 /* NetworkService.swift in Sources */,
-				C119CBC729F8033300648638 /* BaseControllers.swift in Sources */,
+				C119CBC729F8033300648638 /* BaseController.swift in Sources */,
 				C1FFE7B129E30425009FFD0B /* SceneDelegate.swift in Sources */,
+				7E04C8EA2A0342C800357A0F /* GameController.swift in Sources */,
 				C119CBC929F804FE00648638 /* GuessWhoDataModel.swift in Sources */,
 				C1FFE7D629E8607D009FFD0B /* HttpBase.swift in Sources */,
 			);

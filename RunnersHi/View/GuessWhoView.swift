@@ -26,7 +26,6 @@ class GuessWhoView:UIView{
         txtView.text = "sample"
         txtView.backgroundColor = .black
         txtView.textColor = .white
-        // 텍스트 사이즈....
         txtView.isSelectable = false
         txtView.isEditable = false
         txtView.translatesAutoresizingMaskIntoConstraints = false
@@ -53,12 +52,11 @@ class GuessWhoView:UIView{
     
     func configureUI(){
         [imageView, txtView, button].forEach {addSubview($0)}
-        let viewHeight = UIScreen.main.bounds.size.height * 0.3
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            imageView.heightAnchor.constraint(equalToConstant: viewHeight),
-            imageView.widthAnchor.constraint(equalToConstant: viewHeight),
+            imageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3),
+            imageView.widthAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3),
             
             txtView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             txtView.topAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: 20),

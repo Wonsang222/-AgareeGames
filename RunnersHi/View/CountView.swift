@@ -21,6 +21,8 @@ class CountView:UIView{
             imgView.translatesAutoresizingMaskIntoConstraints = false
             addSubview(imgView)
         }
+        
+        startCountDown()
     }
     
     required init?(coder: NSCoder) {
@@ -29,25 +31,24 @@ class CountView:UIView{
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        var flag = true
-        for i in self.subviews.reversed(){
-            if flag == true{
-                i.isHidden = false
-                flag = false
+        var isFirst = true
+        for image in self.subviews.reversed(){
+            if isFirst == true{
+                image.isHidden = false
+                isFirst = false
             } else {
-                i.isHidden = true
+                image.isHidden = true
             }
             
-            let height = UIScreen.main.bounds.size.height * 0.4
-            i.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-            i.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-            i.heightAnchor.constraint(equalToConstant: height).isActive = true
-            i.widthAnchor.constraint(equalToConstant: height).isActive = true
+            image.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+            image.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+            image.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4).isActive = true
+            image.widthAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4).isActive = true
         }
     }
     
+    // 트랜지션 보고 다시하기
     func startCountDown(){
-        UIView.animate(withDuration: 1, delay: 0, options: [.curveEaseInOut], animations: <#T##() -> Void#>, completion: <#T##((Bool) -> Void)?##((Bool) -> Void)?##(Bool) -> Void#>)
-
+//        UIView.transition(with: <#T##UIView#>, duration: <#T##TimeInterval#>, animations: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
     }
 }
