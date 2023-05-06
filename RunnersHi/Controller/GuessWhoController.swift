@@ -22,15 +22,28 @@ import Speech
 final class GuessWhoController:GameController{
     
     //MARK: - Properties
-    private let guessWhoView = GuessWhoView()
+    private let guessView = GuessWhoView()
     private var engine:STTEngine!
-    private let viewModel = GuessWhoViewModel()
+    private lazy var viewModel = GuessWhoViewModel(delegate: self)
+    private var answer = ""{
+        didSet{
+            checkTheProcess()
+        }
+    }
     
     //MARK: - Lifecycle
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guessWhoView.imageView.isHidden = true
+        viewModel.setDummyModel()
+        print(#function)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print(#function)
+        startCounter {
+            self.startGame()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -38,29 +51,26 @@ final class GuessWhoController:GameController{
     }
     
     override func viewDidLoad() {
+        print(#function)
         engine = STTEngineFactory.create(self)
-        guessWhoView.txtView.delegate = self
-        viewModel.setDummyModel()
-        
-//        guessWhoView.button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-        setTimer(second: 1, selector: #selector(startGameTimer), repeater: true, num: 3)
-        configureCounterView()
+        guessView.button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        configureUI()
     }
-    
-    override func loadView() {
-        view = guessWhoView
-    }
-    
     //MARK: - Methods
-    
-    private func configureCounterView(){
-        guessWhoView.addSubview(countView)
-        
+    func configureUI(){
+        view.addSubview(guessView)
+        guessView.addSubview(countView)
+            
         NSLayoutConstraint.activate([
-            countView.topAnchor.constraint(equalTo: view.topAnchor),
-            countView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            countView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            countView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            guessView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            guessView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            guessView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            guessView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+
+            countView.centerXAnchor.constraint(equalTo: guessView.centerXAnchor),
+            countView.centerYAnchor.constraint(equalTo: guessView.centerYAnchor),
+            countView.heightAnchor.constraint(equalToConstant: 200),
+            countView.widthAnchor.constraint(equalToConstant: 200)
         ])
     }
     
@@ -68,7 +78,7 @@ final class GuessWhoController:GameController{
         engine.runRecognizer { result in
             switch result{
             case .success(let res):
-                print(res)
+                self.answer += res
             case .failure(let err):
                 print(err)
             }
@@ -76,30 +86,57 @@ final class GuessWhoController:GameController{
     }
     
     @objc private func startGameTimer(){
-        guessWhoView.txtView.text = "\(numToCount!)"
         numToCount = numToCount! - 1
-        
         if numToCount == 0{
-            guessWhoView.txtView.text = "\(numToCount!)"
             timer?.invalidate()
             timer = nil
         }
         Thread.sleep(forTimeInterval: 1)
     }
     
-  
+    func startGame(){
+        print(#function)
+        self.countView.removeFromSuperview()
+        self.guessView.imageView.isHidden = false
+        self.countView.layoutIfNeeded()
+        self.viewModel.next()
+    }
+    
+    func checkTheAnswer()->Bool{
+        guard let targetName = viewModel.getTargetModel?.name else {return false}
+        let answer = answer.components(separatedBy: " ").joined()
+        if answer.contains(targetName){
+            return true
+        }
+        return false
+    }
+    
+    func checkTheProcess(){
+        //정답 맞춘경우
+        if checkTheAnswer(){
+            viewModel.next()
+        } else{
+            clearGame(isWin: false)
+        }
+    }
 }
 
 //MARK: - Extension
 extension GuessWhoController:SFSpeechRecognizerDelegate{
     func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
-    
+        
     }
 }
 
-extension GuessWhoController:UITextViewDelegate{
-    func textViewDidEndEditing(_ textView: UITextView) {
-        // 텍스트 뷰 모든 텍스트 검사해야함, 빈칸없음, string indexing
-        
+extension GuessWhoController:GuessWhoViewModelDelegate{
+    func setNextTarget(with data: GuessWhoDataModel) {
+        // transition 처리
+        guard let targetModel = viewModel.getTargetModel else {return}
+        guessView.imageView.image = UIImage(systemName: targetModel.photo)
+    }
+    
+    func clearGame(isWin:Bool) {
+        let nextVC = ResultController(isWin: isWin)
+        present(nextVC, animated: true)
     }
 }
