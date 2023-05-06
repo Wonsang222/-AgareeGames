@@ -18,12 +18,13 @@ class IntroView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        addSubview(imgView)
+//        addSubview(imgView)
+        backgroundColor = .white
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        imgView.frame = self.bounds
+//        imgView.frame = self.bounds
     }
     
     required init?(coder: NSCoder) {

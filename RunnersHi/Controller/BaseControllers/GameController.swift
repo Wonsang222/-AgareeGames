@@ -8,12 +8,17 @@
 import UIKit
 
 class GameController:BaseController{
-    let countView = CountView()
     var timer:Timer?
     var numToCount:Int?
+    let countView:UIImageView = {
+       let iv = UIImageView()
+        iv.contentMode = .scaleAspectFit
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        return iv
+    }()
     
     override var prefersHomeIndicatorAutoHidden: Bool{
-        return true
+        return false
     }
     
     override func viewDidLoad() {
@@ -41,5 +46,25 @@ class GameController:BaseController{
         timer?.tolerance = 0.2
         RunLoop.current.add(timer!, forMode: .common)
         timer?.fire()
+    }
+    
+    // 왜 escaping이지?
+    func startCounter(completion:@escaping()->Void){
+        UIView.transition(with: countView, duration: 2, options: [.transitionFlipFromTop]) {
+            self.countView.image = UIImage(systemName: "3.circle")
+            self.countView.layoutIfNeeded()
+        } completion: { finished in
+            UIView.transition(with: self.countView, duration: 2, options: [.transitionFlipFromTop]) {
+                self.countView.image = UIImage(systemName: "2.circle")
+                self.countView.layoutIfNeeded()
+            } completion: { finished in
+                UIView.transition(with: self.countView, duration: 2, options: [.transitionFlipFromTop]) {
+                    self.countView.image = UIImage(systemName: "1.circle")
+                    self.countView.layoutIfNeeded()
+                } completion: { finished in
+                    completion()
+                }
+            }
+        }
     }
 }

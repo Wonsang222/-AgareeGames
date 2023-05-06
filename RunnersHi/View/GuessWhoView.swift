@@ -17,19 +17,9 @@ class GuessWhoView:UIView{
         imgView.clipsToBounds = true
         imgView.image = UIImage(systemName: "trash")
         imgView.contentMode = .scaleAspectFill
+        imgView.isHidden = true
         imgView.translatesAutoresizingMaskIntoConstraints = false
         return imgView
-    }()
-    
-    let txtView:UITextView = {
-       let txtView = UITextView()
-        txtView.text = "sample"
-        txtView.backgroundColor = .black
-        txtView.textColor = .white
-        txtView.isSelectable = false
-        txtView.isEditable = false
-        txtView.translatesAutoresizingMaskIntoConstraints = false
-        return txtView
     }()
     
     let button:UIButton = {
@@ -43,7 +33,7 @@ class GuessWhoView:UIView{
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .black
-        configureUI()
+        translatesAutoresizingMaskIntoConstraints = false
     }
     
     required init?(coder: NSCoder) {
@@ -51,20 +41,20 @@ class GuessWhoView:UIView{
     }
     
     func configureUI(){
-        [imageView, txtView, button].forEach {addSubview($0)}
+        [imageView, button].forEach {addSubview($0)}
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             imageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3),
             imageView.widthAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3),
             
-            txtView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            txtView.topAnchor.constraint(equalTo: self.imageView.bottomAnchor, constant: 20),
-            txtView.heightAnchor.constraint(equalToConstant: 50),
-            txtView.widthAnchor.constraint(equalToConstant: 50),
-            
             button.topAnchor.constraint(equalTo: self.topAnchor, constant: 50),
             button.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        configureUI()
     }
 }
