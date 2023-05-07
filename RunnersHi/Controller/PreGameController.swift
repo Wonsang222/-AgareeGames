@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PreGameController:SettingController{
+final class PreGameController:SettingController{
     
     let preGameView = PreGameView()
     
