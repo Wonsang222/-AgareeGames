@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ResultController:SettingController{
+final class ResultController:SettingController{
     
     var isWin:Bool
     let resultView = ResultView()

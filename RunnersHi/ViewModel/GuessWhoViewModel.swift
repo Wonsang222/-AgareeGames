@@ -19,15 +19,19 @@ struct GuessWhoViewModel{
     
     private var targetModel:GuessWhoDataModel?{
         didSet{
+            print(55)
             guard let targetModel = targetModel else {
                 // 게임 이긴 경우
+                print(5.5)
                 delegate.clearGame(isWin: true)
                 return
             }
             delegate.setNextTarget(with: targetModel)
+            print(targetModel)
+            print(6.5)
         }
     }
-    private var models:[GuessWhoDataModel] = []
+     var models:[GuessWhoDataModel] = []
     private var delegate:GuessWhoViewModelDelegate
 
     var getTargetModel: GuessWhoDataModel?{
@@ -35,12 +39,15 @@ struct GuessWhoViewModel{
     }
     
     mutating func setDummyModel(){
-        ["이적", "빌게이츠", "강호동","유재석", "하하", "정준하"].forEach{(element) in
-            var int = 0
-            let data = GuessWhoDataModel(name: element, photo: "\(0).circle", realPhoto: nil)
-            models.append(data)
-            int += 1
-        }
+        let data1 = GuessWhoDataModel(name: "이적", photo: "0.circle", realPhoto: nil)
+        let data2 = GuessWhoDataModel(name: "빌게이츠", photo: "1.circle", realPhoto: nil)
+        let data3 = GuessWhoDataModel(name: "강호동", photo: "2.circle", realPhoto: nil)
+        let data4 = GuessWhoDataModel(name: "스티브잡스", photo: "3.circle", realPhoto: nil)
+        
+        models.append(data1)
+        models.append(data2)
+        models.append(data3)
+        models.append(data4)
     }
     
     mutating func next(){

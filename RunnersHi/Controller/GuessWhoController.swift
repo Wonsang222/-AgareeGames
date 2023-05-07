@@ -34,16 +34,12 @@ final class GuessWhoController:GameController{
     //MARK: - Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.setDummyModel()
-        print(#function)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print(#function)
-        startCounter {
-            self.startGame()
-        }
+   
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -51,10 +47,13 @@ final class GuessWhoController:GameController{
     }
     
     override func viewDidLoad() {
-        print(#function)
+        viewModel.setDummyModel()
         engine = STTEngineFactory.create(self)
         guessView.button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         configureUI()
+        startCounter {
+            self.startGame()
+        }
     }
     //MARK: - Methods
     func configureUI(){
@@ -95,11 +94,13 @@ final class GuessWhoController:GameController{
     }
     
     func startGame(){
-        print(#function)
+        print(44)
         self.countView.removeFromSuperview()
         self.guessView.imageView.isHidden = false
         self.countView.layoutIfNeeded()
         self.viewModel.next()
+        print(4.5)
+        print(self.viewModel.getTargetModel)
     }
     
     func checkTheAnswer()->Bool{
@@ -131,8 +132,13 @@ extension GuessWhoController:SFSpeechRecognizerDelegate{
 extension GuessWhoController:GuessWhoViewModelDelegate{
     func setNextTarget(with data: GuessWhoDataModel) {
         // transition 처리
-        guard let targetModel = viewModel.getTargetModel else {return}
+        print(77)
+        guard let targetModel = viewModel.getTargetModel else {
+            print(88)
+            return}
+        print(99)
         guessView.imageView.image = UIImage(systemName: targetModel.photo)
+        self.guessView.imageView.layoutIfNeeded()
     }
     
     func clearGame(isWin:Bool) {
