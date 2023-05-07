@@ -19,16 +19,16 @@ struct GuessWhoViewModel{
     
     private var targetModel:GuessWhoDataModel?{
         didSet{
-            print(55)
             guard let targetModel = targetModel else {
                 // 게임 이긴 경우
                 print(5.5)
                 delegate.clearGame(isWin: true)
                 return
             }
-            delegate.setNextTarget(with: targetModel)
             print(targetModel)
             print(6.5)
+            delegate.setNextTarget(with: targetModel)
+           
         }
     }
      var models:[GuessWhoDataModel] = []
