@@ -100,7 +100,6 @@ final class GuessWhoController:GameController{
         self.countView.layoutIfNeeded()
         self.viewModel.next()
         print(4.5)
-        print(self.viewModel.getTargetModel)
     }
     
     func checkTheAnswer()->Bool{
@@ -133,11 +132,9 @@ extension GuessWhoController:GuessWhoViewModelDelegate{
     func setNextTarget(with data: GuessWhoDataModel) {
         // transition 처리
         print(77)
-        guard let targetModel = viewModel.getTargetModel else {
-            print(88)
-            return}
+        print(data)
         print(99)
-        guessView.imageView.image = UIImage(systemName: targetModel.photo)
+        guessView.imageView.image = UIImage(systemName: data.photo)
         self.guessView.imageView.layoutIfNeeded()
     }
     
