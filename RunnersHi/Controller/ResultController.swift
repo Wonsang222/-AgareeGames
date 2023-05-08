@@ -16,16 +16,10 @@ final class ResultController:SettingController{
         view = resultView
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-// 땡 소리 넣기
-        if isWin{
-            resultView.label.text = "정답"
-        } else {
-            resultView.label.text = "땡!"
-        }
-        
+        checkTheResult()
+        configureNaviBar()
     }
     
     init(isWin: Bool) {
@@ -38,4 +32,16 @@ final class ResultController:SettingController{
         fatalError("init(coder:) has not been implemented")
     }
     
+    func configureNaviBar(){
+        // navigation button
+        // 3... 2... 1... popto rootView
+    }
+    
+    func checkTheResult(){
+        if isWin{
+            resultView.label.text = "통과"
+        } else {
+            resultView.label.text = "땡!"
+        }
+    }
 }

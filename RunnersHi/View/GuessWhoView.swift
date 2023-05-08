@@ -9,7 +9,6 @@ import UIKit
 
 class GuessWhoView:UIView{
     
-//  textview????
     // 1줄 허용 /. 몇글자 넘어가면 알아서 cut // 헛소리 중에 정답 있으면 check 해야함
     
     let imageView:UIImageView = {

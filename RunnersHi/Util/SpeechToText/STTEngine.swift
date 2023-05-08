@@ -8,27 +8,6 @@
 import UIKit
 import Speech
 
-/*
- Game time : 3 second
- success condition : say right name in 3 seconds
-    1. no extra words for the answer
-    2. with some extra words for the answer -> check. analysis
- 
- problem
-    1. understanding each component
-    2. how to attach it to GameController (Protocol?)
- 
- assumption
-    1. sfspeechrecognitionTask.state로 분기
- 
- 
- Gracefully termination!!
- 
- 
- 3,2,1 시작 -> audio, request, task start! -> 3,2,1 -> result(단어 있으면 넘어가기) -> 3,2,1
- 
- */
-
  class STTEngine{
     private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "ko-KR"))!
     private var recognitionRequest:SFSpeechAudioBufferRecognitionRequest?
@@ -41,14 +20,15 @@ import Speech
         guard let speechController = controller as? SFSpeechRecognizerDelegate else {return}
         self.speechRecognizer.delegate = speechController
     }
-// proto type method
+     // 앱 background 갈때 audioEngine stop되는지 확인
+     //
      func runRecognizer(completion:@escaping (Result<String, Error>) -> Void){
-         if audioEngine.isRunning{
-             audioEngine.stop()
-             recognitionRequest?.endAudio()
-             print("✋✋✋✋✋✋✋✋✋✋✋✋✋✋✋✋✋✋✋✋")
-             return
-         }
+//         if audioEngine.isRunning{
+//             audioEngine.stop()
+//             recognitionRequest?.endAudio()
+//             print("✋✋✋✋✋✋✋✋✋✋✋✋✋✋✋✋✋✋✋✋")
+//             return
+//         }
          //  음성요청인식 결과 제공
          if recognitionTask != nil{
              recognitionTask?.cancel()
@@ -62,7 +42,7 @@ import Speech
              try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
              
          }catch{
-             print(error.localizedDescription)
+             controller.alert(message: "오디오 에러입니다. \n휴대폰의 오디오를 확인해주세요.")
          }
          // 음성인식요청 처리기
          recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
@@ -109,9 +89,14 @@ import Speech
          } catch{
              print("Error occured while activating audio engine")
          }
-         
-         completion(.success("Re-activating"))
     }
-    
+     
+     func resetRecognizer(){
+         recognitionTask?.cancel()
+         audioEngine.stop()
+         recognitionRequest = nil
+         recognitionTask = nil
+     }
 }
+
 

@@ -8,14 +8,12 @@
 import UIKit
 import Speech
 /*
- navtigation bar color = black
- background color = black
+타이머 구현!!!!!!!! 3.5초 어케하지
+ 소리로만 할까
+ 띠 띠 띠
+  3 2 1 땡
  
- 3,2,1 시작 -> audio, request, task start! -> 3,2,1 -> result(단어 있으면 넘어가기) -> 3,2,1
- 
- text 필드 변할때마다 호출하는 메서드
- 
- 뷰모델 셋팅해야함
+ Progress bar로 일단하자
  
  */
 
@@ -27,6 +25,7 @@ final class GuessWhoController:GameController{
     private lazy var viewModel = GuessWhoViewModel(delegate: self)
     private var answer = ""{
         didSet{
+            guard answer == "" else {return}
             checkTheProcess()
         }
     }
@@ -34,29 +33,27 @@ final class GuessWhoController:GameController{
     //MARK: - Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-   
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        engine.resetRecognizer()
     }
     
     override func viewDidLoad() {
         viewModel.setDummyModel()
         engine = STTEngineFactory.create(self)
-        guessView.button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         configureUI()
         startCounter {
             self.startGame()
         }
     }
     //MARK: - Methods
-    func configureUI(){
+    private func configureUI(){
         view.addSubview(guessView)
         guessView.addSubview(countView)
             
@@ -73,13 +70,13 @@ final class GuessWhoController:GameController{
         ])
     }
     
-    @objc private func buttonTapped(){
+    private func runRecognizer(){
         engine.runRecognizer { result in
             switch result{
             case .success(let res):
                 self.answer += res
             case .failure(let err):
-                print(err)
+                print("runRecognizer:\(err)")
             }
         }
     }
@@ -93,16 +90,15 @@ final class GuessWhoController:GameController{
         Thread.sleep(forTimeInterval: 1)
     }
     
-    func startGame(){
-        print(44)
+    private func startGame(){
         self.countView.removeFromSuperview()
         self.guessView.imageView.isHidden = false
         self.countView.layoutIfNeeded()
         self.viewModel.next()
-        print(4.5)
+        runRecognizer()
     }
     
-    func checkTheAnswer()->Bool{
+    private func checkTheAnswer()->Bool{
         guard let targetName = viewModel.getTargetModel?.name else {return false}
         let answer = answer.components(separatedBy: " ").joined()
         if answer.contains(targetName){
@@ -111,9 +107,12 @@ final class GuessWhoController:GameController{
         return false
     }
     
-    func checkTheProcess(){
+    private func checkTheProcess(){
         //정답 맞춘경우
         if checkTheAnswer(){
+            engine.resetRecognizer()
+            answer = ""
+            runRecognizer()
             viewModel.next()
         } else{
             clearGame(isWin: false)
@@ -131,9 +130,6 @@ extension GuessWhoController:SFSpeechRecognizerDelegate{
 extension GuessWhoController:GuessWhoViewModelDelegate{
     func setNextTarget(with data: GuessWhoDataModel) {
         // transition 처리
-        print(77)
-        print(data)
-        print(99)
         guessView.imageView.image = UIImage(systemName: data.photo)
         self.guessView.imageView.layoutIfNeeded()
     }
