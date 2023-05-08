@@ -21,7 +21,7 @@ final class GuessWhoController:GameController{
     
     //MARK: - Properties
     private let guessView = GuessWhoView()
-    private var engine:STTEngine!
+    private var engine:STTEngine?
     private lazy var viewModel = GuessWhoViewModel(delegate: self)
     private var answer = ""{
         didSet{
@@ -41,6 +41,7 @@ final class GuessWhoController:GameController{
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        guard let engine = engine else {return}
         engine.resetRecognizer()
     }
     
@@ -71,6 +72,7 @@ final class GuessWhoController:GameController{
     }
     
     private func runRecognizer(){
+        guard let engine = engine else {return}
         engine.runRecognizer { result in
             switch result{
             case .success(let res):
@@ -109,6 +111,7 @@ final class GuessWhoController:GameController{
     
     private func checkTheProcess(){
         //정답 맞춘경우
+        guard let engine = engine else {return}
         if checkTheAnswer(){
             engine.resetRecognizer()
             answer = ""

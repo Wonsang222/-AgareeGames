@@ -16,13 +16,29 @@ struct HttpBaseResource {
     private let isMultiPart:Bool
     private var reqHeader:[String:String]?
     private var params = [String:String]()
-    
-    init(reqMethod: String, shouldHandleCookie: Bool, isMultiPart: Bool, params: [String : String]) {
-        self.reqMethod = reqMethod
-        self.shouldHandleCookie = shouldHandleCookie
-        self.isMultiPart = isMultiPart
-        self.params = params
-    }
+
+    lazy var request:URLRequest = {
+        var resultReq:URLRequest
+        
+        if reqMethod == "GET" {
+            resultReq = URLRequest(url: URL(string: reqUrl + "?" + generateParam())!)
+        } else {
+            resultReq = URLRequest(url: URL(string: reqUrl)!)
+        }
+        
+        resultReq.httpMethod = reqMethod
+        
+        if let reqHeader = reqHeader{
+            for (key, value) in reqHeader{
+                resultReq.addValue(value, forHTTPHeaderField: key)
+            }
+        }
+        // 일단은 get만...
+//        resultReq.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        resultReq.httpBody = generateParam().data(using: String.Encoding.utf8)
+            
+        return resultReq
+    }()
     
     func generateParam()->String{
         var returnVal = ""
@@ -34,29 +50,12 @@ struct HttpBaseResource {
         }
         return returnVal
     }
-    // 완성해야함
-    func makeReq() -> URLRequest{
-        
-        var resultReq:URLRequest
-        
-        if self.reqMethod == "GET" {
-            resultReq = URLRequest(url: URL(string: self.reqUrl + "?" + self.generateParam())!)
-        } else {
-            resultReq = URLRequest(url: URL(string: self.reqUrl)!)
-        }
-        
-        resultReq.httpMethod = self.reqMethod
-        
-        if let reqHeader = self.reqHeader{
-            for (key, value) in reqHeader{
-                resultReq.addValue(value, forHTTPHeaderField: key)
-            }
-        }
-        // 일단은 get만...
-        resultReq.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        resultReq.httpBody = self.generateParam().data(using: String.Encoding.utf8)
-            
-        return resultReq
+    
+    init(reqMethod: String, shouldHandleCookie: Bool, isMultiPart: Bool, params: [String : String]) {
+        self.reqMethod = reqMethod
+        self.shouldHandleCookie = shouldHandleCookie
+        self.isMultiPart = isMultiPart
+        self.params = params
     }
 }
 
