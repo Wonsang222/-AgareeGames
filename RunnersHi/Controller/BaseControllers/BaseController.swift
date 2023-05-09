@@ -9,14 +9,14 @@ import UIKit
 
 class BaseController:UIViewController{
             
-    func alert(message:String, agree:((UIAlertAction)->Void)? = nil, disagree:((UIAlertAction)->Void)? = nil){
+    func alert(message:String, agree:((UIAlertAction)->Void)?, disagree:((UIAlertAction)->Void)?){
         let alert = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
-        let agree = UIAlertAction(title: "확인", style: .default, handler: agree)
-        let disagree = UIAlertAction(title: "취소", style: .default, handler: disagree)
-        
-        alert.addAction(agree)
-        alert.addAction(disagree)
-        
+        if agree != nil && disagree != nil{
+            let agreeAction = UIAlertAction(title: "확인", style: .default, handler: agree)
+            let disagreeAction = UIAlertAction(title: "취소", style: .default, handler: disagree)
+            alert.addAction(agreeAction)
+            alert.addAction(disagreeAction)
+        }
         self.present(alert, animated: true)
     }
 }

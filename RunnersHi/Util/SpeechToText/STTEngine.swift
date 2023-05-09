@@ -42,7 +42,7 @@ import Speech
              try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
              
          }catch{
-             controller.alert(message: "오디오 에러입니다. \n휴대폰의 오디오를 확인해주세요.")
+             controller.alert(message: "오디오 에러입니다. \n휴대폰의 오디오를 확인해주세요.", agree: nil, disagree: nil)
          }
          // 음성인식요청 처리기
          recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
@@ -55,8 +55,8 @@ import Speech
          
          recognitionRequest.shouldReportPartialResults = true
          // 음성인식 및 결과 받아오기
-         recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest, resultHandler: { [weak self] result, error in
-             guard let self = self else {return}
+         recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest, resultHandler: { [weak self] (result, error) in
+             guard let self = self else { return }
              
              var isFinal = false
              
@@ -77,8 +77,8 @@ import Speech
          })
          
          let recordingFormat = inputNode.outputFormat(forBus: 0)
-         inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { [weak self] buffer, when in
-             guard let self = self else {return}
+         inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { [weak self] (buffer, when) in
+             guard let self = self else { return }
              self.recognitionRequest?.append(buffer)
          }
          
@@ -87,7 +87,7 @@ import Speech
          do {
              try audioEngine.start()
          } catch{
-             print("Error occured while activating audio engine")
+             controller.alert(message: "오디오 에러", agree: nil, disagree: nil)
          }
     }
      

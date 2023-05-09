@@ -51,17 +51,14 @@ class GameController:BaseController{
     // 왜 escaping이지?
     func startCounter(completion:@escaping()->Void){
         UIView.transition(with: countView, duration: 2, options: [.transitionFlipFromTop]) {
-            print(11)
             self.countView.image = UIImage(systemName: "3.circle")
             self.countView.layoutIfNeeded()
         } completion: { finished in
             UIView.transition(with: self.countView, duration: 2, options: [.transitionFlipFromTop]) {
-                print(22)
                 self.countView.image = UIImage(systemName: "2.circle")
                 self.countView.layoutIfNeeded()
             } completion: { finished in
                 UIView.transition(with: self.countView, duration: 2, options: [.transitionFlipFromTop]) {
-                    print(33)
                     self.countView.image = UIImage(systemName: "1.circle")
                     self.countView.layoutIfNeeded()
                 } completion: { finished in

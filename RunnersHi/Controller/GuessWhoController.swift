@@ -41,7 +41,7 @@ final class GuessWhoController:GameController{
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        guard let engine = engine else {return}
+        guard let engine = self.engine else {return}
         engine.resetRecognizer()
     }
     
@@ -93,10 +93,10 @@ final class GuessWhoController:GameController{
     }
     
     private func startGame(){
-        self.countView.removeFromSuperview()
-        self.guessView.imageView.isHidden = false
-        self.countView.layoutIfNeeded()
-        self.viewModel.next()
+        countView.removeFromSuperview()
+        guessView.imageView.isHidden = false
+        countView.layoutIfNeeded()
+        viewModel.next()
         runRecognizer()
     }
     
@@ -111,7 +111,7 @@ final class GuessWhoController:GameController{
     
     private func checkTheProcess(){
         //정답 맞춘경우
-        guard let engine = engine else {return}
+        guard let engine = self.engine else {return}
         if checkTheAnswer(){
             engine.resetRecognizer()
             answer = ""
@@ -133,7 +133,7 @@ extension GuessWhoController:SFSpeechRecognizerDelegate{
 extension GuessWhoController:GuessWhoViewModelDelegate{
     func setNextTarget(with data: GuessWhoDataModel) {
         // transition 처리
-        guessView.imageView.image = UIImage(systemName: data.photo)
+        self.guessView.imageView.image = UIImage(systemName: data.photo)
         self.guessView.imageView.layoutIfNeeded()
     }
     

@@ -19,6 +19,18 @@ Data 사진, 이름. - url
 추후 업데이트 예정 -> 난이도
 
 
+
+2. 사자성어
+
+4. 게임요청 게시판  by Objective-C in tableView
+
+테이블뷰 적용할것들
+
+https://ios-development.tistory.com/743
+https://ios-development.tistory.com/717
+https://ios-development.tistory.com/659
+https://nsios.tistory.com/151
+
 랜덤 ( 배우+유명인+만화캐릭터), 배우 <외국>, 배우 <한국> 인지도가 있는.. 
 
 인원수에 따라 인물 등장 숫자가 변함  총인원수 -1  마지막 줄 1인을 제외한 나머지는 2번씩

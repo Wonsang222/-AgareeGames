@@ -14,6 +14,13 @@ class PreGameView:UIView{
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
+    let segment:UISegmentedControl = {
+       let seg = UISegmentedControl()
+        seg.translatesAutoresizingMaskIntoConstraints = false
+        return seg
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }

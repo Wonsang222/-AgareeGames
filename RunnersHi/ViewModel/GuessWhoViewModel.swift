@@ -24,7 +24,6 @@ struct GuessWhoViewModel{
                 return
             }
             delegate.setNextTarget(with: targetModel)
-           
         }
     }
     private var models:[GuessWhoDataModel] = []

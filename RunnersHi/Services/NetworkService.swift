@@ -9,11 +9,9 @@ import Foundation
 
 // 컴플리션 핸들러 추가해야함. 콜백함수의 타입을 모르겟음 서버하고 고민해보기
 class NetworkService{
-    static func req(_ resource:HttpBaseResource){
-        URLSession.shared.dataTask(with: resource.makeReq()) { data, resp, error in
-            if error != nil{
-                print(error!.localizedDescription)
-            }
+    static func makeReq(resource:HttpBaseResource){
+        URLSession.shared.dataTask(with: resource.request()) { data, resp, err in
+            
         }
     }
 }

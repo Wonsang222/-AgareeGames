@@ -11,22 +11,22 @@ import Foundation
 
 struct HttpBaseResource {
     private let reqUrl = ""
-    private let reqMethod:String
+    private let reqMethod:HttpMethod
     private let shouldHandleCookie:Bool
     private let isMultiPart:Bool
     private var reqHeader:[String:String]?
     private var params = [String:String]()
-
-    lazy var request:URLRequest = {
+    
+    func request()->URLRequest{
         var resultReq:URLRequest
         
-        if reqMethod == "GET" {
+        if reqMethod == .GET {
             resultReq = URLRequest(url: URL(string: reqUrl + "?" + generateParam())!)
         } else {
             resultReq = URLRequest(url: URL(string: reqUrl)!)
         }
         
-        resultReq.httpMethod = reqMethod
+        resultReq.httpMethod = reqMethod.rawValue
         
         if let reqHeader = reqHeader{
             for (key, value) in reqHeader{
@@ -34,13 +34,13 @@ struct HttpBaseResource {
             }
         }
         // 일단은 get만...
-//        resultReq.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        //        resultReq.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         resultReq.httpBody = generateParam().data(using: String.Encoding.utf8)
-            
+        
         return resultReq
-    }()
+    }
     
-    func generateParam()->String{
+    private func generateParam()->String{
         var returnVal = ""
         for (key, value) in self.params{
             if returnVal != ""{
@@ -51,7 +51,7 @@ struct HttpBaseResource {
         return returnVal
     }
     
-    init(reqMethod: String, shouldHandleCookie: Bool, isMultiPart: Bool, params: [String : String]) {
+    init(reqMethod: HttpMethod, shouldHandleCookie: Bool, isMultiPart: Bool, params: [String : String]) {
         self.reqMethod = reqMethod
         self.shouldHandleCookie = shouldHandleCookie
         self.isMultiPart = isMultiPart

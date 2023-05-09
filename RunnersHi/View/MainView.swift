@@ -31,7 +31,6 @@ class MainView:UIView{
             button.translatesAutoresizingMaskIntoConstraints = false
             stackView.addArrangedSubview(button)
         }
-        
         addSubview(stackView)
     }
 

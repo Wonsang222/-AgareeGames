@@ -11,3 +11,8 @@ enum STTError:Error{
     case wrongLanguage
     case idkTheReason
 }
+
+enum HttpMethod:String{
+    case GET
+    case POST
+}
