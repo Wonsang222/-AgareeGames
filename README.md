@@ -25,6 +25,7 @@ Data 사진, 이름. - url
 3. 사자성어
   
   Rxswift로  작성, 인물맞추기와 동일한 구성
+  HIG 읽고 디자인 변경 +  어쩌면 intro
 
 
 4. 게임요청 게시판  by Objective-C in tableView + 서버 로그인 기능 추가 sns만
