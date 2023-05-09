@@ -46,12 +46,12 @@ final class GuessWhoController:GameController{
     }
     
     override func viewDidLoad() {
-        viewModel.setDummyModel()
-        engine = STTEngineFactory.create(self)
+//        viewModel.setDummyModel()
+//        engine = STTEngineFactory.create(self)
         configureUI()
-        startCounter {
-            self.startGame()
-        }
+//        startCounter {
+//            self.startGame()
+//        }
     }
     //MARK: - Methods
     private func configureUI(){
@@ -69,6 +69,14 @@ final class GuessWhoController:GameController{
             countView.heightAnchor.constraint(equalToConstant: 200),
             countView.widthAnchor.constraint(equalToConstant: 200)
         ])
+    }
+    
+    private func startGame(){
+        countView.removeFromSuperview()
+        guessView.imageView.isHidden = false
+        countView.layoutIfNeeded()
+        viewModel.next()
+        runRecognizer()
     }
     
     private func runRecognizer(){
@@ -90,14 +98,6 @@ final class GuessWhoController:GameController{
             timer = nil
         }
         Thread.sleep(forTimeInterval: 1)
-    }
-    
-    private func startGame(){
-        countView.removeFromSuperview()
-        guessView.imageView.isHidden = false
-        countView.layoutIfNeeded()
-        viewModel.next()
-        runRecognizer()
     }
     
     private func checkTheAnswer()->Bool{

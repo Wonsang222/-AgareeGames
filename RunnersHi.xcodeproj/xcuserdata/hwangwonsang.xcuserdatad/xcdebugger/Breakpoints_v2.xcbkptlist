@@ -16,7 +16,7 @@
             endingColumnNumber = "51"
             startingLineNumber = "97"
             endingLineNumber = "97"
-            landmarkName = "runRecognizer(completion:)"
+            landmarkName = "resetRecognizer()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

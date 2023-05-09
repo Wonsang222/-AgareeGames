@@ -34,7 +34,7 @@ class ResourceBuilder{
     }
 
     func build() -> HttpBaseResource{
-        return HttpBaseResource(reqMethod: reqMethod, shouldHandleCookie: shouldHandleCookie, isMultiPart: isMultiPart, params: params)
+        return HttpBaseResource(reqMethod: .GET, shouldHandleCookie: shouldHandleCookie, isMultiPart: isMultiPart, params: params)
     }
     
     static let shared = ResourceBuilder()
