@@ -8,10 +8,8 @@
 import UIKit
 import Speech
 /*
-타이머 구현!!!!!!!! 3.5초 어케하지
- 소리로만 할까
- 띠 띠 띠
-  3 2 1 땡
+
+ timer 없애기...
  
  Progress bar로 일단하자
  
@@ -53,6 +51,7 @@ final class GuessWhoController:GameController{
 //            self.startGame()
 //        }
         
+        
     }
     //MARK: - Methods
     private func configureUI(){
@@ -71,10 +70,10 @@ final class GuessWhoController:GameController{
             countView.heightAnchor.constraint(equalToConstant: 200),
             countView.widthAnchor.constraint(equalToConstant: 200),
             
-            progressView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
+            progressView.widthAnchor.constraint(equalTo: guessView.widthAnchor, multiplier: 0.5),
             progressView.heightAnchor.constraint(equalToConstant: 20),
-            progressView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            progressView.topAnchor.constraint(equalTo: guessView.imageView.bottomAnchor, constant: 50)
+            progressView.centerXAnchor.constraint(equalTo: guessView.centerXAnchor),
+            progressView.bottomAnchor.constraint(equalTo: guessView.bottomAnchor, constant: -200)
         ])
     }
     
@@ -84,6 +83,7 @@ final class GuessWhoController:GameController{
         countView.layoutIfNeeded()
         viewModel.next()
         runRecognizer()
+        setTimer(second: 0.1,repeater: true, gameSeconds: 5, gameSpeed: 0.029)
     }
     
     private func runRecognizer(){

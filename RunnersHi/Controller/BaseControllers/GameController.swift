@@ -11,6 +11,7 @@ class GameController:BaseController{
     var timer:Timer?
     var numToCount:Float = 0.0
     var gameTime:Float = 0.0
+    var speed:Float = 0.0
     
     let countView:UIImageView = {
        let iv = UIImageView()
@@ -51,20 +52,21 @@ class GameController:BaseController{
         timer = nil
     }
     // background runloop 게임중 사용해야하나..
-    func setTimer(second:Float, userinfo:Any? = nil, repeater:Bool, gameTime:Float, gameSeconds:Float){
+    func setTimer(second:Float, userinfo:Any? = nil, repeater:Bool, gameSeconds:Float, gameSpeed:Float){
+        self.speed = gameSpeed
         self.gameTime = gameSeconds
         timer = Timer(timeInterval: TimeInterval(second), target: self, selector: #selector(startGameTimer), userInfo: userinfo, repeats: repeater)
-        timer?.tolerance = 0.2
         RunLoop.current.add(timer!, forMode: .common)
         timer?.fire()
         
     }
     
     @objc func startGameTimer(){
-          numToCount += 0.1
+        numToCount += self.speed
           progressView.setProgress(numToCount, animated: true)
         if numToCount >= gameTime {
-              timer?.invalidate()
+            timer?.invalidate()
+            timer = nil
           }
       }
     
