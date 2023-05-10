@@ -29,15 +29,6 @@ class GuessWhoView:UIView{
         return button
     }()
     
-    let progressView:UIProgressView = {
-        let pv = UIProgressView()
-        pv.progressViewStyle = .default
-        pv.tintColor = .systemBlue
-        pv.trackTintColor = .lightGray
-        pv.translatesAutoresizingMaskIntoConstraints = false
-        return pv
-    }()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .black
@@ -49,7 +40,7 @@ class GuessWhoView:UIView{
     }
     
     func configureUI(){
-        [imageView, button, progressView].forEach {addSubview($0)}
+        [imageView, button].forEach {addSubview($0)}
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
@@ -57,12 +48,7 @@ class GuessWhoView:UIView{
             imageView.widthAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3),
             
             button.topAnchor.constraint(equalTo: self.topAnchor, constant: 50),
-            button.centerXAnchor.constraint(equalTo: centerXAnchor),
-            
-            progressView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 50),
-            progressView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            progressView.heightAnchor.constraint(equalToConstant: 15),
-            progressView.widthAnchor.constraint(equalToConstant: 50)
+            button.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
     }
     

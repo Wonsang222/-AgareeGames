@@ -9,12 +9,23 @@ import UIKit
 
 class GameController:BaseController{
     var timer:Timer?
-    var numToCount:Int?
+    var numToCount:Float = 0.0
+    var gameTime:Float = 0.0
+    
     let countView:UIImageView = {
        let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.translatesAutoresizingMaskIntoConstraints = false
         return iv
+    }()
+    
+    let progressView:UIProgressView = {
+        let pv = UIProgressView()
+        pv.progressViewStyle = .default
+        pv.tintColor = .systemBlue
+        pv.trackTintColor = .lightGray
+        pv.translatesAutoresizingMaskIntoConstraints = false
+        return pv
     }()
     
     override var prefersHomeIndicatorAutoHidden: Bool{
@@ -40,13 +51,22 @@ class GameController:BaseController{
         timer = nil
     }
     // background runloop 게임중 사용해야하나..
-    func setTimer(second:Int, selector:Selector, userinfo:Any? = nil, repeater:Bool, num:Int){
-        numToCount = num
-        timer = Timer(timeInterval: TimeInterval(second), target: self, selector: selector, userInfo: userinfo, repeats: repeater)
+    func setTimer(second:Float, userinfo:Any? = nil, repeater:Bool, gameTime:Float, gameSeconds:Float){
+        self.gameTime = gameSeconds
+        timer = Timer(timeInterval: TimeInterval(second), target: self, selector: #selector(startGameTimer), userInfo: userinfo, repeats: repeater)
         timer?.tolerance = 0.2
         RunLoop.current.add(timer!, forMode: .common)
         timer?.fire()
+        
     }
+    
+    @objc func startGameTimer(){
+          numToCount += 0.1
+          progressView.setProgress(numToCount, animated: true)
+        if numToCount >= gameTime {
+              timer?.invalidate()
+          }
+      }
     
     // 왜 escaping이지?
     func startCounter(completion:@escaping()->Void){

@@ -11,7 +11,8 @@ class BaseController:UIViewController{
             
     func alert(message:String, agree:((UIAlertAction)->Void)?, disagree:((UIAlertAction)->Void)?){
         let alert = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
-        if agree != nil && disagree != nil{
+        
+        if let agree = agree, let disagree = disagree {
             let agreeAction = UIAlertAction(title: "확인", style: .default, handler: agree)
             let disagreeAction = UIAlertAction(title: "취소", style: .default, handler: disagree)
             alert.addAction(agreeAction)

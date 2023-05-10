@@ -52,11 +52,13 @@ final class GuessWhoController:GameController{
 //        startCounter {
 //            self.startGame()
 //        }
+        
     }
     //MARK: - Methods
     private func configureUI(){
         view.addSubview(guessView)
         guessView.addSubview(countView)
+        guessView.addSubview(progressView)
             
         NSLayoutConstraint.activate([
             guessView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -67,7 +69,12 @@ final class GuessWhoController:GameController{
             countView.centerXAnchor.constraint(equalTo: guessView.centerXAnchor),
             countView.centerYAnchor.constraint(equalTo: guessView.centerYAnchor),
             countView.heightAnchor.constraint(equalToConstant: 200),
-            countView.widthAnchor.constraint(equalToConstant: 200)
+            countView.widthAnchor.constraint(equalToConstant: 200),
+            
+            progressView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
+            progressView.heightAnchor.constraint(equalToConstant: 20),
+            progressView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            progressView.topAnchor.constraint(equalTo: guessView.imageView.bottomAnchor, constant: 50)
         ])
     }
     
@@ -89,15 +96,6 @@ final class GuessWhoController:GameController{
                 print("runRecognizer:\(err)")
             }
         }
-    }
-    
-    @objc private func startGameTimer(){
-        numToCount = numToCount! - 1
-        if numToCount == 0{
-            timer?.invalidate()
-            timer = nil
-        }
-        Thread.sleep(forTimeInterval: 1)
     }
     
     private func checkTheAnswer()->Bool{
