@@ -49,6 +49,9 @@ API 서버 base node js
 
 --------------------------------------------------------------------------------------------------------
 
+  유료 무료 target shceme 추가하기
+  
+  
 lib
 1. Crashlytics  -> base controller
 2. google ad
