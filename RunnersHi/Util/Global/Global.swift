@@ -7,17 +7,6 @@
 
 import Foundation
 
-enum STTError:Error{
-    case wrongLanguage
-    case idkTheReason
-}
-
-enum HttpMethod:String{
-    case GET
-    case POST
-}
-
-
 struct Queue<T>{
     var queue:[T?] = []
     var head = 0
@@ -37,5 +26,4 @@ struct Queue<T>{
         head += 1
         return element
     }
-    
 }

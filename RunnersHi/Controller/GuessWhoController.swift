@@ -8,11 +8,8 @@
 import UIKit
 import Speech
 /*
-
  timer 없애기...
- 
- Progress bar로 일단하자
- 
+ 기능 붙이기
  */
 
 final class GuessWhoController:GameController{
@@ -21,6 +18,16 @@ final class GuessWhoController:GameController{
     private let guessView = GuessWhoView()
     private var engine:STTEngine?
     private lazy var viewModel = GuessWhoViewModel(delegate: self)
+    
+    override var numToCount: Float{
+        didSet{
+            guard numToCount >= 1.0 else { return }
+            timer?.invalidate()
+            timer = nil
+            timerNumber -= 1
+            clearGame(isWin: false)
+        }
+    }
     private var answer = ""{
         didSet{
             guard answer == "" else {return}
@@ -44,14 +51,13 @@ final class GuessWhoController:GameController{
     }
     
     override func viewDidLoad() {
-//        viewModel.setDummyModel()
-//        engine = STTEngineFactory.create(self)
+        super.viewDidLoad()
+        viewModel.setDummyModel()  // 여기서 시간끌기 -> 시간은 충분하다 만약 안되었다면 시간끌기 창 올린다
+        engine = STTEngineFactory.create(self)
         configureUI()
-//        startCounter {
-//            self.startGame()
-//        }
-        
-        
+        startCounter {
+            self.startGame()
+        }
     }
     //MARK: - Methods
     private func configureUI(){
@@ -78,12 +84,12 @@ final class GuessWhoController:GameController{
     }
     
     private func startGame(){
-        countView.removeFromSuperview()
-        guessView.imageView.isHidden = false
-        countView.layoutIfNeeded()
-        viewModel.next()
-        runRecognizer()
-        setTimer(second: 0.1,repeater: true, gameSeconds: 5, gameSpeed: 0.029)
+//        countView.removeFromSuperview()
+//        guessView.imageView.isHidden = false
+//        countView.layoutIfNeeded()
+//        viewModel.next()
+//        runRecognizer()
+        setTimer(3.5, repeater: true)
     }
     
     private func runRecognizer(){
@@ -111,13 +117,18 @@ final class GuessWhoController:GameController{
         //정답 맞춘경우
         guard let engine = self.engine else {return}
         if checkTheAnswer(){
+            timer?.invalidate()
+            timer = nil
             engine.resetRecognizer()
-            answer = ""
-            runRecognizer()
             viewModel.next()
         } else{
             clearGame(isWin: false)
         }
+    }
+    
+    override func startGameTimer() {
+        numToCount += self.speed
+          progressView.setProgress(numToCount, animated: true)
     }
 }
 
@@ -131,6 +142,9 @@ extension GuessWhoController:SFSpeechRecognizerDelegate{
 extension GuessWhoController:GuessWhoViewModelDelegate{
     func setNextTarget(with data: GuessWhoDataModel) {
         // transition 처리
+        setTimer(3.5, repeater: true)
+        answer = ""
+        runRecognizer()
         self.guessView.imageView.image = UIImage(systemName: data.photo)
         self.guessView.imageView.layoutIfNeeded()
     }

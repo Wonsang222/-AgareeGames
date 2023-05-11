@@ -7,11 +7,17 @@
 
 import UIKit
 
+@objc protocol TimerUsable{
+    var numToCount:Float { get }
+    var speed:Float { get }
+    @objc func startGameTimer()
+}
+
 class GameController:BaseController{
     var timer:Timer?
-    var numToCount:Float = 0.0
-    var gameTime:Float = 0.0
+    var numToCount: Float = 0.0
     var speed:Float = 0.0
+    var timerNumber = 0
     
     let countView:UIImageView = {
        let iv = UIImageView()
@@ -40,7 +46,7 @@ class GameController:BaseController{
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        // navigationbar 내림
+        // navigation item "player number"
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -50,27 +56,19 @@ class GameController:BaseController{
         // navigationbar 올림?
         timer?.invalidate()
         timer = nil
+        timerNumber -= 1
     }
     // background runloop 게임중 사용해야하나..
-    func setTimer(second:Float, userinfo:Any? = nil, repeater:Bool, gameSeconds:Float, gameSpeed:Float){
-        self.speed = gameSpeed
-        self.gameTime = gameSeconds
-        timer = Timer(timeInterval: TimeInterval(second), target: self, selector: #selector(startGameTimer), userInfo: userinfo, repeats: repeater)
+    
+    func setTimer(_ second:Float, userinfo:Any? = nil, repeater:Bool){
+        timerNumber += 1
+        self.speed = (1.0 / second) * 0.1
+        
+        timer = Timer(timeInterval: 0.1, target: self, selector: #selector(startGameTimer), userInfo: userinfo, repeats: repeater)
         RunLoop.current.add(timer!, forMode: .common)
         timer?.fire()
-        
     }
-    
-    @objc func startGameTimer(){
-        numToCount += self.speed
-          progressView.setProgress(numToCount, animated: true)
-        if numToCount >= gameTime {
-            timer?.invalidate()
-            timer = nil
-          }
-      }
-    
-    // 왜 escaping이지?
+ 
     func startCounter(completion:@escaping()->Void){
         UIView.transition(with: countView, duration: 2, options: [.transitionFlipFromTop]) {
             self.countView.image = UIImage(systemName: "3.circle")
@@ -88,5 +86,12 @@ class GameController:BaseController{
                 }
             }
         }
+    }
+}
+
+extension GameController:TimerUsable{
+    
+   @objc func startGameTimer() {
+       // abstract
     }
 }

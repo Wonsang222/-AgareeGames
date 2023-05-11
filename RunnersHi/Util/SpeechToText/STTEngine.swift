@@ -19,9 +19,31 @@ import Speech
         self.controller = controller
         guard let speechController = controller as? SFSpeechRecognizerDelegate else {return}
         self.speechRecognizer.delegate = speechController
+        setAudio()
     }
      // 앱 background 갈때 audioEngine stop되는지 확인
-     //
+     
+     func setAudio(){
+         let audioSession = AVAudioSession.sharedInstance()
+         do{
+             try audioSession.setCategory(AVAudioSession.Category.record)
+             try audioSession.setMode(AVAudioSession.Mode.measurement)
+             try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+             
+         }catch{
+             controller.alert(message: "오디오 에러입니다. \n휴대폰의 오디오를 확인해주세요.", agree: nil, disagree: nil)
+         }
+         
+         // 음성인식요청 처리기
+         recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
+         guard let recognitionRequest = recognitionRequest else {
+             fatalError("audio error")
+         }
+         recognitionRequest.shouldReportPartialResults = true
+     }
+     
+     
+     
      func runRecognizer(completion:@escaping (Result<String, Error>) -> Void){
 //         if audioEngine.isRunning{
 //             audioEngine.stop()
@@ -34,26 +56,14 @@ import Speech
              recognitionTask?.cancel()
              recognitionTask = nil
          }
-         // 오디오 세팅
-         let audioSession = AVAudioSession.sharedInstance()
-         do{
-             try audioSession.setCategory(AVAudioSession.Category.record)
-             try audioSession.setMode(AVAudioSession.Mode.measurement)
-             try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
-             
-         }catch{
-             controller.alert(message: "오디오 에러입니다. \n휴대폰의 오디오를 확인해주세요.", agree: nil, disagree: nil)
-         }
-         // 음성인식요청 처리기
-         recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-        
+
          let inputNode = audioEngine.inputNode
          
          guard let recognitionRequest = recognitionRequest else {
-             fatalError("audio error")
+             controller.alert(message: "오디오 에러입니다. \n휴대폰의 오디오를 확인해주세요.", agree: nil, disagree: nil)
+             return
          }
          
-         recognitionRequest.shouldReportPartialResults = true
          // 음성인식 및 결과 받아오기
          recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest, resultHandler: { [weak self] (result, error) in
              guard let self = self else { return }
@@ -94,6 +104,7 @@ import Speech
      func resetRecognizer(){
          recognitionTask?.cancel()
          audioEngine.stop()
+         recognitionRequest?.endAudio()
          recognitionRequest = nil
          recognitionTask = nil
      }

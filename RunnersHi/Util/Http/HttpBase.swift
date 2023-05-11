@@ -8,6 +8,7 @@
 import Foundation
 
 // builder로 구현.
+// protocol oriented 시도
 
 struct HttpBaseResource {
     private let reqUrl = ""

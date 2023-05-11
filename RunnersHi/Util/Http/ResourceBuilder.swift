@@ -7,6 +7,11 @@
 
 import Foundation
 
+enum HttpMethod:String{
+    case GET
+    case POST
+}
+
 class ResourceBuilder{
     private var reqMethod:String = "GET"
     private var shouldHandleCookie = true
