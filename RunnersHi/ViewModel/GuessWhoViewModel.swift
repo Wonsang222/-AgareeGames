@@ -7,8 +7,6 @@
 
 import UIKit
 
-// 고민 - 굳이 델리게이트 패턴을써야할까.. 재사용성을 높일 수 있는 방법은 많은데..  굳이 swifty하게 해야하나.. rx적용할때 ..
-
 protocol GuessWhoViewModelDelegate{
     func setNextTarget(with data:GuessWhoDataModel)
     func clearGame(isWin:Bool)

@@ -30,7 +30,7 @@ final class GuessWhoController:GameController{
     }
     private var answer = ""{
         didSet{
-            guard answer == "" else {return}
+            guard answer == "" else { return }
             checkTheProcess()
         }
     }
@@ -46,7 +46,7 @@ final class GuessWhoController:GameController{
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        guard let engine = self.engine else {return}
+        guard let engine = self.engine else { return }
         engine.resetRecognizer()
     }
     
@@ -93,7 +93,7 @@ final class GuessWhoController:GameController{
     }
     
     private func runRecognizer(){
-        guard let engine = engine else {return}
+        guard let engine = engine else { return }
         engine.runRecognizer { result in
             switch result{
             case .success(let res):
@@ -105,7 +105,7 @@ final class GuessWhoController:GameController{
     }
     
     private func checkTheAnswer()->Bool{
-        guard let targetName = viewModel.getTargetModel?.name else {return false}
+        guard let targetName = viewModel.getTargetModel?.name else { return false }
         let answer = answer.components(separatedBy: " ").joined()
         if answer.contains(targetName){
             return true
@@ -115,7 +115,7 @@ final class GuessWhoController:GameController{
     
     private func checkTheProcess(){
         //정답 맞춘경우
-        guard let engine = self.engine else {return}
+        guard let engine = self.engine else { return }
         if checkTheAnswer(){
             timer?.invalidate()
             timer = nil
