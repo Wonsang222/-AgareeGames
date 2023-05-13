@@ -24,11 +24,17 @@ struct GuessWhoViewModel{
             delegate.setNextTarget(with: targetModel)
         }
     }
-    private var modelQueue = Queue<GuessWhoDataModel>()
+    private var modelArray:[GuessWhoDataModel] = []
     private var delegate:GuessWhoViewModelDelegate
 
     var getTargetModel: GuessWhoDataModel?{
         return targetModel
+    }
+    
+    mutating func setOneModel(){
+        let data = GuessWhoDataModel(name: "강호동", photo: "2.circle", realPhoto: nil)
+        modelArray.append(data)
+        
     }
     
     mutating func setDummyModel(){
@@ -36,15 +42,17 @@ struct GuessWhoViewModel{
         let data2 = GuessWhoDataModel(name: "빌게이츠", photo: "1.circle", realPhoto: nil)
         let data3 = GuessWhoDataModel(name: "강호동", photo: "2.circle", realPhoto: nil)
         let data4 = GuessWhoDataModel(name: "스티브잡스", photo: "3.circle", realPhoto: nil)
-    
-        modelQueue.enqueue(value: data1)
-        modelQueue.enqueue(value: data2)
-        modelQueue.enqueue(value: data3)
-        modelQueue.enqueue(value: data4)
+        
+        modelArray.append(data1)
+        modelArray.append(data2)
+        modelArray.append(data3)
+        modelArray.append(data4)
+
     }
     
     mutating func next(){
-        targetModel = modelQueue.dequeue()
+//        targetModel = modelArray.popLast()
+        targetModel = GuessWhoDataModel(name: "빌게이츠", photo: "2.circle", realPhoto: nil)
     }
     
     init(delegate: GuessWhoViewModelDelegate) {

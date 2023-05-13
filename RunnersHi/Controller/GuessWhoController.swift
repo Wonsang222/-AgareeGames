@@ -8,8 +8,7 @@
 import UIKit
 import Speech
 /*
- timer 없애기...
- 기능 붙이기
+
  */
 
 final class GuessWhoController:GameController{
@@ -18,19 +17,9 @@ final class GuessWhoController:GameController{
     private let guessView = GuessWhoView()
     private var engine:STTEngine?
     private lazy var viewModel = GuessWhoViewModel(delegate: self)
-    
-    override var numToCount: Float{
-        didSet{
-            guard numToCount >= 1.0 else { return }
-            timer?.invalidate()
-            timer = nil
-            timerNumber -= 1
-            clearGame(isWin: false)
-        }
-    }
     private var answer = ""{
         didSet{
-            guard answer == "" else { return }
+            print(answer)
             checkTheProcess()
         }
     }
@@ -42,17 +31,20 @@ final class GuessWhoController:GameController{
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        // 안전하게 engine off 할가
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         guard let engine = self.engine else { return }
-        engine.resetRecognizer()
+        engine.offEngine()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.setDummyModel()  // 여기서 시간끌기 -> 시간은 충분하다 만약 안되었다면 시간끌기 창 올린다
+        viewModel.setOneModel()
         engine = STTEngineFactory.create(self)
         configureUI()
         startCounter {
@@ -64,13 +56,13 @@ final class GuessWhoController:GameController{
         view.addSubview(guessView)
         guessView.addSubview(countView)
         guessView.addSubview(progressView)
-            
+        
         NSLayoutConstraint.activate([
             guessView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             guessView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             guessView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             guessView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-
+            
             countView.centerXAnchor.constraint(equalTo: guessView.centerXAnchor),
             countView.centerYAnchor.constraint(equalTo: guessView.centerYAnchor),
             countView.heightAnchor.constraint(equalToConstant: 200),
@@ -84,12 +76,11 @@ final class GuessWhoController:GameController{
     }
     
     private func startGame(){
-//        countView.removeFromSuperview()
-//        guessView.imageView.isHidden = false
-//        countView.layoutIfNeeded()
-//        viewModel.next()
-//        runRecognizer()
-        setTimer(3.5, repeater: true)
+        runRecognizer()
+        //        countView.removeFromSuperview()
+        //        guessView.imageView.isHidden = false
+        //        countView.layoutIfNeeded()
+        viewModel.next()
     }
     
     private func runRecognizer(){
@@ -106,6 +97,7 @@ final class GuessWhoController:GameController{
     
     private func checkTheAnswer()->Bool{
         guard let targetName = viewModel.getTargetModel?.name else { return false }
+        print(targetName)
         let answer = answer.components(separatedBy: " ").joined()
         if answer.contains(targetName){
             return true
@@ -114,28 +106,33 @@ final class GuessWhoController:GameController{
     }
     
     private func checkTheProcess(){
+        print(#function)
         //정답 맞춘경우
-        guard let engine = self.engine else { return }
         if checkTheAnswer(){
             timer?.invalidate()
             timer = nil
-            engine.resetRecognizer()
             viewModel.next()
-        } else{
-            clearGame(isWin: false)
+            print("마즘")
         }
     }
-    
-    override func startGameTimer() {
-        numToCount += self.speed
-          progressView.setProgress(numToCount, animated: true)
+    override func startGameTimer(_ timer: Timer) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            
+            if numToCount >= 1.0 {
+                timer.invalidate()
+                self.timer = nil
+                clearGame(isWin: false)
+            }
+            self.numToCount += self.speed
+            progressView.setProgress(numToCount, animated: true)
+        }
     }
 }
 
 //MARK: - Extension
 extension GuessWhoController:SFSpeechRecognizerDelegate{
     func speechRecognizer(_ speechRecognizer: SFSpeechRecognizer, availabilityDidChange available: Bool) {
-        
     }
 }
 
@@ -144,13 +141,18 @@ extension GuessWhoController:GuessWhoViewModelDelegate{
         // transition 처리
         setTimer(3.5, repeater: true)
         answer = ""
-        runRecognizer()
         self.guessView.imageView.image = UIImage(systemName: data.photo)
         self.guessView.imageView.layoutIfNeeded()
     }
     
     func clearGame(isWin:Bool) {
-        let nextVC = ResultController(isWin: isWin)
-        present(nextVC, animated: true)
+        print(#function)
+        //        let nextVC = ResultController(isWin: isWin)
+        // 이게 계속됨... present안되겟다
+        if isWin{
+            print("right")
+        } else{
+            print("wrong")
+        }
     }
 }

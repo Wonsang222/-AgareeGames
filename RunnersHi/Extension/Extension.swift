@@ -5,7 +5,7 @@
 //  Created by 위사모바일 on 2023/05/03.
 //
 
-import Foundation
+import UIKit
 
 extension String{
     func urlEncode() -> String{
