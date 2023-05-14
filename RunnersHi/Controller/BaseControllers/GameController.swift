@@ -15,6 +15,8 @@ import UIKit
 }
 
 class GameController:BaseController{
+
+    //MARK: - Properties
     var timer:Timer?
     var numToCount: Float = 0.0
     var speed:Float = 0.0
@@ -34,6 +36,8 @@ class GameController:BaseController{
         pv.translatesAutoresizingMaskIntoConstraints = false
         return pv
     }()
+    
+    //MARK: - Lifecycle
     
     override var prefersHomeIndicatorAutoHidden: Bool{
         return false
@@ -59,7 +63,8 @@ class GameController:BaseController{
         //        timerNumber -= 1
         print(#function)
     }
-    // background runloop 게임중 사용해야하나..
+    
+    //MARK: - Methods
     
     func setTimer(_ second:Float, userinfo:Any? = nil, repeater:Bool){
         guard timer == nil else { return }

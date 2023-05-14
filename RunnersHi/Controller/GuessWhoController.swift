@@ -8,7 +8,8 @@
 import UIKit
 import Speech
 /*
-
+checktheprocess 에서 타이머 멈추는게 문제가 안되는건가
+ 
  */
 
 final class GuessWhoController:GameController{

@@ -103,8 +103,6 @@ class STTEngine{
                     print("audioEngine couldn't start because of an error.")
                 }
             }
-            
-            
         }
     }
     
