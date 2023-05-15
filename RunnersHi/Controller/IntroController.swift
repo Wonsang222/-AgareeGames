@@ -28,5 +28,4 @@ final class IntroController: BaseController {
         super.updateViewConstraints()
 
     }
-    
 }

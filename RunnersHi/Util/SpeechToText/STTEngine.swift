@@ -39,11 +39,11 @@ class STTEngine{
                 try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
             } catch {
                 print("audioSession properties weren't set because of an error.")
-                controller.alert(message: "디바이스 오디오에 문제가 있습니다. \n 휴대폰 기기를 확인해주세요", agree: nil, disagree: nil)
+                self.controller.alert(message: "디바이스 오디오에 문제가 있습니다. \n 휴대폰 기기를 확인해주세요", agree: nil, disagree: nil)
             }
             
             self.recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-            guard let recognitionRequest = recognitionRequest else { return }
+            guard let recognitionRequest = self.recognitionRequest else { return }
             recognitionRequest.shouldReportPartialResults = true
         }
     }
@@ -53,10 +53,10 @@ class STTEngine{
         
         DispatchQueue.global(qos: .userInteractive).async { [weak self] in
             guard let self = self else { return }
-            if audioEngine.isRunning {
-                audioEngine.stop()
-                recognitionRequest?.endAudio()
-                audioEngine.inputNode.removeTap(onBus: 0)
+            if self.audioEngine.isRunning {
+                self.audioEngine.stop()
+                self.recognitionRequest?.endAudio()
+                self.audioEngine.inputNode.removeTap(onBus: 0)
             } else {
                 startRecording()
             }

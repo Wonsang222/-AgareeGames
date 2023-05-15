@@ -73,9 +73,9 @@ class GameController:BaseController{
         
         DispatchQueue.global().async {[weak self] in
             guard let self = self else {return}
-            timer = Timer(timeInterval: 0.2, target: self, selector: #selector(startGameTimer(_:)), userInfo: userinfo, repeats: repeater)
-            RunLoop.current.add(timer!, forMode: .common)
-            timer?.fire()
+            self.timer = Timer(timeInterval: 0.2, target: self, selector: #selector(self.startGameTimer(_:)), userInfo: userinfo, repeats: repeater)
+            RunLoop.current.add(self.timer!, forMode: .common)
+            self.timer?.fire()
             RunLoop.current.run()
         }
     }

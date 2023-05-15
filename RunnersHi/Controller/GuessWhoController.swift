@@ -8,8 +8,9 @@
 import UIKit
 import Speech
 /*
-checktheprocess 에서 타이머 멈추는게 문제가 안되는건가
- 
+ check the process 에서 타이머 멈추는거
+ 타이머 갯수 확인하자
+ tim
  */
 
 final class GuessWhoController:GameController{
@@ -119,13 +120,13 @@ final class GuessWhoController:GameController{
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             
-            if numToCount >= 1.0 {
+            if self.numToCount >= 1.0 {
                 timer.invalidate()
                 self.timer = nil
-                clearGame(isWin: false)
+                self.clearGame(isWin: false)
             }
             self.numToCount += self.speed
-            progressView.setProgress(numToCount, animated: true)
+            self.progressView.setProgress(self.numToCount, animated: true)
         }
     }
 }
