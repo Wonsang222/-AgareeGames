@@ -28,12 +28,11 @@ final class GuessWhoController:GameController{
     //MARK: - Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        engine?.startEngine()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        // 안전하게 engine off 할가
         
     }
     

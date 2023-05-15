@@ -29,6 +29,26 @@ class STTEngine{
     }
     // 앱 background 갈때 audioEngine stop되는지 확인
     
+    func startEngine(){
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let self = self else { return }
+            let audioSession = AVAudioSession.sharedInstance()
+            do {
+                try audioSession.setCategory(AVAudioSession.Category.record)
+                try audioSession.setMode(AVAudioSession.Mode.measurement)
+                try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+            } catch {
+                print("audioSession properties weren't set because of an error.")
+                controller.alert(message: "디바이스 오디오에 문제가 있습니다. \n 휴대폰 기기를 확인해주세요", agree: nil, disagree: nil)
+            }
+            
+            self.recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
+            guard let recognitionRequest = recognitionRequest else { return }
+            recognitionRequest.shouldReportPartialResults = true
+        }
+    }
+    
+    
     func runRecognizer(completion:@escaping (Result<String, Error>) -> Void){
         
         DispatchQueue.global(qos: .userInteractive).async { [weak self] in
@@ -47,25 +67,12 @@ class STTEngine{
                     self.recognitionTask = nil
                 }
                 
-                let audioSession = AVAudioSession.sharedInstance()
-                do {
-                    try audioSession.setCategory(AVAudioSession.Category.record)
-                    try audioSession.setMode(AVAudioSession.Mode.measurement)
-                    try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
-                } catch {
-                    print("audioSession properties weren't set because of an error.")
-                }
-                
-                self.recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-                
                 let inputNode = self.audioEngine.inputNode
                 
                 
                 guard let recognitionRequest = self.recognitionRequest else {
                     fatalError("Unable to create an SFSpeechAudioBufferRecognitionRequest object")
                 }
-                
-                recognitionRequest.shouldReportPartialResults = true
                 
                 self.recognitionTask = self.speechRecognizer.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
                     
