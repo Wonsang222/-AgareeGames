@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ResultView:UIView{
+class ResultView:BaseView{
     
     let label:UILabel = {
        let label = UILabel()

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class IntroView: UIView {
+class IntroView: BaseView {
     
     let imgView:UIImageView = {
         let imgView = UIImageView()

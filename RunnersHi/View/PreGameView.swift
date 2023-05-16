@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PreGameView:UIView{
+class PreGameView:BaseView{
     let playButton:UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(systemName: "play.fill"), for: .normal)

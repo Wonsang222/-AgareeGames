@@ -1,13 +1,13 @@
 //
-//  HowToPlayView.swift
+//  BaseView.swift
 //  RunnersHi
 //
-//  Created by 위사모바일 on 2023/05/11.
+//  Created by 위사모바일 on 2023/05/16.
 //
 
 import UIKit
 
-class HowToPlayView:BaseView{
+class BaseView:UIView{
     
     override init(frame: CGRect) {
         super.init(frame: frame)

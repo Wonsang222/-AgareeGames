@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct Global{
+    static let GAMESPEED:Float = 4.0
+    
+}

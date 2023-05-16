@@ -12,6 +12,7 @@ import Speech
  타이머 갯수 확인하자
  tim
  과도한 weak self??  -> 알아보기
+ progress bar 위치 재지정
  */
 
 final class GuessWhoController:GameController{
@@ -142,7 +143,7 @@ extension GuessWhoController:SFSpeechRecognizerDelegate{
 extension GuessWhoController:GuessWhoViewModelDelegate{
     func setNextTarget(with data: GuessWhoDataModel) {
         // transition 처리
-        setTimer(3.5, repeater: true)
+        setTimer(Global.GAMESPEED, repeater: true)
         answer = ""
         self.guessView.imageView.image = UIImage(systemName: data.photo)
         self.guessView.imageView.layoutIfNeeded()
