@@ -11,6 +11,7 @@ import Speech
  check the process 에서 타이머 멈추는거
  타이머 갯수 확인하자
  tim
+ 과도한 weak self??  -> 알아보기
  */
 
 final class GuessWhoController:GameController{
@@ -86,7 +87,8 @@ final class GuessWhoController:GameController{
     
     private func runRecognizer(){
         guard let engine = engine else { return }
-        engine.runRecognizer { result in
+        engine.runRecognizer { [weak self] (result) in
+            guard let self = self else { return }
             switch result{
             case .success(let res):
                 self.answer += res
