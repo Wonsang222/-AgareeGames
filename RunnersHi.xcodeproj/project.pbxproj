@@ -21,6 +21,7 @@
 		7E20755D29F9FBF8000BFE61 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E20755C29F9FBF8000BFE61 /* IntroView.swift */; };
 		7E3544AB2A13160E00B844E6 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3544AA2A13160E00B844E6 /* BaseView.swift */; };
 		7E49954F2A0CAFD5006D95AC /* HowToPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E49954E2A0CAFD5006D95AC /* HowToPlayView.swift */; };
+		7E8546792A1459CC00DCC8B1 /* GuessWhoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8546782A1459CC00DCC8B1 /* GuessWhoEntity.swift */; };
 		C119CBC529F8030600648638 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBC429F8030600648638 /* MainController.swift */; };
 		C119CBC729F8033300648638 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBC629F8033300648638 /* BaseController.swift */; };
 		C119CBC929F804FE00648638 /* GuessWhoDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBC829F804FE00648638 /* GuessWhoDataModel.swift */; };
@@ -54,6 +55,7 @@
 		7E20755C29F9FBF8000BFE61 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
 		7E3544AA2A13160E00B844E6 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		7E49954E2A0CAFD5006D95AC /* HowToPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToPlayView.swift; sourceTree = "<group>"; };
+		7E8546782A1459CC00DCC8B1 /* GuessWhoEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoEntity.swift; sourceTree = "<group>"; };
 		C119CBC429F8030600648638 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainController.swift; path = RunnersHi/Controller/MainController.swift; sourceTree = SOURCE_ROOT; };
 		C119CBC629F8033300648638 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseController.swift; path = RunnersHi/Controller/BaseControllers/BaseController.swift; sourceTree = SOURCE_ROOT; };
 		C119CBC829F804FE00648638 /* GuessWhoDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GuessWhoDataModel.swift; path = RunnersHi/Model/GuessWhoDataModel.swift; sourceTree = SOURCE_ROOT; };
@@ -104,6 +106,14 @@
 			path = Global;
 			sourceTree = "<group>";
 		};
+		7E8546772A1459B900DCC8B1 /* Entitiy */ = {
+			isa = PBXGroup;
+			children = (
+				7E8546782A1459CC00DCC8B1 /* GuessWhoEntity.swift */,
+			);
+			path = Entitiy;
+			sourceTree = "<group>";
+		};
 		C119CBCC29F951AE00648638 /* SpeechToText */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +150,7 @@
 		C1FFE7AD29E30425009FFD0B /* RunnersHi */ = {
 			isa = PBXGroup;
 			children = (
+				7E8546772A1459B900DCC8B1 /* Entitiy */,
 				C14F272A29FEA3C60007E7A6 /* Services */,
 				C1FFE7C829E30615009FFD0B /* Util */,
 				C1FFE7C729E3060B009FFD0B /* Controller */,
@@ -312,6 +323,7 @@
 				7E04C8EC2A0342FE00357A0F /* CustomUINavigationController.swift in Sources */,
 				C119CBCB29F805C000648638 /* IntroController.swift in Sources */,
 				C1FFE7AF29E30425009FFD0B /* AppDelegate.swift in Sources */,
+				7E8546792A1459CC00DCC8B1 /* GuessWhoEntity.swift in Sources */,
 				C14F27662A05D5140007E7A6 /* ResultView.swift in Sources */,
 				7E04C8EE2A03432D00357A0F /* SettingController.swift in Sources */,
 				7E04C8E72A033C4800357A0F /* PreGameView.swift in Sources */,

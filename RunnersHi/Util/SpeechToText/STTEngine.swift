@@ -9,7 +9,7 @@
  audio setting background.. count 보다 먼저 세팅만 먼저하고
  실행은 뒤로 미룬다...
  메인쓰레드 부하 줄이기
- 메인쓰레드로 보내는거 dispatchqueue main ㅈ다시 스코프 짜보자
+ 메인쓰레드로 보내는거 dispatchqueue main ㅈ다시 스코프 짜보자 
  */
 
 import UIKit
@@ -27,7 +27,6 @@ class STTEngine{
         guard let speechController = controller as? SFSpeechRecognizerDelegate else {return}
         self.speechRecognizer.delegate = speechController
     }
-    // 앱 background 갈때 audioEngine stop되는지 확인
     
     func startEngine(){
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
@@ -38,12 +37,13 @@ class STTEngine{
                 try audioSession.setMode(AVAudioSession.Mode.measurement)
                 try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
             } catch {
-                print("audioSession properties weren't set because of an error.")
                 self.controller.alert(message: "디바이스 오디오에 문제가 있습니다. \n 휴대폰 기기를 확인해주세요", agree: nil, disagree: nil)
             }
             
             self.recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-            guard let recognitionRequest = self.recognitionRequest else { return }
+            guard let recognitionRequest = self.recognitionRequest else {
+                fatalError("recognitionRequest optional binding error!")
+            }
             recognitionRequest.shouldReportPartialResults = true
         }
     }
@@ -107,6 +107,7 @@ class STTEngine{
                 do {
                     try self.audioEngine.start()
                 } catch {
+                    self.controller.alert(message: "디바이스의 오디오 기능을 실행할 수 없습니다. \n 앱을 재시작해주세요.", agree: nil, disagree: nil)
                     print("audioEngine couldn't start because of an error.")
                 }
             }

@@ -36,7 +36,7 @@ struct HttpBaseResource {
         }
         // 일단은 get만...
         //        resultReq.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        resultReq.httpBody = generateParam().data(using: String.Encoding.utf8)
+//        resultReq.httpBody = generateParam().data(using: String.Encoding.utf8)
         
         return resultReq
     }
