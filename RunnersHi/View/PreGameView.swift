@@ -68,8 +68,8 @@ class PreGameView:BaseView{
         NSLayoutConstraint.activate([
             containerView.centerXAnchor.constraint(equalTo: centerXAnchor),
             containerView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            containerView.heightAnchor.constraint(equalToConstant: 150),
-            containerView.widthAnchor.constraint(equalToConstant: 150),
+            containerView.heightAnchor.constraint(equalToConstant: 130),
+            containerView.widthAnchor.constraint(equalToConstant: 130),
             
             buttonImage.widthAnchor.constraint(equalTo: buttonStack.widthAnchor, multiplier: 0.5),
             buttonImage.heightAnchor.constraint(equalTo: buttonStack.heightAnchor, multiplier: 0.5),
@@ -92,9 +92,7 @@ class PreGameView:BaseView{
         containerView.layer.cornerRadius = containerView.frame.width / 2
     }
 
-
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
