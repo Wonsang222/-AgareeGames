@@ -32,16 +32,16 @@ struct GuessWhoViewModel{
     }
     
     mutating func setOneModel(){
-        let data = GuessWhoDataModel(name: "강호동", photo: "2.circle", realPhoto: nil)
+        let data = GuessWhoDataModel(name: "강호동", photo: "2.circle")
         modelArray.append(data)
         
     }
     
     mutating func setDummyModel(){
-        let data1 = GuessWhoDataModel(name: "이적", photo: "0.circle", realPhoto: nil)
-        let data2 = GuessWhoDataModel(name: "빌게이츠", photo: "1.circle", realPhoto: nil)
-        let data3 = GuessWhoDataModel(name: "강호동", photo: "2.circle", realPhoto: nil)
-        let data4 = GuessWhoDataModel(name: "스티브잡스", photo: "3.circle", realPhoto: nil)
+        let data1 = GuessWhoDataModel(name: "이적", photo: "0.circle")
+        let data2 = GuessWhoDataModel(name: "빌게이츠", photo: "1.circle")
+        let data3 = GuessWhoDataModel(name: "강호동", photo: "2.circle")
+        let data4 = GuessWhoDataModel(name: "스티브잡스", photo: "3.circle")
         
         modelArray.append(data1)
         modelArray.append(data2)
@@ -52,7 +52,7 @@ struct GuessWhoViewModel{
     
     mutating func next(){
 //        targetModel = modelArray.popLast()
-        targetModel = GuessWhoDataModel(name: "빌게이츠", photo: "2.circle", realPhoto: nil)
+        targetModel = GuessWhoDataModel(name: "빌게이츠", photo: "2.circle")
     }
     
     init(delegate: GuessWhoViewModelDelegate) {

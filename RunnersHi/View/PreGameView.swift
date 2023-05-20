@@ -9,15 +9,30 @@ import UIKit
 
 class PreGameView:BaseView{
     
-    let buttonLabel:UILabel = {
-       let label = UILabel()
-        let string = "플레이"
-        let attributes:[NSAttributedString.Key:Any] = [
-            .foregroundColor:UIColor.white,
-            .font:UIFont.boldSystemFont(ofSize: 20),
-        ]
-        label.attributedText = NSAttributedString(string: string, attributes: attributes)
+    let gameTitle:String
+    
+    //MARK: - TitleLabel
+    lazy var titleLabel:UILabel = {
+        let label = CustomLabel(messageText: gameTitle, textSize: 30.0)
         label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    //MARK: - SegmentControl
+    let segment:UISegmentedControl = {
+       let sc = UISegmentedControl(items: ["2인", "3인", "4인", "5인"])
+        sc.tintColor = .white
+        sc.selectedSegmentTintColor = .systemBlue
+        sc.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
+        sc.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
+        sc.translatesAutoresizingMaskIntoConstraints = false
+        return sc
+    }()
+    
+    
+    //MARK: - Button
+    let buttonLabel:UILabel = {
+        let label = CustomLabel(messageText: "플레이", textSize: 20.0)
         return label
     }()
         
@@ -52,15 +67,19 @@ class PreGameView:BaseView{
         view.backgroundColor = .systemBlue
         return view
     }()
+
     
-    let segment:UISegmentedControl = {
-       let seg = UISegmentedControl()
-        seg.translatesAutoresizingMaskIntoConstraints = false
-        return seg
-    }()
+    func configureSeg(){
+        addSubview(segment)
+        NSLayoutConstraint.activate([
+            segment.centerXAnchor.constraint(equalTo: centerXAnchor),
+            segment.centerYAnchor.constraint(equalTo: centerYAnchor),
+            segment.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            segment.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 20)
+        ])
+    }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    func configureButton(){
         containerView.addSubview(buttonStack)
         addSubview(containerView)
         addSubview(playButton)
@@ -87,6 +106,10 @@ class PreGameView:BaseView{
         ])
     }
     
+    func configureTitleLabel(){
+        
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         containerView.layer.cornerRadius = containerView.frame.width / 2
@@ -94,5 +117,11 @@ class PreGameView:BaseView{
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    init(gameTitle:String){
+        self.gameTitle = gameTitle
+        super.init(frame: .zero)
+        configureButton()
     }
 }

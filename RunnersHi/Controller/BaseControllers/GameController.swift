@@ -40,7 +40,7 @@ class GameController:BaseController{
     //MARK: - Lifecycle
     
     override var prefersHomeIndicatorAutoHidden: Bool{
-        return false
+        return true
     }
     
     override func viewDidLoad() {

@@ -7,6 +7,8 @@
 
 import UIKit
 
+// 아가리 마크
+
 final class IntroController: BaseController {
     
     let introView = IntroView()
