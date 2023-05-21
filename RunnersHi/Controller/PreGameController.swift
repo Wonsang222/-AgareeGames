@@ -10,6 +10,7 @@ import UIKit
 final class PreGameController:SettingController{
     
     let gameTitle:String
+    var howManyPlayer:Int?
     
     lazy var preGameView = PreGameView(gameTitle:gameTitle)
     

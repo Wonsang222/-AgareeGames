@@ -50,7 +50,12 @@ class GameController:BaseController{
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        // navigation item "player number"
+        guard Reachability.networkConnected() else {
+            alert(message: "네트워크가 연결되어 있지 않습니다.\n앱을 종료합니다.", agree: { UIAlertAction in
+                exit(0)
+            }, disagree: nil)
+                return
+            }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -101,7 +106,6 @@ class GameController:BaseController{
 }
 
 extension GameController:TimerUsable{
-    
     @objc func startGameTimer(_ timer:Timer) {
         // abstract
     }

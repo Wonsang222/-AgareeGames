@@ -22,7 +22,6 @@ class MainView:BaseView{
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .black
         ["인물 맞추기", "사자성어"].forEach{buttons in
             let button = UIButton()
             button.setTitle(buttons, for: .normal)

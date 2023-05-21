@@ -11,32 +11,36 @@ import Foundation
 // protocol oriented 시도
 
 struct HttpBaseResource {
-    private let reqUrl = ""
+    private let reqUrl = Global.URL
     private let reqMethod:HttpMethod
-    private let shouldHandleCookie:Bool
     private let isMultiPart:Bool
-    private var reqHeader:[String:String]?
+    private var reqHeader = [String:String]()
     private var params = [String:String]()
+    private var path:String
     
     func request()->URLRequest{
         var resultReq:URLRequest
         
+        let urlString = reqUrl + "/\(path)"
+        
         if reqMethod == .GET {
-            resultReq = URLRequest(url: URL(string: reqUrl + "?" + generateParam())!)
+            resultReq = URLRequest(url: URL(string: urlString + "?" + generateParam())!)
         } else {
-            resultReq = URLRequest(url: URL(string: reqUrl)!)
+            resultReq = URLRequest(url: URL(string: urlString)!)
         }
+        
+        resultReq.allowsCellularAccess = true
+        
         
         resultReq.httpMethod = reqMethod.rawValue
         
-        if let reqHeader = reqHeader{
-            for (key, value) in reqHeader{
-                resultReq.addValue(value, forHTTPHeaderField: key)
-            }
+        for (key, value) in reqHeader{
+            resultReq.addValue(value, forHTTPHeaderField: key)
         }
+        
         // 일단은 get만...
         //        resultReq.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-//        resultReq.httpBody = generateParam().data(using: String.Encoding.utf8)
+        //        resultReq.httpBody = generateParam().data(using: String.Encoding.utf8)
         
         return resultReq
     }
@@ -52,11 +56,12 @@ struct HttpBaseResource {
         return returnVal
     }
     
-    init(reqMethod: HttpMethod, shouldHandleCookie: Bool, isMultiPart: Bool, params: [String : String]) {
+    init(reqMethod: HttpMethod, isMultiPart: Bool, reqHeader: [String : String], params: [String : String], path: String) {
         self.reqMethod = reqMethod
-        self.shouldHandleCookie = shouldHandleCookie
         self.isMultiPart = isMultiPart
+        self.reqHeader = reqHeader
         self.params = params
+        self.path = path
     }
 }
 

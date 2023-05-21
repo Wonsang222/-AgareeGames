@@ -19,18 +19,9 @@ class GuessWhoView:BaseView{
         return imgView
     }()
     
-    let button:UIButton = {
-       let button = UIButton()
-        button.setTitle("ready", for: .normal)
-        button.backgroundColor = .systemBlue
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = .black
-        translatesAutoresizingMaskIntoConstraints = false
+        configureUI()
     }
     
     required init?(coder: NSCoder) {
@@ -38,15 +29,13 @@ class GuessWhoView:BaseView{
     }
     
     func configureUI(){
-        [imageView, button].forEach {addSubview($0)}
+        [imageView].forEach {addSubview($0)}
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             imageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3),
             imageView.widthAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3),
             
-            button.topAnchor.constraint(equalTo: self.topAnchor, constant: 50),
-            button.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
     }
     

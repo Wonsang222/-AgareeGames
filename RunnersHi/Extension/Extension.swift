@@ -15,7 +15,6 @@ extension String{
 }
 
 class CustomLabel:UILabel{
-    
     let messageText:String
     let textSize:CGFloat
     lazy var attributes:[NSAttributedString.Key:Any] = [.foregroundColor:UIColor.white,

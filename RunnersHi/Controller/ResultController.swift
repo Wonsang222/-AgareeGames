@@ -10,10 +10,9 @@ import UIKit
 final class ResultController:SettingController{
     
     var isWin:Bool
-    let resultView = ResultView()
     
     override func loadView() {
-        view = resultView
+        
     }
     
     override func viewDidLoad() {
@@ -39,9 +38,9 @@ final class ResultController:SettingController{
     
     func checkTheResult(){
         if isWin{
-            resultView.label.text = "통과"
+            
         } else {
-            resultView.label.text = "땡!"
+            
         }
     }
 }

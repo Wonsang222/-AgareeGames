@@ -13,33 +13,41 @@ enum HttpMethod:String{
 }
 
 class ResourceBuilder{
-    private var reqMethod:String = "GET"
-    private var shouldHandleCookie = true
+    private var reqMethod:HttpMethod = .GET
     private var isMultiPart = false
+    private var reqHeader = [String:String]()
     private var params:[String:String] = [String:String]()
+    private var path:String = ""
     
-    func setReqMethod(_ method:String) -> Self{
+    func setReqMethod(_ method:HttpMethod) -> Self{
         self.reqMethod = method
         return self
     }
-    // Oauth도 쿠키로 하나?????
-    func setCookie(_ bool:Bool)->Self{
-        self.shouldHandleCookie = bool
-        return self
-    }
     
-    func setMultiPart(_ bool:Bool)->Self{
+    func setMultiPart(_ bool:Bool) -> Self{
         self.isMultiPart = bool
         return self
     }
     
-    func setParams(_ param1:String, _ param2:String) ->Self{
-        self.params[param1] = param2
+    func setParams(_ param1:String, _ param2:Any) -> Self{
+        switch param2{
+        case let num as Int:
+            self.params[param1] = String(num)
+        case let string as String:
+            self.params[param1] = string
+        default:
+            break
+        }
+        return self
+    }
+    
+    func setPath(_ path:String) -> Self{
+        self.path = path
         return self
     }
 
     func build() -> HttpBaseResource{
-        return HttpBaseResource(reqMethod: .GET, shouldHandleCookie: shouldHandleCookie, isMultiPart: isMultiPart, params: params)
+        return HttpBaseResource(reqMethod: reqMethod, isMultiPart: isMultiPart, reqHeader: reqHeader, params: params, path: path)
     }
     
     static let shared = ResourceBuilder()
