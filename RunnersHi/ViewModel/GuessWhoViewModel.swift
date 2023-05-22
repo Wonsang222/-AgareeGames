@@ -64,8 +64,13 @@ struct GuessWhoViewModel{
     
     mutating func fetchDummyNetworkData(httpbaseResource:HttpBaseResource)async throws{
         playModelArray = []
-        let jsonData = try await NetworkService.fetchJSON(httpbaseresource: httpbaseResource, controller: delegate as! BaseController)
-        
-        // 에러를 여기서 던져야하나
+        do{
+            let jsonData = try await NetworkService.fetchJSON(httpbaseresource: httpbaseResource, controller: delegate as! BaseController)
+            let array = try await NetworkService.fetchImage(jsonData)
+            playModelArray = array
+        } catch{
+            
+        }
+
     }
 }

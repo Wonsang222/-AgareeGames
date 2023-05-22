@@ -47,5 +47,4 @@ class NetworkService{
         }
         return result
     }
-    
 }
