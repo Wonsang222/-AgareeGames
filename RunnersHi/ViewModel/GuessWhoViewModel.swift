@@ -14,7 +14,7 @@ protocol GuessWhoViewModelDelegate{
     
 }
 
-struct GuessWhoViewModel{
+class GuessWhoViewModel{
     
     private var targetModel:GuessWhoDataModel?{
         didSet{
@@ -27,20 +27,24 @@ struct GuessWhoViewModel{
         }
     }
     private var modelArray:[GuessWhoDataModel] = []
-    private var playModelArray:[GuessWhoPlayModel] = []
+    private var playModelArray:[GuessWhoPlayModel] = []{
+        didSet{
+            print(playModelArray)
+        }
+    }
     private var delegate:GuessWhoViewModelDelegate
 
     var getTargetModel: GuessWhoDataModel?{
         return targetModel
     }
     
-    mutating func setOneModel(){
+     func setOneModel(){
         let data = GuessWhoDataModel(name: "강호동", photo: "2.circle")
         modelArray.append(data)
         
     }
     
-    mutating func setDummyModel(){
+     func setDummyModel(){
         let data1 = GuessWhoDataModel(name: "이적", photo: "0.circle")
         let data2 = GuessWhoDataModel(name: "빌게이츠", photo: "1.circle")
         let data3 = GuessWhoDataModel(name: "강호동", photo: "2.circle")
@@ -53,7 +57,7 @@ struct GuessWhoViewModel{
 
     }
     
-    mutating func next(){
+     func next(){
 //        targetModel = modelArray.popLast()
         targetModel = GuessWhoDataModel(name: "빌게이츠", photo: "2.circle")
     }
@@ -62,11 +66,12 @@ struct GuessWhoViewModel{
         self.delegate = delegate
     }
     
-    mutating func fetchDummyNetworkData(httpbaseResource:HttpBaseResource)async throws{
+     func fetchDummyNetworkData(httpbaseResource:HttpBaseResource)async throws{
         playModelArray = []
         do{
             let jsonData = try await NetworkService.fetchJSON(httpbaseresource: httpbaseResource, controller: delegate as! BaseController)
             let array = try await NetworkService.fetchImage(jsonData)
+            print(array)
             playModelArray = array
         } catch{
             

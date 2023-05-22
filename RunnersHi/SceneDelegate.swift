@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = PreGameController(gameTitle: "임시")
+        window?.rootViewController = IntroController()
         window?.makeKeyAndVisible()
     }
 

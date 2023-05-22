@@ -45,11 +45,16 @@ class ResourceBuilder{
         self.path = path
         return self
     }
+    
+    func setReqHeader(_ header1:String, _ header2:String) -> Self{
+        self.reqHeader[header1] = header2
+        return self
+    }
 
     func build() -> HttpBaseResource{
         return HttpBaseResource(reqMethod: reqMethod, isMultiPart: isMultiPart, reqHeader: reqHeader, params: params, path: path)
     }
-    
+        
     static let shared = ResourceBuilder()
     
     private init(){}

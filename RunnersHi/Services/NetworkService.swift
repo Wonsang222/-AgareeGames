@@ -16,7 +16,7 @@ class NetworkService{
     
     private static let configuration:URLSessionConfiguration = {
         let configuration = URLSessionConfiguration.default
-        configuration.networkServiceType = .responsiveData
+//        configuration.networkServiceType = .responsiveData
         // 고민좀 해봐야함
 //        configuration.timeoutIntervalForRequest = 10
 //        configuration.timeoutIntervalForResource = 2
@@ -34,14 +34,23 @@ class NetworkService{
         // data 순회 -> url  이미지 불러오기 다운 백그라운드로 날려버리기
         var result:Array<GuessWhoPlayModel> = []
         for (name, url) in data{
+            print(name)
             let dbName = name
             guard let stringUrl = url as? String else {fatalError("에러추가하세요")}
-            let dbUrl = URL(string: stringUrl)!
+            print(stringUrl)
+            let dbUrl = URL(string: stringUrl)
+            guard let dbUrl = dbUrl else {fatalError("에러추가")}
+            print("1213",dbUrl)
             let (data, response) = try await session.data(from:dbUrl)
+            print(12312312312312312)
+            print(data)
+            print(response)
             guard (response as? HTTPURLResponse)?.statusCode == 200 else {fatalError("에러추가하세요")}
+            print("통과")
             let urlPhoto = UIImage(data: data)
             // 이미지가 아닐때...
             guard let urlPhoto = urlPhoto else {fatalError("에러추가하세요")}
+            print("사진")
             let model = GuessWhoPlayModel(name: dbName, photo: urlPhoto)
             result.append(model)
         }
