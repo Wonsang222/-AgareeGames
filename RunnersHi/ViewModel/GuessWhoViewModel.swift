@@ -10,6 +10,8 @@ import UIKit
 protocol GuessWhoViewModelDelegate{
     func setNextTarget(with data:GuessWhoDataModel)
     func clearGame(isWin:Bool)
+    // 에러 핸들링
+    
 }
 
 struct GuessWhoViewModel{
@@ -25,6 +27,7 @@ struct GuessWhoViewModel{
         }
     }
     private var modelArray:[GuessWhoDataModel] = []
+    private var playModelArray:[GuessWhoPlayModel] = []
     private var delegate:GuessWhoViewModelDelegate
 
     var getTargetModel: GuessWhoDataModel?{
@@ -59,7 +62,8 @@ struct GuessWhoViewModel{
         self.delegate = delegate
     }
     
-    func fetchDummyNetworkData(httpbaseResource:HttpBaseResource)async throws{
+    mutating func fetchDummyNetworkData(httpbaseResource:HttpBaseResource)async throws{
+        playModelArray = []
         let jsonData = try await NetworkService.fetchJSON(httpbaseresource: httpbaseResource, controller: delegate as! BaseController)
         
         // 에러를 여기서 던져야하나

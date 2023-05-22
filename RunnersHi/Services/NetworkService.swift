@@ -22,39 +22,7 @@ class NetworkService{
 //        configuration.timeoutIntervalForResource = 2
         return configuration
     }()
-    
-    static func fetchJSON(httpbaseresource:HttpBaseResource, controller:BaseController, completion:([GuessWhoDataModel]) -> Void){
-        let task = session.dataTask(with: httpbaseresource.request()) { data, response, error in
-            if let error = error{
-                controller.alert(message: "네트워크 오류", agree: nil, disagree: nil)
-                print(error)
-                return
-            }
-            guard let httpResponse = response as? HTTPURLResponse else {
-                controller.alert(message: "네트워크 오류", agree: nil, disagree: nil)
-                return
-            }
-            
-            guard (200...299).contains(httpResponse.statusCode) else {
-                controller.alert(message: "네트워크 오류", agree: nil, disagree: nil)
-                return
-            }
-            guard let data = data else {
-                fatalError("data binding")
-            }
-            
-            do{
-                let jsonData = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! [String:AnyObject]
-                
-            }catch{
-                print("wonsang: json parsing error")
-            }
-            
-            
-        }
-        task.resume()
-    }
-    
+        
     static func fetchJSON(httpbaseresource:HttpBaseResource, controller:BaseController) async throws -> [String:AnyObject]{
         let (data, response)  = try await session.data(for: httpbaseresource.request())
         guard (200...299).contains((response as? HTTPURLResponse)?.statusCode ?? 404) else { fatalError("에러처리하세요 여기에")}
