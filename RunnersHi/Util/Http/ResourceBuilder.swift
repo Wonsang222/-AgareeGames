@@ -33,8 +33,8 @@ class ResourceBuilder{
         switch param2{
         case let num as Int:
             self.params[param1] = String(num)
-        case let string as String:
-            self.params[param1] = string
+        case let str as String:
+            self.params[param1] = str
         default:
             break
         }

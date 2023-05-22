@@ -58,4 +58,10 @@ struct GuessWhoViewModel{
     init(delegate: GuessWhoViewModelDelegate) {
         self.delegate = delegate
     }
+    
+    func fetchDummyNetworkData(httpbaseResource:HttpBaseResource)async throws{
+        let jsonData = try await NetworkService.fetchJSON(httpbaseresource: httpbaseResource, controller: delegate as! BaseController)
+        
+        // 에러를 여기서 던져야하나
+    }
 }

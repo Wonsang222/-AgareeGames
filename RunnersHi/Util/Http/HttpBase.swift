@@ -30,18 +30,11 @@ struct HttpBaseResource {
         }
         
         resultReq.allowsCellularAccess = true
-        
-        
         resultReq.httpMethod = reqMethod.rawValue
         
         for (key, value) in reqHeader{
             resultReq.addValue(value, forHTTPHeaderField: key)
-        }
-        
-        // 일단은 get만...
-        //        resultReq.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        //        resultReq.httpBody = generateParam().data(using: String.Encoding.utf8)
-        
+        }        
         return resultReq
     }
     
