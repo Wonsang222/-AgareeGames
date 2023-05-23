@@ -17,7 +17,7 @@ class TalkGameController:TimerGameCotoller{
     }
 
      func checkTheProcess(){
-        //abstrac)
+        //abstract
     }
     
      func checkTheAnswer()->Bool{

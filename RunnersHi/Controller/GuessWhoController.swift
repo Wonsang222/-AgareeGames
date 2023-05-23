@@ -29,11 +29,6 @@ final class GuessWhoController:TalkGameController{
         engine?.startEngine()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-    }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         guard let engine = self.engine else { return }

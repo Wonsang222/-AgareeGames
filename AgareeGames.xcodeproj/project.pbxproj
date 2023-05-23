@@ -27,6 +27,9 @@
 		C119CBCB29F805C000648638 /* IntroController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBCA29F805C000648638 /* IntroController.swift */; };
 		C119CBCE29F951BF00648638 /* STTEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBCD29F951BF00648638 /* STTEngine.swift */; };
 		C14080302A17E7950091F861 /* CustomFont.otf in Resources */ = {isa = PBXBuildFile; fileRef = C140802F2A17E7950091F861 /* CustomFont.otf */; };
+		C148D9D52A1CE95C005AB791 /* TalkGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C148D9D42A1CE95C005AB791 /* TalkGameController.swift */; };
+		C148D9D72A1CE961005AB791 /* TimerGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C148D9D62A1CE961005AB791 /* TimerGameController.swift */; };
+		C148D9DA2A1CE996005AB791 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C148D9D92A1CE996005AB791 /* Protocol.swift */; };
 		C14F272829FE08AE0007E7A6 /* STTEngineFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14F272729FE08AE0007E7A6 /* STTEngineFactory.swift */; };
 		C14F272C29FEA3E00007E7A6 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14F272B29FEA3E00007E7A6 /* NetworkService.swift */; };
 		C14F275E2A02C01B0007E7A6 /* ResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14F275D2A02C01B0007E7A6 /* ResultController.swift */; };
@@ -60,6 +63,9 @@
 		C119CBCA29F805C000648638 /* IntroController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IntroController.swift; path = RunnersHi/Controller/IntroController.swift; sourceTree = SOURCE_ROOT; };
 		C119CBCD29F951BF00648638 /* STTEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STTEngine.swift; sourceTree = "<group>"; };
 		C140802F2A17E7950091F861 /* CustomFont.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CustomFont.otf; sourceTree = "<group>"; };
+		C148D9D42A1CE95C005AB791 /* TalkGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TalkGameController.swift; sourceTree = "<group>"; };
+		C148D9D62A1CE961005AB791 /* TimerGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerGameController.swift; sourceTree = "<group>"; };
+		C148D9D92A1CE996005AB791 /* Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		C14F272729FE08AE0007E7A6 /* STTEngineFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STTEngineFactory.swift; sourceTree = "<group>"; };
 		C14F272B29FEA3E00007E7A6 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		C14F275D2A02C01B0007E7A6 /* ResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultController.swift; sourceTree = "<group>"; };
@@ -92,6 +98,8 @@
 			children = (
 				C119CBC629F8033300648638 /* BaseController.swift */,
 				7E04C8E92A0342C800357A0F /* GameController.swift */,
+				C148D9D62A1CE961005AB791 /* TimerGameController.swift */,
+				C148D9D42A1CE95C005AB791 /* TalkGameController.swift */,
 				7E04C8ED2A03432D00357A0F /* SettingController.swift */,
 				7E04C8EB2A0342FE00357A0F /* CustomUINavigationController.swift */,
 			);
@@ -122,6 +130,15 @@
 			);
 			path = Resource;
 			sourceTree = "<group>";
+		};
+		C148D9D82A1CE996005AB791 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				C148D9D92A1CE996005AB791 /* Protocol.swift */,
+			);
+			name = Protocol;
+			path = RunnersHi/Util/Protocol;
+			sourceTree = SOURCE_ROOT;
 		};
 		C14F272A29FEA3C60007E7A6 /* Services */ = {
 			isa = PBXGroup;
@@ -229,6 +246,7 @@
 		C1FFE7C829E30615009FFD0B /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				C148D9D82A1CE996005AB791 /* Protocol */,
 				C176FECD2A1A5C7800C7EFE6 /* Reachability */,
 				C119CBCC29F951AE00648638 /* SpeechToText */,
 				7E159D3329F89FCF00C7E601 /* Global */,
@@ -337,6 +355,7 @@
 				7E20755D29F9FBF8000BFE61 /* IntroView.swift in Sources */,
 				C14F27642A0521490007E7A6 /* ResourceBuilder.swift in Sources */,
 				C119CBCE29F951BF00648638 /* STTEngine.swift in Sources */,
+				C148D9D72A1CE961005AB791 /* TimerGameController.swift in Sources */,
 				7E04C8EC2A0342FE00357A0F /* CustomUINavigationController.swift in Sources */,
 				C119CBCB29F805C000648638 /* IntroController.swift in Sources */,
 				C1FFE7AF29E30425009FFD0B /* AppDelegate.swift in Sources */,
@@ -345,6 +364,8 @@
 				7E0A83812A01F8A30031B3E3 /* Extension.swift in Sources */,
 				C14F272829FE08AE0007E7A6 /* STTEngineFactory.swift in Sources */,
 				C176FED22A1A5FCB00C7EFE6 /* GuessWhoPlayModel.swift in Sources */,
+				C148D9DA2A1CE996005AB791 /* Protocol.swift in Sources */,
+				C148D9D52A1CE95C005AB791 /* TalkGameController.swift in Sources */,
 				7E125E7D2A00FF9D0044D881 /* MainView.swift in Sources */,
 				7E159D3C29F8A0E400C7E601 /* GuessWhoViewModel.swift in Sources */,
 				C14F272C29FEA3E00007E7A6 /* NetworkService.swift in Sources */,

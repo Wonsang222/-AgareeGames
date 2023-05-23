@@ -19,6 +19,7 @@ class IntroView: BaseView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        
     }
     
     override func layoutSubviews() {

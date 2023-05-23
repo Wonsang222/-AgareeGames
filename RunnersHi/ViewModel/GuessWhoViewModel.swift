@@ -29,6 +29,7 @@ class GuessWhoViewModel{
     private var modelArray:[GuessWhoDataModel] = []
     private var playModelArray:[GuessWhoPlayModel] = []{
         didSet{
+            print("booooom")
             print(playModelArray)
         }
     }
