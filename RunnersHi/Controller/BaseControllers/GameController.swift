@@ -7,20 +7,12 @@
 
 import UIKit
 
-@objc protocol TimerUsable{
-    var timer:Timer? { get }
-    var numToCount:Float { get }
-    var speed:Float { get }
-    @objc func startGameTimer(_ timer:Timer)
-}
-
 class GameController:BaseController{
 
     //MARK: - Properties
-    var timer:Timer?
-    var numToCount: Float = 0.0
-    var speed:Float = 0.0
-
+    
+    let gameTitle:String
+    
     let countView:UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
@@ -59,31 +51,20 @@ class GameController:BaseController{
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        // 타이머 1개 유지
-        // 게임중 나가면 어케할건지... 걍 냅두면 이어지나 테스트
-        // 이게 맞나 고민요망
-        // navigationbar 올림?
-        //        timer?.invalidate()
-        //        timer = nil
-        //        timerNumber -= 1
+
         print(#function)
     }
     
-    //MARK: - Methods
-    
-    func setTimer(_ second:Float, userinfo:Any? = nil, repeater:Bool){
-        guard timer == nil else { return }
-        numToCount = 0.0
-        self.speed = (1.0 / second) * 0.1
-        
-        DispatchQueue.global().async {[weak self] in
-            guard let self = self else {return}
-            self.timer = Timer(timeInterval: 0.2, target: self, selector: #selector(self.startGameTimer(_:)), userInfo: userinfo, repeats: repeater)
-            RunLoop.current.add(self.timer!, forMode: .common)
-            self.timer?.fire()
-            RunLoop.current.run()
-        }
+    init(gameTitle: String) {
+        self.gameTitle = gameTitle
+        super.init(nibName: nil, bundle: nil)
     }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - Methods
     
     func startCounter(handler:@escaping()->Void){
         UIView.transition(with: countView, duration: 2, options: [.transitionFlipFromTop]) {
@@ -102,11 +83,5 @@ class GameController:BaseController{
                 }
             }
         }
-    }
-}
-
-extension GameController:TimerUsable{
-    @objc func startGameTimer(_ timer:Timer) {
-        // abstract
     }
 }

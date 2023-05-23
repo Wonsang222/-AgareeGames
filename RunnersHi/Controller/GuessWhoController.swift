@@ -15,18 +15,13 @@ import Speech
  progress bar 위치 재지정
  */
 
-final class GuessWhoController:GameController{
+final class GuessWhoController:TalkGameController{
     
     //MARK: - Properties
     private let guessView = GuessWhoView()
-    private var engine:STTEngine?
     private lazy var viewModel = GuessWhoViewModel(delegate: self)
-    private var answer = ""{
-        didSet{
-            print(answer)
-            checkTheProcess()
-        }
-    }
+    internal var engine:STTEngine?
+    
     
     //MARK: - Lifecycle
     override func viewWillAppear(_ animated: Bool) {
@@ -43,12 +38,13 @@ final class GuessWhoController:GameController{
         super.viewWillDisappear(animated)
         guard let engine = self.engine else { return }
         engine.offEngine()
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel.setOneModel()
         engine = STTEngineFactory.create(self)
+        viewModel.setOneModel()
         configureUI()
         startCounter {
             self.startGame()
@@ -86,20 +82,7 @@ final class GuessWhoController:GameController{
         viewModel.next()
     }
     
-    private func runRecognizer(){
-        guard let engine = engine else { return }
-        engine.runRecognizer { [weak self] (result) in
-            guard let self = self else { return }
-            switch result{
-            case .success(let res):
-                self.answer += res
-            case .failure(let err):
-                print("runRecognizer:\(err)")
-            }
-        }
-    }
-    
-    private func checkTheAnswer()->Bool{
+    override func checkTheAnswer()->Bool{
         guard let targetName = viewModel.getTargetModel?.name else { return false }
         print(targetName)
         let answer = answer.components(separatedBy: " ").joined()
@@ -109,7 +92,7 @@ final class GuessWhoController:GameController{
         return false
     }
     
-    private func checkTheProcess(){
+    override func checkTheProcess(){
         print(#function)
         //정답 맞춘경우
         if checkTheAnswer(){
@@ -157,6 +140,21 @@ extension GuessWhoController:GuessWhoViewModelDelegate{
             print("right")
         } else{
             print("wrong")
+        }
+    }
+}
+
+extension GuessWhoController:STTEngineUsable{
+    func runRecognizer() {
+        guard let engine = engine else { return }
+        engine.runRecognizer { [weak self] (result) in
+            guard let self = self else { return }
+            switch result{
+            case .success(let res):
+                self.answer += res
+            case .failure(let err):
+                print("runRecognizer:\(err)")
+            }
         }
     }
 }

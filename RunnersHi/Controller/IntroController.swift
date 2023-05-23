@@ -18,7 +18,6 @@ final class IntroController: BaseController, GuessWhoViewModelDelegate {
         
     }
     
-    
     let introView = IntroView()
     
     var viewmodel:GuessWhoViewModel?
@@ -35,7 +34,8 @@ final class IntroController: BaseController, GuessWhoViewModelDelegate {
             introView.widthAnchor.constraint(equalToConstant: 200),
         ])
         
-        let base = ResourceBuilder.shared.setReqMethod(.GET)
+        let base = ResourceBuilder.shared
+            .setReqMethod(.GET)
             .setMultiPart(false)
             .setPath("guessWho")
             .setParams("num", 5)

@@ -16,7 +16,7 @@ class NetworkService{
     
     private static let configuration:URLSessionConfiguration = {
         let configuration = URLSessionConfiguration.default
-//        configuration.networkServiceType = .responsiveData
+        configuration.networkServiceType = .responsiveData
         // 고민좀 해봐야함
 //        configuration.timeoutIntervalForRequest = 10
 //        configuration.timeoutIntervalForResource = 2
@@ -31,7 +31,7 @@ class NetworkService{
     }
     
     static func fetchImage(_ data:Dictionary<String,AnyObject>) async throws -> [GuessWhoPlayModel]{
-        // data 순회 -> url  이미지 불러오기 다운 백그라운드로 날려버리기
+        // data 순회 -> url  이미지 불러오기 백그라운드로 날려버리기
         var result:Array<GuessWhoPlayModel> = []
         for (name, url) in data{
             print(name)
