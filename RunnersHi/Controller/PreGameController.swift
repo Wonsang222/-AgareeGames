@@ -38,4 +38,10 @@ final class PreGameController:SettingController{
             preGameView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
+    
+    @objc func playButtonTapped(_ sender:UIButton){
+        // nsclass 함써보자
+        
+        let className = NSClassFromString(<#T##aClassName: String##String#>)
+    }
 }

@@ -19,6 +19,7 @@
 		7E159D3C29F8A0E400C7E601 /* GuessWhoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E159D3B29F8A0E400C7E601 /* GuessWhoViewModel.swift */; };
 		7E20755B29F9FBE4000BFE61 /* GuessWhoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E20755A29F9FBE4000BFE61 /* GuessWhoView.swift */; };
 		7E20755D29F9FBF8000BFE61 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E20755C29F9FBF8000BFE61 /* IntroView.swift */; };
+		7E246FA72A1DB7A80068CF9E /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E246FA62A1DB7A80068CF9E /* Error.swift */; };
 		7E3544AB2A13160E00B844E6 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3544AA2A13160E00B844E6 /* BaseView.swift */; };
 		7E49954F2A0CAFD5006D95AC /* HowToPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E49954E2A0CAFD5006D95AC /* HowToPlayView.swift */; };
 		C119CBC529F8030600648638 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBC429F8030600648638 /* MainController.swift */; };
@@ -55,6 +56,7 @@
 		7E159D3B29F8A0E400C7E601 /* GuessWhoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GuessWhoViewModel.swift; path = RunnersHi/ViewModel/GuessWhoViewModel.swift; sourceTree = SOURCE_ROOT; };
 		7E20755A29F9FBE4000BFE61 /* GuessWhoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuessWhoView.swift; sourceTree = "<group>"; };
 		7E20755C29F9FBF8000BFE61 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
+		7E246FA62A1DB7A80068CF9E /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		7E3544AA2A13160E00B844E6 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		7E49954E2A0CAFD5006D95AC /* HowToPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToPlayView.swift; sourceTree = "<group>"; };
 		C119CBC429F8030600648638 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainController.swift; path = RunnersHi/Controller/MainController.swift; sourceTree = SOURCE_ROOT; };
@@ -112,6 +114,14 @@
 				7E159D3429F89FD900C7E601 /* Global.swift */,
 			);
 			path = Global;
+			sourceTree = "<group>";
+		};
+		7E246FA52A1DB7A30068CF9E /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				7E246FA62A1DB7A80068CF9E /* Error.swift */,
+			);
+			path = Error;
 			sourceTree = "<group>";
 		};
 		C119CBCC29F951AE00648638 /* SpeechToText */ = {
@@ -246,6 +256,7 @@
 		C1FFE7C829E30615009FFD0B /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				7E246FA52A1DB7A30068CF9E /* Error */,
 				C148D9D82A1CE996005AB791 /* Protocol */,
 				C176FECD2A1A5C7800C7EFE6 /* Reachability */,
 				C119CBCC29F951AE00648638 /* SpeechToText */,
@@ -349,6 +360,7 @@
 				7E20755B29F9FBE4000BFE61 /* GuessWhoView.swift in Sources */,
 				7E159D3829F8A01900C7E601 /* GuessWhoController.swift in Sources */,
 				C14F275E2A02C01B0007E7A6 /* ResultController.swift in Sources */,
+				7E246FA72A1DB7A80068CF9E /* Error.swift in Sources */,
 				C176FECF2A1A5C8800C7EFE6 /* Reachability.swift in Sources */,
 				C119CBC529F8030600648638 /* MainController.swift in Sources */,
 				7E3544AB2A13160E00B844E6 /* BaseView.swift in Sources */,

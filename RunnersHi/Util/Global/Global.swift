@@ -18,4 +18,6 @@ struct Global{
     static let BUNDLEIDENTIFIER = "com.kr.magic"
     static let UUID = "59287382-e52d-4090-a829-864b5b578bc1"
     static let URL = "http://localhost:8001"
+    
+    static var gameDic:[String:String] = ["인물퀴즈":"guessWhoController"]
 }

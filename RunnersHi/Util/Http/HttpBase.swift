@@ -34,7 +34,7 @@ struct HttpBaseResource {
         
         for (key, value) in reqHeader{
             resultReq.addValue(value, forHTTPHeaderField: key)
-        }        
+        }
         return resultReq
     }
     

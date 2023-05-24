@@ -13,6 +13,10 @@ import Speech
  tim
  과도한 weak self??  -> 알아보기
  progress bar 위치 재지정
+ 
+ 에러 리스트
+1. audio off 일때 -> 시작 ㄴㄴ 뒤로 가자
+ 
  */
 
 final class GuessWhoController:TalkGameController{
@@ -21,7 +25,6 @@ final class GuessWhoController:TalkGameController{
     private let guessView = GuessWhoView()
     private lazy var viewModel = GuessWhoViewModel(delegate: self)
     internal var engine:STTEngine?
-    
     
     //MARK: - Lifecycle
     override func viewWillAppear(_ animated: Bool) {
@@ -71,9 +74,9 @@ final class GuessWhoController:TalkGameController{
     
     private func startGame(){
         runRecognizer()
-        //        countView.removeFromSuperview()
-        //        guessView.imageView.isHidden = false
-        //        countView.layoutIfNeeded()
+        countView.removeFromSuperview()
+        guessView.imageView.isHidden = false
+        countView.layoutIfNeeded()
         viewModel.next()
     }
     
@@ -132,9 +135,9 @@ extension GuessWhoController:GuessWhoViewModelDelegate{
         //        let nextVC = ResultController(isWin: isWin)
         // 이게 계속됨... present안되겟다
         if isWin{
-            print("right")
+            print("클리어~")
         } else{
-            print("wrong")
+            print("땡!")
         }
     }
 }

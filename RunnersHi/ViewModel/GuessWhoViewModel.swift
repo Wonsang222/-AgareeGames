@@ -11,7 +11,6 @@ protocol GuessWhoViewModelDelegate{
     func setNextTarget(with data:GuessWhoDataModel)
     func clearGame(isWin:Bool)
     // 에러 핸들링
-    
 }
 
 class GuessWhoViewModel{

@@ -7,6 +7,10 @@
 
 import Foundation
 
+protocol BaseProtocol{
+    func handleError(_ :Error)
+}
+
 @objc protocol TimerUsable{
     var timer:Timer? { get }
     var numToCount:Float { get }
