@@ -104,6 +104,8 @@ final class STTEngine{
                 
                 self.audioEngine.prepare()
                 
+                
+                // 여기서 에러를 떤져서 guessWho에서 에러를 다시 받아 실행
                 do {
                     try self.audioEngine.start()
                 } catch {

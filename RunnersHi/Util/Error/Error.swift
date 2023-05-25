@@ -7,20 +7,15 @@
 
 import Foundation
 
-
-class AgareeGameError{
-    
-    enum Network:Error{
-        case timeout
-        case disconnected
-        case notconnected
-    }
-    
-    enum Audio:Error{
-        case audioOff
-        case totalAudioError
-    }
-    
-    
+enum NetworkError:Error{
+    case timeout
+    case disconnected
+    case notconnected
 }
+
+enum AudioError:Error{
+    case audioOff
+    case totalAudioError
+}
+
 
