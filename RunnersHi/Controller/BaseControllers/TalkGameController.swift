@@ -6,23 +6,44 @@
 //
 
 import UIKit
+import Speech
 
 class TalkGameController:TimerGameCotoller{
     
-    var answer = ""{
+    var engine:STTEngine?
+    
+    final var answer = ""{
         didSet{
             print(answer)
             checkTheProcess()
         }
     }
-
-     func checkTheProcess(){
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        engine?.startEngine()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        engine?.offEngine()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        engine = STTEngineFactory.create(self)
+    }
+    
+    func checkTheProcess(){
         //abstract
     }
     
-     func checkTheAnswer()->Bool{
+    func checkTheAnswer()->Bool{
         // abstract
-         return true
+        return true
+    }
+    
+    func runRecognizer(){
+        //abstract
     }
 }
 

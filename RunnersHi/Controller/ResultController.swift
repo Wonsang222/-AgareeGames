@@ -10,15 +10,23 @@ import UIKit
 final class ResultController:SettingController{
     
     var isWin:Bool
-    
-    override func loadView() {
-        
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         checkTheResult()
         configureNaviBar()
+        
+        
+    
+        
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let name = "AgareeGames.MainContoller"
+        let vc = NSClassFromString(name) as? UIViewController.Type
+        print(vc)
     }
     
     init(isWin: Bool) {
@@ -42,5 +50,9 @@ final class ResultController:SettingController{
         } else {
             
         }
+    }
+    
+    final func className() -> String{
+        return String(reflecting: Self.self)
     }
 }

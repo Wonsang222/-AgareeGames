@@ -10,6 +10,10 @@ import UIKit
 // 아가리 마크
 
 final class IntroController: BaseController, GuessWhoViewModelDelegate {
+    func handleError(_: Error) {
+
+    }
+    
     func setNextTarget(with data: GuessWhoDataModel) {
         
     }

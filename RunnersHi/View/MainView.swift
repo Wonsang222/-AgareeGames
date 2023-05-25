@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainView:BaseView{
+final class MainView:BaseView{
     
     let stackView:UIStackView = {
        let st = UIStackView()

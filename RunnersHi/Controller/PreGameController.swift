@@ -22,6 +22,7 @@ final class PreGameController:SettingController{
     init(gameTitle: String) {
         self.gameTitle = gameTitle
         super.init(nibName: nil, bundle: nil)
+        print(className())
     }
     
     required init?(coder: NSCoder) {
@@ -40,8 +41,16 @@ final class PreGameController:SettingController{
     }
     
     @objc func playButtonTapped(_ sender:UIButton){
-        // nsclass 함써보자
+        // nsclassfromStrng 으로 게임을 찾음.
+//        let test = test.className()
+//        let type2 = NSClassFromString(test) as! UIViewController.Type
+//        let vc = type2.init()
+//        present(vc, animated: true)
         
-        let className = NSClassFromString(<#T##aClassName: String##String#>)
+    
+    }
+    
+    final func className() -> String{
+        return String(reflecting: Self.self)
     }
 }

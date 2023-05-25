@@ -7,9 +7,9 @@
 
 import UIKit
 
-class IntroView: BaseView {
+final class IntroView: BaseView {
     
-    let imgView:UIImageView = {
+    final let imgView:UIImageView = {
         let imgView = UIImageView()
         imgView.backgroundColor = .systemBlue
         imgView.contentMode = .scaleAspectFill
@@ -18,7 +18,6 @@ class IntroView: BaseView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         
     }
     

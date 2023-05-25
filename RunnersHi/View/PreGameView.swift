@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PreGameView:BaseView{
+final class PreGameView:BaseView{
     
     let gameTitle:String
     

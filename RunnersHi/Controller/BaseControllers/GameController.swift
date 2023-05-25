@@ -11,14 +11,14 @@ class GameController:BaseController{
 
     //MARK: - Properties
 
-    let countView:UIImageView = {
+    final let countView:UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
         iv.translatesAutoresizingMaskIntoConstraints = false
         return iv
     }()
     
-    let progressView:UIProgressView = {
+    final let progressView:UIProgressView = {
         let pv = UIProgressView()
         pv.progressViewStyle = .default
         pv.tintColor = .systemBlue
@@ -26,6 +26,7 @@ class GameController:BaseController{
         pv.translatesAutoresizingMaskIntoConstraints = false
         return pv
     }()
+
     
     //MARK: - Lifecycle
     
@@ -55,7 +56,7 @@ class GameController:BaseController{
 
     //MARK: - Methods
     
-    func startCounter(handler:@escaping()->Void){
+    final func startCounter(handler:@escaping()->Void){
         UIView.transition(with: countView, duration: 2, options: [.transitionFlipFromTop]) {
             self.countView.image = UIImage(systemName: "3.circle")
             self.countView.layoutIfNeeded()
@@ -72,5 +73,9 @@ class GameController:BaseController{
                 }
             }
         }
+    }
+
+    final func className() -> String{
+        return String(reflecting: Self.self)
     }
 }

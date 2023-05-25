@@ -10,7 +10,7 @@ import UIKit
 // completionBlock 추가하기 && basecontroller 추가해야함..
 
 // navigation controller로 해야하나 그래야 poptoroot으로 이동 수월
-class NetworkService{
+final class NetworkService{
     
     private static let session = URLSession(configuration: configuration)
     

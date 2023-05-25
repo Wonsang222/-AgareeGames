@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HowToPlayView:BaseView{
+final class HowToPlayView:BaseView{
     
     override init(frame: CGRect) {
         super.init(frame: frame)

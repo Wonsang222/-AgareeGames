@@ -7,7 +7,7 @@
 
 import Foundation
 
-class STTEngineFactory{
+final class STTEngineFactory{
     static func create(_ controller:BaseController)-> STTEngine{
         return STTEngine(controller: controller)
     }

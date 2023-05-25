@@ -24,24 +24,19 @@ final class GuessWhoController:TalkGameController{
     //MARK: - Properties
     private let guessView = GuessWhoView()
     private lazy var viewModel = GuessWhoViewModel(delegate: self)
-    internal var engine:STTEngine?
     
     //MARK: - Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        engine?.startEngine()
+       
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        guard let engine = self.engine else { return }
-        engine.offEngine()
-        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        engine = STTEngineFactory.create(self)
         viewModel.setOneModel()
         configureUI()
         startCounter {
@@ -103,7 +98,6 @@ final class GuessWhoController:TalkGameController{
     override func startGameTimer(_ timer: Timer) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            
             if self.numToCount >= 1.0 {
                 timer.invalidate()
                 self.timer = nil
@@ -111,6 +105,19 @@ final class GuessWhoController:TalkGameController{
             }
             self.numToCount += self.speed
             self.progressView.setProgress(self.numToCount, animated: true)
+        }
+    }
+    // [weak self] too much?
+    override func runRecognizer() {
+        guard let engine = engine else { return }
+        engine.runRecognizer { [weak self] (result) in
+            guard let self = self else { return }
+            switch result{
+            case .success(let res):
+                self.answer += res
+            case .failure(let err):
+                print("runRecognizer:\(err)")
+            }
         }
     }
 }
@@ -122,6 +129,10 @@ extension GuessWhoController:SFSpeechRecognizerDelegate{
 }
 
 extension GuessWhoController:GuessWhoViewModelDelegate{
+    func handleError(_: Error) {
+        
+    }
+    
     func setNextTarget(with data: GuessWhoDataModel) {
         // transition 처리
         setTimer(Global.GAMESPEED, repeater: true)
@@ -138,21 +149,6 @@ extension GuessWhoController:GuessWhoViewModelDelegate{
             print("클리어~")
         } else{
             print("땡!")
-        }
-    }
-}
-
-extension GuessWhoController:STTEngineUsable{
-    func runRecognizer() {
-        guard let engine = engine else { return }
-        engine.runRecognizer { [weak self] (result) in
-            guard let self = self else { return }
-            switch result{
-            case .success(let res):
-                self.answer += res
-            case .failure(let err):
-                print("runRecognizer:\(err)")
-            }
         }
     }
 }

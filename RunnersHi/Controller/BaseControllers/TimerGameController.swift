@@ -8,9 +8,9 @@
 import UIKit
 
 class TimerGameCotoller:GameController{
-    var timer:Timer?
-    var numToCount: Float = 0.0
-    var speed:Float = 0.0
+    final var timer:Timer?
+    final var numToCount: Float = 0.0
+    final var speed:Float = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +25,7 @@ class TimerGameCotoller:GameController{
         
     }
     
-    func setTimer(_ second:Float, userinfo:Any? = nil, repeater:Bool){
+    final func setTimer(_ second:Float, userinfo:Any? = nil, repeater:Bool){
         guard timer == nil else { return }
         numToCount = 0.0
         self.speed = (1.0 / second) * 0.1
@@ -37,10 +37,8 @@ class TimerGameCotoller:GameController{
             self.timer?.fire()
             RunLoop.current.run()
         }
-    }    
-}
-
-extension TimerGameCotoller:TimerUsable{
+    }
+    
     @objc func startGameTimer(_ timer:Timer) {
         // abstract
     }

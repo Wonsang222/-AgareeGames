@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GuessWhoView:BaseView{
+final class GuessWhoView:BaseView{
     
     let imageView:UIImageView = {
        let imgView = UIImageView()

@@ -13,9 +13,14 @@ final class MainContoller:SettingController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(className())
     }
     
     override func loadView() {
         view = mainView
+    }
+    
+    final func className() -> String{
+        return String(reflecting: Self.self)
     }
 }

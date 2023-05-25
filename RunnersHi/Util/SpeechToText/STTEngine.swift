@@ -6,16 +6,16 @@
 //
 
 /*
- audio setting background.. count 보다 먼저 세팅만 먼저하고
- 실행은 뒤로 미룬다...
- 메인쓰레드 부하 줄이기
- 메인쓰레드로 보내는거 dispatchqueue main ㅈ다시 스코프 짜보자 
+ 
+ 에러처리 해야함
+ 
+ 
  */
 
 import UIKit
 import Speech
 
-class STTEngine{
+final class STTEngine{
     private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "ko-KR"))!
     private var recognitionRequest:SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?

@@ -14,7 +14,7 @@ class BaseController:UIViewController{
         view.backgroundColor = .black
     }
             
-    func alert(message:String, agree:((UIAlertAction)->Void)?, disagree:((UIAlertAction)->Void)?){
+    final func alert(message:String, agree:((UIAlertAction)->Void)?, disagree:((UIAlertAction)->Void)?){
         let alert = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
         
         if let agree = agree, let disagree = disagree {
@@ -26,7 +26,7 @@ class BaseController:UIViewController{
         self.present(alert, animated: true)
     }
     
-    func terminateAppGracefullyAfter(second: Double) {
+    final func terminateAppGracefullyAfter(second: Double) {
         DispatchQueue.main.asyncAfter(deadline: .now() + second) {
             UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
