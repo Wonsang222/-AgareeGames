@@ -9,6 +9,6 @@ import Foundation
 
 final class STTEngineFactory{
     static func create(_ controller:BaseController)-> STTEngine{
-        return STTEngine(controller: controller)
+        return STTEngine(controller: controller as! STTEngineDelegate)
     }
 }

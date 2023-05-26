@@ -8,21 +8,25 @@
 /*
  
  에러처리 해야함
- 
+ 의존성 주입 -> 처음엔 abstract로 클래스 나눴었다.
  
  */
 
 import UIKit
 import Speech
 
+protocol STTEngineDelegate:BaseDelegate{
+    func runRecognizer(_ text:String)
+}
+
 final class STTEngine{
     private let speechRecognizer = SFSpeechRecognizer(locale: Locale.init(identifier: "ko-KR"))!
     private var recognitionRequest:SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
-    private let controller:BaseController
+    private let controller:STTEngineDelegate
     
-    init(controller:BaseController){
+    init(controller:STTEngineDelegate){
         self.controller = controller
         guard let speechController = controller as? SFSpeechRecognizerDelegate else {return}
         self.speechRecognizer.delegate = speechController
@@ -37,7 +41,7 @@ final class STTEngine{
                 try audioSession.setMode(AVAudioSession.Mode.measurement)
                 try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
             } catch {
-                self.controller.alert(message: "디바이스 오디오에 문제가 있습니다. \n 휴대폰 기기를 확인해주세요", agree: nil, disagree: nil)
+                controller.handleError(error)
             }
             
             self.recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
@@ -48,8 +52,7 @@ final class STTEngine{
         }
     }
     
-    
-    func runRecognizer(completion:@escaping (Result<String, Error>) -> Void){
+    func runRecognizer(){
         
         DispatchQueue.global(qos: .userInteractive).async { [weak self] in
             guard let self = self else { return }
@@ -82,7 +85,7 @@ final class STTEngine{
                         let text = result?.bestTranscription.formattedString
                         guard let text = text else { return }
                         DispatchQueue.main.async {
-                            completion(.success(text))
+                            self.controller.runRecognizer(text)
                         }
                         
                         isFinal = (result?.isFinal)!
@@ -109,7 +112,7 @@ final class STTEngine{
                 do {
                     try self.audioEngine.start()
                 } catch {
-                    self.controller.alert(message: "디바이스의 오디오 기능을 실행할 수 없습니다. \n 앱을 재시작해주세요.", agree: nil, disagree: nil)
+                    self.controller.handleError(error)
                     print("audioEngine couldn't start because of an error.")
                 }
             }

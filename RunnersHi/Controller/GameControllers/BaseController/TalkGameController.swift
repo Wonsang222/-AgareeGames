@@ -41,9 +41,5 @@ class TalkGameController:TimerGameCotoller{
         // abstract
         return true
     }
-    
-    func runRecognizer(){
-        //abstract
-    }
 }
 

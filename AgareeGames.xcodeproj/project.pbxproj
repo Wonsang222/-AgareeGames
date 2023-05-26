@@ -60,7 +60,7 @@
 		7E3544AA2A13160E00B844E6 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		7E49954E2A0CAFD5006D95AC /* HowToPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToPlayView.swift; sourceTree = "<group>"; };
 		C119CBC429F8030600648638 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainController.swift; path = RunnersHi/Controller/MainController.swift; sourceTree = SOURCE_ROOT; };
-		C119CBC629F8033300648638 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseController.swift; path = RunnersHi/Controller/BaseControllers/BaseController.swift; sourceTree = SOURCE_ROOT; };
+		C119CBC629F8033300648638 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseController.swift; path = RunnersHi/Controller/GameControllers/BaseController/BaseController.swift; sourceTree = SOURCE_ROOT; };
 		C119CBC829F804FE00648638 /* GuessWhoDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GuessWhoDataModel.swift; path = RunnersHi/Entity/GuessWhoDataModel.swift; sourceTree = SOURCE_ROOT; };
 		C119CBCA29F805C000648638 /* IntroController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IntroController.swift; path = RunnersHi/Controller/IntroController.swift; sourceTree = SOURCE_ROOT; };
 		C119CBCD29F951BF00648638 /* STTEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STTEngine.swift; sourceTree = "<group>"; };
@@ -95,17 +95,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7E04C8E82A0342A900357A0F /* BaseControllers */ = {
+		7E04C8E82A0342A900357A0F /* GameControllers */ = {
 			isa = PBXGroup;
 			children = (
-				C119CBC629F8033300648638 /* BaseController.swift */,
-				7E04C8E92A0342C800357A0F /* GameController.swift */,
-				C148D9D62A1CE961005AB791 /* TimerGameController.swift */,
-				C148D9D42A1CE95C005AB791 /* TalkGameController.swift */,
-				7E04C8ED2A03432D00357A0F /* SettingController.swift */,
-				7E04C8EB2A0342FE00357A0F /* CustomUINavigationController.swift */,
+				7E159D3729F8A01900C7E601 /* GuessWhoController.swift */,
+				C148D9DC2A2095F7005AB791 /* BaseController */,
 			);
-			path = BaseControllers;
+			path = GameControllers;
 			sourceTree = "<group>";
 		};
 		7E159D3329F89FCF00C7E601 /* Global */ = {
@@ -149,6 +145,19 @@
 			name = Protocol;
 			path = RunnersHi/Util/Protocol;
 			sourceTree = SOURCE_ROOT;
+		};
+		C148D9DC2A2095F7005AB791 /* BaseController */ = {
+			isa = PBXGroup;
+			children = (
+				C119CBC629F8033300648638 /* BaseController.swift */,
+				7E04C8E92A0342C800357A0F /* GameController.swift */,
+				C148D9D62A1CE961005AB791 /* TimerGameController.swift */,
+				C148D9D42A1CE95C005AB791 /* TalkGameController.swift */,
+				7E04C8ED2A03432D00357A0F /* SettingController.swift */,
+				7E04C8EB2A0342FE00357A0F /* CustomUINavigationController.swift */,
+			);
+			path = BaseController;
+			sourceTree = "<group>";
 		};
 		C14F272A29FEA3C60007E7A6 /* Services */ = {
 			isa = PBXGroup;
@@ -243,11 +252,10 @@
 		C1FFE7C729E3060B009FFD0B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				7E04C8E82A0342A900357A0F /* BaseControllers */,
+				7E04C8E82A0342A900357A0F /* GameControllers */,
 				C119CBCA29F805C000648638 /* IntroController.swift */,
 				C119CBC429F8030600648638 /* MainController.swift */,
 				7E04C8E42A03342300357A0F /* PreGameController.swift */,
-				7E159D3729F8A01900C7E601 /* GuessWhoController.swift */,
 				C14F275D2A02C01B0007E7A6 /* ResultController.swift */,
 			);
 			path = Controller;

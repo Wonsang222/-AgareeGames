@@ -24,11 +24,11 @@ final class GuessWhoController:TalkGameController{
     //MARK: - Properties
     private let guessView = GuessWhoView()
     private lazy var viewModel = GuessWhoViewModel(delegate: self)
+
     
     //MARK: - Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-       
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -68,7 +68,7 @@ final class GuessWhoController:TalkGameController{
     }
     
     private func startGame(){
-        runRecognizer()
+//        runRecognizer()
         countView.removeFromSuperview()
         guessView.imageView.isHidden = false
         countView.layoutIfNeeded()
@@ -107,19 +107,6 @@ final class GuessWhoController:TalkGameController{
             self.progressView.setProgress(self.numToCount, animated: true)
         }
     }
-    // [weak self] too much?
-    override func runRecognizer() {
-        guard let engine = engine else { return }
-        engine.runRecognizer { [weak self] (result) in
-            guard let self = self else { return }
-            switch result{
-            case .success(let res):
-                self.answer += res
-            case .failure(let err):
-                print("runRecognizer:\(err)")
-            }
-        }
-    }
 }
 
 //MARK: - Extension
@@ -130,7 +117,7 @@ extension GuessWhoController:SFSpeechRecognizerDelegate{
 
 extension GuessWhoController:GuessWhoViewModelDelegate{
     func handleError(_: Error) {
-        
+     // 여기서 걸리나???
     }
     
     func setNextTarget(with data: GuessWhoDataModel) {
@@ -150,5 +137,11 @@ extension GuessWhoController:GuessWhoViewModelDelegate{
         } else{
             print("땡!")
         }
+    }
+}
+
+extension GuessWhoController:STTEngineDelegate{
+    func runRecognizer(_ text: String) {
+        self.answer += text
     }
 }
