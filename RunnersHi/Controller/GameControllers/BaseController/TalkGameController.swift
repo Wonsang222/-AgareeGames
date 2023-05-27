@@ -30,7 +30,6 @@ class TalkGameController:TimerGameCotoller{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        engine = STTEngineFactory.create(self)
     }
     
     func checkTheProcess(){

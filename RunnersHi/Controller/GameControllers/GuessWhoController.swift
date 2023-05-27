@@ -37,6 +37,7 @@ final class GuessWhoController:TalkGameController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        engine = STTEngine(controller: self)
         viewModel.setOneModel()
         configureUI()
         startCounter {

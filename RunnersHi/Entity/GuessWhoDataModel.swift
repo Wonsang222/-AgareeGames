@@ -9,7 +9,7 @@ import UIKit
 
 // Entitiy
 
-struct GuessWhoDataModel{
+struct GuessWhoDataModel:Decodable{
     let name:String
     let photo:String
 }

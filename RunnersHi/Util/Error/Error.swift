@@ -18,4 +18,7 @@ enum AudioError:Error{
     case totalAudioError
 }
 
+enum EncodingError:Error{
+    case etcError
+}
 

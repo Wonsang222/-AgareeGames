@@ -58,22 +58,37 @@ final class NetworkService{
         return jsonData
     }
     
+    // 임시캐시 추가
     static func fetchImage(_ data:Dictionary<String,AnyObject>) async throws -> [GuessWhoPlayModel]{
         // data 순회 -> url  이미지 불러오기 백그라운드로 날려버리기
         var result:Array<GuessWhoPlayModel> = []
         for (name, url) in data{
             let dbName = name
-            guard let stringUrl = url as? String else {fatalError("에러추가하세요")}
-            let dbUrl = URL(string: stringUrl)
-            guard let dbUrl = dbUrl else {fatalError("에러추가")}
-            let (data, response) = try await session.data(from:dbUrl)
-            guard (response as? HTTPURLResponse)?.statusCode == 200 else {fatalError("에러추가하세요")}
-            let urlPhoto = UIImage(data: data)
-            // 이미지가 아닐때...
-            guard let urlPhoto = urlPhoto else {fatalError("에러추가하세요")}
+            var photo:UIImage?
+            if cacheCheck(url as! String) == nil{
+                // 캐시에 없을때
+                guard let stringUrl = url as? String else {fatalError("에러추가하세요")}
+                let dbUrl = URL(string: stringUrl)
+                guard let dbUrl = dbUrl else {fatalError("에러추가")}
+                let (data, response) = try await session.data(from:dbUrl)
+                guard (response as? HTTPURLResponse)?.statusCode == 200 else {fatalError("에러추가하세요")}
+                photo = UIImage(data: data)
+            } else {
+                photo = cacheCheck(url as! String)
+            }
+            guard let urlPhoto = photo else {fatalError("에러추가하세요")}
             let model = GuessWhoPlayModel(name: dbName, photo: urlPhoto)
             result.append(model)
         }
         return result
+    }
+    
+    private static func cacheCheck(_ url:String) -> UIImage?{
+        let cacheKey = url as NSString
+        if let cacheImage = ImageCacheManager.shared.object(forKey: cacheKey){
+            let result = cacheImage
+            return result
+        }
+        return nil
     }
 }
