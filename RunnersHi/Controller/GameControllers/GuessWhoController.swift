@@ -25,7 +25,6 @@ final class GuessWhoController:TalkGameController{
     private let guessView = GuessWhoView()
     private lazy var viewModel = GuessWhoViewModel(delegate: self)
 
-    
     //MARK: - Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -69,7 +68,6 @@ final class GuessWhoController:TalkGameController{
     }
     
     private func startGame(){
-//        runRecognizer()
         countView.removeFromSuperview()
         guessView.imageView.isHidden = false
         countView.layoutIfNeeded()

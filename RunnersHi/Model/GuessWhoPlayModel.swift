@@ -7,6 +7,8 @@
 import Foundation
 import UIKit
 
+// 해야할것 1. 에러처리 2. 캐시 처리 마무리
+
 struct GuessWhoPlayModel:Codable{
     let name:String
     let photo:UIImage

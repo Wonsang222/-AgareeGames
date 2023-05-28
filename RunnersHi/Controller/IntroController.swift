@@ -48,7 +48,12 @@ final class IntroController: BaseController, GuessWhoViewModelDelegate {
             .build()
             
         Task{
-           try await viewmodel?.fetchDummyNetworkData(httpbaseResource:base)
+            do{
+                try await viewmodel?.fetchDummyNetworkData(httpbaseResource:base)
+            } catch{
+                
+            }
+           
         }
     }
     

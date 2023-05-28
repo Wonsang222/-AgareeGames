@@ -50,9 +50,10 @@ final class STTEngine{
             }
             recognitionRequest.shouldReportPartialResults = true
         }
+        runRecognizer()
     }
     
-    func runRecognizer(){
+    private func runRecognizer(){
         
         DispatchQueue.global(qos: .userInteractive).async { [weak self] in
             guard let self = self else { return }
@@ -112,7 +113,6 @@ final class STTEngine{
                 do {
                     try self.audioEngine.start()
                 } catch {
-                    self.controller.handleError(error)
                     print("audioEngine couldn't start because of an error.")
                 }
             }

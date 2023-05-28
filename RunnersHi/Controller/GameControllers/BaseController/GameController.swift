@@ -10,6 +10,9 @@ import UIKit
 class GameController:BaseController{
 
     //MARK: - Properties
+    
+    var gameTitle:String? = nil
+    var howMany:Int? = nil
 
     final let countView:UIImageView = {
         let iv = UIImageView()
@@ -53,7 +56,7 @@ class GameController:BaseController{
 
         print(#function)
     }
-
+    
     //MARK: - Methods
     
     final func startCounter(handler:@escaping()->Void){
@@ -73,9 +76,5 @@ class GameController:BaseController{
                 }
             }
         }
-    }
-
-    final func className() -> String{
-        return String(reflecting: Self.self)
     }
 }

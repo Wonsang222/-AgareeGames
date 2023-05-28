@@ -193,7 +193,6 @@
 		C1FFE7A229E30424009FFD0B = {
 			isa = PBXGroup;
 			children = (
-				C176FED02A1A5FA900C7EFE6 /* Model */,
 				C1FFE7AD29E30425009FFD0B /* RunnersHi */,
 				C1FFE7AC29E30425009FFD0B /* Products */,
 			);
@@ -210,6 +209,7 @@
 		C1FFE7AD29E30425009FFD0B /* RunnersHi */ = {
 			isa = PBXGroup;
 			children = (
+				C176FED02A1A5FA900C7EFE6 /* Model */,
 				C140802E2A17E7000091F861 /* Resource */,
 				C14F272A29FEA3C60007E7A6 /* Services */,
 				C1FFE7C829E30615009FFD0B /* Util */,

@@ -17,12 +17,12 @@ final class PreGameController:SettingController{
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
+        preGameView.playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
     }
     
     init(gameTitle: String) {
         self.gameTitle = gameTitle
         super.init(nibName: nil, bundle: nil)
-        print(className())
     }
     
     required init?(coder: NSCoder) {
@@ -40,17 +40,20 @@ final class PreGameController:SettingController{
         ])
     }
     
-    @objc func playButtonTapped(_ sender:UIButton){
-        // nsclassfromStrng 으로 게임을 찾음.
-//        let test = test.className()
-//        let type2 = NSClassFromString(test) as! UIViewController.Type
-//        let vc = type2.init()
-//        present(vc, animated: true)
-        
-    
-    }
-    
-    final func className() -> String{
-        return String(reflecting: Self.self)
+    @objc func playButtonTapped(){
+        let base = "AgareeGames."
+        var game = gameTitle
+        let capitalGamename = gameTitle.uppercased()
+        var first = capitalGamename.prefix(1)
+        game.removeFirst()
+        game.insert(contentsOf: first, at: game.startIndex)
+        let controller = "Controller"
+        let gameClassName = base + game + controller
+        let gameClass = NSClassFromString(gameClassName) as! GameController.Type
+        let nextVC = gameClass.init()
+        nextVC.gameTitle = gameTitle
+        nextVC.howMany = howManyPlayer
+        // 이거 바꿔야함 push 로
+        present(nextVC, animated: true)
     }
 }

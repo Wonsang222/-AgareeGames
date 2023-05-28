@@ -35,8 +35,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             UserDefaults.standard.set(true, forKey: initialKey)
             print("initial launch")
+            return true
+        } else{
+            print("두번째")
+            return true
         }
-        return true
     }
     
     // MARK: UISceneSession Lifecycle
