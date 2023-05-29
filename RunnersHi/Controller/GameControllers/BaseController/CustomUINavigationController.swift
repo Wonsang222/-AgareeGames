@@ -19,5 +19,14 @@ final class CustomUINavigationController:UINavigationController{
     
     override func viewDidLoad() {
         
+        let standard = UINavigationBarAppearance()
+        standard.configureWithDefaultBackground()
+        
+        navigationItem.standardAppearance = standard
+        navigationItem.scrollEdgeAppearance = standard
+        
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "뒤로", style: .plain, target:nil, action: nil)
+        navigationBar.barStyle = .black
+        
     }
 }

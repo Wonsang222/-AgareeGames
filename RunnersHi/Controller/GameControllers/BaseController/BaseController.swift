@@ -12,6 +12,11 @@ class BaseController:UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
+        
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return .darkContent
     }
             
     final func alert(message:String, agree:((UIAlertAction)->Void)?, disagree:((UIAlertAction)->Void)?){
@@ -24,6 +29,10 @@ class BaseController:UIViewController{
             alert.addAction(disagreeAction)
         }
         self.present(alert, animated: true)
+    }
+    
+    final func goBackToRoot(){
+        navigationController?.popToRootViewController(animated: true)
     }
     
     final func terminateAppGracefullyAfter(second: Double) {

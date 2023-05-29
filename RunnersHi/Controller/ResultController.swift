@@ -24,9 +24,7 @@ final class ResultController:SettingController{
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let name = "AgareeGames.MainContoller"
-        let vc = NSClassFromString(name) as? UIViewController.Type
-        print(vc)
+
     }
     
     init(isWin: Bool) {

@@ -43,17 +43,15 @@ final class IntroController: BaseController, GuessWhoViewModelDelegate {
             .setMultiPart(false)
             .setPath("guessWho")
             .setParams("num", 5)
-            .setReqHeader("Authorization", Global.UUID)
-            .setReqHeader("User-Agent", Global.BUNDLEIDENTIFIER)
             .build()
             
         Task{
             do{
-                try await viewmodel?.fetchDummyNetworkData(httpbaseResource:base)
-            } catch{
-                
+                try await viewmodel?.fetchDummyNetworkData(httpbaseResource: base, controller: self)
+            }catch{
+                // unexpected error
+                print(error)
             }
-           
         }
     }
     

@@ -43,27 +43,27 @@ final class NetworkService{
     private static let configuration:URLSessionConfiguration = {
         let configuration = URLSessionConfiguration.default
         configuration.networkServiceType = .responsiveData
-        configuration.timeoutIntervalForRequest = 10
+        configuration.timeoutIntervalForRequest = 20
+        configuration.httpAdditionalHeaders = ["Authorization":Global.UUID, "User-Agent": Global.BUNDLEIDENTIFIER]
         return configuration
     }()
     /*
      1. 네트워크 타임아웃시 - 1. 종료를 시킨다. 2. poptoroot로 돌아간다
      */
     static func fetchJSON(httpbaseresource:HttpBaseResource, controller:BaseController) async throws -> [String:AnyObject]{
+        var result:[String:AnyObject] = [:]
         do{
             let (data, response)  = try await session.data(for: httpbaseresource.request())
             guard (200...299).contains((response as? HTTPURLResponse)?.statusCode ?? 404) else {
-                throw NetworkError.timeout
+                throw NetworkError.serverError
             }
             let jsonData = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! [String:AnyObject]
-            return jsonData
-        } catch NetworkError.timeout {
-            // poptoroot
-        }catch{
-            // 알수없는 에러
+            result = jsonData
+            return result
+        } catch{
+        
         }
-        // 알수없는 에러
-        throw NetworkError.notconnected
+        throw NetworkError.serverError
     }
     
     /*
@@ -71,7 +71,7 @@ final class NetworkService{
      2. image를 불러오지 못했을 경우, joker 사용
      3. 조커는 무조건 정답으로 쳐야한다. name = * 이면 wildcard
      */
-    static func fetchImage(_ data:Dictionary<String,AnyObject>) async throws -> [GuessWhoPlayModel]{
+    static func fetchImage(_ data:Dictionary<String,AnyObject>, contorller:BaseController) async throws -> [GuessWhoPlayModel]{
         // data 순회 -> url  이미지 불러오기 백그라운드로 날려버리기
         var result:Array<GuessWhoPlayModel> = []
         for (name, url) in data{
@@ -81,26 +81,28 @@ final class NetworkService{
             do{
                 if cacheCheck(url as! String) != nil{
                     photo = cacheCheck(url as! String)
-                    let model = GuessWhoPlayModel(name: dbName, photo: photo!)
+                    let model = GuessWhoPlayModel(name: dbName, photo: photo!, url: url as! String)
                     result.append(model)
                     continue
                 } else {
                     guard let stringUrl = url as? String else {fatalError("에러추가하세요")}
                     let dbUrl = URL(string: stringUrl)
                     //지나갈 수 있는 에러 -> 조커
-                    guard let dbUrl = dbUrl else {fatalError("에러추가")}
+                    guard let dbUrl = dbUrl else { throw NetworkError.notconnected }
                     // network 에러 -> 조커
                     let (data, response) = try await session.data(from:dbUrl)
                     // network 에러 -> 조커
-                    guard (response as? HTTPURLResponse)?.statusCode == 200 else {fatalError("에러추가하세요")}
+                    guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw NetworkError.notconnected }
                     photo = UIImage(data: data)
                     //사진이 아니라 먼가 이상한게 옴 -> 조커
-                    guard let urlPhoto = photo else {fatalError("에러추가하세요")}
-                    let model = GuessWhoPlayModel(name: dbName, photo: urlPhoto)
+                    guard let urlPhoto = photo else { throw NetworkError.disconnected }
+                    let model = GuessWhoPlayModel(name: dbName, photo: urlPhoto, url:url as! String)
                     result.append(model)
                     continue
                 }
             } catch{
+                let joker = GuessWhoPlayModel(name: "조커", photo: UIImage(named: "joker")!, url: "joker")
+                result.append(joker)
             }
         }
         return result
@@ -108,16 +110,12 @@ final class NetworkService{
     // 캐시에 있으면 사용, 없으면 temp cache를 봄.
     private static func cacheCheck(_ url:String) -> UIImage?{
         let cacheKey = url as NSString
+        let dbCache = TempCache.shared.cache
         if let cacheImage = ImageCacheManager.shared.object(forKey: cacheKey){
-            let result = cacheImage
-            return result
+            return cacheImage
+        } else if let dbPhoto = dbCache[url] {
+            return dbPhoto
         }
-        
-        
         return nil
-    }
-    
-    private static func imageHook(){
-        
     }
 }

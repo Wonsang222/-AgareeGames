@@ -29,6 +29,8 @@ class GameController:BaseController{
         pv.translatesAutoresizingMaskIntoConstraints = false
         return pv
     }()
+    
+
 
     
     //MARK: - Lifecycle
@@ -53,8 +55,6 @@ class GameController:BaseController{
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-
-        print(#function)
     }
     
     //MARK: - Methods

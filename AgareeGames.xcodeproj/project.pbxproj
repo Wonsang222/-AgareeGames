@@ -37,6 +37,7 @@
 		C14F27642A0521490007E7A6 /* ResourceBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14F27632A0521490007E7A6 /* ResourceBuilder.swift */; };
 		C176FECF2A1A5C8800C7EFE6 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C176FECE2A1A5C8800C7EFE6 /* Reachability.swift */; };
 		C176FED22A1A5FCB00C7EFE6 /* GuessWhoPlayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C176FED12A1A5FCB00C7EFE6 /* GuessWhoPlayModel.swift */; };
+		C1A0A6C22A231A0E00CAF4CF /* EmptyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A0A6C12A231A0E00CAF4CF /* EmptyController.swift */; };
 		C1FFE7AF29E30425009FFD0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFE7AE29E30425009FFD0B /* AppDelegate.swift */; };
 		C1FFE7B129E30425009FFD0B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFE7B029E30425009FFD0B /* SceneDelegate.swift */; };
 		C1FFE7B829E30425009FFD0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1FFE7B729E30425009FFD0B /* Assets.xcassets */; };
@@ -74,6 +75,7 @@
 		C14F27632A0521490007E7A6 /* ResourceBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceBuilder.swift; sourceTree = "<group>"; };
 		C176FECE2A1A5C8800C7EFE6 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		C176FED12A1A5FCB00C7EFE6 /* GuessWhoPlayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoPlayModel.swift; sourceTree = "<group>"; };
+		C1A0A6C12A231A0E00CAF4CF /* EmptyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyController.swift; sourceTree = "<group>"; };
 		C1FFE7AB29E30425009FFD0B /* AgareeGames.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgareeGames.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1FFE7AE29E30425009FFD0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1FFE7B029E30425009FFD0B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				C148D9D42A1CE95C005AB791 /* TalkGameController.swift */,
 				7E04C8ED2A03432D00357A0F /* SettingController.swift */,
 				7E04C8EB2A0342FE00357A0F /* CustomUINavigationController.swift */,
+				C1A0A6C12A231A0E00CAF4CF /* EmptyController.swift */,
 			);
 			path = BaseController;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				C148D9DA2A1CE996005AB791 /* Protocol.swift in Sources */,
 				C148D9D52A1CE95C005AB791 /* TalkGameController.swift in Sources */,
 				7E125E7D2A00FF9D0044D881 /* MainView.swift in Sources */,
+				C1A0A6C22A231A0E00CAF4CF /* EmptyController.swift in Sources */,
 				7E159D3C29F8A0E400C7E601 /* GuessWhoViewModel.swift in Sources */,
 				C14F272C29FEA3E00007E7A6 /* NetworkService.swift in Sources */,
 				C119CBC729F8033300648638 /* BaseController.swift in Sources */,

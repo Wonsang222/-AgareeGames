@@ -18,6 +18,7 @@ final class PreGameController:SettingController{
         super.viewDidLoad()
         configureView()
         preGameView.playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
+        configureTempCache()
     }
     
     init(gameTitle: String) {
@@ -29,6 +30,23 @@ final class PreGameController:SettingController{
         fatalError("init(coder:) has not been implemented")
     }
     
+    func configureTempCache(){
+        DispatchQueue.global(qos: .userInteractive).async {
+            do{
+                let files = try FileManager().contentsOfDirectory(at: Global.PHOTODBURL, includingPropertiesForKeys: nil)
+                
+                for element in files{
+                    let decoder = JSONDecoder()
+                    let data = try Data(contentsOf: element)
+                    let model = try decoder.decode(GuessWhoPlayModel.self, from: data)
+                    TempCache.shared.cache[model.url] = model.photo
+                }
+            }catch{
+                print(error)
+            }
+        }
+    }
+
     func configureView(){
         view.addSubview(preGameView)
         
@@ -41,19 +59,21 @@ final class PreGameController:SettingController{
     }
     
     @objc func playButtonTapped(){
-        let base = "AgareeGames."
         var game = gameTitle
         let capitalGamename = gameTitle.uppercased()
-        var first = capitalGamename.prefix(1)
+        let first = capitalGamename.prefix(1)
         game.removeFirst()
         game.insert(contentsOf: first, at: game.startIndex)
-        let controller = "Controller"
-        let gameClassName = base + game + controller
+        let gameClassName = "AgareeGames.\(game)Controller"
         let gameClass = NSClassFromString(gameClassName) as! GameController.Type
         let nextVC = gameClass.init()
+        let emptyVC = EmptyController()
         nextVC.gameTitle = gameTitle
         nextVC.howMany = howManyPlayer
-        // 이거 바꿔야함 push 로
-        present(nextVC, animated: true)
+        navigationController?.pushViewController(nextVC, animated: true)
+        if var naviStack = navigationController?.viewControllers, let index = naviStack.firstIndex(of: nextVC){
+            naviStack.insert(emptyVC, at: index)
+            navigationController?.viewControllers = naviStack
+        }
     }
 }

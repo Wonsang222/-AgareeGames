@@ -11,6 +11,7 @@ enum NetworkError:Error{
     case timeout
     case disconnected
     case notconnected
+    case serverError
 }
 
 enum AudioError:Error{

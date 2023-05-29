@@ -33,7 +33,7 @@ final class STTEngine{
     }
     
     func startEngine(){
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
             guard let self = self else { return }
             let audioSession = AVAudioSession.sharedInstance()
             do {
@@ -49,14 +49,12 @@ final class STTEngine{
                 fatalError("recognitionRequest optional binding error!")
             }
             recognitionRequest.shouldReportPartialResults = true
+            self.runRecognizer()
         }
-        runRecognizer()
     }
     
     private func runRecognizer(){
-        
-        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
-            guard let self = self else { return }
+    
             if self.audioEngine.isRunning {
                 self.audioEngine.stop()
                 self.recognitionRequest?.endAudio()
@@ -117,7 +115,6 @@ final class STTEngine{
                 }
             }
         }
-    }
     
     func offEngine(){
         recognitionTask?.cancel()

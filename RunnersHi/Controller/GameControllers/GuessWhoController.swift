@@ -76,7 +76,7 @@ final class GuessWhoController:TalkGameController{
     
     override func checkTheAnswer()->Bool{
         guard let targetName = viewModel.getTargetModel?.name else { return false }
-        print(targetName)
+        print(targetName)   
         let answer = answer.components(separatedBy: " ").joined()
         if answer.contains(targetName){
             return true
