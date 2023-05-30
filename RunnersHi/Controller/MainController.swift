@@ -13,7 +13,6 @@ final class MainContoller:SettingController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(className())
     }
     
     override func loadView() {

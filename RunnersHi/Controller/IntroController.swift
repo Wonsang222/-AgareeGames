@@ -32,31 +32,37 @@ final class IntroController: BaseController, GuessWhoViewModelDelegate {
         view.addSubview(introView)
         viewmodel = GuessWhoViewModel(delegate: self)
         NSLayoutConstraint.activate([
-            introView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            introView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            introView.heightAnchor.constraint(equalToConstant: 200),
-            introView.widthAnchor.constraint(equalToConstant: 200),
+            introView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            introView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            introView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            introView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
+        
+        introView.button.addTarget(self, action: #selector(buttontap), for: .touchUpInside)
         
         let base = ResourceBuilder.shared
             .setReqMethod(.GET)
-            .setMultiPart(false)
             .setPath("guessWho")
             .setParams("num", 5)
             .build()
             
         Task{
             do{
-            
-            }catch{
-                // unexpected error
+                try await viewmodel?.fetchDummyNetworkData(httpbaseResource: base)
+            } catch{
                 print(error)
+                goBackToRoot()
             }
         }
     }
     
-    override func updateViewConstraints() {
-        super.updateViewConstraints()
-
+    @objc func buttontap(){
+        print(12312312)
+        var num = 0
+        num += 1
+         introView.imgView.image = viewmodel?.playModelArray[num].photo
+        introView.imgView.layoutIfNeeded()
     }
 }
+
+

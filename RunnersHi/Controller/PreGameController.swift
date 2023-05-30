@@ -42,7 +42,9 @@ final class PreGameController:SettingController{
                     let model = try decoder.decode(GuessWhoPlayModel.self, from: data)
                     TempCache.shared.cache[model.url] = model.photo
                 }catch{
+                    print("--------------  configureTmepCahce")
                     print(error)
+                    print("--------------  configureTmepCahce")
                 }
             }
         }

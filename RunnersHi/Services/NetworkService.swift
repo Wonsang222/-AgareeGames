@@ -52,10 +52,10 @@ final class NetworkService{
      
      이걸로 실험좀 해보자
      1. async throws로 만들고 에러 내면 에러가 나는지
-     2. 
+     2.
      
      */
-    static func fetchJSON(httpbaseresource:HttpBaseResource, controller:BaseController, completion:@escaping () -> Void) async -> [String:AnyObject]{
+    static func fetchJSON(httpbaseresource:HttpBaseResource) async -> [String:AnyObject]?{
         var result:[String:AnyObject] = [:]
         do{
             let (data, response)  = try await session.data(for: httpbaseresource.request())
@@ -66,11 +66,8 @@ final class NetworkService{
             result = jsonData
             return result
         } catch{
-            await controller.alert(message: "서버와 연결할 수 없습니다.", agree: { (alert) in
-                completion()
-            }, disagree: nil)
         }
-        return result
+        return nil
     }
     
     /*
@@ -78,13 +75,12 @@ final class NetworkService{
      2. image를 불러오지 못했을 경우, joker 사용
      3. 조커는 무조건 정답으로 쳐야한다. name = * 이면 wildcard
      */
-    static func fetchImage(_ data:Dictionary<String,AnyObject>, contorller:BaseController) async -> [GuessWhoPlayModel]{
+    static func fetchImage(_ data:Dictionary<String,AnyObject>) async -> [GuessWhoPlayModel]?{
         // data 순회 -> url  이미지 불러오기 백그라운드로 날려버리기
         var result:Array<GuessWhoPlayModel> = []
         for (name, url) in data{
             let dbName = name
             var photo:UIImage?
-            
             do{
                 if cacheCheck(url as! String) != nil{
                     photo = cacheCheck(url as! String)
@@ -94,35 +90,15 @@ final class NetworkService{
                 } else {
                     guard let stringUrl = url as? String else {fatalError("에러추가하세요")}
                     let dbUrl = URL(string: stringUrl)
-                    //지나갈 수 있는 에러 -> 조커
                     guard let dbUrl = dbUrl else { throw NetworkError.notconnected }
-                    // network 에러 -> 조커
                     let (data, response) = try await session.data(from:dbUrl)
-                    // network 에러 -> 조커
                     guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw NetworkError.notconnected }
                     photo = UIImage(data: data)
-                    //사진이 아니라 먼가 이상한게 옴 -> 조커
                     guard let urlPhoto = photo else { throw NetworkError.disconnected }
-                    
                     ImageCacheManager.shared.setObject(urlPhoto, forKey: (url as! String) as NSString)
-                    
-                    // temp DB 에 저장해야함
-
                     let model = GuessWhoPlayModel(name: dbName, photo: urlPhoto, url:url as! String)
                     result.append(model)
-                    DispatchQueue.global().async {
-                        let encoder = JSONEncoder()
-                        do{
-                            
-                            // 확장자랑 이름...
-                            
-                           let data = try encoder.encode(model)
-                            let targetUrl = Global.PHOTODBURL
-                            try data.write(to: targetUrl)
-                        } catch{
-                            print("save file error")
-                        }
-                    }
+                    print(model)
                     continue
                 }
             } catch{

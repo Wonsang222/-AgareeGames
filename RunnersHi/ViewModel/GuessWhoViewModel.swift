@@ -15,7 +15,7 @@ protocol GuessWhoViewModelDelegate:BaseDelegate{
 
 class GuessWhoViewModel{
     
-    private var targetModel:GuessWhoDataModel?{
+     var targetModel:GuessWhoDataModel?{
         didSet{
             guard let targetModel = targetModel else {
                 // 게임 이긴 경우
@@ -26,9 +26,8 @@ class GuessWhoViewModel{
         }
     }
     private var modelArray:[GuessWhoDataModel] = []
-    private var playModelArray:[GuessWhoPlayModel] = []{
+     var playModelArray:[GuessWhoPlayModel] = []{
         didSet{
-            print("booooom")
             print(playModelArray)
         }
     }
@@ -66,11 +65,14 @@ class GuessWhoViewModel{
         self.delegate = delegate
     }
     
-    func fetchDummyNetworkData(httpbaseResource:HttpBaseResource, controller:BaseController, completion:@escaping () -> Void)async throws{
-        playModelArray = []
-        let jsonData = try await NetworkService.fetchJSON(httpbaseresource: httpbaseResource, controller: delegate as! BaseController, completion: completion)
-        let array = try await NetworkService.fetchImage(jsonData, contorller: delegate as! BaseController)
-        playModelArray = array
+    func fetchDummyNetworkData(httpbaseResource:HttpBaseResource)async throws{
         
-    }
+        Task{
+            playModelArray = []
+            let jsonData = await NetworkService.fetchJSON(httpbaseresource: httpbaseResource)
+            let array = await NetworkService.fetchImage(jsonData!)
+            playModelArray = array!
+        }
+        }
+      
 }
