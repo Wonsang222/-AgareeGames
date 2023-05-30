@@ -103,9 +103,26 @@ final class NetworkService{
                     photo = UIImage(data: data)
                     //사진이 아니라 먼가 이상한게 옴 -> 조커
                     guard let urlPhoto = photo else { throw NetworkError.disconnected }
+                    
+                    ImageCacheManager.shared.setObject(urlPhoto, forKey: (url as! String) as NSString)
+                    
                     // temp DB 에 저장해야함
+
                     let model = GuessWhoPlayModel(name: dbName, photo: urlPhoto, url:url as! String)
                     result.append(model)
+                    DispatchQueue.global().async {
+                        let encoder = JSONEncoder()
+                        do{
+                            
+                            // 확장자랑 이름...
+                            
+                           let data = try encoder.encode(model)
+                            let targetUrl = Global.PHOTODBURL
+                            try data.write(to: targetUrl)
+                        } catch{
+                            print("save file error")
+                        }
+                    }
                     continue
                 }
             } catch{

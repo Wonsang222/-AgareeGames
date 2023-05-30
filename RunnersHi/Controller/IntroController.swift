@@ -47,7 +47,7 @@ final class IntroController: BaseController, GuessWhoViewModelDelegate {
             
         Task{
             do{
-                try await viewmodel?.fetchDummyNetworkData(httpbaseResource: base, controller: self)
+            
             }catch{
                 // unexpected error
                 print(error)
