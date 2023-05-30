@@ -49,8 +49,13 @@ final class NetworkService{
     }()
     /*
      1. 네트워크 타임아웃시 - 1. 종료를 시킨다. 2. poptoroot로 돌아간다
+     
+     이걸로 실험좀 해보자
+     1. async throws로 만들고 에러 내면 에러가 나는지
+     2. 
+     
      */
-    static func fetchJSON(httpbaseresource:HttpBaseResource, controller:BaseController) async throws -> [String:AnyObject]{
+    static func fetchJSON(httpbaseresource:HttpBaseResource, controller:BaseController, completion:@escaping () -> Void) async -> [String:AnyObject]{
         var result:[String:AnyObject] = [:]
         do{
             let (data, response)  = try await session.data(for: httpbaseresource.request())
@@ -61,9 +66,11 @@ final class NetworkService{
             result = jsonData
             return result
         } catch{
-        
+            await controller.alert(message: "서버와 연결할 수 없습니다.", agree: { (alert) in
+                completion()
+            }, disagree: nil)
         }
-        throw NetworkError.serverError
+        return result
     }
     
     /*
@@ -71,7 +78,7 @@ final class NetworkService{
      2. image를 불러오지 못했을 경우, joker 사용
      3. 조커는 무조건 정답으로 쳐야한다. name = * 이면 wildcard
      */
-    static func fetchImage(_ data:Dictionary<String,AnyObject>, contorller:BaseController) async throws -> [GuessWhoPlayModel]{
+    static func fetchImage(_ data:Dictionary<String,AnyObject>, contorller:BaseController) async -> [GuessWhoPlayModel]{
         // data 순회 -> url  이미지 불러오기 백그라운드로 날려버리기
         var result:Array<GuessWhoPlayModel> = []
         for (name, url) in data{
@@ -96,6 +103,7 @@ final class NetworkService{
                     photo = UIImage(data: data)
                     //사진이 아니라 먼가 이상한게 옴 -> 조커
                     guard let urlPhoto = photo else { throw NetworkError.disconnected }
+                    // temp DB 에 저장해야함
                     let model = GuessWhoPlayModel(name: dbName, photo: urlPhoto, url:url as! String)
                     result.append(model)
                     continue
@@ -117,5 +125,9 @@ final class NetworkService{
             return dbPhoto
         }
         return nil
+    }
+    
+    private func saveDB(url:String, photo:UIImage){
+        
     }
 }

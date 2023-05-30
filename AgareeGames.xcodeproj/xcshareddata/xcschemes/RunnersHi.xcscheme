@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "1430"
-   version = "1.7">
+   version = "1.8">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C1FFE7AA29E30425009FFD0B"
-               BuildableName = "AgareeGames.app"
-               BlueprintName = "AgareeGames"
+               BuildableName = "AgareeGames_dis.app"
+               BlueprintName = "AgareeGames_dis"
                ReferencedContainer = "container:AgareeGames.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,6 +28,8 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       shouldAutocreateTestPlan = "YES">
+      <Testables>
+      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -44,8 +46,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C1FFE7AA29E30425009FFD0B"
-            BuildableName = "AgareeGames.app"
-            BlueprintName = "AgareeGames"
+            BuildableName = "AgareeGames_dis.app"
+            BlueprintName = "AgareeGames_dis"
             ReferencedContainer = "container:AgareeGames.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -68,8 +70,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C1FFE7AA29E30425009FFD0B"
-            BuildableName = "AgareeGames.app"
-            BlueprintName = "AgareeGames"
+            BuildableName = "AgareeGames_dis.app"
+            BlueprintName = "AgareeGames_dis"
             ReferencedContainer = "container:AgareeGames.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

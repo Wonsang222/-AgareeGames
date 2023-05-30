@@ -31,49 +31,50 @@ final class PreGameController:SettingController{
     }
     
     func configureTempCache(){
-        DispatchQueue.global(qos: .userInteractive).async {
-            do{
-                let files = try FileManager().contentsOfDirectory(at: Global.PHOTODBURL, includingPropertiesForKeys: nil)
-                
-                for element in files{
-                    let decoder = JSONDecoder()
+        DispatchQueue.global(qos: .userInitiated).async {
+            let files:[URL]
+            files = try! FileManager().contentsOfDirectory(at: Global.PHOTODBURL, includingPropertiesForKeys: nil)
+            
+            for element in files{
+                let decoder = JSONDecoder()
+                do{
                     let data = try Data(contentsOf: element)
                     let model = try decoder.decode(GuessWhoPlayModel.self, from: data)
                     TempCache.shared.cache[model.url] = model.photo
+                }catch{
+                    print(error)
                 }
-            }catch{
-                print(error)
             }
         }
     }
-
-    func configureView(){
-        view.addSubview(preGameView)
         
-        NSLayoutConstraint.activate([
-            preGameView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            preGameView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            preGameView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            preGameView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
-    }
-    
-    @objc func playButtonTapped(){
-        var game = gameTitle
-        let capitalGamename = gameTitle.uppercased()
-        let first = capitalGamename.prefix(1)
-        game.removeFirst()
-        game.insert(contentsOf: first, at: game.startIndex)
-        let gameClassName = "AgareeGames.\(game)Controller"
-        let gameClass = NSClassFromString(gameClassName) as! GameController.Type
-        let nextVC = gameClass.init()
-        let emptyVC = EmptyController()
-        nextVC.gameTitle = gameTitle
-        nextVC.howMany = howManyPlayer
-        navigationController?.pushViewController(nextVC, animated: true)
-        if var naviStack = navigationController?.viewControllers, let index = naviStack.firstIndex(of: nextVC){
-            naviStack.insert(emptyVC, at: index)
-            navigationController?.viewControllers = naviStack
+        func configureView(){
+            view.addSubview(preGameView)
+            
+            NSLayoutConstraint.activate([
+                preGameView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                preGameView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+                preGameView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                preGameView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            ])
+        }
+        
+        @objc func playButtonTapped(){
+            var game = gameTitle
+            let capitalGamename = gameTitle.uppercased()
+            let first = capitalGamename.prefix(1)
+            game.removeFirst()
+            game.insert(contentsOf: first, at: game.startIndex)
+            let gameClassName = "AgareeGames.\(game)Controller"
+            let gameClass = NSClassFromString(gameClassName) as! GameController.Type
+            let nextVC = gameClass.init()
+            let emptyVC = EmptyController()
+            nextVC.gameTitle = gameTitle
+            nextVC.howMany = howManyPlayer
+            navigationController?.pushViewController(nextVC, animated: true)
+            if var naviStack = navigationController?.viewControllers, let index = naviStack.firstIndex(of: nextVC){
+                naviStack.insert(emptyVC, at: index)
+                navigationController?.viewControllers = naviStack
+            }
         }
     }
-}

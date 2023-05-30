@@ -76,7 +76,7 @@
 		C176FECE2A1A5C8800C7EFE6 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		C176FED12A1A5FCB00C7EFE6 /* GuessWhoPlayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoPlayModel.swift; sourceTree = "<group>"; };
 		C1A0A6C12A231A0E00CAF4CF /* EmptyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyController.swift; sourceTree = "<group>"; };
-		C1FFE7AB29E30425009FFD0B /* AgareeGames.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgareeGames.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1FFE7AB29E30425009FFD0B /* AgareeGames_dis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgareeGames_dis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1FFE7AE29E30425009FFD0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1FFE7B029E30425009FFD0B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		C1FFE7B529E30425009FFD0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -204,7 +204,7 @@
 		C1FFE7AC29E30425009FFD0B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C1FFE7AB29E30425009FFD0B /* AgareeGames.app */,
+				C1FFE7AB29E30425009FFD0B /* AgareeGames_dis.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -307,9 +307,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C1FFE7AA29E30425009FFD0B /* AgareeGames */ = {
+		C1FFE7AA29E30425009FFD0B /* AgareeGames_dis */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C1FFE7BF29E30425009FFD0B /* Build configuration list for PBXNativeTarget "AgareeGames" */;
+			buildConfigurationList = C1FFE7BF29E30425009FFD0B /* Build configuration list for PBXNativeTarget "AgareeGames_dis" */;
 			buildPhases = (
 				C1FFE7A729E30425009FFD0B /* Sources */,
 				C1FFE7A829E30425009FFD0B /* Frameworks */,
@@ -319,9 +319,9 @@
 			);
 			dependencies = (
 			);
-			name = AgareeGames;
+			name = AgareeGames_dis;
 			productName = RunnersHi;
-			productReference = C1FFE7AB29E30425009FFD0B /* AgareeGames.app */;
+			productReference = C1FFE7AB29E30425009FFD0B /* AgareeGames_dis.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -352,7 +352,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C1FFE7AA29E30425009FFD0B /* AgareeGames */,
+				C1FFE7AA29E30425009FFD0B /* AgareeGames_dis */,
 			);
 		};
 /* End PBXProject section */
@@ -635,7 +635,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C1FFE7BF29E30425009FFD0B /* Build configuration list for PBXNativeTarget "AgareeGames" */ = {
+		C1FFE7BF29E30425009FFD0B /* Build configuration list for PBXNativeTarget "AgareeGames_dis" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C1FFE7C029E30425009FFD0B /* Debug */,

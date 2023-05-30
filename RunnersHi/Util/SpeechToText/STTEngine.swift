@@ -33,7 +33,7 @@ final class STTEngine{
     }
     
     func startEngine(){
-        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
             let audioSession = AVAudioSession.sharedInstance()
             do {
@@ -41,7 +41,7 @@ final class STTEngine{
                 try audioSession.setMode(AVAudioSession.Mode.measurement)
                 try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
             } catch {
-                controller.handleError(error)
+                self.controller.handleError(error)
             }
             
             self.recognitionRequest = SFSpeechAudioBufferRecognitionRequest()

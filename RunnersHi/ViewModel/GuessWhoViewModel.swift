@@ -66,9 +66,9 @@ class GuessWhoViewModel{
         self.delegate = delegate
     }
     
-    func fetchDummyNetworkData(httpbaseResource:HttpBaseResource, controller:BaseController)async throws{
+    func fetchDummyNetworkData(httpbaseResource:HttpBaseResource, controller:BaseController, completion:@escaping () -> Void)async throws{
         playModelArray = []
-        let jsonData = try await NetworkService.fetchJSON(httpbaseresource: httpbaseResource, controller: delegate as! BaseController)
+        let jsonData = try await NetworkService.fetchJSON(httpbaseresource: httpbaseResource, controller: delegate as! BaseController, completion: completion)
         let array = try await NetworkService.fetchImage(jsonData, contorller: delegate as! BaseController)
         playModelArray = array
         
