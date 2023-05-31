@@ -15,7 +15,9 @@ protocol GuessWhoViewModelDelegate:BaseDelegate{
 
 class GuessWhoViewModel{
     
-     var targetModel:GuessWhoDataModel?{
+    var index = 0
+    
+    var targetModel:GuessWhoDataModel?{
         didSet{
             guard let targetModel = targetModel else {
                 // 게임 이긴 경우
@@ -26,7 +28,7 @@ class GuessWhoViewModel{
         }
     }
     private var modelArray:[GuessWhoDataModel] = []
-     var playModelArray:[GuessWhoPlayModel] = []{
+    var playModelArray:[GuessWhoPlayModel] = []{
         didSet{
             print(playModelArray)
         }
@@ -65,14 +67,32 @@ class GuessWhoViewModel{
         self.delegate = delegate
     }
     
-    func fetchDummyNetworkData(httpbaseResource:HttpBaseResource)async throws{
-        
+    func fetchDummyNetworkData(httpbaseResource:HttpBaseResource){
         Task{
-            playModelArray = []
-            let jsonData = await NetworkService.fetchJSON(httpbaseresource: httpbaseResource)
-            let array = await NetworkService.fetchImage(jsonData!)
-            playModelArray = array!
+            do{
+                playModelArray = []
+                let jsonData = await NetworkService.fetchJSON(httpbaseresource: httpbaseResource)
+                guard let jsonData = jsonData else { throw NetworkError.serverError }
+                let array = await NetworkService.fetchImage(jsonData)
+                playModelArray = array
+            } catch{
+                delegate.handleError(error)
+            }
         }
+    }
+    
+    func saveDB(){
+        DispatchQueue.global().async {[weak self] in
+            guard let self = self else { return }
+            let targetModel = self.playModelArray[self.index]
+//            let targetUrl = Global.PHOTODBURL.appendingPathExtension(<#T##pathExtension: String##String#>)
+            do{
+                let encoder = JSONEncoder()
+                let data = try encoder.encode(targetModel)
+                self.index += 1
+            } catch{
+                print("saving error")
+            }
         }
-      
+    }
 }

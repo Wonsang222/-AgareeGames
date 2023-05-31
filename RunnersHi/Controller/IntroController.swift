@@ -46,22 +46,12 @@ final class IntroController: BaseController, GuessWhoViewModelDelegate {
             .setParams("num", 5)
             .build()
             
-        Task{
-            do{
-                try await viewmodel?.fetchDummyNetworkData(httpbaseResource: base)
-            } catch{
-                print(error)
-                goBackToRoot()
-            }
-        }
+        
+        viewmodel?.fetchDummyNetworkData(httpbaseResource: base)
     }
     
     @objc func buttontap(){
-        print(12312312)
-        var num = 0
-        num += 1
-         introView.imgView.image = viewmodel?.playModelArray[num].photo
-        introView.imgView.layoutIfNeeded()
+
     }
 }
 

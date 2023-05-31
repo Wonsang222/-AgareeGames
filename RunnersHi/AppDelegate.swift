@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         var libraryFolderUrl = homePath.appendingPathComponent(Global.PHOTODB, isDirectory: true)
+        print(libraryFolderUrl)
 
                 if !UserDefaults.standard.bool(forKey: initialKey){
                     //처음 부팅

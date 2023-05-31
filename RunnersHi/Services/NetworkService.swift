@@ -59,9 +59,7 @@ final class NetworkService{
         var result:[String:AnyObject] = [:]
         do{
             let (data, response)  = try await session.data(for: httpbaseresource.request())
-            guard (200...299).contains((response as? HTTPURLResponse)?.statusCode ?? 404) else {
-                throw NetworkError.serverError
-            }
+            guard (200...299).contains((response as? HTTPURLResponse)?.statusCode ?? 404) else { return nil }
             let jsonData = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! [String:AnyObject]
             result = jsonData
             return result
@@ -75,7 +73,7 @@ final class NetworkService{
      2. image를 불러오지 못했을 경우, joker 사용
      3. 조커는 무조건 정답으로 쳐야한다. name = * 이면 wildcard
      */
-    static func fetchImage(_ data:Dictionary<String,AnyObject>) async -> [GuessWhoPlayModel]?{
+    static func fetchImage(_ data:Dictionary<String,AnyObject>) async -> [GuessWhoPlayModel]{
         // data 순회 -> url  이미지 불러오기 백그라운드로 날려버리기
         var result:Array<GuessWhoPlayModel> = []
         for (name, url) in data{
@@ -88,7 +86,7 @@ final class NetworkService{
                     result.append(model)
                     continue
                 } else {
-                    guard let stringUrl = url as? String else {fatalError("에러추가하세요")}
+                    guard let stringUrl = url as? String else {throw NetworkError.notconnected }
                     let dbUrl = URL(string: stringUrl)
                     guard let dbUrl = dbUrl else { throw NetworkError.notconnected }
                     let (data, response) = try await session.data(from:dbUrl)
