@@ -39,14 +39,28 @@ final class IntroController: BaseController, GuessWhoViewModelDelegate {
         ])
         
         introView.button.addTarget(self, action: #selector(buttontap), for: .touchUpInside)
+//
+//        let model = GuessWhoPlayModel(name: "kaka", photo: UIImage(named: "joker")!, url: "asdfdsaf")
+//
+//        do{
+//            let targetUrl = Global.PHOTODBURL.appendingPathComponent("temp").appendingPathExtension("json")
+//
+//            let encoder = JSONEncoder()
+//            let data = try encoder.encode(model)
+//            try data.write(to: targetUrl)
+//
+//        }catch{
+//            print(error)
+//        }
+        
         
         let base = ResourceBuilder.shared
             .setReqMethod(.GET)
             .setPath("guessWho")
             .setParams("num", 5)
             .build()
-            
-        
+
+
         viewmodel?.fetchDummyNetworkData(httpbaseResource: base)
     }
     

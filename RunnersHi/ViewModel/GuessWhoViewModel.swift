@@ -28,9 +28,11 @@ class GuessWhoViewModel{
         }
     }
     private var modelArray:[GuessWhoDataModel] = []
+    
+    
+    
     var playModelArray:[GuessWhoPlayModel] = []{
         didSet{
-            print(playModelArray)
         }
     }
     private var delegate:GuessWhoViewModelDelegate
@@ -75,24 +77,31 @@ class GuessWhoViewModel{
                 guard let jsonData = jsonData else { throw NetworkError.serverError }
                 let array = await NetworkService.fetchImage(jsonData)
                 playModelArray = array
+                Task{
+                    saveDB()
+                }
             } catch{
                 delegate.handleError(error)
             }
         }
     }
     
-    func saveDB(){
-        DispatchQueue.global().async {[weak self] in
+    func saveDB() {
+        DispatchQueue.global(qos: .default).async { [weak self] in
             guard let self = self else { return }
-            let targetModel = self.playModelArray[self.index]
-//            let targetUrl = Global.PHOTODBURL.appendingPathExtension(<#T##pathExtension: String##String#>)
-            do{
-                let encoder = JSONEncoder()
-                let data = try encoder.encode(targetModel)
-                self.index += 1
-            } catch{
-                print("saving error")
+            for model in playModelArray{
+                let targetUrl = Global.PHOTODBURL.appendingPathComponent(model.name).appendingPathExtension("json")
+                do{
+                    let encoder = JSONEncoder()
+                    let data = try encoder.encode(model)
+                    try data.write(to: targetUrl)
+                    print("saving done")
+                } catch{
+                    print(error)
+                }
             }
         }
     }
 }
+
+

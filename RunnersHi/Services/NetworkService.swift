@@ -80,7 +80,7 @@ final class NetworkService{
             let dbName = name
             var photo:UIImage?
             do{
-                if cacheCheck(url as! String) != nil{
+                if cacheCheck(dbName) != nil{
                     photo = cacheCheck(url as! String)
                     let model = GuessWhoPlayModel(name: dbName, photo: photo!, url: url as! String)
                     result.append(model)
@@ -93,10 +93,9 @@ final class NetworkService{
                     guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw NetworkError.notconnected }
                     photo = UIImage(data: data)
                     guard let urlPhoto = photo else { throw NetworkError.disconnected }
-                    ImageCacheManager.shared.setObject(urlPhoto, forKey: (url as! String) as NSString)
+                    ImageCacheManager.shared.setObject(urlPhoto, forKey: (dbName as NSString))
                     let model = GuessWhoPlayModel(name: dbName, photo: urlPhoto, url:url as! String)
                     result.append(model)
-                    print(model)
                     continue
                 }
             } catch{
@@ -107,18 +106,14 @@ final class NetworkService{
         return result
     }
     // 캐시에 있으면 사용, 없으면 temp cache를 봄.
-    private static func cacheCheck(_ url:String) -> UIImage?{
-        let cacheKey = url as NSString
+    private static func cacheCheck(_ name:String) -> UIImage?{
+        let cacheKey = name as NSString
         let dbCache = TempCache.shared.cache
         if let cacheImage = ImageCacheManager.shared.object(forKey: cacheKey){
             return cacheImage
-        } else if let dbPhoto = dbCache[url] {
+        } else if let dbPhoto = dbCache[name] {
             return dbPhoto
         }
         return nil
-    }
-    
-    private func saveDB(url:String, photo:UIImage){
-        
     }
 }
