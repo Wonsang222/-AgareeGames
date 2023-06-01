@@ -5,6 +5,13 @@
 //  Created by 황원상 on 2023/04/26.
 //
 
+
+/*
+ 만약 에러가 나지 않은 상태에서
+ 게임 시작 준비가 되었는데, 네트워크 연결이 아직 안된 상태라면
+ error처리해야하는디
+ */
+
 import UIKit
 
 protocol GuessWhoViewModelDelegate:BaseDelegate{
@@ -15,9 +22,10 @@ protocol GuessWhoViewModelDelegate:BaseDelegate{
 
 class GuessWhoViewModel{
     
-    var index = 0
+    private var delegate:GuessWhoViewModelDelegate
+    var playModelArray:[GuessWhoPlayModel] = []
     
-    var targetModel:GuessWhoDataModel?{
+    private var targetModel:GuessWhoDataModel?{
         didSet{
             guard let targetModel = targetModel else {
                 // 게임 이긴 경우
@@ -27,24 +35,9 @@ class GuessWhoViewModel{
             delegate.setNextTarget(with: targetModel)
         }
     }
-    private var modelArray:[GuessWhoDataModel] = []
-    
-    
-    
-    var playModelArray:[GuessWhoPlayModel] = []{
-        didSet{
-        }
-    }
-    private var delegate:GuessWhoViewModelDelegate
     
     var getTargetModel: GuessWhoDataModel?{
         return targetModel
-    }
-    
-    func setOneModel(){
-        let data = GuessWhoDataModel(name: "강호동", photo: "2.circle")
-        modelArray.append(data)
-        
     }
     
     func setDummyModel(){
@@ -52,11 +45,6 @@ class GuessWhoViewModel{
         let data2 = GuessWhoDataModel(name: "빌게이츠", photo: "1.circle")
         let data3 = GuessWhoDataModel(name: "강호동", photo: "2.circle")
         let data4 = GuessWhoDataModel(name: "스티브잡스", photo: "3.circle")
-        
-        modelArray.append(data1)
-        modelArray.append(data2)
-        modelArray.append(data3)
-        modelArray.append(data4)
         
     }
     
@@ -67,6 +55,7 @@ class GuessWhoViewModel{
     
     init(delegate: GuessWhoViewModelDelegate) {
         self.delegate = delegate
+        
     }
     
     func fetchDummyNetworkData(httpbaseResource:HttpBaseResource){
@@ -89,7 +78,7 @@ class GuessWhoViewModel{
     func saveDB() {
         DispatchQueue.global(qos: .default).async { [weak self] in
             guard let self = self else { return }
-            for model in playModelArray{
+            for model in self.playModelArray{
                 let targetUrl = Global.PHOTODBURL.appendingPathComponent(model.name).appendingPathExtension("json")
                 do{
                     let encoder = JSONEncoder()
@@ -101,6 +90,10 @@ class GuessWhoViewModel{
                 }
             }
         }
+    }
+    
+    func createResultViewModel(){
+        
     }
 }
 

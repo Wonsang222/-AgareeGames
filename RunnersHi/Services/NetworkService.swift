@@ -43,7 +43,7 @@ final class NetworkService{
     private static let configuration:URLSessionConfiguration = {
         let configuration = URLSessionConfiguration.default
         configuration.networkServiceType = .responsiveData
-        configuration.timeoutIntervalForRequest = 20
+        configuration.timeoutIntervalForRequest = 10
         configuration.httpAdditionalHeaders = ["Authorization":Global.UUID, "User-Agent": Global.BUNDLEIDENTIFIER]
         return configuration
     }()
@@ -55,12 +55,12 @@ final class NetworkService{
      2.
      
      */
-    static func fetchJSON(httpbaseresource:HttpBaseResource) async -> [String:AnyObject]?{
-        var result:[String:AnyObject] = [:]
+    static func fetchJSON(httpbaseresource:HttpBaseResource) async -> [String:Any]?{
+        var result:[String:Any] = [:]
         do{
             let (data, response)  = try await session.data(for: httpbaseresource.request())
             guard (200...299).contains((response as? HTTPURLResponse)?.statusCode ?? 404) else { return nil }
-            let jsonData = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! [String:AnyObject]
+            let jsonData = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! [String:Any]
             result = jsonData
             return result
         } catch{
@@ -73,7 +73,7 @@ final class NetworkService{
      2. image를 불러오지 못했을 경우, joker 사용
      3. 조커는 무조건 정답으로 쳐야한다. name = * 이면 wildcard
      */
-    static func fetchImage(_ data:Dictionary<String,AnyObject>) async -> [GuessWhoPlayModel]{
+    static func fetchImage(_ data:Dictionary<String,Any>) async -> [GuessWhoPlayModel]{
         // data 순회 -> url  이미지 불러오기 백그라운드로 날려버리기
         var result:Array<GuessWhoPlayModel> = []
         for (name, url) in data{

@@ -115,8 +115,17 @@ extension GuessWhoController:SFSpeechRecognizerDelegate{
 }
 
 extension GuessWhoController:GuessWhoViewModelDelegate{
-    func handleError(_: Error) {
-     // 여기서 걸리나???
+    func handleError(_ error: Error) {
+        switch error{
+        case is NetworkError:
+            alert(message: "현재 서버와 연결할 수 없습니다. 양해부탁드립니다.", agree: {[weak self] alert in
+                self?.goBackToRoot()
+            }, disagree: nil)
+        default:
+            alert(message: "현재 서버와 연결할 수 없습니다. 양해부탁드립니다.", agree: {[weak self] alert in
+                self?.goBackToRoot()
+            }, disagree: nil)
+        }
     }
     
     func setNextTarget(with data: GuessWhoDataModel) {

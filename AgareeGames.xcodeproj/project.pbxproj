@@ -17,6 +17,43 @@
 		7E159D3529F89FD900C7E601 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E159D3429F89FD900C7E601 /* Global.swift */; };
 		7E159D3829F8A01900C7E601 /* GuessWhoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E159D3729F8A01900C7E601 /* GuessWhoController.swift */; };
 		7E159D3C29F8A0E400C7E601 /* GuessWhoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E159D3B29F8A0E400C7E601 /* GuessWhoViewModel.swift */; };
+		7E1BEF602A281D5500E59F95 /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1BEF5F2A281D5500E59F95 /* ResultViewModel.swift */; };
+		7E1BEF632A281F5500E59F95 /* PreGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E04C8E42A03342300357A0F /* PreGameController.swift */; };
+		7E1BEF642A281F5500E59F95 /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1BEF5F2A281D5500E59F95 /* ResultViewModel.swift */; };
+		7E1BEF652A281F5500E59F95 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E159D3429F89FD900C7E601 /* Global.swift */; };
+		7E1BEF662A281F5500E59F95 /* GuessWhoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E20755A29F9FBE4000BFE61 /* GuessWhoView.swift */; };
+		7E1BEF672A281F5500E59F95 /* GuessWhoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E159D3729F8A01900C7E601 /* GuessWhoController.swift */; };
+		7E1BEF682A281F5500E59F95 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C148D9DE2A21C35D005AB791 /* ImageCacheManager.swift */; };
+		7E1BEF692A281F5500E59F95 /* ResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14F275D2A02C01B0007E7A6 /* ResultController.swift */; };
+		7E1BEF6A2A281F5500E59F95 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E246FA62A1DB7A80068CF9E /* Error.swift */; };
+		7E1BEF6B2A281F5500E59F95 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C176FECE2A1A5C8800C7EFE6 /* Reachability.swift */; };
+		7E1BEF6C2A281F5500E59F95 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBC429F8030600648638 /* MainController.swift */; };
+		7E1BEF6D2A281F5500E59F95 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3544AA2A13160E00B844E6 /* BaseView.swift */; };
+		7E1BEF6E2A281F5500E59F95 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E20755C29F9FBF8000BFE61 /* IntroView.swift */; };
+		7E1BEF6F2A281F5500E59F95 /* ResourceBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14F27632A0521490007E7A6 /* ResourceBuilder.swift */; };
+		7E1BEF702A281F5500E59F95 /* STTEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBCD29F951BF00648638 /* STTEngine.swift */; };
+		7E1BEF712A281F5500E59F95 /* TimerGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C148D9D62A1CE961005AB791 /* TimerGameController.swift */; };
+		7E1BEF722A281F5500E59F95 /* CustomUINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E04C8EB2A0342FE00357A0F /* CustomUINavigationController.swift */; };
+		7E1BEF732A281F5500E59F95 /* IntroController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBCA29F805C000648638 /* IntroController.swift */; };
+		7E1BEF742A281F5500E59F95 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFE7AE29E30425009FFD0B /* AppDelegate.swift */; };
+		7E1BEF752A281F5500E59F95 /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E04C8ED2A03432D00357A0F /* SettingController.swift */; };
+		7E1BEF762A281F5500E59F95 /* PreGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E04C8E62A033C4800357A0F /* PreGameView.swift */; };
+		7E1BEF772A281F5500E59F95 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A83802A01F8A30031B3E3 /* Extension.swift */; };
+		7E1BEF782A281F5500E59F95 /* GuessWhoPlayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C176FED12A1A5FCB00C7EFE6 /* GuessWhoPlayModel.swift */; };
+		7E1BEF792A281F5500E59F95 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C148D9D92A1CE996005AB791 /* Protocol.swift */; };
+		7E1BEF7A2A281F5500E59F95 /* TalkGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C148D9D42A1CE95C005AB791 /* TalkGameController.swift */; };
+		7E1BEF7B2A281F5500E59F95 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E125E7C2A00FF9D0044D881 /* MainView.swift */; };
+		7E1BEF7C2A281F5500E59F95 /* EmptyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A0A6C12A231A0E00CAF4CF /* EmptyController.swift */; };
+		7E1BEF7D2A281F5500E59F95 /* GuessWhoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E159D3B29F8A0E400C7E601 /* GuessWhoViewModel.swift */; };
+		7E1BEF7E2A281F5500E59F95 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14F272B29FEA3E00007E7A6 /* NetworkService.swift */; };
+		7E1BEF7F2A281F5500E59F95 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBC629F8033300648638 /* BaseController.swift */; };
+		7E1BEF802A281F5500E59F95 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFE7B029E30425009FFD0B /* SceneDelegate.swift */; };
+		7E1BEF812A281F5500E59F95 /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E04C8E92A0342C800357A0F /* GameController.swift */; };
+		7E1BEF822A281F5500E59F95 /* GuessWhoDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBC829F804FE00648638 /* GuessWhoDataModel.swift */; };
+		7E1BEF832A281F5500E59F95 /* HowToPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E49954E2A0CAFD5006D95AC /* HowToPlayView.swift */; };
+		7E1BEF842A281F5500E59F95 /* HttpBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFE7D529E8607D009FFD0B /* HttpBase.swift */; };
+		7E1BEF872A281F5500E59F95 /* CustomFont.otf in Resources */ = {isa = PBXBuildFile; fileRef = C140802F2A17E7950091F861 /* CustomFont.otf */; };
+		7E1BEF882A281F5500E59F95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1FFE7B729E30425009FFD0B /* Assets.xcassets */; };
 		7E20755B29F9FBE4000BFE61 /* GuessWhoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E20755A29F9FBE4000BFE61 /* GuessWhoView.swift */; };
 		7E20755D29F9FBF8000BFE61 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E20755C29F9FBF8000BFE61 /* IntroView.swift */; };
 		7E246FA72A1DB7A80068CF9E /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E246FA62A1DB7A80068CF9E /* Error.swift */; };
@@ -55,6 +92,9 @@
 		7E159D3429F89FD900C7E601 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		7E159D3729F8A01900C7E601 /* GuessWhoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoController.swift; sourceTree = "<group>"; };
 		7E159D3B29F8A0E400C7E601 /* GuessWhoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GuessWhoViewModel.swift; path = RunnersHi/ViewModel/GuessWhoViewModel.swift; sourceTree = SOURCE_ROOT; };
+		7E1BEF5F2A281D5500E59F95 /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
+		7E1BEF8C2A281F5500E59F95 /* AgareeGames_dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgareeGames_dev.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E1BEF8D2A281F5500E59F95 /* AgareeGames_dis copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "AgareeGames_dis copy-Info.plist"; path = "/Users/wisa-mobile/Documents/myp/AgareeGames_dis copy-Info.plist"; sourceTree = "<absolute>"; };
 		7E20755A29F9FBE4000BFE61 /* GuessWhoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuessWhoView.swift; sourceTree = "<group>"; };
 		7E20755C29F9FBF8000BFE61 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
 		7E246FA62A1DB7A80068CF9E /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
@@ -87,6 +127,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7E1BEF852A281F5500E59F95 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C1FFE7A829E30425009FFD0B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -198,6 +245,7 @@
 			children = (
 				C1FFE7AD29E30425009FFD0B /* RunnersHi */,
 				C1FFE7AC29E30425009FFD0B /* Products */,
+				7E1BEF8D2A281F5500E59F95 /* AgareeGames_dis copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -205,6 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				C1FFE7AB29E30425009FFD0B /* AgareeGames_dis.app */,
+				7E1BEF8C2A281F5500E59F95 /* AgareeGames_dev.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -242,6 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				7E159D3B29F8A0E400C7E601 /* GuessWhoViewModel.swift */,
+				7E1BEF5F2A281D5500E59F95 /* ResultViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -307,6 +357,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		7E1BEF612A281F5500E59F95 /* AgareeGames_dev */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E1BEF892A281F5500E59F95 /* Build configuration list for PBXNativeTarget "AgareeGames_dev" */;
+			buildPhases = (
+				7E1BEF622A281F5500E59F95 /* Sources */,
+				7E1BEF852A281F5500E59F95 /* Frameworks */,
+				7E1BEF862A281F5500E59F95 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AgareeGames_dev;
+			productName = RunnersHi;
+			productReference = 7E1BEF8C2A281F5500E59F95 /* AgareeGames_dev.app */;
+			productType = "com.apple.product-type.application";
+		};
 		C1FFE7AA29E30425009FFD0B /* AgareeGames_dis */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C1FFE7BF29E30425009FFD0B /* Build configuration list for PBXNativeTarget "AgareeGames_dis" */;
@@ -353,11 +420,21 @@
 			projectRoot = "";
 			targets = (
 				C1FFE7AA29E30425009FFD0B /* AgareeGames_dis */,
+				7E1BEF612A281F5500E59F95 /* AgareeGames_dev */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		7E1BEF862A281F5500E59F95 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E1BEF872A281F5500E59F95 /* CustomFont.otf in Resources */,
+				7E1BEF882A281F5500E59F95 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C1FFE7A929E30425009FFD0B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -370,11 +447,53 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		7E1BEF622A281F5500E59F95 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E1BEF632A281F5500E59F95 /* PreGameController.swift in Sources */,
+				7E1BEF642A281F5500E59F95 /* ResultViewModel.swift in Sources */,
+				7E1BEF652A281F5500E59F95 /* Global.swift in Sources */,
+				7E1BEF662A281F5500E59F95 /* GuessWhoView.swift in Sources */,
+				7E1BEF672A281F5500E59F95 /* GuessWhoController.swift in Sources */,
+				7E1BEF682A281F5500E59F95 /* ImageCacheManager.swift in Sources */,
+				7E1BEF692A281F5500E59F95 /* ResultController.swift in Sources */,
+				7E1BEF6A2A281F5500E59F95 /* Error.swift in Sources */,
+				7E1BEF6B2A281F5500E59F95 /* Reachability.swift in Sources */,
+				7E1BEF6C2A281F5500E59F95 /* MainController.swift in Sources */,
+				7E1BEF6D2A281F5500E59F95 /* BaseView.swift in Sources */,
+				7E1BEF6E2A281F5500E59F95 /* IntroView.swift in Sources */,
+				7E1BEF6F2A281F5500E59F95 /* ResourceBuilder.swift in Sources */,
+				7E1BEF702A281F5500E59F95 /* STTEngine.swift in Sources */,
+				7E1BEF712A281F5500E59F95 /* TimerGameController.swift in Sources */,
+				7E1BEF722A281F5500E59F95 /* CustomUINavigationController.swift in Sources */,
+				7E1BEF732A281F5500E59F95 /* IntroController.swift in Sources */,
+				7E1BEF742A281F5500E59F95 /* AppDelegate.swift in Sources */,
+				7E1BEF752A281F5500E59F95 /* SettingController.swift in Sources */,
+				7E1BEF762A281F5500E59F95 /* PreGameView.swift in Sources */,
+				7E1BEF772A281F5500E59F95 /* Extension.swift in Sources */,
+				7E1BEF782A281F5500E59F95 /* GuessWhoPlayModel.swift in Sources */,
+				7E1BEF792A281F5500E59F95 /* Protocol.swift in Sources */,
+				7E1BEF7A2A281F5500E59F95 /* TalkGameController.swift in Sources */,
+				7E1BEF7B2A281F5500E59F95 /* MainView.swift in Sources */,
+				7E1BEF7C2A281F5500E59F95 /* EmptyController.swift in Sources */,
+				7E1BEF7D2A281F5500E59F95 /* GuessWhoViewModel.swift in Sources */,
+				7E1BEF7E2A281F5500E59F95 /* NetworkService.swift in Sources */,
+				7E1BEF7F2A281F5500E59F95 /* BaseController.swift in Sources */,
+				7E1BEF802A281F5500E59F95 /* SceneDelegate.swift in Sources */,
+				7E1BEF812A281F5500E59F95 /* GameController.swift in Sources */,
+				7E1BEF822A281F5500E59F95 /* GuessWhoDataModel.swift in Sources */,
+				7E1BEF832A281F5500E59F95 /* HowToPlayView.swift in Sources */,
+				7E1BEF842A281F5500E59F95 /* HttpBase.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C1FFE7A729E30425009FFD0B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				7E04C8E52A03342300357A0F /* PreGameController.swift in Sources */,
+				7E1BEF602A281D5500E59F95 /* ResultViewModel.swift in Sources */,
 				7E159D3529F89FD900C7E601 /* Global.swift in Sources */,
 				7E20755B29F9FBE4000BFE61 /* GuessWhoView.swift in Sources */,
 				7E159D3829F8A01900C7E601 /* GuessWhoController.swift in Sources */,
@@ -432,6 +551,83 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		7E1BEF8A2A281F5500E59F95 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZD5K45Y4NW;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "AgareeGames_dis copy-Info.plist";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "\"테스트 입니다\"";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "\"테스트 입니다\"";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wonsang.AgareeGames;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = AgareeGames_Dev;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		7E1BEF8B2A281F5500E59F95 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZD5K45Y4NW;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "AgareeGames_dis copy-Info.plist";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "\"테스트 입니다\"";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "\"테스트 입니다\"";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wonsang.AgareeGames;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = AgareeGames_Distribution;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 		C1FFE7BD29E30425009FFD0B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -626,6 +822,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7E1BEF892A281F5500E59F95 /* Build configuration list for PBXNativeTarget "AgareeGames_dev" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E1BEF8A2A281F5500E59F95 /* Debug */,
+				7E1BEF8B2A281F5500E59F95 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C1FFE7A629E30424009FFD0B /* Build configuration list for PBXProject "AgareeGames" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

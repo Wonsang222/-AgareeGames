@@ -8,6 +8,6 @@
 import Foundation
 
 protocol BaseDelegate{
-    func handleError(_ :Error)
+    func handleError(_ error:Error)
 }
 
