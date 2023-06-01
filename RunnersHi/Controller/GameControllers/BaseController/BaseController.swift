@@ -9,9 +9,25 @@ import UIKit
 
 class BaseController:UIViewController{
     
+    let loader = UIActivityIndicatorView(style: .medium)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .black
+    }
+    
+    func loaderON(){
+        view.addSubview(loader)
+        loader.translatesAutoresizingMaskIntoConstraints = false
+        view.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        view.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        loader.tintColor = .gray
+        loader.startAnimating()
+    }
+    
+    func loaderOFF(){
+        loader.stopAnimating()
+        loader.removeFromSuperview()
         
     }
     

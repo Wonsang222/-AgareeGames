@@ -15,7 +15,7 @@
 import UIKit
 
 protocol GuessWhoViewModelDelegate:BaseDelegate{
-    func setNextTarget(with data:GuessWhoDataModel)
+    func setNextTarget(with data:GuessWhoPlayModel)
     func clearGame(isWin:Bool)
     // 에러 핸들링
 }
@@ -25,7 +25,7 @@ class GuessWhoViewModel{
     private var delegate:GuessWhoViewModelDelegate
     var playModelArray:[GuessWhoPlayModel] = []
     
-    private var targetModel:GuessWhoDataModel?{
+    private var targetModel:GuessWhoPlayModel?{
         didSet{
             guard let targetModel = targetModel else {
                 // 게임 이긴 경우
@@ -36,21 +36,12 @@ class GuessWhoViewModel{
         }
     }
     
-    var getTargetModel: GuessWhoDataModel?{
+    var getTargetModel: GuessWhoPlayModel?{
         return targetModel
     }
     
-    func setDummyModel(){
-        let data1 = GuessWhoDataModel(name: "이적", photo: "0.circle")
-        let data2 = GuessWhoDataModel(name: "빌게이츠", photo: "1.circle")
-        let data3 = GuessWhoDataModel(name: "강호동", photo: "2.circle")
-        let data4 = GuessWhoDataModel(name: "스티브잡스", photo: "3.circle")
-        
-    }
-    
     func next(){
-        //        targetModel = modelArray.popLast()
-        targetModel = GuessWhoDataModel(name: "빌게이츠", photo: "2.circle")
+        targetModel = playModelArray.popLast()
     }
     
     init(delegate: GuessWhoViewModelDelegate) {
@@ -67,7 +58,7 @@ class GuessWhoViewModel{
                 let array = await NetworkService.fetchImage(jsonData)
                 playModelArray = array
                 Task{
-                    saveDB()
+//                    saveDB()
                 }
             } catch{
                 delegate.handleError(error)
@@ -84,7 +75,7 @@ class GuessWhoViewModel{
                     let encoder = JSONEncoder()
                     let data = try encoder.encode(model)
                     try data.write(to: targetUrl)
-                    print("saving done")
+
                 } catch{
                     print(error)
                 }

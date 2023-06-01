@@ -14,7 +14,7 @@ final class IntroController: BaseController, GuessWhoViewModelDelegate {
 
     }
     
-    func setNextTarget(with data: GuessWhoDataModel) {
+    func setNextTarget(with data: GuessWhoPlayModel) {
         
     }
     
@@ -54,14 +54,6 @@ final class IntroController: BaseController, GuessWhoViewModelDelegate {
 //        }
         
         
-        let base = ResourceBuilder.shared
-            .setReqMethod(.GET)
-            .setPath("guessWho")
-            .setParams("num", 5)
-            .build()
-
-
-        viewmodel?.fetchDummyNetworkData(httpbaseResource: base)
     }
     
     @objc func buttontap(){

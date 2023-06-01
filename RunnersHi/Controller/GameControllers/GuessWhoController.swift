@@ -37,11 +37,17 @@ final class GuessWhoController:TalkGameController{
     override func viewDidLoad() {
         super.viewDidLoad()
         engine = STTEngine(controller: self)
-        viewModel.setOneModel()
+        let base = ResourceBuilder.shared
+            .setReqMethod(.GET)
+            .setPath("guessWho")
+            .setParams("num", 5)
+            .build()
+        viewModel.fetchDummyNetworkData(httpbaseResource: base)
         configureUI()
         startCounter {
             self.startGame()
         }
+
     }
     //MARK: - Methods
     private func configureUI(){
@@ -115,6 +121,8 @@ extension GuessWhoController:SFSpeechRecognizerDelegate{
 }
 
 extension GuessWhoController:GuessWhoViewModelDelegate{
+
+    
     func handleError(_ error: Error) {
         switch error{
         case is NetworkError:
@@ -128,11 +136,11 @@ extension GuessWhoController:GuessWhoViewModelDelegate{
         }
     }
     
-    func setNextTarget(with data: GuessWhoDataModel) {
+    func setNextTarget(with data: GuessWhoPlayModel) {
         // transition 처리
-        setTimer(Global.GAMESPEED, repeater: true)
+//        setTimer(Global.GAMESPEED, repeater: true)
         answer = ""
-        self.guessView.imageView.image = UIImage(systemName: data.photo)
+        self.guessView.imageView.image = data.photo
         self.guessView.imageView.layoutIfNeeded()
     }
     
