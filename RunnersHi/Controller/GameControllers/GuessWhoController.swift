@@ -37,12 +37,15 @@ final class GuessWhoController:TalkGameController{
     override func viewDidLoad() {
         super.viewDidLoad()
         engine = STTEngine(controller: self)
+        
         let base = ResourceBuilder.shared
             .setReqMethod(.GET)
             .setPath("guessWho")
             .setParams("num", 5)
             .build()
+        
         viewModel.fetchDummyNetworkData(httpbaseResource: base)
+        
         configureUI()
         startCounter {
             self.startGame()
@@ -74,6 +77,9 @@ final class GuessWhoController:TalkGameController{
     }
     
     private func startGame(){
+        if !viewModel.isNetworkDone{
+            loaderON()
+        }
         countView.removeFromSuperview()
         guessView.imageView.isHidden = false
         countView.layoutIfNeeded()

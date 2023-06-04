@@ -22,8 +22,10 @@ protocol GuessWhoViewModelDelegate:BaseDelegate{
 
 class GuessWhoViewModel{
     
+    var isNetworkDone:Bool = false
     private var delegate:GuessWhoViewModelDelegate
     var playModelArray:[GuessWhoPlayModel] = []
+    
     
     private var targetModel:GuessWhoPlayModel?{
         didSet{
@@ -57,6 +59,10 @@ class GuessWhoViewModel{
                 guard let jsonData = jsonData else { throw NetworkError.serverError }
                 let array = await NetworkService.fetchImage(jsonData)
                 playModelArray = array
+                isNetworkDone = true
+                if let delegate = delegate as? GameController, await delegate.loader.isAnimating{
+                    await delegate.loaderOFF()
+                }
                 Task{
 //                    saveDB()
                 }
@@ -75,7 +81,6 @@ class GuessWhoViewModel{
                     let encoder = JSONEncoder()
                     let data = try encoder.encode(model)
                     try data.write(to: targetUrl)
-
                 } catch{
                     print(error)
                 }
@@ -83,8 +88,9 @@ class GuessWhoViewModel{
         }
     }
     
-    func createResultViewModel(){
+    func createResultViewModel() -> ResultViewModel{
         
+        return ResultViewModel()
     }
 }
 

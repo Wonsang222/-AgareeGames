@@ -51,4 +51,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
             
         }
+    
+    func applicationWillResignActive(_ application: UIApplication) {
+        // 여기에 타이머 중지
+        // 활성화 되어 있는 컨트롤러 찾아서 타이머가 있다면 중지시켜야함.
+        
+         
+        
+    }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        // 다시 시작
+        // 활성화 되어 있는 컨트롤러 찾아서 타이머가 있다면 재시작 시켜야함
+    }
     }
