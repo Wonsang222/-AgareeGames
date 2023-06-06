@@ -64,7 +64,7 @@ class GuessWhoViewModel{
                     await delegate.loaderOFF()
                 }
                 Task{
-//                    saveDB()
+                    //                    saveDB()
                 }
             } catch{
                 delegate.handleError(error)
@@ -78,9 +78,14 @@ class GuessWhoViewModel{
             for model in self.playModelArray{
                 let targetUrl = Global.PHOTODBURL.appendingPathComponent(model.name).appendingPathExtension("json")
                 do{
-                    let encoder = JSONEncoder()
-                    let data = try encoder.encode(model)
-                    try data.write(to: targetUrl)
+                    let isExisted = try targetUrl.checkResourceIsReachable()
+                    if !isExisted{
+                        let encoder = JSONEncoder()
+                        let data = try encoder.encode(model)
+                        try data.write(to: targetUrl)
+                    }else{
+                     continue
+                    }
                 } catch{
                     print(error)
                 }

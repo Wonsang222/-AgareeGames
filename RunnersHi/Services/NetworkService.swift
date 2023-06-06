@@ -47,14 +47,7 @@ final class NetworkService{
         configuration.httpAdditionalHeaders = ["Authorization":Global.UUID, "User-Agent": Global.BUNDLEIDENTIFIER]
         return configuration
     }()
-    /*
-     1. 네트워크 타임아웃시 - 1. 종료를 시킨다. 2. poptoroot로 돌아간다
-     
-     이걸로 실험좀 해보자
-     1. async throws로 만들고 에러 내면 에러가 나는지
-     2.
-     
-     */
+    
     static func fetchJSON(httpbaseresource:HttpBaseResource) async -> [String:Any]?{
         var result:[String:Any] = [:]
         do{

@@ -47,9 +47,9 @@ final class GuessWhoController:TalkGameController{
         viewModel.fetchDummyNetworkData(httpbaseResource: base)
         
         configureUI()
-        startCounter {
-            self.startGame()
-        }
+//        startCounter {
+//            self.startGame()
+//        }
 
     }
     //MARK: - Methods
@@ -127,18 +127,18 @@ extension GuessWhoController:SFSpeechRecognizerDelegate{
 }
 
 extension GuessWhoController:GuessWhoViewModelDelegate{
-
-    
     func handleError(_ error: Error) {
         switch error{
         case is NetworkError:
             alert(message: "현재 서버와 연결할 수 없습니다. 양해부탁드립니다.", agree: {[weak self] alert in
                 self?.goBackToRoot()
             }, disagree: nil)
-        default:
-            alert(message: "현재 서버와 연결할 수 없습니다. 양해부탁드립니다.", agree: {[weak self] alert in
-                self?.goBackToRoot()
+        case is AudioError:
+            alert(message: "Audio 오류 발생했습니다.", agree: { [weak self] alert in
+                self?.terminateAppGracefullyAfter(second: 0)
             }, disagree: nil)
+        default:
+            showAppTerminatingAlert()
         }
     }
     

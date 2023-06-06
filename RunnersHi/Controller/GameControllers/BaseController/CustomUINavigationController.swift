@@ -25,7 +25,8 @@ final class CustomUINavigationController:UINavigationController{
         navigationItem.standardAppearance = standard
         navigationItem.scrollEdgeAppearance = standard
         
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "뒤로", style: .plain, target:nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "kaljfisdjf", style: .plain, target:nil, action: nil)
+        
         navigationBar.barStyle = .black
         
     }

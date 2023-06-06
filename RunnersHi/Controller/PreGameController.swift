@@ -10,8 +10,6 @@ import UIKit
 final class PreGameController:SettingController{
     
     let gameTitle:String
-    var howManyPlayer:Int?
-    
     lazy var preGameView = PreGameView(gameTitle:gameTitle)
     
     override func viewDidLoad() {
@@ -67,12 +65,12 @@ final class PreGameController:SettingController{
             let first = capitalGamename.prefix(1)
             game.removeFirst()
             game.insert(contentsOf: first, at: game.startIndex)
-            let gameClassName = "AgareeGames.\(game)Controller"
+            let gameClassName = "AgareeGames_dis.\(game)Controller"
             let gameClass = NSClassFromString(gameClassName) as! GameController.Type
             let nextVC = gameClass.init()
             let emptyVC = EmptyController()
             nextVC.gameTitle = gameTitle
-            nextVC.howMany = howManyPlayer
+            nextVC.howMany = preGameView.segment.selectedSegmentIndex
             navigationController?.pushViewController(nextVC, animated: true)
             if var naviStack = navigationController?.viewControllers, let index = naviStack.firstIndex(of: nextVC){
                 naviStack.insert(emptyVC, at: index)

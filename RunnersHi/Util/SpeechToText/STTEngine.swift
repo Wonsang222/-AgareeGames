@@ -45,9 +45,7 @@ final class STTEngine{
             }
             
             self.recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-            guard let recognitionRequest = self.recognitionRequest else {
-                fatalError("recognitionRequest optional binding error!")
-            }
+            guard let recognitionRequest = self.recognitionRequest else { return }
             recognitionRequest.shouldReportPartialResults = true
             self.runRecognizer()
         }
@@ -71,10 +69,7 @@ final class STTEngine{
                 
                 let inputNode = self.audioEngine.inputNode
                 
-                
-                guard let recognitionRequest = self.recognitionRequest else {
-                    fatalError("Unable to create an SFSpeechAudioBufferRecognitionRequest object")
-                }
+                guard let recognitionRequest = self.recognitionRequest else { return }
                 
                 self.recognitionTask = self.speechRecognizer.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
                     
@@ -106,12 +101,10 @@ final class STTEngine{
                 
                 self.audioEngine.prepare()
                 
-                
-                // 여기서 에러를 떤져서 guessWho에서 에러를 다시 받아 실행
                 do {
                     try self.audioEngine.start()
                 } catch {
-                    print("audioEngine couldn't start because of an error.")
+                    
                 }
             }
         }

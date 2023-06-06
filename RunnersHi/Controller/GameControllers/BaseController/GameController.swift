@@ -29,10 +29,7 @@ class GameController:BaseController{
         pv.translatesAutoresizingMaskIntoConstraints = false
         return pv
     }()
-    
 
-
-    
     //MARK: - Lifecycle
     
     override var prefersHomeIndicatorAutoHidden: Bool{
