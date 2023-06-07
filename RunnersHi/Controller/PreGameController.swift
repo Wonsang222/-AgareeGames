@@ -12,11 +12,23 @@ final class PreGameController:SettingController{
     let gameTitle:String
     lazy var preGameView = PreGameView(gameTitle:gameTitle)
     
+    
+    //MARK: - NaviRoot
+
+    override var prefersStatusBarHidden: Bool{
+        return false
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return .lightContent
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
         preGameView.playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
         configureTempCache()
+        naviroot()
     }
     
     init(gameTitle: String) {
@@ -26,6 +38,16 @@ final class PreGameController:SettingController{
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func naviroot(){
+        let standard = UINavigationBarAppearance()
+        standard.configureWithTransparentBackground()
+        
+        navigationItem.standardAppearance = standard
+        navigationItem.scrollEdgeAppearance = standard
+        
+        navigationItem.backBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_icon"), style: .plain, target: self, action: nil)
     }
     
     func configureTempCache(){
@@ -60,21 +82,13 @@ final class PreGameController:SettingController{
         }
         // 타입때문에 문제 생길 수도 있음
         @objc func playButtonTapped(){
-            var game = gameTitle
-            let capitalGamename = gameTitle.uppercased()
-            let first = capitalGamename.prefix(1)
-            game.removeFirst()
-            game.insert(contentsOf: first, at: game.startIndex)
+            var game = Global.GAMEDIC[gameTitle]!
             let gameClassName = "AgareeGames_dis.\(game)Controller"
             let gameClass = NSClassFromString(gameClassName) as! GameController.Type
             let nextVC = gameClass.init()
-            let emptyVC = EmptyController()
-            nextVC.gameTitle = gameTitle
+            let title = ((game.first)?.lowercased())! + game.dropFirst()
+            nextVC.gameTitle = title
             nextVC.howMany = preGameView.segment.selectedSegmentIndex
             navigationController?.pushViewController(nextVC, animated: true)
-            if var naviStack = navigationController?.viewControllers, let index = naviStack.firstIndex(of: nextVC){
-                naviStack.insert(emptyVC, at: index)
-                navigationController?.viewControllers = naviStack
-            }
         }
     }

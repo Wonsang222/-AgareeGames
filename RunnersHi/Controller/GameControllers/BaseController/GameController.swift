@@ -36,6 +36,14 @@ class GameController:BaseController{
         return true
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return .lightContent
+    }
+    
+    override var prefersStatusBarHidden: Bool{
+        return false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         modalPresentationStyle = .fullScreen

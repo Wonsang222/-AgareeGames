@@ -44,7 +44,7 @@ final class GuessWhoController:TalkGameController{
             .setParams("num", 5)
             .build()
         
-        viewModel.fetchDummyNetworkData(httpbaseResource: base)
+//        viewModel.fetchDummyNetworkData(httpbaseResource: base)
         
         configureUI()
 //        startCounter {

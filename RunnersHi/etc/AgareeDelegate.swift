@@ -11,7 +11,7 @@ let initialKey = "initialKey"
 let thresholdKey = "thresholdKey"
 let homePath = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask).first!
 
-class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIResponder, UIApplicationDelegate{
+class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
     
     var window: UIWindow?
     
@@ -48,58 +48,48 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIResponder, UIApplica
         
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
-    
-    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-        
-    }
-    
-    func applicationWillResignActive(_ application: UIApplication) {
-        // 여기에 타이머 중지
-        // 활성화 되어 있는 컨트롤러 찾아서 타이머가 있다면 중지시켜야함.
-        
-        
-        
-    }
-    
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        // 다시 시작
-        // 활성화 되어 있는 컨트롤러 찾아서 타이머가 있다면 재시작 시켜야함
-    }
-    
-    
+
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = CustomUINavigationController(rootViewController: PreGameController(gameTitle: "guessWho"))
+        window?.rootViewController = CustomUINavigationController(rootViewController: PreGameController(gameTitle: "인물게임"))
         window?.makeKeyAndVisible()
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
-        // Called as the scene is being released by the system.
-        // This occurs shortly after the scene enters the background, or when its session is discarded.
-        // Release any resources associated with this scene that can be re-created the next time the scene connects.
-        // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
+        print(#function)
+        if let rootVC = (scene as? UIWindowScene)?.windows.first?.rootViewController{
+            if let root = rootVC as? GameController{
+                print("game Controller")
+            }
+        }
     }
     
     func sceneDidBecomeActive(_ scene: UIScene) {
+        print(#function)
         // Called when the scene has moved from an inactive state to an active state.
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
     }
     
     func sceneWillResignActive(_ scene: UIScene) {
-        // Called when the scene will move from an active state to an inactive state.
-        // This may occur due to temporary interruptions (ex. an incoming phone call).
+        print(#function)
+        if let rootVC = (scene as? UIWindowScene)?.windows.first?.rootViewController{
+            print(rootVC)
+        }
     }
     
     func sceneWillEnterForeground(_ scene: UIScene) {
-        // Called as the scene transitions from the background to the foreground.
-        // Use this method to undo the changes made on entering the background.
+        print(#function)
+        if let rootVC = (scene as? UIWindowScene)?.windows.first?.rootViewController{
+            print(rootVC)
+        }
     }
     
     func sceneDidEnterBackground(_ scene: UIScene) {
-        // Called as the scene transitions from the foreground to the background.
-        // Use this method to save data, release shared resources, and store enough scene-specific state information
-        // to restore the scene back to its current state.
+        print(#function)
+        guard let window = UIApplication.shared.keyWindow else {return}
+
+            
     }
     
 }
