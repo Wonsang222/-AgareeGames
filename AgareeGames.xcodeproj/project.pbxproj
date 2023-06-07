@@ -23,6 +23,7 @@
 		7E246FA72A1DB7A80068CF9E /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E246FA62A1DB7A80068CF9E /* Error.swift */; };
 		7E3544AB2A13160E00B844E6 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3544AA2A13160E00B844E6 /* BaseView.swift */; };
 		7E49954F2A0CAFD5006D95AC /* HowToPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E49954E2A0CAFD5006D95AC /* HowToPlayView.swift */; };
+		7E60DD702A307A6600A511E2 /* AgareeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E60DD6F2A307A6600A511E2 /* AgareeDelegate.swift */; };
 		C119CBC529F8030600648638 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBC429F8030600648638 /* MainController.swift */; };
 		C119CBC729F8033300648638 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBC629F8033300648638 /* BaseController.swift */; };
 		C119CBC929F804FE00648638 /* GuessWhoDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBC829F804FE00648638 /* GuessWhoDataModel.swift */; };
@@ -62,6 +63,7 @@
 		7E246FA62A1DB7A80068CF9E /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		7E3544AA2A13160E00B844E6 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		7E49954E2A0CAFD5006D95AC /* HowToPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToPlayView.swift; sourceTree = "<group>"; };
+		7E60DD6F2A307A6600A511E2 /* AgareeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgareeDelegate.swift; sourceTree = "<group>"; };
 		C119CBC429F8030600648638 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainController.swift; path = RunnersHi/Controller/MainController.swift; sourceTree = SOURCE_ROOT; };
 		C119CBC629F8033300648638 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseController.swift; path = RunnersHi/Controller/GameControllers/BaseController/BaseController.swift; sourceTree = SOURCE_ROOT; };
 		C119CBC829F804FE00648638 /* GuessWhoDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GuessWhoDataModel.swift; path = RunnersHi/Entity/GuessWhoDataModel.swift; sourceTree = SOURCE_ROOT; };
@@ -122,6 +124,15 @@
 				7E246FA62A1DB7A80068CF9E /* Error.swift */,
 			);
 			path = Error;
+			sourceTree = "<group>";
+		};
+		7E60DD712A307B1300A511E2 /* etc */ = {
+			isa = PBXGroup;
+			children = (
+				C1FFE7AE29E30425009FFD0B /* AppDelegate.swift */,
+				C1FFE7B029E30425009FFD0B /* SceneDelegate.swift */,
+			);
+			path = etc;
 			sourceTree = "<group>";
 		};
 		C119CBCC29F951AE00648638 /* SpeechToText */ = {
@@ -222,12 +233,12 @@
 				C1FFE7C629E305CC009FFD0B /* View */,
 				C1FFE7C529E305C4009FFD0B /* ViewModel */,
 				C1FFE7C429E305BC009FFD0B /* Entity */,
-				C1FFE7AE29E30425009FFD0B /* AppDelegate.swift */,
-				C1FFE7B029E30425009FFD0B /* SceneDelegate.swift */,
+				7E60DD712A307B1300A511E2 /* etc */,
 				C1FFE7B429E30425009FFD0B /* Main.storyboard */,
 				C1FFE7B729E30425009FFD0B /* Assets.xcassets */,
 				C1FFE7B929E30425009FFD0B /* LaunchScreen.storyboard */,
 				C1FFE7BC29E30425009FFD0B /* Info.plist */,
+				7E60DD6F2A307A6600A511E2 /* AgareeDelegate.swift */,
 			);
 			path = RunnersHi;
 			sourceTree = "<group>";
@@ -404,6 +415,7 @@
 				7E125E7D2A00FF9D0044D881 /* MainView.swift in Sources */,
 				C1A0A6C22A231A0E00CAF4CF /* EmptyController.swift in Sources */,
 				7E159D3C29F8A0E400C7E601 /* GuessWhoViewModel.swift in Sources */,
+				7E60DD702A307A6600A511E2 /* AgareeDelegate.swift in Sources */,
 				C14F272C29FEA3E00007E7A6 /* NetworkService.swift in Sources */,
 				C119CBC729F8033300648638 /* BaseController.swift in Sources */,
 				C1FFE7B129E30425009FFD0B /* SceneDelegate.swift in Sources */,
