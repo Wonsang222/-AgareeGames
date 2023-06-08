@@ -42,54 +42,40 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
         return true
     }
     
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        // 전화올때, 앱나갈때 스톱 그리고 다시 돌아오면 alert하고 pop
+        if let rootVC = UIApplication.shared.keyWindow as? UINavigationController{
+            if let vc = rootVC.topViewController as? TimerGameCotoller{
+                vc.timer?.invalidate()
+                vc.timer = nil
+            }
+            if let mainVC = rootVC.topViewController as? TalkGameController{
+                mainVC.engine?.offEngine()
+            }
+        }
+    }
+    
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        if let rootVC = UIApplication.shared.keyWindow as? UINavigationController{
+            if let mainVC = rootVC.topViewController as? GameController{
+                mainVC.alert(message: "게임이 중단되었습니다. 처음 화면으로 돌아갑니다.", agree: {  alert in
+                    mainVC.goBackToRoot()
+                }, disagree: nil)
+            }
+        }
+    }
+    
     // MARK: UISceneSession Lifecycle
     
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         
         return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
-
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = CustomUINavigationController(rootViewController: PreGameController(gameTitle: "인물게임"))
         window?.makeKeyAndVisible()
     }
-    
-    func sceneDidDisconnect(_ scene: UIScene) {
-        print(#function)
-        if let rootVC = (scene as? UIWindowScene)?.windows.first?.rootViewController{
-            if let root = rootVC as? GameController{
-                print("game Controller")
-            }
-        }
-    }
-    
-    func sceneDidBecomeActive(_ scene: UIScene) {
-        print(#function)
-        // Called when the scene has moved from an inactive state to an active state.
-        // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
-    }
-    
-    func sceneWillResignActive(_ scene: UIScene) {
-        print(#function)
-        if let rootVC = (scene as? UIWindowScene)?.windows.first?.rootViewController{
-            print(rootVC)
-        }
-    }
-    
-    func sceneWillEnterForeground(_ scene: UIScene) {
-        print(#function)
-        if let rootVC = (scene as? UIWindowScene)?.windows.first?.rootViewController{
-            print(rootVC)
-        }
-    }
-    
-    func sceneDidEnterBackground(_ scene: UIScene) {
-        print(#function)
-        guard let window = UIApplication.shared.keyWindow else {return}
-
-            
-    }
-    
 }
