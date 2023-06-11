@@ -15,7 +15,8 @@ import Speech
  progress bar 위치 재지정
  
  에러 리스트
-1. audio off 일때 -> 시작 ㄴㄴ 뒤로 가자
+ 1. audio off 일때 -> 시작 ㄴㄴ 뒤로 가자
+ 2. server error -> 앱 종료
  
  */
 
@@ -24,7 +25,7 @@ final class GuessWhoController:TalkGameController{
     //MARK: - Properties
     private let guessView = GuessWhoView()
     private lazy var viewModel = GuessWhoViewModel(delegate: self)
-
+    
     //MARK: - Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -40,17 +41,19 @@ final class GuessWhoController:TalkGameController{
         
         let base = ResourceBuilder.shared
             .setReqMethod(.GET)
-            .setPath("guessWho")
-            .setParams("num", 5)
+            .setPath(gameTitle!)
+            .setParams("num", howMany!)
             .build()
         
-//        viewModel.fetchDummyNetworkData(httpbaseResource: base)
+        viewModel.fetchNetworkData(httpbaseResource: base)
         
         configureUI()
-//        startCounter {
-//            self.startGame()
-//        }
-
+        
+        //        startCounter {
+        //            self.startGame()
+        //        }
+        
+        configureNavi()
     }
     //MARK: - Methods
     private func configureUI(){
@@ -88,7 +91,7 @@ final class GuessWhoController:TalkGameController{
     
     override func checkTheAnswer()->Bool{
         guard let targetName = viewModel.getTargetModel?.name else { return false }
-        print(targetName)   
+        print(targetName)
         let answer = answer.components(separatedBy: " ").joined()
         if answer.contains(targetName){
             return true
@@ -143,22 +146,19 @@ extension GuessWhoController:GuessWhoViewModelDelegate{
     }
     
     func setNextTarget(with data: GuessWhoPlayModel) {
-        // transition 처리
-//        setTimer(Global.GAMESPEED, repeater: true)
+        setTimer(Global.GAMESPEED, repeater: true)
         answer = ""
         self.guessView.imageView.image = data.photo
         self.guessView.imageView.layoutIfNeeded()
     }
     
     func clearGame(isWin:Bool) {
-        print(#function)
-        //        let nextVC = ResultController(isWin: isWin)
-        // 이게 계속됨... present안되겟다
-        if isWin{
-            print("클리어~")
-        } else{
-            print("땡!")
-        }
+        let nextVC = ResultController(isWin: isWin)
+        navigationController?.pushViewController(nextVC, animated: true)
+    }
+    
+    func configureNavi(){
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_icon"), style: .plain, target: self, action: nil)
     }
 }
 

@@ -32,3 +32,23 @@ final class CustomLabel:UILabel{
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+extension UILabel{
+    func updateLabelFontSize(view:UIView){
+        let maxSize:CGFloat = 150
+        self.font = UIFont(name: Global.APPFONT, size: maxSize)
+        self.sizeToFit()
+        
+        while self.bounds.width > view.bounds.width || self.bounds.height > view.bounds.height{
+            let currnetFontSize = self.font.pointSize
+            let reducedSize = currnetFontSize - 1.0
+            
+            if reducedSize < UIFont.labelFontSize{
+                break
+            }
+            
+            self.font = UIFont(name: Global.APPFONT, size: reducedSize)
+            self.sizeToFit()
+        }
+    }
+}

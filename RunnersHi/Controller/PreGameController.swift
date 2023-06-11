@@ -12,7 +12,6 @@ final class PreGameController:SettingController{
     let gameTitle:String
     lazy var preGameView = PreGameView(gameTitle:gameTitle)
     
-    
     //MARK: - NaviRoot
 
     override var prefersStatusBarHidden: Bool{
@@ -72,7 +71,6 @@ final class PreGameController:SettingController{
         
         func configureView(){
             view.addSubview(preGameView)
-            
             NSLayoutConstraint.activate([
                 preGameView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
                 preGameView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -82,7 +80,7 @@ final class PreGameController:SettingController{
         }
         // 타입때문에 문제 생길 수도 있음
         @objc func playButtonTapped(){
-            var game = Global.GAMEDIC[gameTitle]!
+            let game = Global.GAMEDIC[gameTitle]!
             let gameClassName = "AgareeGames_dis.\(game)Controller"
             let gameClass = NSClassFromString(gameClassName) as! GameController.Type
             let nextVC = gameClass.init()

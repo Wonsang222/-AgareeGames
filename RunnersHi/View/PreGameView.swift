@@ -85,7 +85,6 @@ final class PreGameView:BaseView{
         containerView.addSubview(playButton)
         
         NSLayoutConstraint.activate([
-            
             buttonImage.widthAnchor.constraint(equalTo: buttonStack.widthAnchor, multiplier: 0.5),
             buttonImage.heightAnchor.constraint(equalTo: buttonStack.heightAnchor, multiplier: 0.5),
             buttonImage.topAnchor.constraint(equalTo: buttonStack.topAnchor, constant: 15),
@@ -116,6 +115,8 @@ final class PreGameView:BaseView{
         let centerX = bounds.midX
         let centerY = bounds.midY
         containerView.frame = CGRect(origin: CGPoint(x: centerX - (130 / 2), y: centerY), size: CGSize(width: 130, height: 130))
+        
+        titleLabel.updateLabelFontSize(view: self)
     }
 
     required init?(coder: NSCoder) {

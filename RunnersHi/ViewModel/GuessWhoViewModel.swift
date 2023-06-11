@@ -51,7 +51,7 @@ class GuessWhoViewModel{
         
     }
     
-    func fetchDummyNetworkData(httpbaseResource:HttpBaseResource){
+    func fetchNetworkData(httpbaseResource:HttpBaseResource){
         Task{
             do{
                 playModelArray = []
