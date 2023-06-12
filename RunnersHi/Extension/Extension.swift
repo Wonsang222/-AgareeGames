@@ -33,35 +33,6 @@ final class CustomLabel:UILabel{
     }
 }
 
-final class textView:UIView{
-    let text:String
-    lazy var label:UILabel = {
-        let label = UILabel()
-        label.text = self.text
-        label.textColor = .white
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
-    
-    init(text: String) {
-        self.text = text
-        super.init()
-        translatesAutoresizingMaskIntoConstraints = false
-        addSubview(label)
-        backgroundColor = .black
-        NSLayoutConstraint.activate([
-            label.centerXAnchor.constraint(equalTo: centerXAnchor),
-            label.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8),
-            label.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.9)
-        ])
-        
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
 extension UILabel{
     func updateLabelFontSize(view:UIView){
         let maxSize:CGFloat = 150
@@ -79,5 +50,39 @@ extension UILabel{
             self.font = UIFont(name: Global.APPFONT, size: reducedSize)
             self.sizeToFit()
         }
+    }
+}
+
+final class ViewWithLabel:UIView{
+    
+    var text:String
+    
+    lazy var label:UILabel = {
+       let label = UILabel()
+        let attributes:[NSAttributedString.Key:Any] = [.font:UIFont(name: Global.APPFONT, size: 10), .foregroundColor:UIColor.white]
+        let attributedText1 = NSAttributedString(string: text)
+        label.attributedText = attributedText1
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    init(text:String){
+        self.text = text
+        super.init(frame: .zero)
+        
+        addSubview(label)
+        NSLayoutConstraint.activate([
+            label.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.8),
+            label.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8),
+            label.centerXAnchor.constraint(equalTo: centerXAnchor),
+            label.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
+        backgroundColor = .black
+        translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
