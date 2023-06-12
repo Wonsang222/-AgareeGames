@@ -33,6 +33,35 @@ final class CustomLabel:UILabel{
     }
 }
 
+final class textView:UIView{
+    let text:String
+    lazy var label:UILabel = {
+        let label = UILabel()
+        label.text = self.text
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    init(text: String) {
+        self.text = text
+        super.init()
+        translatesAutoresizingMaskIntoConstraints = false
+        addSubview(label)
+        backgroundColor = .black
+        NSLayoutConstraint.activate([
+            label.centerXAnchor.constraint(equalTo: centerXAnchor),
+            label.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8),
+            label.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.9)
+        ])
+        
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
 extension UILabel{
     func updateLabelFontSize(view:UIView){
         let maxSize:CGFloat = 150

@@ -16,8 +16,20 @@ final class HowToPlayView:BaseView{
         return label
     }()
     
+    lazy var stack:UIStackView = {
+       let st = UIStackView(arrangedSubviews: [])
+        st.axis = .horizontal
+        st.distribution = .equalSpacing
+        st.alignment = .center
+        st.translatesAutoresizingMaskIntoConstraints = false
+        return st
+    }()
+    
+
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        translatesAutoresizingMaskIntoConstraints = false
     }
     
     required init?(coder: NSCoder) {

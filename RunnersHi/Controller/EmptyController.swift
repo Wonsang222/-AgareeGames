@@ -14,7 +14,7 @@ class EmptyController:BaseController{
     override func viewDidLoad() {
         super.viewDidLoad()
 //        goBackToRoot()
-        
+        view.addSubview(mainView)
         NSLayoutConstraint.activate([
             mainView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             mainView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),

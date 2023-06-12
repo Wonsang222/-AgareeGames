@@ -58,6 +58,17 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
     
     func applicationWillEnterForeground(_ application: UIApplication) {
         print(#function)
+        if let windowScene = application.connectedScenes.first as? UIWindowScene, let window = windowScene.windows.first{
+            if let rootVC = window.rootViewController as? TimerGameCotoller{
+                print(rootVC)
+            }
+            if let mainVC = window.rootViewController as? GameController{
+                mainVC.alert(message: "게임이 중단되었습니다. \n 처음화면으로 돌아갑니다", agree: { alert in
+                    mainVC.goBackToRoot()
+                }, disagree: nil)
+            }
+        }
+        
         if let rootVC = UIApplication.shared.keyWindow as? UINavigationController{
             if let mainVC = rootVC.topViewController as? GameController{
                 mainVC.alert(message: "게임이 중단되었습니다. 처음 화면으로 돌아갑니다.", agree: {  alert in

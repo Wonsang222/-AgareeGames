@@ -7,6 +7,8 @@
 
 import UIKit
 
+// collectionView를 통해서 select 하도록...
+
 final class MainView:BaseView{
     
     let stackView:UIStackView = {

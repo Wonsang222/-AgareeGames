@@ -97,6 +97,12 @@ class GuessWhoViewModel{
         
         return ResultViewModel()
     }
+    
+    deinit{
+        print("---------------------------------------------")
+        print("guesswhoViewmodel deinit")
+        print("---------------------------------------------")
+    }
 }
 
 

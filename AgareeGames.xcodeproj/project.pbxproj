@@ -169,7 +169,6 @@
 				C148D9D42A1CE95C005AB791 /* TalkGameController.swift */,
 				7E04C8ED2A03432D00357A0F /* SettingController.swift */,
 				7E04C8EB2A0342FE00357A0F /* CustomUINavigationController.swift */,
-				C1454DA52A33701000AD57D0 /* EmptyController.swift */,
 			);
 			path = BaseController;
 			sourceTree = "<group>";
@@ -281,6 +280,7 @@
 				C119CBC429F8030600648638 /* MainController.swift */,
 				7E04C8E42A03342300357A0F /* PreGameController.swift */,
 				C14F275D2A02C01B0007E7A6 /* ResultController.swift */,
+				C1454DA52A33701000AD57D0 /* EmptyController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

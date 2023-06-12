@@ -121,6 +121,12 @@ final class GuessWhoController:TalkGameController{
             self.progressView.setProgress(self.numToCount, animated: true)
         }
     }
+    
+    deinit{
+        print("===============================================================")
+        print("guessWhoVC Deinit")
+        print("===============================================================")
+    }
 }
 
 //MARK: - Extension
