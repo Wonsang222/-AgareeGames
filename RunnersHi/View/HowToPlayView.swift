@@ -21,8 +21,7 @@ final class HowToPlayView:BaseView{
        let st = UIStackView()
         st.axis = .vertical
         st.distribution = .fill
-        st.spacing = 10
-        st.alignment = .fill
+        st.spacing = 20
         st.backgroundColor = .systemBlue
         st.translatesAutoresizingMaskIntoConstraints = false
         return st
@@ -64,16 +63,19 @@ final class HowToPlayView:BaseView{
     private func configureStack(){
         let attributes:[NSAttributedString.Key:Any] = [.font:UIFont(name: Global.APPFONT, size: 15)!, .foregroundColor:UIColor.white]
 
-        ["시간제한 5초", "정확한 이름을 외쳐주세요!","한번이라도 틀리면 게임종료!"].forEach{
+        ["가끔식 조커 카드가 나옵니다. \n조커! 라고 외쳐주세요","시간제한 5초", "정확한 이름을 외쳐주세요!","한번이라도 틀리면 게임종료!"].forEach{
             let innerLabel:UILabel = {
                let label = UILabel()
+                label.numberOfLines = 0
+                label.textAlignment = .center
                 label.translatesAutoresizingMaskIntoConstraints = false
                 return label
             }()
             
             let innerView:UIView = {
                let view = UIView()
-                view.backgroundColor = .black
+                view.backgroundColor = .red
+                view.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
                 view.translatesAutoresizingMaskIntoConstraints = false
                 return view
             }()
@@ -90,18 +92,6 @@ final class HowToPlayView:BaseView{
     }
     
     private func configureImgView(){
-        
-        let attributes:[NSAttributedString.Key:Any] = [.font:UIFont(name: Global.APPFONT, size: 15)!, .foregroundColor:UIColor.white]
-        
-        let containerView:UIStackView = {
-           let view = UIStackView()
-            view.alignment = .center
-            view.axis = .vertical
-            view.distribution = .fill
-            view.translatesAutoresizingMaskIntoConstraints = false
-            return view
-        }()
-        
         let imgView:UIImageView = {
            let img = UIImageView()
             img.image = UIImage(named: "joker")!
@@ -109,26 +99,9 @@ final class HowToPlayView:BaseView{
             img.translatesAutoresizingMaskIntoConstraints = false
             return img
         }()
-        
-        let label:UILabel = {
-            let label = UILabel()
-            label.attributedText = NSAttributedString(string: "보너스 카드입니다. 조커! 라고 외쳐주세요.", attributes: attributes)
-            label.translatesAutoresizingMaskIntoConstraints = false
-            return label
-        }()
-        containerView.addArrangedSubview(imgView)
-        containerView.addArrangedSubview(label)
-        NSLayoutConstraint.activate([
-            imgView.widthAnchor.constraint(equalTo: containerView.widthAnchor),
-            imgView.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 0.7),
-            imgView.topAnchor.constraint(equalTo: containerView.topAnchor),
-            imgView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-            
-            label.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-            label.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
-        ])
-        
-        stack.addArrangedSubview(containerView)
+      
+        stack.addArrangedSubview(imgView)
+        imgView.heightAnchor.constraint(equalTo: stack.heightAnchor, multiplier: 0.5).isActive = true
         
     }
 }
