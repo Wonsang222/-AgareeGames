@@ -143,7 +143,7 @@ extension GuessWhoController:GuessWhoViewModelDelegate{
                 self?.goBackToRoot()
             }, disagree: nil)
         case is AudioError:
-            alert(message: "Audio 오류 발생했습니다.", agree: { [weak self] alert in
+            alert(message: "Audio 오류 발생했습니다. 앱을 다시 시도해 주세요.", agree: { [weak self] alert in
                 self?.terminateAppGracefullyAfter(second: 0)
             }, disagree: nil)
         default:

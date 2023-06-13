@@ -108,7 +108,6 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
     }
     
     func sceneWillEnterForeground(_ scene: UIScene) {
-        print(1213)
         if let windowScene = scene as? UIWindowScene{
             print("windowscene")
             if let rootVC = windowScene.windows.first?.rootViewController as? CustomUINavigationController{

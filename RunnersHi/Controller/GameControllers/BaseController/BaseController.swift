@@ -77,7 +77,6 @@ class BaseController:UIViewController{
             self.terminateAppGracefullyAfter(second: 5.0) // 5초 후 우아한 앱 종료
         }
     }
-
 }
 
 
