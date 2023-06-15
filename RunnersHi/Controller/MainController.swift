@@ -19,7 +19,7 @@ final class MainContoller:SettingController{
         view = mainView
     }
     
-    final func className() -> String{
+    func className() -> String{
         return String(reflecting: Self.self)
     }
 }

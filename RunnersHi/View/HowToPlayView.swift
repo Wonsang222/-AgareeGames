@@ -9,7 +9,7 @@ import UIKit
 
 final class HowToPlayView:BaseView{
     
-    let mainTitle:UILabel = {
+    private let mainTitle:UILabel = {
        let label = UILabel()
         let attributedText = NSAttributedString(string: "게임방법", attributes: [.font : UIFont(name: Global.APPFONT, size: 30)!, .foregroundColor:UIColor.black])
         label.attributedText = attributedText
@@ -17,42 +17,38 @@ final class HowToPlayView:BaseView{
         return label
     }()
     
-    lazy var stack:UIStackView = {
-       let st = UIStackView()
-        st.axis = .vertical
-        st.distribution = .fill
-        st.spacing = 20
-        st.backgroundColor = .systemBlue
-        st.translatesAutoresizingMaskIntoConstraints = false
-        return st
+    let containerView:UIView = {
+       let view = UIView()
+        view.backgroundColor = .systemGray
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
-    let button:UIButton = {
+    
+    private let button:UIButton = {
         let button = UIButton(type: .custom)
         
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
     
     //MARK: - LifeCycle
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
-        translatesAutoresizingMaskIntoConstraints = false
-        configureImgView()
-        configureStack()
+        configureContainer()
         addSubview(mainTitle)
-        addSubview(stack)
+        addSubview(containerView)
 
         NSLayoutConstraint.activate([
             mainTitle.topAnchor.constraint(equalTo: topAnchor, constant: 50),
             mainTitle.centerXAnchor.constraint(equalTo: centerXAnchor),
             
-            stack.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7),
-            stack.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.6),
-            stack.topAnchor.constraint(equalTo: mainTitle.bottomAnchor, constant: 50),
-            stack.centerXAnchor.constraint(equalTo: centerXAnchor)
+            containerView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7),
+            containerView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.6),
+            containerView.topAnchor.constraint(equalTo: mainTitle.bottomAnchor, constant: 50),
+            containerView.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
     }
     
@@ -60,48 +56,43 @@ final class HowToPlayView:BaseView{
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func configureStack(){
-        let attributes:[NSAttributedString.Key:Any] = [.font:UIFont(name: Global.APPFONT, size: 15)!, .foregroundColor:UIColor.white]
-
-        ["가끔식 조커 카드가 나옵니다. \n조커! 라고 외쳐주세요","시간제한 5초", "정확한 이름을 외쳐주세요!","한번이라도 틀리면 게임종료!"].forEach{
-            let innerLabel:UILabel = {
-               let label = UILabel()
-                label.numberOfLines = 0
-                label.textAlignment = .center
-                label.translatesAutoresizingMaskIntoConstraints = false
-                return label
-            }()
-            
-            let innerView:UIView = {
-               let view = UIView()
-                view.backgroundColor = .red
-                view.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
-                view.translatesAutoresizingMaskIntoConstraints = false
-                return view
-            }()
-            
-            innerLabel.attributedText = NSAttributedString(string: $0, attributes: attributes)
-            innerView.addSubview(innerLabel)
-            NSLayoutConstraint.activate([
-                innerLabel.centerXAnchor.constraint(equalTo: innerView.centerXAnchor),
-                innerLabel.centerYAnchor.constraint(equalTo: innerView.centerYAnchor)
-            ])
-            stack.addArrangedSubview(innerView)
-        }
-
-    }
-    
-    private func configureImgView(){
+    private func configureContainer(){
         let imgView:UIImageView = {
-           let img = UIImageView()
-            img.image = UIImage(named: "joker")!
-            img.contentMode = .scaleAspectFit
-            img.translatesAutoresizingMaskIntoConstraints = false
-            return img
+            let imgView = UIImageView(image: UIImage(named: "joker")!.withRenderingMode(.alwaysOriginal))
+            imgView.contentMode = .scaleAspectFit
+            imgView.translatesAutoresizingMaskIntoConstraints = false
+            return imgView
         }()
-      
-        stack.addArrangedSubview(imgView)
-        imgView.heightAnchor.constraint(equalTo: stack.heightAnchor, multiplier: 0.5).isActive = true
         
+        let descriptionLabel1:UILabel = {
+            let label = UILabel()
+            label.text = "게임시간은 4초, 기회는 1인당 1번!"
+            label.textColor = .black
+            // trait이 궁금해진다
+            label.font = .preferredFont(forTextStyle: .body)
+            label.translatesAutoresizingMaskIntoConstraints = false
+            return label
+        }()
+        
+        let descriptionLabel2:UILabel = {
+            let label = UILabel()
+            label.text = "인물의 이름을 외쳐주세요"
+            label.textColor = .black
+            // trait이 궁금해진다
+            label.font = .preferredFont(forTextStyle: .body)
+            label.translatesAutoresizingMaskIntoConstraints = false
+            return label
+        }()
+        
+        let descriptionLabel3:UILabel = {
+            let label = UILabel()
+            label.text = "종종 보너스 카드가 나옵니다.\n 조커!라고 외쳐주세요"
+            label.numberOfLines = 2
+            label.textColor = .black
+            // trait이 궁금해진다
+            label.font = .preferredFont(forTextStyle: .body)
+            label.translatesAutoresizingMaskIntoConstraints = false
+            return label
+        }()
     }
 }

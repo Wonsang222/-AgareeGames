@@ -27,13 +27,6 @@ final class GuessWhoController:TalkGameController{
     private lazy var viewModel = GuessWhoViewModel(delegate: self)
     
     //MARK: - Lifecycle
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,8 +45,7 @@ final class GuessWhoController:TalkGameController{
         //        startCounter {
         //            self.startGame()
         //        }
-        
-        configureNavi()
+
     }
     //MARK: - Methods
     private func configureUI(){
@@ -143,7 +135,7 @@ extension GuessWhoController:GuessWhoViewModelDelegate{
                 self?.goBackToRoot()
             }, disagree: nil)
         case is AudioError:
-            alert(message: "Audio 오류 발생했습니다. 앱을 다시 시도해 주세요.", agree: { [weak self] alert in
+            alert(message: "Audio 오류 발생했습니다. 앱을 다시 실행해 주세요.", agree: { [weak self] alert in
                 self?.terminateAppGracefullyAfter(second: 0)
             }, disagree: nil)
         default:
@@ -162,10 +154,7 @@ extension GuessWhoController:GuessWhoViewModelDelegate{
         let nextVC = ResultController(isWin: isWin)
         navigationController?.pushViewController(nextVC, animated: true)
     }
-    
-    func configureNavi(){
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_icon"), style: .plain, target: self, action: nil)
-    }
+
 }
 
 extension GuessWhoController:STTEngineDelegate{

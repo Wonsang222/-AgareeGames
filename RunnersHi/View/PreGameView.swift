@@ -12,7 +12,7 @@ final class PreGameView:BaseView{
     let gameTitle:String
     
     //MARK: - TitleLabel
-    lazy var titleLabel:UILabel = {
+    private lazy var titleLabel:UILabel = {
         let label = CustomLabel(messageText: gameTitle, textSize: 30.0)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -33,12 +33,12 @@ final class PreGameView:BaseView{
     
     
     //MARK: - Button
-    let buttonLabel:UILabel = {
+    private let buttonLabel:UILabel = {
         let label = CustomLabel(messageText: "플레이", textSize: 20.0)
         return label
     }()
         
-    let buttonImage:UIImageView = {
+    private let buttonImage:UIImageView = {
        let iv = UIImageView()
         iv.image = UIImage(systemName: "play.fill")
         iv.tintColor = .white
@@ -54,7 +54,7 @@ final class PreGameView:BaseView{
         return button
     }()
     
-    lazy var buttonStack:UIStackView = {
+    private lazy var buttonStack:UIStackView = {
        let st = UIStackView(arrangedSubviews: [buttonImage, buttonLabel])
         st.axis = .vertical
         st.distribution = .fill
@@ -63,13 +63,13 @@ final class PreGameView:BaseView{
         return st
     }()
     
-    lazy var containerView:UIView = {
+    private lazy var containerView:UIView = {
        let view = UIView()
         view.backgroundColor = .systemBlue
         return view
     }()
     
-    func configureSeg(){
+    private func configureSeg(){
         addSubview(segment)
         NSLayoutConstraint.activate([
             segment.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -79,7 +79,7 @@ final class PreGameView:BaseView{
         ])
     }
     
-    func configureButton(){
+    private func configureButton(){
         containerView.addSubview(buttonStack)
         addSubview(containerView)
         containerView.addSubview(playButton)
@@ -101,7 +101,7 @@ final class PreGameView:BaseView{
         ])
     }
     
-    func configureLabel(){
+    private func configureLabel(){
         addSubview(titleLabel)
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 100),

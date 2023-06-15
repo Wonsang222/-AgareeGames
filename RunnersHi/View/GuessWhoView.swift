@@ -28,14 +28,13 @@ final class GuessWhoView:BaseView{
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureUI(){
+    private func configureUI(){
         [imageView].forEach {addSubview($0)}
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             imageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3),
             imageView.widthAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3),
-            
         ])
     }
     

@@ -57,25 +57,27 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
-        print(#function)
-        if let windowScene = application.connectedScenes.first as? UIWindowScene, let window = windowScene.windows.first{
-            if let rootVC = window.rootViewController as? TimerGameCotoller{
-                print(rootVC)
-            }
-            if let mainVC = window.rootViewController as? GameController{
-                mainVC.alert(message: "게임이 중단되었습니다. \n 처음화면으로 돌아갑니다", agree: { alert in
-                    mainVC.goBackToRoot()
-                }, disagree: nil)
-            }
+        
+        // 이거 잘못됐다
+        guard let windowScene = application.connectedScenes.first as? UIWindowScene,
+              let window = windowScene.windows.first,
+              let rootVC = window.rootViewController as? CustomUINavigationController else { return }
+        if let currentVC = rootVC.topViewController as? TimerGameCotoller{
+            
+        }
+        if let currentVC = rootVC.topViewController as? GameController{
+            
         }
         
-        if let rootVC = UIApplication.shared.keyWindow as? UINavigationController{
-            if let mainVC = rootVC.topViewController as? GameController{
-                mainVC.alert(message: "게임이 중단되었습니다. 처음 화면으로 돌아갑니다.", agree: {  alert in
-                    mainVC.goBackToRoot()
-                }, disagree: nil)
-            }
-        }
+        
+//        if let rootVC = window.rootViewController as? TimerGameCotoller {
+//            print("yay")
+//        }
+//        if let rootVC = window.rootViewController as? GameController{
+//            rootVC.alert(message: "게임이 중단되었습니다. \n 첫 화면으로 돌아갑니다.", agree: { alert in
+//                rootVC.goBackToRoot()
+//            }, disagree: nil)
+//        }
     }
     
     // MARK: UISceneSession Lifecycle
@@ -96,6 +98,10 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
     }
     
     func sceneDidEnterBackground(_ scene: UIScene) {
+        guard let windowScenne = scene as? UIWindowScene else { return }
+        
+        
+        
         if let rootVC = UIApplication.shared.keyWindow as? UINavigationController{
             if let vc = rootVC.topViewController as? TimerGameCotoller{
                 vc.timer?.invalidate()

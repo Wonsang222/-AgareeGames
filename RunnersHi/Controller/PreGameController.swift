@@ -78,7 +78,7 @@ final class PreGameController:SettingController{
                 preGameView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
             ])
         }
-        // 타입때문에 문제 생길 수도 있음
+
         @objc func playButtonTapped(){
             let game = Global.GAMEDIC[gameTitle]!
             let gameClassName = "AgareeGames_dis.\(game)Controller"

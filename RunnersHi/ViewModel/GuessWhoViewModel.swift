@@ -6,12 +6,6 @@
 //
 
 
-/*
- 만약 에러가 나지 않은 상태에서
- 게임 시작 준비가 되었는데, 네트워크 연결이 아직 안된 상태라면
- error처리해야하는디
- */
-
 import UIKit
 
 protocol GuessWhoViewModelDelegate:BaseDelegate{
@@ -20,12 +14,11 @@ protocol GuessWhoViewModelDelegate:BaseDelegate{
     // 에러 핸들링
 }
 
-class GuessWhoViewModel{
+final class GuessWhoViewModel{
     
     var isNetworkDone:Bool = false
     private var delegate:GuessWhoViewModelDelegate
     var playModelArray:[GuessWhoPlayModel] = []
-    
     
     private var targetModel:GuessWhoPlayModel?{
         didSet{
@@ -48,7 +41,6 @@ class GuessWhoViewModel{
     
     init(delegate: GuessWhoViewModelDelegate) {
         self.delegate = delegate
-        
     }
     
     func fetchNetworkData(httpbaseResource:HttpBaseResource){
@@ -63,7 +55,7 @@ class GuessWhoViewModel{
                 if let delegate = delegate as? GameController, await delegate.loader.isAnimating{
                     await delegate.loaderOFF()
                 }
-                Task{
+                Task(priority: .low){
                     //                    saveDB()
                 }
             } catch{
