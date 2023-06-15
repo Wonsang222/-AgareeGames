@@ -48,11 +48,13 @@ final class NetworkService{
         return configuration
     }()
     
+    //nil 을 return 하면 viewmodel에서 error 처리 -> 전부 서버에러이기 때문
     static func fetchJSON(httpbaseresource:HttpBaseResource) async -> [String:Any]?{
         var result:[String:Any] = [:]
         do{
             let (data, response)  = try await session.data(for: httpbaseresource.request())
-            guard (200...299).contains((response as? HTTPURLResponse)?.statusCode ?? 404) else { return nil }
+            guard let status = response as? HTTPURLResponse,
+                    (200...299).contains(status.statusCode) else { return nil }
             let jsonData = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! [String:Any]
             result = jsonData
             return result
