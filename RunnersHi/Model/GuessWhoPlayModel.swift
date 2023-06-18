@@ -4,10 +4,7 @@
 //
 //  Created by 황원상 on 2023/05/21.
 //
-import Foundation
 import UIKit
-
-// 해야할것 1. 에러처리 2. 캐시 처리 마무리
 
 struct GuessWhoPlayModel:Codable{
     let name:String

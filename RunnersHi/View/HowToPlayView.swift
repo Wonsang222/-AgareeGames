@@ -17,9 +17,12 @@ final class HowToPlayView:BaseView{
         return label
     }()
     
-    let containerView:UIView = {
-       let view = UIView()
-        view.backgroundColor = .systemGray
+    let containerView:UIStackView = {
+       let view = UIStackView()
+        view.axis = .vertical
+        view.distribution = .equalSpacing
+        view.alignment = .center
+        view.spacing
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -27,7 +30,7 @@ final class HowToPlayView:BaseView{
     
     private let button:UIButton = {
         let button = UIButton(type: .custom)
-        
+        button.setImage(UIImage(systemName: "checkmark"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -45,8 +48,6 @@ final class HowToPlayView:BaseView{
             mainTitle.topAnchor.constraint(equalTo: topAnchor, constant: 50),
             mainTitle.centerXAnchor.constraint(equalTo: centerXAnchor),
             
-            containerView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.7),
-            containerView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.6),
             containerView.topAnchor.constraint(equalTo: mainTitle.bottomAnchor, constant: 50),
             containerView.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
@@ -66,33 +67,46 @@ final class HowToPlayView:BaseView{
         
         let descriptionLabel1:UILabel = {
             let label = UILabel()
-            label.text = "게임시간은 4초, 기회는 1인당 1번!"
+            label.text = "인물의 이름을 외쳐주세요"
             label.textColor = .black
+            label.adjustsFontSizeToFitWidth = true
             // trait이 궁금해진다
             label.font = .preferredFont(forTextStyle: .body)
+            label.backgroundColor = .brown
+            label.textAlignment = .center
             label.translatesAutoresizingMaskIntoConstraints = false
             return label
         }()
         
         let descriptionLabel2:UILabel = {
             let label = UILabel()
-            label.text = "인물의 이름을 외쳐주세요"
+            label.text = "게임시간은 4초, 기회는 1인당 1번!"
             label.textColor = .black
+            label.adjustsFontSizeToFitWidth = true
             // trait이 궁금해진다
             label.font = .preferredFont(forTextStyle: .body)
+            label.backgroundColor = .green
+            label.textAlignment = .center
             label.translatesAutoresizingMaskIntoConstraints = false
             return label
         }()
         
         let descriptionLabel3:UILabel = {
             let label = UILabel()
-            label.text = "종종 보너스 카드가 나옵니다.\n 조커!라고 외쳐주세요"
-            label.numberOfLines = 2
+            label.text = "아래의 사진과 같이 \n종종 보너스 카드가 나옵니다.\n 조커!라고 외쳐주세요"
+            label.numberOfLines = 3
             label.textColor = .black
+            label.adjustsFontSizeToFitWidth = true
             // trait이 궁금해진다
             label.font = .preferredFont(forTextStyle: .body)
+            label.backgroundColor = .systemBlue
+            label.textAlignment = .center
             label.translatesAutoresizingMaskIntoConstraints = false
             return label
         }()
+        
+        containerView.addArrangedSubview(descriptionLabel1)
+        containerView.addArrangedSubview(descriptionLabel2)
+        containerView.addArrangedSubview(descriptionLabel3)
     }
 }
