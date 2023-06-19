@@ -61,13 +61,27 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
         // 이거 잘못됐다
         guard let windowScene = application.connectedScenes.first as? UIWindowScene,
               let window = windowScene.windows.first,
-              let rootVC = window.rootViewController as? CustomUINavigationController else { return }
-        if let currentVC = rootVC.topViewController as? TimerGameCotoller{
+              let rootVC = window.rootViewController as? CustomUINavigationController,
+              let topVC = rootVC.topViewController else { return }
+        
+        switch topVC{
+        case is TimerGameCotoller:
+            print(123123)
+            fallthrough
+        case is GameController:
+            print(12312312)
+            fallthrough
+        default:
+            break
             
         }
-        if let currentVC = rootVC.topViewController as? GameController{
-            
-        }
+//
+//        if let currentVC = rootVC.topViewController as? TimerGameCotoller{
+//
+//        }
+//        if let currentVC = rootVC.topViewController as? GameController{
+//
+//        }
         
         
 //        if let rootVC = window.rootViewController as? TimerGameCotoller {
