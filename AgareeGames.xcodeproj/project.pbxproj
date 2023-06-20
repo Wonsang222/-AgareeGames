@@ -22,13 +22,14 @@
 		7E20755D29F9FBF8000BFE61 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E20755C29F9FBF8000BFE61 /* IntroView.swift */; };
 		7E246FA72A1DB7A80068CF9E /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E246FA62A1DB7A80068CF9E /* Error.swift */; };
 		7E3544AB2A13160E00B844E6 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3544AA2A13160E00B844E6 /* BaseView.swift */; };
-		7E49954F2A0CAFD5006D95AC /* HowToPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E49954E2A0CAFD5006D95AC /* HowToPlayView.swift */; };
+		7E49954F2A0CAFD5006D95AC /* GuessWhoHTPV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E49954E2A0CAFD5006D95AC /* GuessWhoHTPV.swift */; };
 		7E60DD702A307A6600A511E2 /* AgareeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E60DD6F2A307A6600A511E2 /* AgareeDelegate.swift */; };
 		C119CBC529F8030600648638 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBC429F8030600648638 /* MainController.swift */; };
 		C119CBC729F8033300648638 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBC629F8033300648638 /* BaseController.swift */; };
 		C119CBC929F804FE00648638 /* GuessWhoDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBC829F804FE00648638 /* GuessWhoDataModel.swift */; };
 		C119CBCB29F805C000648638 /* IntroController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBCA29F805C000648638 /* IntroController.swift */; };
 		C119CBCE29F951BF00648638 /* STTEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBCD29F951BF00648638 /* STTEngine.swift */; };
+		C11D6EE82A41E84B00F59E15 /* HowToPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11D6EE72A41E84B00F59E15 /* HowToPlayView.swift */; };
 		C14080302A17E7950091F861 /* CustomFont.otf in Resources */ = {isa = PBXBuildFile; fileRef = C140802F2A17E7950091F861 /* CustomFont.otf */; };
 		C1454DA62A33701000AD57D0 /* EmptyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1454DA52A33701000AD57D0 /* EmptyController.swift */; };
 		C148D9D52A1CE95C005AB791 /* TalkGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C148D9D42A1CE95C005AB791 /* TalkGameController.swift */; };
@@ -62,13 +63,14 @@
 		7E20755C29F9FBF8000BFE61 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
 		7E246FA62A1DB7A80068CF9E /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		7E3544AA2A13160E00B844E6 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
-		7E49954E2A0CAFD5006D95AC /* HowToPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToPlayView.swift; sourceTree = "<group>"; };
+		7E49954E2A0CAFD5006D95AC /* GuessWhoHTPV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoHTPV.swift; sourceTree = "<group>"; };
 		7E60DD6F2A307A6600A511E2 /* AgareeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgareeDelegate.swift; sourceTree = "<group>"; };
 		C119CBC429F8030600648638 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainController.swift; path = RunnersHi/Controller/MainController.swift; sourceTree = SOURCE_ROOT; };
-		C119CBC629F8033300648638 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseController.swift; path = RunnersHi/Controller/GameControllers/BaseController/BaseController.swift; sourceTree = SOURCE_ROOT; };
+		C119CBC629F8033300648638 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseController.swift; path = RunnersHi/Controller/BaseController/BaseController.swift; sourceTree = SOURCE_ROOT; };
 		C119CBC829F804FE00648638 /* GuessWhoDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GuessWhoDataModel.swift; path = RunnersHi/Entity/GuessWhoDataModel.swift; sourceTree = SOURCE_ROOT; };
 		C119CBCA29F805C000648638 /* IntroController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = IntroController.swift; path = RunnersHi/Controller/IntroController.swift; sourceTree = SOURCE_ROOT; };
 		C119CBCD29F951BF00648638 /* STTEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STTEngine.swift; sourceTree = "<group>"; };
+		C11D6EE72A41E84B00F59E15 /* HowToPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToPlayView.swift; sourceTree = "<group>"; };
 		C140802F2A17E7950091F861 /* CustomFont.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CustomFont.otf; sourceTree = "<group>"; };
 		C1454DA52A33701000AD57D0 /* EmptyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyController.swift; sourceTree = "<group>"; };
 		C148D9D42A1CE95C005AB791 /* TalkGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TalkGameController.swift; sourceTree = "<group>"; };
@@ -105,7 +107,6 @@
 			isa = PBXGroup;
 			children = (
 				7E159D3729F8A01900C7E601 /* GuessWhoController.swift */,
-				C148D9DC2A2095F7005AB791 /* BaseController */,
 			);
 			path = GameControllers;
 			sourceTree = "<group>";
@@ -141,6 +142,14 @@
 				C119CBCD29F951BF00648638 /* STTEngine.swift */,
 			);
 			path = SpeechToText;
+			sourceTree = "<group>";
+		};
+		C11D6EE62A41E78800F59E15 /* HowToPlayViews */ = {
+			isa = PBXGroup;
+			children = (
+				C11D6EE72A41E84B00F59E15 /* HowToPlayView.swift */,
+			);
+			name = HowToPlayViews;
 			sourceTree = "<group>";
 		};
 		C140802E2A17E7000091F861 /* Resource */ = {
@@ -262,12 +271,13 @@
 		C1FFE7C629E305CC009FFD0B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C11D6EE62A41E78800F59E15 /* HowToPlayViews */,
 				7E3544AA2A13160E00B844E6 /* BaseView.swift */,
 				7E20755C29F9FBF8000BFE61 /* IntroView.swift */,
 				7E125E7C2A00FF9D0044D881 /* MainView.swift */,
 				7E20755A29F9FBE4000BFE61 /* GuessWhoView.swift */,
 				7E04C8E62A033C4800357A0F /* PreGameView.swift */,
-				7E49954E2A0CAFD5006D95AC /* HowToPlayView.swift */,
+				7E49954E2A0CAFD5006D95AC /* GuessWhoHTPV.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -275,6 +285,7 @@
 		C1FFE7C729E3060B009FFD0B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C148D9DC2A2095F7005AB791 /* BaseController */,
 				7E04C8E82A0342A900357A0F /* GameControllers */,
 				C119CBCA29F805C000648638 /* IntroController.swift */,
 				C119CBC429F8030600648638 /* MainController.swift */,
@@ -400,6 +411,7 @@
 				C176FECF2A1A5C8800C7EFE6 /* Reachability.swift in Sources */,
 				C119CBC529F8030600648638 /* MainController.swift in Sources */,
 				7E3544AB2A13160E00B844E6 /* BaseView.swift in Sources */,
+				C11D6EE82A41E84B00F59E15 /* HowToPlayView.swift in Sources */,
 				7E20755D29F9FBF8000BFE61 /* IntroView.swift in Sources */,
 				C14F27642A0521490007E7A6 /* ResourceBuilder.swift in Sources */,
 				C119CBCE29F951BF00648638 /* STTEngine.swift in Sources */,
@@ -421,7 +433,7 @@
 				C1FFE7B129E30425009FFD0B /* SceneDelegate.swift in Sources */,
 				7E04C8EA2A0342C800357A0F /* GameController.swift in Sources */,
 				C119CBC929F804FE00648638 /* GuessWhoDataModel.swift in Sources */,
-				7E49954F2A0CAFD5006D95AC /* HowToPlayView.swift in Sources */,
+				7E49954F2A0CAFD5006D95AC /* GuessWhoHTPV.swift in Sources */,
 				C1FFE7D629E8607D009FFD0B /* HttpBase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -571,6 +583,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZD5K45Y4NW;
 				GENERATE_INFOPLIST_FILE = YES;

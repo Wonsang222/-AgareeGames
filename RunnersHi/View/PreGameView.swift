@@ -10,7 +10,7 @@ import UIKit
 final class PreGameView:BaseView{
     
     let gameTitle:String
-    
+
     //MARK: - TitleLabel
     private lazy var titleLabel:UILabel = {
         let label = CustomLabel(messageText: gameTitle, textSize: 30.0)
@@ -31,6 +31,15 @@ final class PreGameView:BaseView{
         return sc
     }()
     
+    let howToPlayButton:UIButton = {
+       let button = UIButton()
+        let attributes:[NSAttributedString.Key:Any] = [.font: UIFont.systemFont(ofSize: 16),
+                                                       .foregroundColor:UIColor.systemGray]
+        let attText = NSAttributedString(string: "게임방법이 궁금하신가요?", attributes: attributes)
+        button.setAttributedTitle(attText, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
     
     //MARK: - Button
     private let buttonLabel:UILabel = {
@@ -97,15 +106,20 @@ final class PreGameView:BaseView{
             playButton.topAnchor.constraint(equalTo: containerView.topAnchor),
             playButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
             playButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            playButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor)
+            playButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            
         ])
     }
     
     private func configureLabel(){
         addSubview(titleLabel)
+        addSubview(howToPlayButton)
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 100),
-            titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
+            titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            
+            howToPlayButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 10),
+            howToPlayButton.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
     }
     
@@ -114,7 +128,7 @@ final class PreGameView:BaseView{
         containerView.layer.cornerRadius = containerView.frame.width / 2
         let centerX = bounds.midX
         let centerY = bounds.midY
-        containerView.frame = CGRect(origin: CGPoint(x: centerX - (130 / 2), y: centerY), size: CGSize(width: 130, height: 130))
+        containerView.frame = CGRect(origin: CGPoint(x: centerX - (130 / 2), y: centerY + 130), size: CGSize(width: 130, height: 130))
         
         titleLabel.updateLabelFontSize(view: self)
     }

@@ -86,43 +86,24 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
         guard isPlaying else { return }
         print(#function)
     
-        // 이거 잘못됐다
         guard let windowScene = application.connectedScenes.first as? UIWindowScene,
               let window = windowScene.windows.first,
               let rootVC = window.rootViewController as? CustomUINavigationController,
               let topVC = rootVC.topViewController else { return }
         
         switch topVC{
-        case is BaseController:
-            print("base controller")
-            fallthrough
         case is TimerGameCotoller:
             print(123123)
             fallthrough
         case is GameController:
             print(12312312)
             fallthrough
+        case is TalkGameController:
+            print(123123)
         default:
             break
             
         }
-//
-//        if let currentVC = rootVC.topViewController as? TimerGameCotoller{
-//
-//        }
-//        if let currentVC = rootVC.topViewController as? GameController{
-//
-//        }
-        
-        
-//        if let rootVC = window.rootViewController as? TimerGameCotoller {
-//            print("yay")
-//        }
-//        if let rootVC = window.rootViewController as? GameController{
-//            rootVC.alert(message: "게임이 중단되었습니다. \n 첫 화면으로 돌아갑니다.", agree: { alert in
-//                rootVC.goBackToRoot()
-//            }, disagree: nil)
-//        }
     }
     
     // MARK: UISceneSession Lifecycle
@@ -136,9 +117,8 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
 //        window?.rootViewController = ResultController(isWin: true)
-//        window?.rootViewController = PreGameController(gameTitle: "dsfsda")
+        window?.rootViewController = PreGameController(gameTitle: "dsfsda")
 //        window?.rootViewController = CustomUINavigationController(rootViewController: PreGameController(gameTitle: "인물게임"))
-        window?.rootViewController = EmptyController()
         window?.makeKeyAndVisible()
     }
     

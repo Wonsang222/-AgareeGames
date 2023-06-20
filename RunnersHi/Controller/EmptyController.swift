@@ -8,20 +8,9 @@
 import UIKit
 
 class EmptyController:BaseController{
-    
-    let mainView = HowToPlayView()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-//        goBackToRoot()
-        view.addSubview(mainView)
-        NSLayoutConstraint.activate([
-            mainView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            mainView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            mainView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            mainView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
+        goBackToRoot()
     }
-    
-    
 }
