@@ -14,6 +14,7 @@ let homePath = FileManager.default.urls(for: .libraryDirectory, in: .userDomainM
 class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
     
     var window: UIWindow?
+    var isPlaying:Bool = false
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -42,22 +43,49 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
         return true
     }
     
-    func applicationDidEnterBackground(_ application: UIApplication) {
+    func applicationDidBecomeActive(_ application: UIApplication) {
         print(#function)
-        // 전화올때, 앱나갈때 스톱 그리고 다시 돌아오면 alert하고 pop
-        if let rootVC = UIApplication.shared.keyWindow as? UINavigationController{
-            if let vc = rootVC.topViewController as? TimerGameCotoller{
-                vc.timer?.invalidate()
-                vc.timer = nil
-            }
-            if let mainVC = rootVC.topViewController as? TalkGameController{
-                mainVC.engine?.offEngine()
-            }
+    }
+    
+    func applicationWillResignActive(_ application: UIApplication) {
+        print(#function)
+    }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        isPlaying = true
+        print(99)
+        print(#function)
+        guard let windowScene = application.connectedScenes.first as? UIWindowScene,
+              let window = windowScene.windows.first,
+              let rootVc = window.rootViewController as? CustomUINavigationController,
+              let topVC = rootVc.topViewController else { return }
+        
+        switch topVC{
+        case is BaseController:
+            print("base")
+        default:
+            break
         }
+
+        
+//        // 전화올때, 앱나갈때 스톱 그리고 다시 돌아오면 alert하고 pop
+//        if let rootVC = UIApplication.shared.keyWindow as? UINavigationController{
+//            if let vc = rootVC.topViewController as? TimerGameCotoller{
+//                vc.timer?.invalidate()
+//                vc.timer = nil
+//            }
+//            if let mainVC = rootVC.topViewController as? TalkGameController{
+//                mainVC.engine?.offEngine()
+//            }
+//        }
+        
+        
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
-        
+        guard isPlaying else { return }
+        print(#function)
+    
         // 이거 잘못됐다
         guard let windowScene = application.connectedScenes.first as? UIWindowScene,
               let window = windowScene.windows.first,
@@ -65,6 +93,9 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
               let topVC = rootVC.topViewController else { return }
         
         switch topVC{
+        case is BaseController:
+            print("base controller")
+            fallthrough
         case is TimerGameCotoller:
             print(123123)
             fallthrough
@@ -112,29 +143,30 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
     }
     
     func sceneDidEnterBackground(_ scene: UIScene) {
-        guard let windowScenne = scene as? UIWindowScene else { return }
-        
-        
-        
-        if let rootVC = UIApplication.shared.keyWindow as? UINavigationController{
-            if let vc = rootVC.topViewController as? TimerGameCotoller{
-                vc.timer?.invalidate()
-                vc.timer = nil
-            }
-            if let mainVC = rootVC.topViewController as? TalkGameController{
-                mainVC.engine?.offEngine()
-            }
-        }
+        print(#function)
+        guard let windowScene = scene as? UIWindowScene,
+              let window = windowScene.windows.first,
+              let rootVC = window.rootViewController as? EmptyController else { return }
+        isPlaying = true
+        print(12)
     }
     
     func sceneWillEnterForeground(_ scene: UIScene) {
-        if let windowScene = scene as? UIWindowScene{
-            print("windowscene")
-            if let rootVC = windowScene.windows.first?.rootViewController as? CustomUINavigationController{
-                if let vc = rootVC.topViewController as? GameController{
-                    print("젭알")
-                }
-            }
+        print(#function)
+        guard let windowScenne = scene as? UIWindowScene,
+              let window = windowScenne.windows.first,
+              let rootVC = window.rootViewController as? CustomUINavigationController,
+              let topVC = rootVC.topViewController else { return }
+
+        switch topVC{
+        case is GameController:
+            print("basebase")
+        case is TimerGameCotoller:
+            print(123)
+        default:
+            break
         }
+        
+        
     }
 }

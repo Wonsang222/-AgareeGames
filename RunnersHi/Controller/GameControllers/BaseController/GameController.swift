@@ -58,10 +58,15 @@ class GameController:BaseController{
             }, disagree: nil)
                 return
             }
+        
+        (UIApplication.shared.delegate as? AgareeDelegate)?.isPlaying = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        (UIApplication.shared.delegate as? AgareeDelegate)?.isPlaying = false
     }
+
     
     //MARK: - Methods
     
