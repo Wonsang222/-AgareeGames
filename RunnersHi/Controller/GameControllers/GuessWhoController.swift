@@ -30,15 +30,18 @@ final class GuessWhoController:TalkGameController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("-----------------------------")
+        print("guesswho on ")
+        print("-----------------------------")
         engine = STTEngine(controller: self)
         
-        let base = ResourceBuilder.shared
-            .setReqMethod(.GET)
-            .setPath(gameTitle!)
-            .setParams("num", howMany!)
-            .build()
-        
-        viewModel.fetchNetworkData(httpbaseResource: base)
+//        let base = ResourceBuilder.shared
+//            .setReqMethod(.GET)
+//            .setPath(gameTitle!)
+//            .setParams("num", howMany!)
+//            .build()
+//
+//        viewModel.fetchNetworkData(httpbaseResource: base)
         
         configureUI()
         
@@ -154,7 +157,6 @@ extension GuessWhoController:GuessWhoViewModelDelegate{
         let nextVC = ResultController(isWin: isWin)
         navigationController?.pushViewController(nextVC, animated: true)
     }
-
 }
 
 extension GuessWhoController:STTEngineDelegate{

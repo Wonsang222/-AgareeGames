@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class PreGameController:SettingController{
+final class PreGameController:BaseController{
     
     let gameTitle:String
     lazy var preGameView = PreGameView(gameTitle:gameTitle)

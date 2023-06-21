@@ -34,21 +34,11 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
             }catch{
                 print("wonsang: create lib folder error")
             }
-            
             UserDefaults.standard.set(true, forKey: initialKey)
         } else{
             // 여기서 로딩하거나...
         }
-        
         return true
-    }
-    
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        print(#function)
-    }
-    
-    func applicationWillResignActive(_ application: UIApplication) {
-        print(#function)
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -61,8 +51,14 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
               let topVC = rootVc.topViewController else { return }
         
         switch topVC{
-        case is BaseController:
+        case is GameController:
             print("base")
+            fallthrough
+        case is TimerGameCotoller:
+            print(123)
+            fallthrough
+        case is TalkGameController:
+            print(123)
         default:
             break
         }
@@ -85,7 +81,6 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
     func applicationWillEnterForeground(_ application: UIApplication) {
         guard isPlaying else { return }
         print(#function)
-    
         guard let windowScene = application.connectedScenes.first as? UIWindowScene,
               let window = windowScene.windows.first,
               let rootVC = window.rootViewController as? CustomUINavigationController,
@@ -121,12 +116,18 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
     }
     
     func sceneDidEnterBackground(_ scene: UIScene) {
-        print(#function)
         guard let windowScene = scene as? UIWindowScene,
               let window = windowScene.windows.first,
-              let rootVC = window.rootViewController as? EmptyController else { return }
-        isPlaying = true
-        print(12)
+              let rootVC = window.rootViewController as? CustomUINavigationController,
+              let topVC = rootVC.topViewController else { return }
+        
+        if let vc = topVC as? TalkGameController{
+            vc.engine?.offEngine()
+        }
+        if let vc = topVC as? TimerGameCotoller{
+            vc.timer?.invalidate()
+            vc.timer = nil
+        }
     }
     
     func sceneWillEnterForeground(_ scene: UIScene) {
@@ -135,16 +136,11 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
               let window = windowScenne.windows.first,
               let rootVC = window.rootViewController as? CustomUINavigationController,
               let topVC = rootVC.topViewController else { return }
-
-        switch topVC{
-        case is GameController:
-            print("basebase")
-        case is TimerGameCotoller:
-            print(123)
-        default:
-            break
+        
+        if let vc = topVC as? GameController{
+            vc.alert(message: "앱이 중지 되었습니다. \n 앱을 다시실행해주세요.", agree: { alert in
+                vc.goBackToRoot()
+            }, disagree: nil)
         }
-        
-        
     }
 }

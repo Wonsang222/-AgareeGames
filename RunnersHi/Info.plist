@@ -5,15 +5,7 @@
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>
-		<dict>
-			<key>localhost:8001</key>
-			<dict>
-				<key>NSExceptionAllowInsecureHTTPLoads</key>
-				<true/>
-				<key>NSIncludesSubdomains</key>
-				<true/>
-			</dict>
-		</dict>
+		<dict/>
 	</dict>
 	<key>UIAppFonts</key>
 	<array>
@@ -37,8 +29,6 @@
 		</dict>
 	</dict>
 	<key>UIFileSharingEnabled</key>
-	<true/>
-	<key>LSSupportsOpeningDocumentsInPlace</key>
 	<true/>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>

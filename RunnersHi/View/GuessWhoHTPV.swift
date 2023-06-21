@@ -92,6 +92,6 @@ final class GuessWhoHTPV:HowToPlayBaseView{
         containerView.addArrangedSubview(descriptionLabel1)
         containerView.addArrangedSubview(descriptionLabel2)
         containerView.addArrangedSubview(descriptionLabel3)
-        containerView.addArrangedSubview(imgView)
+//        containerView.addArrangedSubview(imgView)
     }
 }

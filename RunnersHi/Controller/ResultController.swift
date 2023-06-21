@@ -60,4 +60,10 @@ final class ResultController:SettingController{
             navigationController?.viewControllers = stack
         }
     }
+    
+    deinit{
+        print("---------------")
+        print("off result")
+        print("---------------")
+    }
 }

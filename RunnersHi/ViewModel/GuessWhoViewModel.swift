@@ -41,6 +41,9 @@ final class GuessWhoViewModel{
     
     init(delegate: GuessWhoViewModelDelegate) {
         self.delegate = delegate
+        print("----------")
+        print("viewmodel on")
+        print("----------")
     }
     
     func fetchNetworkData(httpbaseResource:HttpBaseResource){
