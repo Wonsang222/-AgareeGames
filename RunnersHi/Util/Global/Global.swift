@@ -20,6 +20,6 @@ struct Global{
     static let UUID = "59287382-e52d-4090-a829-864b5b578bc1"
     static let URL = "https://agareegames.fly.dev"
     static let PHOTODBURL = FileManager().urls(for: .libraryDirectory, in: .userDomainMask).first!.appendingPathComponent(Global.PHOTODB, isDirectory: true)
-    static var GAMEDIC:[String:String] = ["인물게임":"GuessWho"]
+    static var GAMEDIC:[String:String] = ["인물퀴즈":"GuessWho"]
     
 }

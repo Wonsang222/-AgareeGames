@@ -38,7 +38,7 @@ final class GuessWhoHTPV:HowToPlayBaseView{
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     private func configureContainer(){
         let imgView:UIImageView = {
             let imgView = UIImageView(image: UIImage(named: "joker")!.withRenderingMode(.alwaysOriginal))

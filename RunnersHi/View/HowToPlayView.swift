@@ -32,7 +32,7 @@ class HowToPlayBaseView:BaseView{
         let button = UIButton(type: .custom)
         button.setImage(UIImage(systemName: "checkmark"), for: .normal)
         button.tintColor = .white
-        button.backgroundColor = .black
+        button.backgroundColor = .systemGray
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
