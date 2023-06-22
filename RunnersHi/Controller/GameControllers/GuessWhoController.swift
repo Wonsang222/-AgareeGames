@@ -24,7 +24,8 @@ final class GuessWhoController:TalkGameController{
     
     //MARK: - Properties
     private let guessView = GuessWhoView()
-    private lazy var viewModel = GuessWhoViewModel(delegate: self)
+//    private lazy var viewModel = GuessWhoViewModel(delegate: self)
+    var viewModel:GuessWhoViewModel!
     
     //MARK: - Lifecycle
     
@@ -33,7 +34,8 @@ final class GuessWhoController:TalkGameController{
         print("-----------------------------")
         print("guesswho on ")
         print("-----------------------------")
-        engine = STTEngine(controller: self)
+        viewModel = GuessWhoViewModel(delegate: self)
+//        engine = STTEngine(controller: self)
         
 //        let base = ResourceBuilder.shared
 //            .setReqMethod(.GET)
