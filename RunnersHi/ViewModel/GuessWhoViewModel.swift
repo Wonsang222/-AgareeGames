@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol GuessWhoViewModelDelegate:BaseDelegate{
+protocol GuessWhoViewModelDelegate:BaseDelegate, AnyObject{
     func setNextTarget(with data:GuessWhoPlayModel)
     func clearGame(isWin:Bool)
     // 에러 핸들링
@@ -17,17 +17,17 @@ protocol GuessWhoViewModelDelegate:BaseDelegate{
 final class GuessWhoViewModel{
     
     var isNetworkDone:Bool = false
-    private var delegate:GuessWhoViewModelDelegate
+    private weak var delegate:GuessWhoViewModelDelegate?
     var playModelArray:[GuessWhoPlayModel] = []
     
     private var targetModel:GuessWhoPlayModel?{
         didSet{
             guard let targetModel = targetModel else {
                 // 게임 이긴 경우
-                delegate.clearGame(isWin: true)
+                delegate?.clearGame(isWin: true)
                 return
             }
-            delegate.setNextTarget(with: targetModel)
+            delegate?.setNextTarget(with: targetModel)
         }
     }
     
@@ -62,7 +62,7 @@ final class GuessWhoViewModel{
                     //                    saveDB()
                 }
             } catch{
-                delegate.handleError(error)
+                delegate?.handleError(error)
             }
         }
     }
