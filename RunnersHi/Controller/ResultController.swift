@@ -54,8 +54,6 @@ final class ResultController:SettingController{
     
     func configureEmptyController(){
         if var stack = navigationController?.viewControllers, let index = stack.firstIndex(of: self){
-            print(stack)
-            print(index)
             stack.insert(EmptyController(), at: index)
             navigationController?.viewControllers = stack
         }

@@ -32,6 +32,7 @@
 		C11D6EE82A41E84B00F59E15 /* HowToPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11D6EE72A41E84B00F59E15 /* HowToPlayView.swift */; };
 		C14080302A17E7950091F861 /* CustomFont.otf in Resources */ = {isa = PBXBuildFile; fileRef = C140802F2A17E7950091F861 /* CustomFont.otf */; };
 		C1454DA62A33701000AD57D0 /* EmptyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1454DA52A33701000AD57D0 /* EmptyController.swift */; };
+		C147D5672A470C1E00B27689 /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C147D5662A470C1E00B27689 /* ErrorManager.swift */; };
 		C148D9D52A1CE95C005AB791 /* TalkGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C148D9D42A1CE95C005AB791 /* TalkGameController.swift */; };
 		C148D9D72A1CE961005AB791 /* TimerGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C148D9D62A1CE961005AB791 /* TimerGameController.swift */; };
 		C148D9DA2A1CE996005AB791 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C148D9D92A1CE996005AB791 /* Protocol.swift */; };
@@ -73,6 +74,7 @@
 		C11D6EE72A41E84B00F59E15 /* HowToPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToPlayView.swift; sourceTree = "<group>"; };
 		C140802F2A17E7950091F861 /* CustomFont.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = CustomFont.otf; sourceTree = "<group>"; };
 		C1454DA52A33701000AD57D0 /* EmptyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyController.swift; sourceTree = "<group>"; };
+		C147D5662A470C1E00B27689 /* ErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
 		C148D9D42A1CE95C005AB791 /* TalkGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TalkGameController.swift; sourceTree = "<group>"; };
 		C148D9D62A1CE961005AB791 /* TimerGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerGameController.swift; sourceTree = "<group>"; };
 		C148D9D92A1CE996005AB791 /* Protocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				7E246FA62A1DB7A80068CF9E /* Error.swift */,
+				C147D5662A470C1E00B27689 /* ErrorManager.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -405,6 +408,7 @@
 				7E20755B29F9FBE4000BFE61 /* GuessWhoView.swift in Sources */,
 				7E159D3829F8A01900C7E601 /* GuessWhoController.swift in Sources */,
 				C148D9DF2A21C35D005AB791 /* ImageCacheManager.swift in Sources */,
+				C147D5672A470C1E00B27689 /* ErrorManager.swift in Sources */,
 				C1454DA62A33701000AD57D0 /* EmptyController.swift in Sources */,
 				C14F275E2A02C01B0007E7A6 /* ResultController.swift in Sources */,
 				7E246FA72A1DB7A80068CF9E /* Error.swift in Sources */,

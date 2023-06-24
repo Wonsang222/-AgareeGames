@@ -15,7 +15,7 @@ struct Global{
     static let PHOTODB = "PhotoDB"
     
     //MARK: - Network Setting
-//    static let BUNDLEIDENTIFIER = Bundle.main.infoDictionary?["CFBundleIdentifier"] as! String
+    //    static let BUNDLEIDENTIFIER = Bundle.main.infoDictionary?["CFBundleIdentifier"] as! String
     static let BUNDLEIDENTIFIER = "com.kr.magic"
     static let UUID = "59287382-e52d-4090-a829-864b5b578bc1"
     static let URL = "https://agareegames.fly.dev"

@@ -7,26 +7,13 @@
 
 import UIKit
 import Speech
-/*
- check the process 에서 타이머 멈추는거
- 타이머 갯수 확인하자
- tim
- 과도한 weak self??  -> 알아보기
- progress bar 위치 재지정
- 
- 에러 리스트
- 1. audio off 일때 -> 시작 ㄴㄴ 뒤로 가자
- 2. server error -> 앱 종료
- 
- */
 
 final class GuessWhoController:TalkGameController{
     
     //MARK: - Properties
     private let guessView = GuessWhoView()
-//    private lazy var viewModel = GuessWhoViewModel(delegate: self)
-    var viewModel:GuessWhoViewModel!
-    
+    private lazy var viewModel = GuessWhoViewModel(delegate: self)
+        
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -35,22 +22,22 @@ final class GuessWhoController:TalkGameController{
         print("guesswho on ")
         print("-----------------------------")
         viewModel = GuessWhoViewModel(delegate: self)
-//        engine = STTEngine(controller: self)
+        engine = STTEngine(controller: self)
         
-//        let base = ResourceBuilder.shared
-//            .setReqMethod(.GET)
-//            .setPath(gameTitle!)
-//            .setParams("num", howMany!)
-//            .build()
-//
-//        viewModel.fetchNetworkData(httpbaseResource: base)
+        let base = ResourceBuilder.shared
+            .setReqMethod(.GET)
+            .setPath(gameTitle!)
+            .setParams("num", howMany!)
+            .build()
         
+        print(howMany!)
+        print(gameTitle)
+        
+        viewModel.fetchNetworkData(httpbaseResource: base)
         configureUI()
-        
-        //        startCounter {
-        //            self.startGame()
-        //        }
-
+                startCounter {
+                    self.startGame()
+                }
     }
     //MARK: - Methods
     private func configureUI(){
@@ -77,9 +64,10 @@ final class GuessWhoController:TalkGameController{
     }
     
     private func startGame(){
-        if !viewModel.isNetworkDone{
-            loaderON()
-        }
+        if !viewModel.isNetworkDone{ loaderON() }
+        
+        // 에러 났는지 어쩐지 다 이런거 여기서 체크해야함.
+        
         countView.removeFromSuperview()
         guessView.imageView.isHidden = false
         countView.layoutIfNeeded()
@@ -134,6 +122,7 @@ extension GuessWhoController:SFSpeechRecognizerDelegate{
 
 extension GuessWhoController:GuessWhoViewModelDelegate{
     func handleError(_ error: Error) {
+        print("🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆r")
         switch error{
         case is NetworkError:
             alert(message: "현재 서버와 연결할 수 없습니다. 양해부탁드립니다.", agree: {[weak self] alert in
@@ -158,6 +147,7 @@ extension GuessWhoController:GuessWhoViewModelDelegate{
     func clearGame(isWin:Bool) {
         let nextVC = ResultController(isWin: isWin)
         navigationController?.pushViewController(nextVC, animated: true)
+        print(#function)
     }
 }
 

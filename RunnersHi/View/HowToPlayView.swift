@@ -21,7 +21,7 @@ class HowToPlayBaseView:BaseView{
        let view = UIStackView()
         view.axis = .vertical
         view.distribution = .fill
-        view.alignment = .fill
+        view.alignment = .center
         view.spacing = 10
         view.translatesAutoresizingMaskIntoConstraints = false
         return view

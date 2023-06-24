@@ -86,12 +86,14 @@ final class GuessWhoHTPV:HowToPlayBaseView{
             label.translatesAutoresizingMaskIntoConstraints = false
             return label
         }()
-        
-        imgView.setContentHuggingPriority(.defaultLow, for: .vertical)
+                          
+        imgView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         
         containerView.addArrangedSubview(descriptionLabel1)
         containerView.addArrangedSubview(descriptionLabel2)
         containerView.addArrangedSubview(descriptionLabel3)
-//        containerView.addArrangedSubview(imgView)
+        containerView.addArrangedSubview(imgView)
+        
+        imgView.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.8).isActive = true
     }
 }

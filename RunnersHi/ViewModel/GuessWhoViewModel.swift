@@ -11,7 +11,7 @@ import UIKit
 protocol GuessWhoViewModelDelegate:BaseDelegate, AnyObject{
     func setNextTarget(with data:GuessWhoPlayModel)
     func clearGame(isWin:Bool)
-    // 에러 핸들링
+
 }
 
 final class GuessWhoViewModel{

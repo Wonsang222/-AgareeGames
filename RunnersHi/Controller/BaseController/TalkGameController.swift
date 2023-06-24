@@ -26,6 +26,7 @@ class TalkGameController:TimerGameCotoller{
     
     override func viewWillDisappear(_ animated: Bool) {
         engine?.offEngine()
+        engine = nil
     }
     
     override func viewDidLoad() {

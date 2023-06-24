@@ -12,6 +12,12 @@ enum NetworkError:Error{
     case disconnected
     case notconnected
     case serverError
+    
+    func checkErrMessage(){
+        switch self{
+        case
+        }
+    }
 }
 
 enum AudioError:Error{

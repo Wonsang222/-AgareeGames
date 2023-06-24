@@ -5,17 +5,10 @@
 //  Created by 황원상 on 2023/04/26.
 //
 
-/*
- 
- 에러처리 해야함
- 의존성 주입 -> 처음엔 abstract로 클래스 나눴었다.
- 
- */
-
 import UIKit
 import Speech
 
-protocol STTEngineDelegate:BaseDelegate{
+protocol STTEngineDelegate:BaseDelegate,AnyObject{
     func runRecognizer(_ text:String)
 }
 
@@ -24,16 +17,20 @@ final class STTEngine{
     private var recognitionRequest:SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
-    private let controller:STTEngineDelegate
+    private weak var delegate:STTEngineDelegate?
     
     init(controller:STTEngineDelegate){
-        self.controller = controller
+        self.delegate = controller
         guard let speechController = controller as? SFSpeechRecognizerDelegate else {return}
         self.speechRecognizer.delegate = speechController
+        
+        print("------------------------------------")
+        print("👍🏻👍🏻👍🏻👍🏻👍🏻👍🏻")
+        print("------------------------------------")
     }
     
     func startEngine(){
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+        DispatchQueue.global(qos: .userInteractive).async { [weak self] in
             guard let self = self else { return }
             let audioSession = AVAudioSession.sharedInstance()
             do {
@@ -41,7 +38,7 @@ final class STTEngine{
                 try audioSession.setMode(AVAudioSession.Mode.measurement)
                 try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
             } catch {
-                self.controller.handleError(error)
+                self.delegate?.handleError(error)
             }
             
             self.recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
@@ -52,7 +49,6 @@ final class STTEngine{
     }
     
     private func runRecognizer(){
-    
             if self.audioEngine.isRunning {
                 self.audioEngine.stop()
                 self.recognitionRequest?.endAudio()
@@ -79,7 +75,7 @@ final class STTEngine{
                         let text = result?.bestTranscription.formattedString
                         guard let text = text else { return }
                         DispatchQueue.main.async {
-                            self.controller.runRecognizer(text)
+                            self.delegate?.runRecognizer(text)
                         }
                         
                         isFinal = (result?.isFinal)!
@@ -115,6 +111,12 @@ final class STTEngine{
         recognitionTask = nil
         audioEngine.inputNode.removeTap(onBus: 0)
         audioEngine.stop()
+    }
+    
+    deinit{
+        print("------------------------------------")
+        print("👏🏻👏🏻👏🏻👏🏻👏🏻👏🏻👏🏻👏🏻👏🏻👏🏻👏🏻👏🏻👏🏻👏🏻👏🏻👏🏻👏🏻👏🏻")
+        print("------------------------------------")
     }
 }
 
