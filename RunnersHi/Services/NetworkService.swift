@@ -10,7 +10,7 @@ import UIKit
 final class NetworkService{
     
     private static let session = URLSession(configuration: configuration)
-    
+    static var networkErr = [Error]()
     private static let configuration:URLSessionConfiguration = {
         let configuration = URLSessionConfiguration.default
         configuration.networkServiceType = .responsiveData
@@ -26,9 +26,10 @@ final class NetworkService{
             let (data, response)  = try await session.data(for: httpbaseresource.request())
             guard let status = response as? HTTPURLResponse,
                     (200...299).contains(status.statusCode) else {
-                print("fetchJson return nil")
+                let error = MyServerError.statusCode((response as? HTTPURLResponse)!.statusCode)
+                networkErr.append(error)
                 return nil }
-            let jsonData = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! [String:Any]
+            let jsonData = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! [String:Any]
             result = jsonData
             return result
         } catch{

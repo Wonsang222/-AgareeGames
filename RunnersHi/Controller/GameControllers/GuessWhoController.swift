@@ -65,13 +65,17 @@ final class GuessWhoController:TalkGameController{
     
     private func startGame(){
         if !viewModel.isNetworkDone{ loaderON() }
-        
-        // 에러 났는지 어쩐지 다 이런거 여기서 체크해야함.
-        
+        checkTheErr()
         countView.removeFromSuperview()
         guessView.imageView.isHidden = false
         countView.layoutIfNeeded()
         viewModel.next()
+    }
+    
+    func checkTheErr(){
+
+        
+        
     }
     
     override func checkTheAnswer()->Bool{
@@ -112,6 +116,8 @@ final class GuessWhoController:TalkGameController{
         print("guessWhoVC Deinit")
         print("===============================================================")
     }
+    
+    
 }
 
 //MARK: - Extension
@@ -122,19 +128,17 @@ extension GuessWhoController:SFSpeechRecognizerDelegate{
 
 extension GuessWhoController:GuessWhoViewModelDelegate{
     func handleError(_ error: Error) {
-        print("🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆🦆r")
-        switch error{
-        case is NetworkError:
-            alert(message: "현재 서버와 연결할 수 없습니다. 양해부탁드립니다.", agree: {[weak self] alert in
-                self?.goBackToRoot()
-            }, disagree: nil)
-        case is AudioError:
-            alert(message: "Audio 오류 발생했습니다. 앱을 다시 실행해 주세요.", agree: { [weak self] alert in
-                self?.terminateAppGracefullyAfter(second: 0)
-            }, disagree: nil)
-        default:
-            showAppTerminatingAlert()
+        DispatchQueue.main.async {
+            switch error{
+            case is AudioError:
+                self.alert(message: "Audio 오류 발생했습니다. 앱을 다시 실행해 주세요.", agree: { [weak self] alert in
+                    self?.terminateAppGracefullyAfter(second: 0)
+                }, disagree: nil)
+            default:
+                self.showAppTerminatingAlert()
+            }
         }
+
     }
     
     func setNextTarget(with data: GuessWhoPlayModel) {
