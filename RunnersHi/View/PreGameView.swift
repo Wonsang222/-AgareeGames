@@ -12,7 +12,7 @@ final class PreGameView:BaseView{
     let gameTitle:String
 
     //MARK: - TitleLabel
-    private lazy var titleLabel:UILabel = {
+    private lazy var titleLabel:CustomLabel = {
         let label = CustomLabel(messageText: gameTitle, textSize: 30.0)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -33,10 +33,14 @@ final class PreGameView:BaseView{
     
     let howToPlayButton:UIButton = {
        let button = UIButton()
-        let attributes:[NSAttributedString.Key:Any] = [.font: UIFont.systemFont(ofSize: 16),
+        let attributes1:[NSAttributedString.Key:Any] = [.font: UIFont.systemFont(ofSize: 16),
                                                        .foregroundColor:UIColor.systemGray]
-        let attText = NSAttributedString(string: "게임방법이 궁금하신가요?", attributes: attributes)
-        button.setAttributedTitle(attText, for: .normal)
+        let attributes2:[NSAttributedString.Key:Any] = [.font: UIFont.systemFont(ofSize: 16),
+                                                       .foregroundColor:UIColor.white]
+        let attText1 = NSAttributedString(string: "게임방법이 궁금하신가요?", attributes: attributes1)
+        let attText2 = NSAttributedString(string: "게임방법이 궁금하신가요?", attributes: attributes2)
+        button.setAttributedTitle(attText1, for: .normal)
+        button.setAttributedTitle(attText2, for: .highlighted)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -53,7 +57,7 @@ final class PreGameView:BaseView{
         iv.tintColor = .white
         iv.contentMode = .scaleToFill
         iv.clipsToBounds = true
-        iv.translatesAutoresizingMaskIntoConstraints = false
+
         return iv
     }()
     
@@ -66,8 +70,10 @@ final class PreGameView:BaseView{
     private lazy var buttonStack:UIStackView = {
        let st = UIStackView(arrangedSubviews: [buttonImage, buttonLabel])
         st.axis = .vertical
-        st.distribution = .fill
+        st.distribution = .fillEqually
         st.alignment = .center
+        st.layoutMargins = UIEdgeInsets(top: 15, left: 0, bottom: 0, right: 0)
+        st.isLayoutMarginsRelativeArrangement = true
         st.translatesAutoresizingMaskIntoConstraints = false
         return st
     }()
@@ -89,14 +95,13 @@ final class PreGameView:BaseView{
     }
     
     private func configureButton(){
-        containerView.addSubview(buttonStack)
         addSubview(containerView)
+        containerView.addSubview(buttonStack)
         containerView.addSubview(playButton)
         
         NSLayoutConstraint.activate([
             buttonImage.widthAnchor.constraint(equalTo: buttonStack.widthAnchor, multiplier: 0.5),
             buttonImage.heightAnchor.constraint(equalTo: buttonStack.heightAnchor, multiplier: 0.5),
-            buttonImage.topAnchor.constraint(equalTo: buttonStack.topAnchor, constant: 15),
             
             buttonStack.topAnchor.constraint(equalTo: containerView.topAnchor),
             buttonStack.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),

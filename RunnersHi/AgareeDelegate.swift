@@ -14,13 +14,11 @@ let homePath = FileManager.default.urls(for: .libraryDirectory, in: .userDomainM
 class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
     
     var window: UIWindow?
-    var isPlaying:Bool = false
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         var libraryFolderUrl = homePath.appendingPathComponent(Global.PHOTODB, isDirectory: true)
-        print(libraryFolderUrl)
-        
+    
         if !UserDefaults.standard.bool(forKey: initialKey){
             //처음 부팅
             let defaultSettings = [thresholdKey:123] as [String:Any]
@@ -41,66 +39,7 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
         return true
     }
     
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        isPlaying = true
-        print(99)
-        print(#function)
-        guard let windowScene = application.connectedScenes.first as? UIWindowScene,
-              let window = windowScene.windows.first,
-              let rootVc = window.rootViewController as? CustomUINavigationController,
-              let topVC = rootVc.topViewController else { return }
-        
-        switch topVC{
-        case is GameController:
-            print("base")
-            fallthrough
-        case is TimerGameCotoller:
-            print(123)
-            fallthrough
-        case is TalkGameController:
-            print(123)
-        default:
-            break
-        }
 
-        
-//        // 전화올때, 앱나갈때 스톱 그리고 다시 돌아오면 alert하고 pop
-//        if let rootVC = UIApplication.shared.keyWindow as? UINavigationController{
-//            if let vc = rootVC.topViewController as? TimerGameCotoller{
-//                vc.timer?.invalidate()
-//                vc.timer = nil
-//            }
-//            if let mainVC = rootVC.topViewController as? TalkGameController{
-//                mainVC.engine?.offEngine()
-//            }
-//        }
-        
-        
-    }
-    
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        guard isPlaying else { return }
-        print(#function)
-        guard let windowScene = application.connectedScenes.first as? UIWindowScene,
-              let window = windowScene.windows.first,
-              let rootVC = window.rootViewController as? CustomUINavigationController,
-              let topVC = rootVC.topViewController else { return }
-        
-        switch topVC{
-        case is TimerGameCotoller:
-            print(123123)
-            fallthrough
-        case is GameController:
-            print(12312312)
-            fallthrough
-        case is TalkGameController:
-            print(123123)
-        default:
-            break
-            
-        }
-    }
-    
     // MARK: UISceneSession Lifecycle
     
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
@@ -131,14 +70,13 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
     }
     
     func sceneWillEnterForeground(_ scene: UIScene) {
-        print(#function)
         guard let windowScenne = scene as? UIWindowScene,
               let window = windowScenne.windows.first,
               let rootVC = window.rootViewController as? CustomUINavigationController,
               let topVC = rootVC.topViewController else { return }
         
         if let vc = topVC as? GameController{
-            vc.alert(message: "앱이 중지 되었습니다. \n 앱을 다시실행해주세요.", agree: { alert in
+            vc.alert(message: "앱이 중지 되었습니다. \n 게임을 다시실행해주세요.", agree: { alert in
                 vc.goBackToRoot()
             }, disagree: nil)
         }

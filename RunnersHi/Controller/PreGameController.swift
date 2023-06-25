@@ -38,6 +38,10 @@ final class PreGameController:BaseController{
         self.gameTitle = gameTitle
         super.init(nibName: nil, bundle: nil)
         
+        print("🔥🔥🔥")
+        print(Global.URL)
+        print("🔥🔥🔥")
+        
     }
     
     required init?(coder: NSCoder) {

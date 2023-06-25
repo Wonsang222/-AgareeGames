@@ -39,6 +39,44 @@
 		C14F272C29FEA3E00007E7A6 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14F272B29FEA3E00007E7A6 /* NetworkService.swift */; };
 		C14F275E2A02C01B0007E7A6 /* ResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14F275D2A02C01B0007E7A6 /* ResultController.swift */; };
 		C14F27642A0521490007E7A6 /* ResourceBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14F27632A0521490007E7A6 /* ResourceBuilder.swift */; };
+		C1649BF22A47D4260094D56D /* PreGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E04C8E42A03342300357A0F /* PreGameController.swift */; };
+		C1649BF32A47D4260094D56D /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1BEF5F2A281D5500E59F95 /* ResultViewModel.swift */; };
+		C1649BF42A47D4260094D56D /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E159D3429F89FD900C7E601 /* Global.swift */; };
+		C1649BF52A47D4260094D56D /* GuessWhoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E20755A29F9FBE4000BFE61 /* GuessWhoView.swift */; };
+		C1649BF62A47D4260094D56D /* GuessWhoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E159D3729F8A01900C7E601 /* GuessWhoController.swift */; };
+		C1649BF72A47D4260094D56D /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C148D9DE2A21C35D005AB791 /* ImageCacheManager.swift */; };
+		C1649BF82A47D4260094D56D /* EmptyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1454DA52A33701000AD57D0 /* EmptyController.swift */; };
+		C1649BF92A47D4260094D56D /* ResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14F275D2A02C01B0007E7A6 /* ResultController.swift */; };
+		C1649BFA2A47D4260094D56D /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E246FA62A1DB7A80068CF9E /* Error.swift */; };
+		C1649BFB2A47D4260094D56D /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C176FECE2A1A5C8800C7EFE6 /* Reachability.swift */; };
+		C1649BFC2A47D4260094D56D /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBC429F8030600648638 /* MainController.swift */; };
+		C1649BFD2A47D4260094D56D /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3544AA2A13160E00B844E6 /* BaseView.swift */; };
+		C1649BFE2A47D4260094D56D /* HowToPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11D6EE72A41E84B00F59E15 /* HowToPlayView.swift */; };
+		C1649BFF2A47D4260094D56D /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E20755C29F9FBF8000BFE61 /* IntroView.swift */; };
+		C1649C002A47D4260094D56D /* ResourceBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14F27632A0521490007E7A6 /* ResourceBuilder.swift */; };
+		C1649C012A47D4260094D56D /* STTEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBCD29F951BF00648638 /* STTEngine.swift */; };
+		C1649C022A47D4260094D56D /* TimerGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C148D9D62A1CE961005AB791 /* TimerGameController.swift */; };
+		C1649C032A47D4260094D56D /* CustomUINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E04C8EB2A0342FE00357A0F /* CustomUINavigationController.swift */; };
+		C1649C042A47D4260094D56D /* IntroController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBCA29F805C000648638 /* IntroController.swift */; };
+		C1649C052A47D4260094D56D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFE7AE29E30425009FFD0B /* AppDelegate.swift */; };
+		C1649C062A47D4260094D56D /* SettingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E04C8ED2A03432D00357A0F /* SettingController.swift */; };
+		C1649C072A47D4260094D56D /* PreGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E04C8E62A033C4800357A0F /* PreGameView.swift */; };
+		C1649C082A47D4260094D56D /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A83802A01F8A30031B3E3 /* Extension.swift */; };
+		C1649C092A47D4260094D56D /* GuessWhoPlayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C176FED12A1A5FCB00C7EFE6 /* GuessWhoPlayModel.swift */; };
+		C1649C0A2A47D4260094D56D /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = C148D9D92A1CE996005AB791 /* Protocol.swift */; };
+		C1649C0B2A47D4260094D56D /* TalkGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C148D9D42A1CE95C005AB791 /* TalkGameController.swift */; };
+		C1649C0C2A47D4260094D56D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E125E7C2A00FF9D0044D881 /* MainView.swift */; };
+		C1649C0D2A47D4260094D56D /* GuessWhoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E159D3B29F8A0E400C7E601 /* GuessWhoViewModel.swift */; };
+		C1649C0E2A47D4260094D56D /* AgareeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E60DD6F2A307A6600A511E2 /* AgareeDelegate.swift */; };
+		C1649C0F2A47D4260094D56D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14F272B29FEA3E00007E7A6 /* NetworkService.swift */; };
+		C1649C102A47D4260094D56D /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBC629F8033300648638 /* BaseController.swift */; };
+		C1649C112A47D4260094D56D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFE7B029E30425009FFD0B /* SceneDelegate.swift */; };
+		C1649C122A47D4260094D56D /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E04C8E92A0342C800357A0F /* GameController.swift */; };
+		C1649C132A47D4260094D56D /* GuessWhoDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C119CBC829F804FE00648638 /* GuessWhoDataModel.swift */; };
+		C1649C142A47D4260094D56D /* GuessWhoHTPV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E49954E2A0CAFD5006D95AC /* GuessWhoHTPV.swift */; };
+		C1649C152A47D4260094D56D /* HttpBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFE7D529E8607D009FFD0B /* HttpBase.swift */; };
+		C1649C182A47D4260094D56D /* CustomFont.otf in Resources */ = {isa = PBXBuildFile; fileRef = C140802F2A17E7950091F861 /* CustomFont.otf */; };
+		C1649C192A47D4260094D56D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1FFE7B729E30425009FFD0B /* Assets.xcassets */; };
 		C176FECF2A1A5C8800C7EFE6 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C176FECE2A1A5C8800C7EFE6 /* Reachability.swift */; };
 		C176FED22A1A5FCB00C7EFE6 /* GuessWhoPlayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C176FED12A1A5FCB00C7EFE6 /* GuessWhoPlayModel.swift */; };
 		C1FFE7AF29E30425009FFD0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFE7AE29E30425009FFD0B /* AppDelegate.swift */; };
@@ -80,6 +118,8 @@
 		C14F272B29FEA3E00007E7A6 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		C14F275D2A02C01B0007E7A6 /* ResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultController.swift; sourceTree = "<group>"; };
 		C14F27632A0521490007E7A6 /* ResourceBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceBuilder.swift; sourceTree = "<group>"; };
+		C1649C1D2A47D4260094D56D /* AgareeGames_dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgareeGames_dev.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1649C1E2A47D4260094D56D /* AgareeGames_dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = AgareeGames_dev.plist; path = /Users/hwangwonsang/Desktop/git/AgareeGames/AgareeGames_dev.plist; sourceTree = "<absolute>"; };
 		C176FECE2A1A5C8800C7EFE6 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		C176FED12A1A5FCB00C7EFE6 /* GuessWhoPlayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoPlayModel.swift; sourceTree = "<group>"; };
 		C1FFE7AB29E30425009FFD0B /* AgareeGames_dis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgareeGames_dis.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +133,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C1649C162A47D4260094D56D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C1FFE7A829E30425009FFD0B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -219,6 +266,7 @@
 			children = (
 				C1FFE7AD29E30425009FFD0B /* RunnersHi */,
 				C1FFE7AC29E30425009FFD0B /* Products */,
+				C1649C1E2A47D4260094D56D /* AgareeGames_dev.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -226,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				C1FFE7AB29E30425009FFD0B /* AgareeGames_dis.app */,
+				C1649C1D2A47D4260094D56D /* AgareeGames_dev.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -332,6 +381,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		C1649BF02A47D4260094D56D /* AgareeGames_dev */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C1649C1A2A47D4260094D56D /* Build configuration list for PBXNativeTarget "AgareeGames_dev" */;
+			buildPhases = (
+				C1649BF12A47D4260094D56D /* Sources */,
+				C1649C162A47D4260094D56D /* Frameworks */,
+				C1649C172A47D4260094D56D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AgareeGames_dev;
+			productName = RunnersHi;
+			productReference = C1649C1D2A47D4260094D56D /* AgareeGames_dev.app */;
+			productType = "com.apple.product-type.application";
+		};
 		C1FFE7AA29E30425009FFD0B /* AgareeGames_dis */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C1FFE7BF29E30425009FFD0B /* Build configuration list for PBXNativeTarget "AgareeGames_dis" */;
@@ -378,11 +444,21 @@
 			projectRoot = "";
 			targets = (
 				C1FFE7AA29E30425009FFD0B /* AgareeGames_dis */,
+				C1649BF02A47D4260094D56D /* AgareeGames_dev */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		C1649C172A47D4260094D56D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1649C182A47D4260094D56D /* CustomFont.otf in Resources */,
+				C1649C192A47D4260094D56D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C1FFE7A929E30425009FFD0B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -395,6 +471,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C1649BF12A47D4260094D56D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1649BF22A47D4260094D56D /* PreGameController.swift in Sources */,
+				C1649BF32A47D4260094D56D /* ResultViewModel.swift in Sources */,
+				C1649BF42A47D4260094D56D /* Global.swift in Sources */,
+				C1649BF52A47D4260094D56D /* GuessWhoView.swift in Sources */,
+				C1649BF62A47D4260094D56D /* GuessWhoController.swift in Sources */,
+				C1649BF72A47D4260094D56D /* ImageCacheManager.swift in Sources */,
+				C1649BF82A47D4260094D56D /* EmptyController.swift in Sources */,
+				C1649BF92A47D4260094D56D /* ResultController.swift in Sources */,
+				C1649BFA2A47D4260094D56D /* Error.swift in Sources */,
+				C1649BFB2A47D4260094D56D /* Reachability.swift in Sources */,
+				C1649BFC2A47D4260094D56D /* MainController.swift in Sources */,
+				C1649BFD2A47D4260094D56D /* BaseView.swift in Sources */,
+				C1649BFE2A47D4260094D56D /* HowToPlayView.swift in Sources */,
+				C1649BFF2A47D4260094D56D /* IntroView.swift in Sources */,
+				C1649C002A47D4260094D56D /* ResourceBuilder.swift in Sources */,
+				C1649C012A47D4260094D56D /* STTEngine.swift in Sources */,
+				C1649C022A47D4260094D56D /* TimerGameController.swift in Sources */,
+				C1649C032A47D4260094D56D /* CustomUINavigationController.swift in Sources */,
+				C1649C042A47D4260094D56D /* IntroController.swift in Sources */,
+				C1649C052A47D4260094D56D /* AppDelegate.swift in Sources */,
+				C1649C062A47D4260094D56D /* SettingController.swift in Sources */,
+				C1649C072A47D4260094D56D /* PreGameView.swift in Sources */,
+				C1649C082A47D4260094D56D /* Extension.swift in Sources */,
+				C1649C092A47D4260094D56D /* GuessWhoPlayModel.swift in Sources */,
+				C1649C0A2A47D4260094D56D /* Protocol.swift in Sources */,
+				C1649C0B2A47D4260094D56D /* TalkGameController.swift in Sources */,
+				C1649C0C2A47D4260094D56D /* MainView.swift in Sources */,
+				C1649C0D2A47D4260094D56D /* GuessWhoViewModel.swift in Sources */,
+				C1649C0E2A47D4260094D56D /* AgareeDelegate.swift in Sources */,
+				C1649C0F2A47D4260094D56D /* NetworkService.swift in Sources */,
+				C1649C102A47D4260094D56D /* BaseController.swift in Sources */,
+				C1649C112A47D4260094D56D /* SceneDelegate.swift in Sources */,
+				C1649C122A47D4260094D56D /* GameController.swift in Sources */,
+				C1649C132A47D4260094D56D /* GuessWhoDataModel.swift in Sources */,
+				C1649C142A47D4260094D56D /* GuessWhoHTPV.swift in Sources */,
+				C1649C152A47D4260094D56D /* HttpBase.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C1FFE7A729E30425009FFD0B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -460,6 +579,88 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		C1649C1B2A47D4260094D56D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZD5K45Y4NW;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AgareeGames_dev.plist;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "\"테스트 입니다\"";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "\"테스트 입니다\"";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				OTHER_SWIFT_FLAGS = "-D DEV";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wonsang.AgareeGames;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = AgareeGames_dev;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		C1649C1C2A47D4260094D56D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZD5K45Y4NW;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AgareeGames_dev.plist;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "\"테스트 입니다\"";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "\"테스트 입니다\"";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				OTHER_SWIFT_FLAGS = "-D DEV";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wonsang.AgareeGames;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = AgareeGames_dist;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 		C1FFE7BD29E30425009FFD0B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -580,49 +781,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZD5K45Y4NW;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = RunnersHi/Info.plist;
-				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "\"테스트 입니다\"";
-				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "\"테스트 입니다\"";
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = "";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.wonsang.AgareeGames;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = AgareeGames_dist;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Debug;
-		};
-		C1FFE7C129E30425009FFD0B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZD5K45Y4NW;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -652,11 +814,59 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
+			name = Debug;
+		};
+		C1FFE7C129E30425009FFD0B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZD5K45Y4NW;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RunnersHi/Info.plist;
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "\"테스트 입니다\"";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "\"테스트 입니다\"";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wonsang.AgareeGames;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = AgareeGames_dist;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C1649C1A2A47D4260094D56D /* Build configuration list for PBXNativeTarget "AgareeGames_dev" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1649C1B2A47D4260094D56D /* Debug */,
+				C1649C1C2A47D4260094D56D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C1FFE7A629E30424009FFD0B /* Build configuration list for PBXProject "AgareeGames" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

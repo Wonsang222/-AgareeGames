@@ -18,7 +18,11 @@ struct Global{
     //    static let BUNDLEIDENTIFIER = Bundle.main.infoDictionary?["CFBundleIdentifier"] as! String
     static let BUNDLEIDENTIFIER = "com.kr.magic"
     static let UUID = "59287382-e52d-4090-a829-864b5b578bc1"
+    #if DEV
+    static let URL = "http://localhost:8080"
+    #else
     static let URL = "https://agareegames.fly.dev"
+    #endif
     static let PHOTODBURL = FileManager().urls(for: .libraryDirectory, in: .userDomainMask).first!.appendingPathComponent(Global.PHOTODB, isDirectory: true)
     static var GAMEDIC:[String:String] = ["인물퀴즈":"GuessWho"]
     
