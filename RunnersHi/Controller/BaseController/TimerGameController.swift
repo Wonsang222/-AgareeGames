@@ -11,6 +11,7 @@ class TimerGameCotoller:GameController{
     final var timer:Timer?
     final var numToCount: Float = 0.0
     final var speed:Float = 0.0
+    final var networkErr:Error?
     
     override func viewDidLoad() {
         super.viewDidLoad()

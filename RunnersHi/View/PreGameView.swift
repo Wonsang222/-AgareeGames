@@ -12,8 +12,11 @@ final class PreGameView:BaseView{
     let gameTitle:String
 
     //MARK: - TitleLabel
-    private lazy var titleLabel:CustomLabel = {
-        let label = CustomLabel(messageText: gameTitle, textSize: 30.0)
+    private lazy var titleLabel:UILabel = {
+        let label = UILabel()
+        label.text = gameTitle
+        label.font = UIFont(name: Global.APPFONT, size: 100)
+        label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -38,7 +41,7 @@ final class PreGameView:BaseView{
         let attributes2:[NSAttributedString.Key:Any] = [.font: UIFont.systemFont(ofSize: 16),
                                                        .foregroundColor:UIColor.white]
         let attText1 = NSAttributedString(string: "게임방법이 궁금하신가요?", attributes: attributes1)
-        let attText2 = NSAttributedString(string: "게임방법이 궁금하신가요?", attributes: attributes2)
+        let attText2 = NSAttributedString(string: "좋습니다", attributes: attributes2)
         button.setAttributedTitle(attText1, for: .normal)
         button.setAttributedTitle(attText2, for: .highlighted)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -47,7 +50,11 @@ final class PreGameView:BaseView{
     
     //MARK: - Button
     private let buttonLabel:UILabel = {
-        let label = CustomLabel(messageText: "플레이", textSize: 20.0)
+        let label = UILabel()
+        label.text = "플레이"
+        label.textColor = .white
+        label.font = .preferredFont(forTextStyle: .title2)
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
         
@@ -57,11 +64,10 @@ final class PreGameView:BaseView{
         iv.tintColor = .white
         iv.contentMode = .scaleToFill
         iv.clipsToBounds = true
-
         return iv
     }()
     
-    lazy var playButton:UIButton = {
+    let playButton:UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -78,19 +84,20 @@ final class PreGameView:BaseView{
         return st
     }()
     
-    private lazy var containerView:UIView = {
+    let containerView:UIView = {
        let view = UIView()
         view.backgroundColor = .systemBlue
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     private func configureSeg(){
         addSubview(segment)
         NSLayoutConstraint.activate([
-            segment.centerXAnchor.constraint(equalTo: centerXAnchor),
             segment.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 100),
             segment.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            segment.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
+            segment.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            
         ])
     }
     
@@ -100,18 +107,23 @@ final class PreGameView:BaseView{
         containerView.addSubview(playButton)
         
         NSLayoutConstraint.activate([
-            buttonImage.widthAnchor.constraint(equalTo: buttonStack.widthAnchor, multiplier: 0.5),
-            buttonImage.heightAnchor.constraint(equalTo: buttonStack.heightAnchor, multiplier: 0.5),
-            
-            buttonStack.topAnchor.constraint(equalTo: containerView.topAnchor),
-            buttonStack.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
-            buttonStack.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            buttonStack.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
             
             playButton.topAnchor.constraint(equalTo: containerView.topAnchor),
             playButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
             playButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
             playButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            
+            buttonStack.topAnchor.constraint(equalTo: playButton.topAnchor),
+            buttonStack.bottomAnchor.constraint(equalTo: playButton.bottomAnchor),
+            buttonStack.leadingAnchor.constraint(equalTo: playButton.leadingAnchor),
+            buttonStack.trailingAnchor.constraint(equalTo: playButton.trailingAnchor),
+            
+            buttonImage.widthAnchor.constraint(equalTo: buttonStack.widthAnchor, multiplier: 0.5),
+            
+            containerView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            containerView.topAnchor.constraint(equalTo: segment.bottomAnchor, constant: 200),
+            containerView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.3),
+            containerView.heightAnchor.constraint(equalTo: containerView.widthAnchor)
             
         ])
     }
@@ -120,7 +132,7 @@ final class PreGameView:BaseView{
         addSubview(titleLabel)
         addSubview(howToPlayButton)
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 100),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 30),
             titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             howToPlayButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 10),
@@ -131,11 +143,8 @@ final class PreGameView:BaseView{
     override func layoutSubviews() {
         super.layoutSubviews()
         containerView.layer.cornerRadius = containerView.frame.width / 2
-        let centerX = bounds.midX
         let centerY = bounds.midY
-        containerView.frame = CGRect(origin: CGPoint(x: centerX - (130 / 2), y: centerY + 130), size: CGSize(width: 130, height: 130))
-        
-        titleLabel.updateLabelFontSize(view: self)
+        containerView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: centerY / 2).isActive = true
     }
 
     required init?(coder: NSCoder) {
