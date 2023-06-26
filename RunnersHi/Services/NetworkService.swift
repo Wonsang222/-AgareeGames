@@ -25,9 +25,6 @@ final class NetworkService{
         let (data, response)  = try await session.data(for: httpbaseresource.request())
         guard let status = response as? HTTPURLResponse,
                 (200...299) ~= status.statusCode else {
-            
-            // 에러 분기처리 한번 더 해야함
-            
             let error = MyServerError(statusCode: (response as? HTTPURLResponse)!.statusCode)
             throw error
         }
@@ -60,7 +57,7 @@ final class NetworkService{
                     let (data, response) = try await session.data(from:dbUrl)
                     guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw NetworkError.notconnected }
                     photo = UIImage(data: data)
-                    guard let urlPhoto = photo else { throw NetworkError.disconnected }
+                    guard let urlPhoto = photo else { throw NetworkError.notconnected }
                     ImageCacheManager.shared.setObject(urlPhoto, forKey: (dbName as NSString))
                     let model = GuessWhoPlayModel(name: dbName, photo: urlPhoto, url:url as! String)
                     result.append(model)

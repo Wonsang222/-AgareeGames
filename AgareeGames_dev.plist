@@ -8,8 +8,6 @@
 		<dict/>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
-		<key>NSAllowsArbitraryLoadsUsageDescription</key>
-		<dict/>
 	</dict>
 	<key>UIAppFonts</key>
 	<array>

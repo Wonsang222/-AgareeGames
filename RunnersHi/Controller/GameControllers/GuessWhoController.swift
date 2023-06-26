@@ -18,9 +18,6 @@ final class GuessWhoController:TalkGameController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("-----------------------------")
-        print("guesswho on ")
-        print("-----------------------------")
         viewModel = GuessWhoViewModel(delegate: self)
         engine = STTEngine(controller: self)
         
@@ -29,9 +26,6 @@ final class GuessWhoController:TalkGameController{
             .setPath(gameTitle!)
             .setParams("num", howMany!)
             .build()
-        
-        print(howMany!)
-        print(gameTitle)
         
         viewModel.fetchNetworkData(httpbaseResource: base)
         configureUI()
@@ -65,17 +59,27 @@ final class GuessWhoController:TalkGameController{
     
     private func startGame(){
         if !viewModel.isNetworkDone{ loaderON() }
-        checkTheErr()
         countView.removeFromSuperview()
         guessView.imageView.isHidden = false
         countView.layoutIfNeeded()
+        checkTheErr()
         viewModel.next()
     }
     
     func checkTheErr(){
-
-        
-        
+        if let err = viewModel.networkErr, let netErr = err as? MyServerError{
+            switch netErr.statusCode{
+            case 300...399:
+                print(123)
+            case 400...499:
+                print(23)
+            case 500...599:
+                print(123)
+            default:
+                // 알수없는 에러
+                break
+            }
+        }
     }
     
     override func checkTheAnswer()->Bool{
@@ -110,14 +114,6 @@ final class GuessWhoController:TalkGameController{
             self.progressView.setProgress(self.numToCount, animated: true)
         }
     }
-    
-    deinit{
-        print("===============================================================")
-        print("guessWhoVC Deinit")
-        print("===============================================================")
-    }
-    
-    
 }
 
 //MARK: - Extension

@@ -16,6 +16,7 @@ protocol GuessWhoViewModelDelegate:BaseDelegate, AnyObject{
 
 final class GuessWhoViewModel{
     
+    var networkErr:Error?
     var isNetworkDone:Bool = false
     private weak var delegate:GuessWhoViewModelDelegate?
     var playModelArray:[GuessWhoPlayModel] = []
@@ -41,9 +42,6 @@ final class GuessWhoViewModel{
     
     init(delegate: GuessWhoViewModelDelegate) {
         self.delegate = delegate
-        print("----------")
-        print("viewmodel on")
-        print("----------")
     }
     
     func fetchNetworkData(httpbaseResource:HttpBaseResource){
@@ -62,7 +60,7 @@ final class GuessWhoViewModel{
                     //                    saveDB()
                 }
             } catch{
-                delegate?.handleError(error)
+                networkErr = error
             }
         }
     }
@@ -91,12 +89,6 @@ final class GuessWhoViewModel{
     func createResultViewModel() -> ResultViewModel{
         
         return ResultViewModel()
-    }
-    
-    deinit{
-        print("---------------------------------------------")
-        print("guesswhoViewmodel deinit")
-        print("---------------------------------------------")
     }
 }
 

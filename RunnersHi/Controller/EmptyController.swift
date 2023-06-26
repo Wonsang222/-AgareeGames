@@ -11,6 +11,20 @@ class EmptyController:BaseController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        goBackToRoot()
+//        goBackToRoot()
+        
+        let base = ResourceBuilder.shared
+            .setReqMethod(.GET)
+            .setPath("guessWho")
+            .setParams("num", 3)
+            .build()
+        
+        Task{
+            do{
+                let data = try await NetworkService.fetchJSON(httpbaseresource:base)
+            } catch{
+                
+            }
+        }
     }
 }

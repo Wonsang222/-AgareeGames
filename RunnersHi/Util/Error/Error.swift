@@ -9,9 +9,10 @@ import Foundation
 
 enum NetworkError:Error{
     case timeout
-    case disconnected
+    case rateLimit
     case notconnected
     case serverError
+    case unknown
 }
 
 struct MyServerError:Error{
