@@ -14,8 +14,11 @@ enum NetworkError:Error{
     case serverError
 }
 
-enum MyServerError:Error{
-    case statusCode(Int)
+struct MyServerError:Error{
+    let statusCode:Int
+    init(statusCode: Int) {
+        self.statusCode = statusCode
+    }
 }
 
 enum AudioError:Error{
@@ -27,4 +30,11 @@ enum EncodingError:Error{
     case etcError
 }
 
-
+class ErrorCollector{
+    static let shared = ErrorCollector()
+    var errArray = [Error]()
+    func flush(){
+        errArray = []
+    }
+    private init() {}
+}

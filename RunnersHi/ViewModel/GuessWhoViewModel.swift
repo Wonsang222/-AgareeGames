@@ -50,8 +50,8 @@ final class GuessWhoViewModel{
         Task{
             do{
                 playModelArray = []
-                let jsonData = await NetworkService.fetchJSON(httpbaseresource: httpbaseResource)
-                guard let jsonData = jsonData else { throw NetworkError.serverError }
+                let jsonData = try await NetworkService.fetchJSON(httpbaseresource: httpbaseResource)
+                
                 let array = await NetworkService.fetchImage(jsonData)
                 playModelArray = array
                 isNetworkDone = true

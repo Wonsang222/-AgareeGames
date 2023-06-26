@@ -10,31 +10,30 @@ import UIKit
 final class NetworkService{
     
     private static let session = URLSession(configuration: configuration)
-    static var networkErr = [Error]()
     private static let configuration:URLSessionConfiguration = {
         let configuration = URLSessionConfiguration.default
         configuration.networkServiceType = .responsiveData
         configuration.timeoutIntervalForRequest = 10
+        // server error
         configuration.httpAdditionalHeaders = ["Authorization":Global.UUID, "User-Agent": Global.BUNDLEIDENTIFIER]
         return configuration
     }()
     
     //nil 을 return 하면 viewmodel에서 error 처리 -> 전부 서버에러이기 때문
-    static func fetchJSON(httpbaseresource:HttpBaseResource) async -> [String:Any]?{
+    static func fetchJSON(httpbaseresource:HttpBaseResource) async throws -> [String:Any]{
         var result:[String:Any] = [:]
-        do{
-            let (data, response)  = try await session.data(for: httpbaseresource.request())
-            guard let status = response as? HTTPURLResponse,
-                    (200...299).contains(status.statusCode) else {
-                let error = MyServerError.statusCode((response as? HTTPURLResponse)!.statusCode)
-                networkErr.append(error)
-                return nil }
+        let (data, response)  = try await session.data(for: httpbaseresource.request())
+        guard let status = response as? HTTPURLResponse,
+                (200...299) ~= status.statusCode else {
+            
+            // 에러 분기처리 한번 더 해야함
+            
+            let error = MyServerError(statusCode: (response as? HTTPURLResponse)!.statusCode)
+            throw error
+        }
             let jsonData = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! [String:Any]
             result = jsonData
             return result
-        } catch{
-        }
-        return nil
     }
     
     /*

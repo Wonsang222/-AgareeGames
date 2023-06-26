@@ -12,6 +12,8 @@ final class ImageCacheManager{
     private init(){}
 }
 
+// 이 둘의 차이!!
+
 
 final class TempCache{
     static let shared = TempCache()
