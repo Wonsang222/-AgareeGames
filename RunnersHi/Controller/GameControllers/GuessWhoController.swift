@@ -66,9 +66,10 @@ final class GuessWhoController:TalkGameController{
         viewModel.next()
     }
     
+    // 여기서 이름 정하고 처리 해야함. 타임아웃되면 에러 처리 어케함??
     func checkTheErr(){
-        if let err = viewModel.networkErr, let netErr = err as? MyServerError{
-            switch netErr.statusCode{
+        if let err = viewModel.networkErr{
+            switch err.statusCode{
             case 300...399:
                 print(123)
             case 400...499:
