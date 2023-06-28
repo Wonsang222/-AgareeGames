@@ -25,7 +25,7 @@ final class NetworkService{
         let (data, response)  = try await session.data(for: httpbaseresource.request())
         guard let status = response as? HTTPURLResponse,
                 (200...299) ~= status.statusCode else {
-            let error = MyServerError(statusCode: (response as? HTTPURLResponse)!.statusCode)
+            let error = MyServer(statusCode: (response as? HTTPURLResponse)!.statusCode).emitError()
             throw error
         }
             let jsonData = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! [String:Any]

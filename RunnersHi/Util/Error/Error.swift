@@ -15,10 +15,31 @@ enum NetworkError:Error{
     case unknown
 }
 
-struct MyServerError:Error{
+struct MyServer{
     let statusCode:Int
     init(statusCode: Int) {
         self.statusCode = statusCode
+    }
+    enum ErrList:Error{
+        case Timeout
+        case RateLimit
+        case closed
+        case OnUpdated
+        case Unkwown
+    }
+    
+    // timeout은 어떻게 처리되는지
+    func emitError() -> ErrList{
+        switch statusCode{
+        case 400:
+            return ErrList.RateLimit
+        case 408:
+            return ErrList.Timeout
+        case 503:
+            return ErrList.OnUpdated
+        default:
+            return ErrList.Unkwown
+        }
     }
 }
 

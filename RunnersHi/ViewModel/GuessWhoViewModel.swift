@@ -16,7 +16,7 @@ protocol GuessWhoViewModelDelegate:BaseDelegate, AnyObject{
 
 final class GuessWhoViewModel{
     
-    var networkErr:MyServerError?
+    var networkErr:MyServer.ErrList?
     var isNetworkDone:Bool = false
     private weak var delegate:GuessWhoViewModelDelegate?
     var playModelArray:[GuessWhoPlayModel] = []
@@ -60,7 +60,7 @@ final class GuessWhoViewModel{
                     //                    saveDB()
                 }
             } catch{
-                networkErr = error
+                networkErr = error as? MyServer.ErrList
             }
         }
     }
