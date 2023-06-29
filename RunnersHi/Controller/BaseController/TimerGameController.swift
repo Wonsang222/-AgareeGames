@@ -14,15 +14,6 @@ class TimerGameCotoller:GameController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // 타이머 1개 유지
-        // 게임중 나가면 어케할건지... 걍 냅두면 이어지나 테스트
-        // 이게 맞나 고민요망
-        // navigationbar 올림?
-        //        timer?.invalidate()
-        //        timer = nil
-        //        timerNumber -= 1
-        
     }
     
     final func setTimer(_ second:Float, userinfo:Any? = nil, repeater:Bool){

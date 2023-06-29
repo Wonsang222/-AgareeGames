@@ -52,11 +52,3 @@ enum EncodingError:Error{
     case etcError
 }
 
-class ErrorCollector{
-    static let shared = ErrorCollector()
-    var errArray = [Error]()
-    func flush(){
-        errArray = []
-    }
-    private init() {}
-}

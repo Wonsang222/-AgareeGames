@@ -24,7 +24,7 @@ final class GuessWhoViewModel{
     private var targetModel:GuessWhoPlayModel?{
         didSet{
             guard let targetModel = targetModel else {
-                // 게임 이긴 경우
+                // 게임 이긴 경우 -> targetModel이 nil
                 delegate?.clearGame(isWin: true)
                 return
             }
@@ -65,6 +65,7 @@ final class GuessWhoViewModel{
         }
     }
     
+    // CoreData로 교체
     func saveDB() {
         DispatchQueue.global(qos: .default).async { [weak self] in
             guard let self = self else { return }

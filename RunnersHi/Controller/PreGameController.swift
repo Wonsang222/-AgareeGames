@@ -9,9 +9,9 @@ import UIKit
 
 final class PreGameController:BaseController{
     
-    let gameTitle:String
+    private let gameTitle:String
     lazy var preGameView = PreGameView(gameTitle:gameTitle)
-    var howToPlayView:HowToPlayBaseView?
+    private var howToPlayView:HowToPlayBaseView?
     
     //MARK: - NaviRoot
     
