@@ -65,25 +65,11 @@ final class GuessWhoController:TalkGameController{
         if let serverErr = viewModel.networkErr{
             checkTheErr(err:serverErr)
         }
-        
         viewModel.next()
     }
     
-    // 여기서 이름 정하고 처리 해야함. 타임아웃되면 에러 처리 어케함?? // gamecontroller에 보내야함
-    func checkTheErr(err:MyServer.ErrList){
-            switch err{
-            case .Timeout:
-                print(123)
-            case .RateLimit:
-                print(123)
-            case .OnUpdated:
-                print(123)
-            case .Unkwown:
-                print(123)
-            default:
-                break;
-            }
-    }
+
+
     
     override func checkTheAnswer()->Bool{
         guard let targetName = viewModel.getTargetModel?.name else { return false }

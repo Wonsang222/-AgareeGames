@@ -38,7 +38,7 @@ final class STTEngine{
                 try audioSession.setMode(AVAudioSession.Mode.measurement)
                 try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
             } catch {
-                self.delegate?.handleError(error)
+                self.delegate?.handleError(AudioError.audioOff)
             }
             
             self.recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
@@ -100,7 +100,7 @@ final class STTEngine{
                 do {
                     try self.audioEngine.start()
                 } catch {
-                    
+                    delegate?.handleError(AudioError.totalAudioError)
                 }
             }
         }

@@ -89,6 +89,27 @@ class GameController:BaseController{
         }
     }
     
+    func checkTheErr(err:MyServer.ErrList){
+            switch err{
+            case .Timeout:
+                alert(message: err.rawValue, agree: { alert in
+                    self.goBackToRoot()
+                }, disagree: nil)
+            case .RateLimit:
+                alert(message: err.rawValue, agree: { alert in
+                    self.goBackToRoot()
+                }, disagree: nil)
+            case .OnUpdated:
+                alert(message: err.rawValue, agree: { alert in
+                    self.goBackToRoot()
+                }, disagree: nil)
+            case .Unkwown:
+                alert(message: err.rawValue, agree: { alert in
+                    self.goBackToRoot()
+                }, disagree: nil)
+            }
+    }
+    
     
     final func configureNavi(){
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_icon"), style: .plain, target: self, action: nil)
