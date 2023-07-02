@@ -6,6 +6,8 @@
 //
 import UIKit
 
+// 실수 -> struct를 json 파일로 인코딩
+
 struct GuessWhoPlayModel:Codable{
     let name:String
     let photo:UIImage

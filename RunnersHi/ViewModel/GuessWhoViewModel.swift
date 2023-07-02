@@ -48,7 +48,7 @@ final class GuessWhoViewModel{
         Task{
             do{
                 playModelArray = []
-                let jsonData = try await NetworkService.fetchJSON(httpbaseresource: httpbaseResource)
+                let jsonData = try await NetworkService.fetchJSON(httpbaseresource: httpbaseResource, controller: delegate as! BaseController)
                 
                 let array = await NetworkService.fetchImage(jsonData)
                 playModelArray = array
@@ -60,7 +60,13 @@ final class GuessWhoViewModel{
                     //                    saveDB()
                 }
             } catch{
-                networkErr = error as? MyServer.ErrList
+                if let error = error as? MyServer.ErrList{
+                    networkErr = error
+                    // timeout 등등..
+                }else{
+                    delegate?.handleError(error)
+                }
+                
             }
         }
     }

@@ -28,7 +28,6 @@ class BaseController:UIViewController{
     func loaderOFF(){
         loader.stopAnimating()
         loader.removeFromSuperview()
-        
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle{
@@ -77,7 +76,36 @@ class BaseController:UIViewController{
             self.terminateAppGracefullyAfter(second: 5.0) // 5초 후 우아한 앱 종료
         }
     }
+    
+    func checkServerErr(err:MyServer.ErrList){
+            switch err{
+            case .RateLimit:
+                alert(message: err.rawValue, agree: { alert in
+                    self.goBackToRoot()
+                }, disagree: nil)
+            case .OnUpdated:
+                alert(message: err.rawValue, agree: { alert in
+                    self.goBackToRoot()
+                }, disagree: nil)
+            case .Unkwown:
+                alert(message: err.rawValue, agree: { alert in
+                    self.goBackToRoot()
+                }, disagree: nil)
+            }
+    }
+    
+    func handleErrors(error:Error){
+        switch error{
+        case is AudioError:
+            self.alert(message: "Audio 오류 발생했습니다. \n 앱을 다시 실행해 주세요.", agree: { [weak self] alert in
+                self?.terminateAppGracefullyAfter(second: 0)
+            }, disagree: nil)
+        case is URLError:
+            self.alert(message: "현재 서버와 연결이 어렵습니다. \n 잠시 후 다시 시도해주세요.", agree: { alert in
+                self.goBackToRoot()
+            }, disagree: nil)
+        default:
+            terminateAppGracefullyAfter(second: 5.0)
+        }
+    }
 }
-
-
-

@@ -21,7 +21,7 @@ class EmptyController:BaseController{
         
         Task{
             do{
-                let data = try await NetworkService.fetchJSON(httpbaseresource:base)
+                let data = try await NetworkService.fetchJSON(httpbaseresource:base, controller: self)
             } catch{
                 
             }

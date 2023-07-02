@@ -13,7 +13,7 @@ final class GuessWhoController:TalkGameController{
     //MARK: - Properties
     private let guessView = GuessWhoView()
     private lazy var viewModel = GuessWhoViewModel(delegate: self)
-        
+    
     //MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -29,9 +29,9 @@ final class GuessWhoController:TalkGameController{
         
         viewModel.fetchNetworkData(httpbaseResource: base)
         configureUI()
-                startCounter {
-                    self.startGame()
-                }
+        startCounter {
+            self.startGame()
+        }
     }
     //MARK: - Methods
     private func configureUI(){
@@ -63,14 +63,11 @@ final class GuessWhoController:TalkGameController{
         guessView.imageView.isHidden = false
         countView.layoutIfNeeded()
         if let serverErr = viewModel.networkErr{
-            checkTheErr(err:serverErr)
+            checkServerErr(err:serverErr)
         }
         viewModel.next()
     }
-    
-
-
-    
+ 
     override func checkTheAnswer()->Bool{
         guard let targetName = viewModel.getTargetModel?.name else { return false }
         print(targetName)
@@ -113,17 +110,7 @@ extension GuessWhoController:SFSpeechRecognizerDelegate{
 
 extension GuessWhoController:GuessWhoViewModelDelegate{
     func handleError(_ error: Error) {
-        DispatchQueue.main.async {
-            switch error{
-            case is AudioError:
-                self.alert(message: "Audio 오류 발생했습니다. 앱을 다시 실행해 주세요.", agree: { [weak self] alert in
-                    self?.terminateAppGracefullyAfter(second: 0)
-                }, disagree: nil)
-            default:
-                self.showAppTerminatingAlert()
-            }
-        }
-
+    
     }
     
     func setNextTarget(with data: GuessWhoPlayModel) {

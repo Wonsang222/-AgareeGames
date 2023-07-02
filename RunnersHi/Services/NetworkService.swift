@@ -8,21 +8,29 @@
 import UIKit
 
 final class NetworkService{
-    
-    private static let session = URLSession(configuration: configuration)
-    private static let configuration:URLSessionConfiguration = {
+    // 서버 접속용
+    private static let configuration1:URLSessionConfiguration = {
         let configuration = URLSessionConfiguration.default
         configuration.networkServiceType = .responsiveData
-        configuration.timeoutIntervalForRequest = 10
+        configuration.timeoutIntervalForRequest = 5
         // server error
         configuration.httpAdditionalHeaders = ["Authorization":Global.UUID, "User-Agent": Global.BUNDLEIDENTIFIER]
         return configuration
     }()
     
+    //img 파일 처리용 configuration
+    private static let configuration2:URLSessionConfiguration = {
+        let configuration = URLSessionConfiguration.default
+        configuration.networkServiceType = .responsiveData
+        configuration.timeoutIntervalForRequest = 10
+        configuration.httpAdditionalHeaders = ["Authorization":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"]
+        return configuration
+    }()
+    
     //nil 을 return 하면 viewmodel에서 error 처리 -> 전부 서버에러이기 때문
-    static func fetchJSON(httpbaseresource:HttpBaseResource) async throws -> [String:Any]{
+    static func fetchJSON(httpbaseresource:HttpBaseResource, controller:BaseController) async throws -> [String:Any]{
         var result:[String:Any] = [:]
-        let (data, response)  = try await session.data(for: httpbaseresource.request())
+        let (data, response)  = try await URLSession(configuration: configuration1).data(for: httpbaseresource.request())
         guard let status = response as? HTTPURLResponse,
                 (200...299) ~= status.statusCode else {
             let error = MyServer(statusCode: (response as? HTTPURLResponse)!.statusCode).emitError()
@@ -54,7 +62,7 @@ final class NetworkService{
                     guard let stringUrl = url as? String else {throw NetworkError.notconnected }
                     let dbUrl = URL(string: stringUrl)
                     guard let dbUrl = dbUrl else { throw NetworkError.notconnected }
-                    let (data, response) = try await session.data(from:dbUrl)
+                    let (data, response) = try await URLSession(configuration: configuration2).data(from:dbUrl)
                     guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw NetworkError.notconnected }
                     photo = UIImage(data: data)
                     guard let urlPhoto = photo else { throw NetworkError.notconnected }
