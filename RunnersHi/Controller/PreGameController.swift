@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import AVFoundation
+import Speech
 
 final class PreGameController:BaseController{
     
@@ -28,7 +30,7 @@ final class PreGameController:BaseController{
         configureView()
         preGameView.playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
         configureTempCache()
-        naviroot()
+        configureNaviBar()
         howToPlayView = configureHowToPlay()
         preGameView.howToPlayButton.addTarget(self, action: #selector(outerButtonTapped), for: .touchUpInside)
         howToPlayView?.button.addTarget(self, action: #selector(innerButtonTapped), for: .touchUpInside)
@@ -66,7 +68,7 @@ final class PreGameController:BaseController{
         howToPlayView.layoutIfNeeded()
     }
     
-    func naviroot(){
+    func configureNaviBar(){
         let standard = UINavigationBarAppearance()
         standard.configureWithTransparentBackground()
         
@@ -137,7 +139,49 @@ final class PreGameController:BaseController{
             howToPlayView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             howToPlayView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
-        
     }
     
-}
+    private func checkMicrophonePermission() {
+        let microphoneStatus = AVCaptureDevice.authorizationStatus(for: .audio)
+          switch microphoneStatus {
+          case .authorized:
+              break
+          case .restricted:
+              alert(message: "현재 디바이스의 마이크 사용이 불가 합니다. \n 5초 후 앱을 종료합니다. ", agree: { [weak self] alert in
+                  self?.terminateAppGracefullyAfter(second: 5.0)
+              }, disagree: nil)
+          case .notDetermined, .denied:
+              // 마이크 사용 권한이 아직 결정되지 않은 경우
+              AVCaptureDevice.requestAccess(for: .audio) {[weak self] granted in
+                  if !granted {
+                      self?.alert(message:"마이크 권한수락은 이 앱의 필수입니다. \n 아래의 버튼을 통해 설정으로 이동합니다..", agree: { action in
+                          
+                          // 설정
+                          
+                      }, disagree: nil)
+                      return
+                  }
+                  return
+              }
+          @unknown default:
+              break
+          }
+      }
+    
+    private func checkSpeechPermission(){
+        let authStatus = SFSpeechRecognizer.authorizationStatus()
+        
+        switch authStatus{
+        case .authorized:
+            break
+        case .denied, .notDetermined:
+            print(2)
+        case .restricted:
+            print(3)
+        @unknown default:
+            break
+        }
+    }
+    
+    
+  }

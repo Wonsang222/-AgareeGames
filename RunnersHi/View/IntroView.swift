@@ -17,7 +17,7 @@ final class IntroView: BaseView {
         return imgView
     }()
     
-    let button:UIButton = {
+    final let button:UIButton = {
        let button = UIButton()
         button.setTitle("test", for: .normal)
         button.setTitleColor(.white, for: .normal)

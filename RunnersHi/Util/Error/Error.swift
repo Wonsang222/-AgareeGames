@@ -31,7 +31,6 @@ struct MyServer{
         switch statusCode{
         case 400:
             return ErrList.RateLimit
-
         case 503:
             return ErrList.OnUpdated
         default:
