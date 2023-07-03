@@ -63,7 +63,7 @@ final class GuessWhoController:TalkGameController{
         guessView.imageView.isHidden = false
         countView.layoutIfNeeded()
         if let serverErr = viewModel.networkErr{
-            checkServerErr(err:serverErr)
+            handleErrors(error: serverErr)
         }
         viewModel.next()
     }
@@ -110,7 +110,7 @@ extension GuessWhoController:SFSpeechRecognizerDelegate{
 
 extension GuessWhoController:GuessWhoViewModelDelegate{
     func handleError(_ error: Error) {
-    
+        handleErrors(error: error)
     }
     
     func setNextTarget(with data: GuessWhoPlayModel) {

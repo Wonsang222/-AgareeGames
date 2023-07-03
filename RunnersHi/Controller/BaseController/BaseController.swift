@@ -104,6 +104,8 @@ class BaseController:UIViewController{
             self.alert(message: "현재 서버와 연결이 어렵습니다. \n 잠시 후 다시 시도해주세요.", agree: { alert in
                 self.goBackToRoot()
             }, disagree: nil)
+        case let err as MyServer.ErrList:
+            checkServerErr(err: err)
         default:
             terminateAppGracefullyAfter(second: 5.0)
         }

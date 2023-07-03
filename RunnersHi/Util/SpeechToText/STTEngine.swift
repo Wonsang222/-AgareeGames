@@ -29,7 +29,7 @@ final class STTEngine{
         print("------------------------------------")
     }
     
-    func startEngine(){
+    private func startEngine(){
         DispatchQueue.global(qos: .userInteractive).async { [weak self] in
             guard let self = self else { return }
             let audioSession = AVAudioSession.sharedInstance()
@@ -105,7 +105,6 @@ final class STTEngine{
                     DispatchQueue.main.async { [weak self] in
                         self?.delegate?.handleError(AudioError.totalAudioError)
                     }
-                    
                 }
             }
         }
