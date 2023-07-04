@@ -36,9 +36,9 @@ final class STTEngine{
         case .authorized:
             getSpechAuthorization()
         case .restricted:
-            delegate?.handleError(AudioError.totalAudioError)
+            delegate?.handleError(AudioError.TotalAudioError)
         case .denied, .notDetermined:
-            delegate?.handleError(AudioError.audioOff)
+            delegate?.handleError(AudioError.AudioOff)
         @unknown default:
             break
         }
@@ -68,7 +68,7 @@ final class STTEngine{
                 try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
             } catch {
                 DispatchQueue.main.async {
-                    self.delegate?.handleError(AudioError.audioOff)
+                    self.delegate?.handleError(AudioError.AudioOff)
                 }
             }
             
@@ -132,7 +132,7 @@ final class STTEngine{
                     try self.audioEngine.start()
                 } catch {
                     DispatchQueue.main.async { [weak self] in
-                        self?.delegate?.handleError(AudioError.totalAudioError)
+                        self?.delegate?.handleError(AudioError.TotalAudioError)
                     }
                 }
             }

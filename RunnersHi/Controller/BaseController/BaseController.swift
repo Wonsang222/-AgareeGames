@@ -83,6 +83,7 @@ class BaseController:UIViewController{
             handleAudioError(err: audioErr)
         case let serverErr as MyServer.ErrList:
             handleServerErr(err: serverErr)
+            // fly io 서버 리부팅에 대한 error 처리
         case is URLError:
             self.alert(message: "현재 서버와 연결이 어렵습니다. \n 잠시 후 다시 시도해주세요.", agree: { alert in
                 self.goBackToRoot()
@@ -111,13 +112,26 @@ class BaseController:UIViewController{
     
     final func handleAudioError(err:AudioError){
         switch err{
-        case .totalAudioError:
-            print(23)
-        case .audioOff:
-            print(123)
-            
-        default:
-            break
+        case .TotalAudioError:
+            alert(message: err.rawValue) { alert in
+                self.goBackToRoot()
+            }
+        case .AudioOff:
+            alert(message: err.rawValue) { alert in
+                if let appSetting = URL(string: UIApplication.openSettingsURLString){
+                    UIApplication.shared.open(appSetting)
+                }
+            }
+        case .SpeechAuth:
+            alert(message: err.rawValue) { alert in
+                if let appSetting = URL(string: UIApplication.openSettingsURLString){
+                    UIApplication.shared.open(appSetting)
+                }
+            }
+        case .SpeechError:
+            alert(message: err.rawValue) { alert in
+                self.goBackToRoot()
+            }
         }
     }
 }

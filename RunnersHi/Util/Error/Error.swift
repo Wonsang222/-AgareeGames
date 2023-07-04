@@ -41,8 +41,8 @@ struct MyServer{
 // talkgamecontroller 시작할대, audio 기능 off면 이거 ㅋ야함.
 // 테스트 해야함
 enum AudioError: String, Error{
-    case audioOff = "디바이스의 Audio기능을 사용할 수 없습니다. \n 설정에서 처리해야하나, 자동적으로 물어보나 go back "
-    case totalAudioError = "디바이스의 Audio 에러로 음성 기능을 사용할 수 없습니다."
+    case AudioOff = "디바이스의 Audio 권한이 부여되지 않았습니다. \n 직접 설정합니다."
+    case TotalAudioError = "디바이스의 Audio 에러로 음성 기능을 사용할 수 없습니다."
     case SpeechError = "음성인식 기능오류입니다."
     case SpeechAuth = "음성인식 기능 권한이 설정되지 않았습니다."
 }
