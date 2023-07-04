@@ -77,7 +77,22 @@ class BaseController:UIViewController{
         }
     }
     
-   final func checkServerErr(err:MyServer.ErrList){
+    final func handleErrors(error:Error){
+        switch error{
+        case let audioErr as AudioError:
+            handleAudioError(err: audioErr)
+        case is URLError:
+            self.alert(message: "현재 서버와 연결이 어렵습니다. \n 잠시 후 다시 시도해주세요.", agree: { alert in
+                self.goBackToRoot()
+            }, disagree: nil)
+        case let serverErr as MyServer.ErrList:
+            handleServerErr(err: serverErr)
+        default:
+            showAppTerminatingAlert()
+        }
+    }
+    
+   final func handleServerErr(err:MyServer.ErrList){
             switch err{
             case .RateLimit:
                 alert(message: err.rawValue, agree: { alert in
@@ -94,20 +109,12 @@ class BaseController:UIViewController{
             }
     }
     
-    final func handleErrors(error:Error){
-        switch error{
-        case is AudioError:
-            self.alert(message: "Audio 오류 발생했습니다. \n 앱을 다시 실행해 주세요.", agree: { [weak self] alert in
-                self?.terminateAppGracefullyAfter(second: 0)
-            }, disagree: nil)
-        case is URLError:
-            self.alert(message: "현재 서버와 연결이 어렵습니다. \n 잠시 후 다시 시도해주세요.", agree: { alert in
-                self.goBackToRoot()
-            }, disagree: nil)
-        case let err as MyServer.ErrList:
-            checkServerErr(err: err)
+    final func handleAudioError(err:AudioError){
+        switch err{
+        case .totalAudioError:
+            print(23)
         default:
-            terminateAppGracefullyAfter(second: 5.0)
+            break
         }
     }
 }

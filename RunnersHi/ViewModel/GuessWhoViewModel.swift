@@ -19,7 +19,7 @@ final class GuessWhoViewModel{
     var networkErr:MyServer.ErrList?
     var isNetworkDone:Bool = false
     private weak var delegate:GuessWhoViewModelDelegate?
-    var playModelArray:[GuessWhoPlayModel] = []
+    private var playModelArray:[GuessWhoPlayModel] = []
     
     private var targetModel:GuessWhoPlayModel?{
         didSet{

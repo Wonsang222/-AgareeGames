@@ -7,6 +7,7 @@
 
 import UIKit
 import Speech
+import AVFoundation
 
 protocol STTEngineDelegate:BaseDelegate,AnyObject{
     func runRecognizer(_ text:String)
@@ -29,6 +30,34 @@ final class STTEngine{
         print("------------------------------------")
     }
     
+    func getAuthorization(){
+        let micStatus = AVCaptureDevice.authorizationStatus(for: .audio)
+        switch micStatus{
+        case .authorized:
+            getSpechAuthorization()
+        case .restricted:
+            delegate?.handleError(AudioError.totalAudioError)
+        case .denied, .notDetermined:
+            delegate?.handleError(AudioError.audioOff)
+        @unknown default:
+            break
+        }
+    }
+    
+   private func getSpechAuthorization(){
+       let speechStatus = SFSpeechRecognizer.authorizationStatus()
+       switch speechStatus{
+       case .authorized:
+           startEngine()
+       case .denied, .notDetermined:
+           delegate?.handleError(AudioError.SpeechAuth)
+       case .restricted:
+           delegate?.handleError(AudioError.SpeechError)
+       @unknown default:
+           break
+       }
+    }
+
     private func startEngine(){
         DispatchQueue.global(qos: .userInteractive).async { [weak self] in
             guard let self = self else { return }
