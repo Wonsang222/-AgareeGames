@@ -34,7 +34,7 @@ class BaseController:UIViewController{
         return .darkContent
     }
             
-    final func alert(message:String, agree:((UIAlertAction)->Void)?, disagree:((UIAlertAction)->Void)?){
+    final func alert(message:String, agree:((UIAlertAction)->Void)?, disagree:((UIAlertAction)->Void)? = nil){
         let alert = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
         
         if let agree = agree{
@@ -81,12 +81,12 @@ class BaseController:UIViewController{
         switch error{
         case let audioErr as AudioError:
             handleAudioError(err: audioErr)
+        case let serverErr as MyServer.ErrList:
+            handleServerErr(err: serverErr)
         case is URLError:
             self.alert(message: "현재 서버와 연결이 어렵습니다. \n 잠시 후 다시 시도해주세요.", agree: { alert in
                 self.goBackToRoot()
             }, disagree: nil)
-        case let serverErr as MyServer.ErrList:
-            handleServerErr(err: serverErr)
         default:
             showAppTerminatingAlert()
         }
@@ -113,6 +113,9 @@ class BaseController:UIViewController{
         switch err{
         case .totalAudioError:
             print(23)
+        case .audioOff:
+            print(123)
+            
         default:
             break
         }

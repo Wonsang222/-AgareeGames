@@ -16,7 +16,7 @@ protocol GuessWhoViewModelDelegate:BaseDelegate, AnyObject{
 
 final class GuessWhoViewModel{
     
-    var networkErr:MyServer.ErrList?
+    var networkErr:Error?
     var isNetworkDone:Bool = false
     private weak var delegate:GuessWhoViewModelDelegate?
     private var playModelArray:[GuessWhoPlayModel] = []
@@ -60,13 +60,7 @@ final class GuessWhoViewModel{
                     //                    saveDB()
                 }
             } catch{
-                if let error = error as? MyServer.ErrList{
-                    networkErr = error
-                    // timeout 등등..
-                }else{
-                    delegate?.handleError(error)
-                }
-                
+                networkErr = error
             }
         }
     }
