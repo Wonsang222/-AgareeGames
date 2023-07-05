@@ -67,6 +67,7 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
         if let vc = topVC as? TimerGameCotoller{
             vc.timer?.invalidate()
             vc.timer = nil
+            vc.isRunning = false
         }
     }
     

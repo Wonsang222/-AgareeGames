@@ -13,6 +13,7 @@ class TimerGameCotoller:GameController{
     final var timer:Timer?
     final var numToCount: Float = 0.0
     final var speed:Float = 0.0
+    final var isRunning = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,12 +24,13 @@ class TimerGameCotoller:GameController{
         numToCount = 0.0
         self.speed = (1.0 / second) * 0.1
         
-        DispatchQueue.global().async {[weak self] in
+        DispatchQueue.global(qos: .userInteractive).async {[weak self] in
             guard let self = self else {return}
             self.timer = Timer(timeInterval: 0.2, target: self, selector: #selector(self.startGameTimer(_:)), userInfo: userinfo, repeats: repeater)
             RunLoop.current.add(self.timer!, forMode: .common)
             self.timer?.fire()
-            RunLoop.current.run()
+//            RunLoop.current.run()
+            RunLoop.current.run(until: Date().addingTimeInterval(0.2))
         }
     }
     
