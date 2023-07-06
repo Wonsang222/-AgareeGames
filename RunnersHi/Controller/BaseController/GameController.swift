@@ -52,19 +52,12 @@ class GameController:BaseController{
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         guard Reachability.networkConnected() else {
-            alert(message: "네트워크가 연결되어 있지 않습니다.\n앱을 종료합니다.", agree: { UIAlertAction in
-                exit(0)
-            }, disagree: nil)
-                return
-            }
+            handleErrors(error:MyServer.ErrList.Unkwown)
+            return
+        }
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-    }
-
     
     //MARK: - Methods
     
