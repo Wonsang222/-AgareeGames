@@ -38,6 +38,7 @@ struct HttpBaseResource {
         return resultReq
     }
     
+    //urlcomponent쓰면된다.....
     private func generateParam()->String{
         var returnVal = ""
         for (key, value) in self.params{

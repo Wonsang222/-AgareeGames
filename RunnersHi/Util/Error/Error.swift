@@ -7,6 +7,8 @@
 
 import Foundation
 
+// total error enum 을 만들어서 switch @unknown에 대응
+
 enum NetworkError:Error{
     case timeout
     case rateLimit
