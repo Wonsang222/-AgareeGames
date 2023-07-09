@@ -107,6 +107,8 @@ class BaseController:UIViewController{
                 alert(message: err.rawValue, agree: { alert in
                     self.goBackToRoot()
                 }, disagree: nil)
+            case .WrongAccess:
+                break
             }
     }
     

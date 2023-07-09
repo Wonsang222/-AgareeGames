@@ -25,6 +25,7 @@ struct MyServer{
     enum ErrList: String,Error {
         case RateLimit = "잦은 시도는 서버에 무리를 줄 수 있습니다. \n 1분 후에 다시 시도해주세요."
         case OnUpdated = "서버 점검 중입니다. \n 잠시 후 다시 시도해주세요."
+        case WrongAccess = "잘못된 접근입니다."
         case Unkwown = "알 수없는 에러입니다. \n 잠시 후 다시 시도해주세요."
     }
     
@@ -33,8 +34,10 @@ struct MyServer{
         switch statusCode{
         case 400:
             return ErrList.RateLimit
-        case 503:
+        case 500:
             return ErrList.OnUpdated
+        case 404, 300 :
+            return ErrList.WrongAccess
         default:
             return ErrList.Unkwown
         }
