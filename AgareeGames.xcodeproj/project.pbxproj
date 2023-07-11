@@ -55,6 +55,7 @@
 		7E159D3529F89FD900C7E601 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E159D3429F89FD900C7E601 /* Global.swift */; };
 		7E159D3829F8A01900C7E601 /* GuessWhoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E159D3729F8A01900C7E601 /* GuessWhoController.swift */; };
 		7E159D3C29F8A0E400C7E601 /* GuessWhoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E159D3B29F8A0E400C7E601 /* GuessWhoViewModel.swift */; };
+		7E17BBAA2A5D062E00D94230 /* AuthorizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E17BBA92A5D062E00D94230 /* AuthorizationManager.swift */; };
 		7E1BEF602A281D5500E59F95 /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1BEF5F2A281D5500E59F95 /* ResultViewModel.swift */; };
 		7E20755B29F9FBE4000BFE61 /* GuessWhoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E20755A29F9FBE4000BFE61 /* GuessWhoView.swift */; };
 		7E20755D29F9FBF8000BFE61 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E20755C29F9FBF8000BFE61 /* IntroView.swift */; };
@@ -136,6 +137,7 @@
 		7E159D3429F89FD900C7E601 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		7E159D3729F8A01900C7E601 /* GuessWhoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoController.swift; sourceTree = "<group>"; };
 		7E159D3B29F8A0E400C7E601 /* GuessWhoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GuessWhoViewModel.swift; path = RunnersHi/ViewModel/GuessWhoViewModel.swift; sourceTree = SOURCE_ROOT; };
+		7E17BBA92A5D062E00D94230 /* AuthorizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationManager.swift; sourceTree = "<group>"; };
 		7E1BEF5F2A281D5500E59F95 /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
 		7E20755A29F9FBE4000BFE61 /* GuessWhoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuessWhoView.swift; sourceTree = "<group>"; };
 		7E20755C29F9FBF8000BFE61 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
@@ -211,6 +213,14 @@
 				7E159D3429F89FD900C7E601 /* Global.swift */,
 			);
 			path = Global;
+			sourceTree = "<group>";
+		};
+		7E17BBA82A5D061300D94230 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				7E17BBA92A5D062E00D94230 /* AuthorizationManager.swift */,
+			);
+			name = Auth;
 			sourceTree = "<group>";
 		};
 		7E246FA52A1DB7A30068CF9E /* Error */ = {
@@ -397,6 +407,7 @@
 		C1FFE7C829E30615009FFD0B /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				7E17BBA82A5D061300D94230 /* Auth */,
 				C148D9DD2A21C34E005AB791 /* Cache */,
 				7E246FA52A1DB7A30068CF9E /* Error */,
 				C148D9D82A1CE996005AB791 /* Protocol */,
@@ -667,6 +678,7 @@
 				7E159D3C29F8A0E400C7E601 /* GuessWhoViewModel.swift in Sources */,
 				7E60DD702A307A6600A511E2 /* AgareeDelegate.swift in Sources */,
 				C14F272C29FEA3E00007E7A6 /* NetworkService.swift in Sources */,
+				7E17BBAA2A5D062E00D94230 /* AuthorizationManager.swift in Sources */,
 				C119CBC729F8033300648638 /* BaseController.swift in Sources */,
 				C1FFE7B129E30425009FFD0B /* SceneDelegate.swift in Sources */,
 				7E04C8EA2A0342C800357A0F /* GameController.swift in Sources */,

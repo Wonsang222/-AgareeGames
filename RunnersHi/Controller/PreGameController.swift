@@ -17,6 +17,10 @@ final class PreGameController:BaseController{
     
     //MARK: - NaviRoot
     
+    override func viewWillAppear(_ animated: Bool) {
+        print("temp")
+    }
+    
     override var prefersStatusBarHidden: Bool{
         return false
     }
@@ -39,6 +43,8 @@ final class PreGameController:BaseController{
     init(gameTitle: String) {
         self.gameTitle = gameTitle
         super.init(nibName: nil, bundle: nil)
+        
+        
         
         print("🔥🔥🔥")
         print(Global.URL)
