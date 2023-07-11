@@ -32,6 +32,7 @@ final class STTEngine{
     
     func getAuthorization(){
         let micStatus = AVCaptureDevice.authorizationStatus(for: .audio)
+        print(micStatus)
         switch micStatus{
         case .authorized:
             getSpechAuthorization()
@@ -46,6 +47,7 @@ final class STTEngine{
     
    private func getSpechAuthorization(){
        let speechStatus = SFSpeechRecognizer.authorizationStatus()
+       print(speechStatus)
        switch speechStatus{
        case .authorized:
            startEngine()
@@ -58,7 +60,7 @@ final class STTEngine{
        }
     }
 
-    private func startEngine(){
+    func startEngine(){
         DispatchQueue.global(qos: .userInteractive).async { [weak self] in
             guard let self = self else { return }
             let audioSession = AVAudioSession.sharedInstance()

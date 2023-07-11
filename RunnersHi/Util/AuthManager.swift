@@ -18,10 +18,10 @@ class AuthManager{
         self.title = title
     }
     
-    func getAuth(){
-        switch title{
-        }
-    }
+//    func getAuth(){
+//        switch title{
+//        }
+//    }
     
     
 }

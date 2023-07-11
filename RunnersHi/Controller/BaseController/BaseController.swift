@@ -113,6 +113,7 @@ class BaseController:UIViewController{
     }
     
     final func handleAudioError(err:AudioError){
+        print(err)
         switch err{
         case .TotalAudioError:
             alert(message: err.rawValue) { alert in

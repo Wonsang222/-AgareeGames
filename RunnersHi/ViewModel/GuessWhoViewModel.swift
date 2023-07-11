@@ -48,7 +48,7 @@ final class GuessWhoViewModel{
             do{
                 playModelArray = []
                 let jsonData = try await NetworkService.fetchJSON(httpbaseresource: httpbaseResource, controller: delegate as! BaseController)
-                
+                print(jsonData)
                 let array = await NetworkService.fetchImage(jsonData)
                 playModelArray = array
                 isNetworkDone = true

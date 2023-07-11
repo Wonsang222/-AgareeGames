@@ -24,7 +24,7 @@ final class GuessWhoController:TalkGameController{
         let base = ResourceBuilder.shared
             .setReqMethod(.GET)
             .setPath(gameTitle!)
-            .setParams("num", howMany!)
+            .setParams("numberOfPlayers", howMany!+2)
             .build()
         
         viewModel.fetchNetworkData(httpbaseResource: base)

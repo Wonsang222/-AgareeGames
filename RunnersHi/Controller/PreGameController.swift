@@ -15,6 +15,7 @@ final class PreGameController:BaseController{
     lazy var preGameView = PreGameView(gameTitle:gameTitle)
     private var howToPlayView:HowToPlayBaseView?
     
+    
     //MARK: - NaviRoot
     
     override func viewWillAppear(_ animated: Bool) {
@@ -33,7 +34,7 @@ final class PreGameController:BaseController{
         super.viewDidLoad()
         configureView()
         preGameView.playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
-//        configureTempCache()
+        //        configureTempCache()
         configureNaviBar()
         howToPlayView = configureHowToPlay()
         preGameView.howToPlayButton.addTarget(self, action: #selector(outerButtonTapped), for: .touchUpInside)
@@ -116,13 +117,18 @@ final class PreGameController:BaseController{
     
     @objc func playButtonTapped(){
         let game = Global.GAMEDIC[gameTitle]!
+        #if DEV
+        let gameClassName = "AgareeGames_dev.\(game)Controller"
+        #else
         let gameClassName = "AgareeGames_dis.\(game)Controller"
+        #endif
         let gameClass = NSClassFromString(gameClassName) as! GameController.Type
         let nextVC = gameClass.init()
         let title = ((game.first)?.lowercased())! + game.dropFirst()
         nextVC.gameTitle = title
         nextVC.howMany = preGameView.segment.selectedSegmentIndex
         navigationController?.pushViewController(nextVC, animated: true)
+        
     }
     
     private func configureHowToPlay() -> HowToPlayBaseView?{
@@ -146,4 +152,4 @@ final class PreGameController:BaseController{
             howToPlayView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
-  }
+}

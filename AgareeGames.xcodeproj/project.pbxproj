@@ -55,7 +55,7 @@
 		7E159D3529F89FD900C7E601 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E159D3429F89FD900C7E601 /* Global.swift */; };
 		7E159D3829F8A01900C7E601 /* GuessWhoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E159D3729F8A01900C7E601 /* GuessWhoController.swift */; };
 		7E159D3C29F8A0E400C7E601 /* GuessWhoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E159D3B29F8A0E400C7E601 /* GuessWhoViewModel.swift */; };
-		7E17BBAA2A5D062E00D94230 /* AuthorizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E17BBA92A5D062E00D94230 /* AuthorizationManager.swift */; };
+		7E17BBAA2A5D062E00D94230 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E17BBA92A5D062E00D94230 /* AuthManager.swift */; };
 		7E1BEF602A281D5500E59F95 /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1BEF5F2A281D5500E59F95 /* ResultViewModel.swift */; };
 		7E20755B29F9FBE4000BFE61 /* GuessWhoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E20755A29F9FBE4000BFE61 /* GuessWhoView.swift */; };
 		7E20755D29F9FBF8000BFE61 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E20755C29F9FBF8000BFE61 /* IntroView.swift */; };
@@ -118,6 +118,9 @@
 		C1649C192A47D4260094D56D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1FFE7B729E30425009FFD0B /* Assets.xcassets */; };
 		C176FECF2A1A5C8800C7EFE6 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C176FECE2A1A5C8800C7EFE6 /* Reachability.swift */; };
 		C176FED22A1A5FCB00C7EFE6 /* GuessWhoPlayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C176FED12A1A5FCB00C7EFE6 /* GuessWhoPlayModel.swift */; };
+		C1A778B12A5D800F00F08678 /* Temp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A778B02A5D800F00F08678 /* Temp.swift */; };
+		C1A778B22A5D844600F08678 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E17BBA92A5D062E00D94230 /* AuthManager.swift */; };
+		C1A778B32A5D844700F08678 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E17BBA92A5D062E00D94230 /* AuthManager.swift */; };
 		C1FFE7AF29E30425009FFD0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFE7AE29E30425009FFD0B /* AppDelegate.swift */; };
 		C1FFE7B129E30425009FFD0B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFE7B029E30425009FFD0B /* SceneDelegate.swift */; };
 		C1FFE7B829E30425009FFD0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1FFE7B729E30425009FFD0B /* Assets.xcassets */; };
@@ -137,7 +140,7 @@
 		7E159D3429F89FD900C7E601 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		7E159D3729F8A01900C7E601 /* GuessWhoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoController.swift; sourceTree = "<group>"; };
 		7E159D3B29F8A0E400C7E601 /* GuessWhoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GuessWhoViewModel.swift; path = RunnersHi/ViewModel/GuessWhoViewModel.swift; sourceTree = SOURCE_ROOT; };
-		7E17BBA92A5D062E00D94230 /* AuthorizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationManager.swift; sourceTree = "<group>"; };
+		7E17BBA92A5D062E00D94230 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		7E1BEF5F2A281D5500E59F95 /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
 		7E20755A29F9FBE4000BFE61 /* GuessWhoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuessWhoView.swift; sourceTree = "<group>"; };
 		7E20755C29F9FBF8000BFE61 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
@@ -164,6 +167,7 @@
 		C1649C1E2A47D4260094D56D /* AgareeGames_dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = AgareeGames_dev.plist; path = /Users/hwangwonsang/Desktop/git/AgareeGames/AgareeGames_dev.plist; sourceTree = "<absolute>"; };
 		C176FECE2A1A5C8800C7EFE6 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		C176FED12A1A5FCB00C7EFE6 /* GuessWhoPlayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoPlayModel.swift; sourceTree = "<group>"; };
+		C1A778B02A5D800F00F08678 /* Temp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Temp.swift; sourceTree = "<group>"; };
 		C1FFE7AB29E30425009FFD0B /* AgareeGames_dis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgareeGames_dis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1FFE7AE29E30425009FFD0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1FFE7B029E30425009FFD0B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -218,7 +222,8 @@
 		7E17BBA82A5D061300D94230 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				7E17BBA92A5D062E00D94230 /* AuthorizationManager.swift */,
+				7E17BBA92A5D062E00D94230 /* AuthManager.swift */,
+				C1A778B02A5D800F00F08678 /* Temp.swift */,
 			);
 			name = Auth;
 			sourceTree = "<group>";
@@ -596,6 +601,7 @@
 				7E07167E2A4D380300C308E6 /* SceneDelegate.swift in Sources */,
 				7E07167F2A4D380300C308E6 /* GameController.swift in Sources */,
 				7E0716802A4D380300C308E6 /* GuessWhoDataModel.swift in Sources */,
+				C1A778B32A5D844700F08678 /* AuthManager.swift in Sources */,
 				7E0716812A4D380300C308E6 /* GuessWhoHTPV.swift in Sources */,
 				7E0716822A4D380300C308E6 /* HttpBase.swift in Sources */,
 			);
@@ -639,6 +645,7 @@
 				C1649C112A47D4260094D56D /* SceneDelegate.swift in Sources */,
 				C1649C122A47D4260094D56D /* GameController.swift in Sources */,
 				C1649C132A47D4260094D56D /* GuessWhoDataModel.swift in Sources */,
+				C1A778B22A5D844600F08678 /* AuthManager.swift in Sources */,
 				C1649C142A47D4260094D56D /* GuessWhoHTPV.swift in Sources */,
 				C1649C152A47D4260094D56D /* HttpBase.swift in Sources */,
 			);
@@ -671,6 +678,7 @@
 				7E04C8EE2A03432D00357A0F /* SettingController.swift in Sources */,
 				7E04C8E72A033C4800357A0F /* PreGameView.swift in Sources */,
 				7E0A83812A01F8A30031B3E3 /* Extension.swift in Sources */,
+				C1A778B12A5D800F00F08678 /* Temp.swift in Sources */,
 				C176FED22A1A5FCB00C7EFE6 /* GuessWhoPlayModel.swift in Sources */,
 				C148D9DA2A1CE996005AB791 /* Protocol.swift in Sources */,
 				C148D9D52A1CE95C005AB791 /* TalkGameController.swift in Sources */,
@@ -678,7 +686,7 @@
 				7E159D3C29F8A0E400C7E601 /* GuessWhoViewModel.swift in Sources */,
 				7E60DD702A307A6600A511E2 /* AgareeDelegate.swift in Sources */,
 				C14F272C29FEA3E00007E7A6 /* NetworkService.swift in Sources */,
-				7E17BBAA2A5D062E00D94230 /* AuthorizationManager.swift in Sources */,
+				7E17BBAA2A5D062E00D94230 /* AuthManager.swift in Sources */,
 				C119CBC729F8033300648638 /* BaseController.swift in Sources */,
 				C1FFE7B129E30425009FFD0B /* SceneDelegate.swift in Sources */,
 				7E04C8EA2A0342C800357A0F /* GameController.swift in Sources */,
