@@ -9,12 +9,13 @@ import UIKit
 import AVFoundation
 import Speech
 
+// 하다보니 mvc.....
 final class PreGameController:BaseController{
     
     private let gameTitle:String
     lazy var preGameView = PreGameView(gameTitle:gameTitle)
     private var howToPlayView:HowToPlayBaseView?
-    
+    private lazy var authManager = AuthManager(delegate: self)
     
     //MARK: - NaviRoot
     
@@ -44,9 +45,7 @@ final class PreGameController:BaseController{
     init(gameTitle: String) {
         self.gameTitle = gameTitle
         super.init(nibName: nil, bundle: nil)
-        
-        
-        
+
         print("🔥🔥🔥")
         print(Global.URL)
         print("🔥🔥🔥")
@@ -151,5 +150,11 @@ final class PreGameController:BaseController{
             howToPlayView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             howToPlayView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
+    }
+}
+
+extension PreGameController:BaseDelegate{
+    func handleError(_ error: Error) {
+        handleErrors(error: error)
     }
 }

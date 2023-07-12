@@ -29,36 +29,6 @@ final class STTEngine{
         print("👍🏻👍🏻👍🏻👍🏻👍🏻👍🏻")
         print("------------------------------------")
     }
-    
-    func getAuthorization(){
-        let micStatus = AVCaptureDevice.authorizationStatus(for: .audio)
-        print(micStatus)
-        switch micStatus{
-        case .authorized:
-            getSpechAuthorization()
-        case .restricted:
-            delegate?.handleError(AudioError.TotalAudioError)
-        case .denied, .notDetermined:
-            delegate?.handleError(AudioError.AudioOff)
-        @unknown default:
-            break
-        }
-    }
-    
-   private func getSpechAuthorization(){
-       let speechStatus = SFSpeechRecognizer.authorizationStatus()
-       print(speechStatus)
-       switch speechStatus{
-       case .authorized:
-           startEngine()
-       case .denied, .notDetermined:
-           delegate?.handleError(AudioError.SpeechAuth)
-       case .restricted:
-           delegate?.handleError(AudioError.SpeechError)
-       @unknown default:
-           break
-       }
-    }
 
     func startEngine(){
         DispatchQueue.global(qos: .userInteractive).async { [weak self] in

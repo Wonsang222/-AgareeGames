@@ -7,12 +7,6 @@
 
 import Foundation
 
-protocol BaseDelegate{
+protocol BaseDelegate:AnyObject{
     func handleError(_ error:Error)
-}
-
-extension BaseDelegate{
-    func handleError(_ error:Error){
-        // handleError 고려..
-    }
 }
