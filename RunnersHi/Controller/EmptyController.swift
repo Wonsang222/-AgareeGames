@@ -8,32 +8,21 @@
 import UIKit
 
 class EmptyController:BaseController{
-
     
-    let imgView:UIImageView = {
-       let imgView = UIImageView()
-        imgView.backgroundColor = .white
-        imgView.contentMode = .scaleToFill
-        imgView.translatesAutoresizingMaskIntoConstraints = false
-        return imgView
-    }()
-
+    let mainview = PreGameView(gameTitle: "temp")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        goBackToRoot()
         
-        view.addSubview(imgView)
-        imgView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        imgView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        imgView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        imgView.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        view.addSubview(mainview)
         
-        let base = ResourceBuilder.shared
-            .setReqMethod(.GET)
-            .setPath("guessWho")
-            .setParams("num", 3)
-            .build()
-        
+        NSLayoutConstraint.activate([
+            mainview.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            mainview.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            mainview.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            mainview.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
 
 
     }

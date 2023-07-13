@@ -34,12 +34,12 @@ final class PreGameController:BaseController{
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
-        preGameView.playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
+//        preGameView.playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
         //        configureTempCache()
         configureNaviBar()
-        howToPlayView = configureHowToPlay()
-        preGameView.howToPlayButton.addTarget(self, action: #selector(outerButtonTapped), for: .touchUpInside)
-        howToPlayView?.button.addTarget(self, action: #selector(innerButtonTapped), for: .touchUpInside)
+//        howToPlayView = configureHowToPlay()
+//        preGameView.howToPlayButton.addTarget(self, action: #selector(outerButtonTapped), for: .touchUpInside)
+//        howToPlayView?.button.addTarget(self, action: #selector(innerButtonTapped), for: .touchUpInside)
     }
     
     init(gameTitle: String) {
@@ -104,6 +104,8 @@ final class PreGameController:BaseController{
         }
     }
     
+    
+    // 여기서 테스트 해봐야함 se 사이즈
     func configureView(){
         view.addSubview(preGameView)
         NSLayoutConstraint.activate([

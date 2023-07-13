@@ -94,7 +94,7 @@ final class GuessWhoController:TalkGameController{
             if self.numToCount >= 1.0 {
                 timer.invalidate()
                 self.timer = nil
-                isRunning = false
+                self.isRunning = false
                 self.clearGame(isWin: false)
             }
             self.numToCount += self.speed

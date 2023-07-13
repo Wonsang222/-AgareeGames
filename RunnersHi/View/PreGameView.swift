@@ -11,12 +11,14 @@ final class PreGameView:BaseView{
     
     let gameTitle:String
 
+    // Font Size 바꿈 -> method 사용
     //MARK: - TitleLabel
     private lazy var titleLabel:UILabel = {
         let label = UILabel()
         label.text = gameTitle
-        label.font = UIFont(name: Global.APPFONT, size: 100)
+//        label.updateLabelFontSize(view: <#T##UIView#>)
         label.textColor = .white
+        label.backgroundColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -94,17 +96,18 @@ final class PreGameView:BaseView{
     private func configureSeg(){
         addSubview(segment)
         NSLayoutConstraint.activate([
-            segment.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 100),
+//            segment.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 100),
             segment.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             segment.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            segment.centerYAnchor.constraint(equalTo: centerYAnchor)
             
         ])
     }
     
     private func configureButton(){
-        addSubview(containerView)
-        containerView.addSubview(buttonStack)
-        containerView.addSubview(playButton)
+//        addSubview(containerView)
+//        containerView.addSubview(buttonStack)
+//        containerView.addSubview(playButton)
         
         NSLayoutConstraint.activate([
             
@@ -129,8 +132,8 @@ final class PreGameView:BaseView{
     }
     
     private func configureLabel(){
-        addSubview(titleLabel)
-        addSubview(howToPlayButton)
+//        addSubview(titleLabel)
+//        addSubview(howToPlayButton)
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 30),
             titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -154,8 +157,8 @@ final class PreGameView:BaseView{
     init(gameTitle:String){
         self.gameTitle = gameTitle
         super.init(frame: .zero)
-        configureLabel()
-        configureSeg()
-        configureButton()
+//        configureLabel()
+//        
+//        configureButton()
     }
 }
