@@ -36,6 +36,12 @@ final class PreGameView:BaseView{
         return sc
     }()
     
+    let playButton:LabelButton = {
+        let button = LabelButton()
+        button.translatesAutoresizingMaskIntoConstraints = true
+        return button
+    }()
+    
     let howToPlayButton:UIButton = {
        let button = UIButton()
         let attributes1:[NSAttributedString.Key:Any] = [.font: UIFont.systemFont(ofSize: 16),
@@ -50,104 +56,39 @@ final class PreGameView:BaseView{
         return button
     }()
     
-    //MARK: - Button
-    private let buttonLabel:UILabel = {
-        let label = UILabel()
-        label.text = "플레이"
-        label.textColor = .white
-        label.font = .preferredFont(forTextStyle: .title2)
-        label.adjustsFontSizeToFitWidth = true
-        return label
-    }()
-        
-    private let buttonImage:UIImageView = {
-       let iv = UIImageView()
-        iv.image = UIImage(systemName: "play.fill")
-        iv.tintColor = .white
-        iv.contentMode = .scaleToFill
-        iv.clipsToBounds = true
-        return iv
-    }()
-    
-    let playButton:UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    private lazy var buttonStack:UIStackView = {
-       let st = UIStackView(arrangedSubviews: [buttonImage, buttonLabel])
-        st.axis = .vertical
-        st.distribution = .fillEqually
-        st.alignment = .center
-        st.layoutMargins = UIEdgeInsets(top: 15, left: 0, bottom: 0, right: 0)
-        st.isLayoutMarginsRelativeArrangement = true
-        st.translatesAutoresizingMaskIntoConstraints = false
-        return st
-    }()
-    
-    let containerView:UIView = {
-       let view = UIView()
-        view.backgroundColor = .systemBlue
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
     private func configureSeg(){
         addSubview(segment)
         NSLayoutConstraint.activate([
-//            segment.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 100),
             segment.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             segment.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
             segment.centerYAnchor.constraint(equalTo: centerYAnchor)
-            
-        ])
-    }
-    
-    private func configureButton(){
-//        addSubview(containerView)
-//        containerView.addSubview(buttonStack)
-//        containerView.addSubview(playButton)
-        
-        NSLayoutConstraint.activate([
-            
-            playButton.topAnchor.constraint(equalTo: containerView.topAnchor),
-            playButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
-            playButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            playButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-            
-            buttonStack.topAnchor.constraint(equalTo: playButton.topAnchor),
-            buttonStack.bottomAnchor.constraint(equalTo: playButton.bottomAnchor),
-            buttonStack.leadingAnchor.constraint(equalTo: playButton.leadingAnchor),
-            buttonStack.trailingAnchor.constraint(equalTo: playButton.trailingAnchor),
-            
-            buttonImage.widthAnchor.constraint(equalTo: buttonStack.widthAnchor, multiplier: 0.5),
-            
-            containerView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            containerView.topAnchor.constraint(equalTo: segment.bottomAnchor, constant: 200),
-            containerView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.3),
-            containerView.heightAnchor.constraint(equalTo: containerView.widthAnchor)
-            
         ])
     }
     
     private func configureLabel(){
-//        addSubview(titleLabel)
-//        addSubview(howToPlayButton)
+        addSubview(titleLabel)
+        addSubview(howToPlayButton)
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 30),
             titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             
-            howToPlayButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 10),
+            howToPlayButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
             howToPlayButton.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        containerView.layer.cornerRadius = containerView.frame.width / 2
-        let centerY = bounds.midY
-        containerView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: centerY / 2).isActive = true
+        addSubview(playButton)
+        
+//        let centerY = bounds.midY        
+        let y = ((howToPlayButton.frame.minY - segment.frame.maxY) / 2) + segment.frame.maxY
+        let x = frame.midX
+        let height = frame.maxX * 0.3
+        let width = height
+        playButton.frame = CGRect(x: x, y: y, width: width, height: height)
+        playButton.layer.cornerRadius = playButton.frame.width / 2
+        
     }
 
     required init?(coder: NSCoder) {
@@ -157,8 +98,7 @@ final class PreGameView:BaseView{
     init(gameTitle:String){
         self.gameTitle = gameTitle
         super.init(frame: .zero)
-//        configureLabel()
-//        
-//        configureButton()
+        configureLabel()
+        configureSeg()
     }
 }

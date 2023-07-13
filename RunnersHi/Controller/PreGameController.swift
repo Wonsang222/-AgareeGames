@@ -20,7 +20,7 @@ final class PreGameController:BaseController{
     //MARK: - NaviRoot
     
     override func viewWillAppear(_ animated: Bool) {
-        print("temp")
+
     }
     
     override var prefersStatusBarHidden: Bool{
@@ -37,9 +37,9 @@ final class PreGameController:BaseController{
 //        preGameView.playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
         //        configureTempCache()
         configureNaviBar()
-//        howToPlayView = configureHowToPlay()
-//        preGameView.howToPlayButton.addTarget(self, action: #selector(outerButtonTapped), for: .touchUpInside)
-//        howToPlayView?.button.addTarget(self, action: #selector(innerButtonTapped), for: .touchUpInside)
+        howToPlayView = configureHowToPlay()
+        preGameView.howToPlayButton.addTarget(self, action: #selector(outerButtonTapped), for: .touchUpInside)
+        howToPlayView?.button.addTarget(self, action: #selector(innerButtonTapped), for: .touchUpInside)
     }
     
     init(gameTitle: String) {
