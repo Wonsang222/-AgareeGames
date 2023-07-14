@@ -102,11 +102,10 @@ final class PreGameView:BaseView{
         let standard = labelContainerView.bounds
         let containerX = ((standard.maxX - standard.minX) / 2) / 2
         let containerY = ((standard.maxY - standard.minY) / 2) / 2
-        print(containerX)
-        print(containerY)
-        titleLabel.frame = CGRect(x: standard.midX - titleLabel.bounds.width/2, y: standard.midY - titleLabel.bounds.height/2, width: standard.width, height: standard.height)
+        titleLabel.frame = CGRect(x: standard.midX - titleLabel.bounds.width/2,
+                                  y: standard.midY - titleLabel.bounds.height/2,
+                                  width: standard.width, height: standard.height)
         titleLabel.updateLabelFontSize(view: labelContainerView)
-        
     }
 
     required init?(coder: NSCoder) {
