@@ -16,11 +16,14 @@ final class PreGameView:BaseView{
     private lazy var titleLabel:UILabel = {
         let label = UILabel()
         label.text = gameTitle
-//        label.updateLabelFontSize(view: <#T##UIView#>)
         label.textColor = .white
-        label.backgroundColor = .white
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+    
+    let labelContainerView:UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     //MARK: - SegmentControl
@@ -56,6 +59,17 @@ final class PreGameView:BaseView{
         return button
     }()
     
+    private func configureTitle(){
+        addSubview(labelContainerView)
+        
+        NSLayoutConstraint.activate([
+            labelContainerView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.35),
+            labelContainerView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8),
+            labelContainerView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            labelContainerView.topAnchor.constraint(equalTo: topAnchor, constant: 20)
+        ])
+    }
+    
     private func configureSeg(){
         addSubview(segment)
         NSLayoutConstraint.activate([
@@ -66,28 +80,32 @@ final class PreGameView:BaseView{
     }
     
     private func configureLabel(){
-        addSubview(titleLabel)
         addSubview(howToPlayButton)
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 30),
-            titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            
             howToPlayButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
             howToPlayButton.centerXAnchor.constraint(equalTo: centerXAnchor)
         ])
     }
     
     override func layoutSubviews() {
+        // 버튼 set up
         super.layoutSubviews()
         addSubview(playButton)
-        
-//        let centerY = bounds.midY        
-        let y = ((howToPlayButton.frame.minY - segment.frame.maxY) / 2) + segment.frame.maxY
-        let x = frame.midX
         let height = frame.maxX * 0.3
         let width = height
+        let y = (((howToPlayButton.frame.minY - segment.frame.maxY) / 2) + segment.frame.maxY) - (width / 2)
+        let x = frame.midX - (width / 2)
         playButton.frame = CGRect(x: x, y: y, width: width, height: height)
         playButton.layer.cornerRadius = playButton.frame.width / 2
+        
+        labelContainerView.addSubview(titleLabel)
+        let standard = labelContainerView.bounds
+        let containerX = ((standard.maxX - standard.minX) / 2) / 2
+        let containerY = ((standard.maxY - standard.minY) / 2) / 2
+        print(containerX)
+        print(containerY)
+        titleLabel.frame = CGRect(x: standard.midX - titleLabel.bounds.width/2, y: standard.midY - titleLabel.bounds.height/2, width: standard.width, height: standard.height)
+        titleLabel.updateLabelFontSize(view: labelContainerView)
         
     }
 
@@ -100,5 +118,7 @@ final class PreGameView:BaseView{
         super.init(frame: .zero)
         configureLabel()
         configureSeg()
+        configureTitle()
+
     }
 }

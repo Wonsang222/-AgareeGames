@@ -9,7 +9,7 @@ import UIKit
 
 class EmptyController:BaseController{
     
-    let mainview = PreGameView(gameTitle: "temp")
+    let mainview = PreGameView(gameTitle: "인물퀴즈")
     
     override func viewDidLoad() {
         super.viewDidLoad()
