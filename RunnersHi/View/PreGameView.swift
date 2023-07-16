@@ -100,8 +100,6 @@ final class PreGameView:BaseView{
         
         labelContainerView.addSubview(titleLabel)
         let standard = labelContainerView.bounds
-        let containerX = ((standard.maxX - standard.minX) / 2) / 2
-        let containerY = ((standard.maxY - standard.minY) / 2) / 2
         titleLabel.frame = CGRect(x: standard.midX - titleLabel.bounds.width/2,
                                   y: standard.midY - titleLabel.bounds.height/2,
                                   width: standard.width, height: standard.height)

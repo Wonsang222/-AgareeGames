@@ -29,8 +29,7 @@ class TimerGameCotoller:GameController{
             self.timer = Timer(timeInterval: 0.2, target: self, selector: #selector(self.startGameTimer(_:)), userInfo: userinfo, repeats: repeater)
             RunLoop.current.add(self.timer!, forMode: .common)
             self.timer?.fire()
-//            RunLoop.current.run()
-            RunLoop.current.run(until: Date().addingTimeInterval(0.2))
+            RunLoop.current.run()
         }
     }
     

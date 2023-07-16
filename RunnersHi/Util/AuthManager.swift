@@ -15,51 +15,58 @@ class AuthManager{
     
     init(delegate: BaseDelegate? = nil) {
         self.delegate = delegate
-        getAuth()
+        getMicAuthorization()
     }
     
-    func getAuth(){
-        switch delegate{
-        case _ as TalkGameController:
-            getMicAuthorization()
-        default:
-            break
+    func getMicAuthorization(){
+        AVAudioSession.sharedInstance().requestRecordPermission { granted in
+            if granted {
+                self.getSpechAuthorization()
+            }
         }
     }
     
-    private func getMicAuthorization(){
+    func getSpechAuthorization(){
+        SFSpeechRecognizer.requestAuthorization { authStatus in
+            switch authStatus {
+            case .authorized:
+                break
+            case .denied,.notDetermined :
+                self.delegate?.handleError(AudioError.SpeechAuth)
+            case .restricted:
+                self.delegate?.handleError(AudioError.SpeechError)
+            @unknown default:
+                break
+            }
+        }
+
+    }
+    
+    func isMicHaveAuth() -> Bool{
         let micStatus = AVCaptureDevice.authorizationStatus(for: .audio)
-        print(micStatus)
         switch micStatus{
         case .authorized:
-            getSpechAuthorization()
-        case .restricted:
-//            delegate?.handleError(AudioError.TotalAudioError)
-            print("restricted")
-        case .denied, .notDetermined:
-            delegate?.handleError(AudioError.AudioOff)
-//            print("notdeterminded")
+            return true
+        case .denied, .notDetermined, .restricted:
+            return false
         @unknown default:
-            break
+            return false
         }
     }
     
-   private func getSpechAuthorization(){
-       let speechStatus = SFSpeechRecognizer.authorizationStatus()
-       print(speechStatus)
-       switch speechStatus{
-       case .authorized:
-           print(123)
-       case .denied, .notDetermined:
-           delegate?.handleError(AudioError.SpeechAuth)
-       case .restricted:
-//           delegate?.handleError(AudioError.SpeechError)
-           print("restricted")
-       @unknown default:
-           break
-       }
-    }
+    func isSpeechHaveAuth()-> Bool{
+        let speechStatus = SFSpeechRecognizer.authorizationStatus()
+        switch speechStatus{
+        case .authorized:
+            return true
+        case .denied, .notDetermined, .restricted:
+            return false
+        @unknown default:
+            return false
+        }
 
+    }
+    
     
     
 }

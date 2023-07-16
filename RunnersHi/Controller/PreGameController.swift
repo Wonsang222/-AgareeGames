@@ -19,10 +19,6 @@ final class PreGameController:BaseController{
     
     //MARK: - NaviRoot
     
-    override func viewWillAppear(_ animated: Bool) {
-
-    }
-    
     override var prefersStatusBarHidden: Bool{
         return false
     }
@@ -34,7 +30,7 @@ final class PreGameController:BaseController{
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
-//        preGameView.playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
+        preGameView.playButton.playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
         //        configureTempCache()
         configureNaviBar()
         howToPlayView = configureHowToPlay()
@@ -117,6 +113,14 @@ final class PreGameController:BaseController{
     }
     
     @objc func playButtonTapped(){
+        guard authManager.isMicHaveAuth() else {
+            handleAudioError(err: .AudioOff)
+            return
+        }
+        guard authManager.isSpeechHaveAuth() else {
+            handleAudioError(err: .SpeechAuth)
+            return
+        }
         let game = Global.GAMEDIC[gameTitle]!
         #if DEV
         let gameClassName = "AgareeGames_dev.\(game)Controller"
@@ -129,7 +133,6 @@ final class PreGameController:BaseController{
         nextVC.gameTitle = title
         nextVC.howMany = preGameView.segment.selectedSegmentIndex
         navigationController?.pushViewController(nextVC, animated: true)
-        
     }
     
     private func configureHowToPlay() -> HowToPlayBaseView?{
