@@ -39,7 +39,6 @@ class AuthManager{
                 break
             }
         }
-
     }
     
     func isMicHaveAuth() -> Bool{

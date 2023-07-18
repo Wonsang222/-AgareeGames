@@ -90,6 +90,7 @@ class BaseController:UIViewController{
             }, disagree: nil)
         default:
             showAppTerminatingAlert()
+            print("😱😱😱😱😱😱😱😱😱😱😱")
         }
     }
     

@@ -17,7 +17,7 @@ final class NetworkService{
         return configuration
     }()
     
-    static func fetchJSON(httpbaseresource:HttpBaseResource, controller:BaseController) async throws -> [String:Any]{
+    static func fetchJSON(httpbaseresource:HttpBaseResource) async throws -> [String:Any]{
         var result:[String:Any] = [:]
         let (data, response)  = try await URLSession(configuration: configuration).data(for: httpbaseresource.request())
         guard let status = response as? HTTPURLResponse,
