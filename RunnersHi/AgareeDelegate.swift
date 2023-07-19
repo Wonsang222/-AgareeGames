@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 let initialKey = "initialKey"
 let thresholdKey = "thresholdKey"
@@ -18,7 +19,9 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         var libraryFolderUrl = homePath.appendingPathComponent(Global.PHOTODB, isDirectory: true)
-    
+        // coredata 초기화
+        DataManager.shared.setup(modelName: "AgareeGames")
+        
         if !UserDefaults.standard.bool(forKey: initialKey){
             //처음 부팅
             let defaultSettings = [thresholdKey:123] as [String:Any]
@@ -80,6 +83,46 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
             vc.alert(message: "앱이 중지 되었습니다. \n 게임을 다시실행해주세요.", agree: { alert in
                 vc.goBackToRoot()
             }, disagree: nil)
+        }
+    }
+    
+    func sceneWillResignActive(_ scene: UIScene) {
+        guard let windowScenne = scene as? UIWindowScene,
+              let window = windowScenne.windows.first,
+              let rootVC = window.rootViewController as? CustomUINavigationController,
+              let topVC = rootVC.topViewController else { return }
+        
+        if let vc = topVC as? GameController{
+            vc.alert(message: "앱이 중지 되었습니다. \n 게임을 다시실행해주세요.", agree: { alert in
+                vc.goBackToRoot()
+            }, disagree: nil)
+        }
+    }
+    
+    // MARK: - Core Data stack
+    
+    
+    lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "AgareeGames")
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
+
+    // MARK: - Core Data Saving support
+
+    func saveContext () {
+        let context = persistentContainer.viewContext
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
         }
     }
 }
