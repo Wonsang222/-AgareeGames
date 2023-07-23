@@ -41,7 +41,7 @@ class AuthManager{
         }
     }
     
-    func isMicHaveAuth() -> Bool{
+    func isMicUsable() -> Bool{
         let micStatus = AVCaptureDevice.authorizationStatus(for: .audio)
         switch micStatus{
         case .authorized:
@@ -53,7 +53,7 @@ class AuthManager{
         }
     }
     
-    func isSpeechHaveAuth()-> Bool{
+    func isSpeechable()-> Bool{
         let speechStatus = SFSpeechRecognizer.authorizationStatus()
         switch speechStatus{
         case .authorized:

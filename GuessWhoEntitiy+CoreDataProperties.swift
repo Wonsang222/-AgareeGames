@@ -2,7 +2,7 @@
 //  GuessWhoEntitiy+CoreDataProperties.swift
 //  AgareeGames
 //
-//  Created by 황원상 on 2023/07/19.
+//  Created by 황원상 on 2023/07/22.
 //
 //
 
@@ -16,8 +16,8 @@ extension GuessWhoEntitiy {
         return NSFetchRequest<GuessWhoEntitiy>(entityName: "GuessWho")
     }
 
-    @NSManaged public var name: String?
-    @NSManaged public var photo: Data?
+    @NSManaged public var name: String
+    @NSManaged public var photo: Data
 
 }
 

@@ -35,6 +35,13 @@ class DataManager{
         }
         return context
     }
+    
+    var backgroundContext:NSManagedObjectContext{
+        guard let context = container?.newBackgroundContext() else {
+            fatalError("error")
+        }
+        return context
+    }
      
     func setup(modelName:String){
         container = NSPersistentContainer(name: modelName)
@@ -57,32 +64,44 @@ class DataManager{
         }
     }
     
-    func createModel(name:String, photo:UIImage){
+    func saveBackgroundContext(){
+        backgroundContext.perform {
+            if self.backgroundContext.hasChanges{
+                do{
+                    try self.backgroundContext.save()
+                }catch{
+                    print(error)
+                }
+            }
+        }
+    }
+    
+    func createModel(name:String, photo:Data){
         mainContext.perform {[weak self] in
             guard let self = self else { return }
             let newModel = GuessWhoEntitiy(context: self.mainContext)
-            newModel.name = name
-            
-//            newModel.photo = photo
+            newModel.setValue(name, forKey: "name")
+            newModel.setValue(photo, forKey: "photo")
             self.saveMainContext()
         }
     }
     
-    func fetchModel(targetName:String) -> [GuessWhoEntitiy]{
+    func fetchModel(targetName:String) -> GuessWhoEntitiy?{
+        
         var result = [GuessWhoEntitiy]()
         
-        mainContext.performAndWait {
+        backgroundContext.performAndWait {
             let request = GuessWhoEntitiy.fetchRequest()
-            let sortByName = NSSortDescriptor(key: targetName, ascending: true)
-            request.sortDescriptors = [sortByName]
-            
+            let predicate = NSPredicate(format: "%K == %@","name", targetName)
+            request.predicate = predicate
+
             do{
                 result = try mainContext.fetch(request)
             } catch{
                 print(error)
             }
         }
-        return result
+        return result.popLast()
     }
     
 }

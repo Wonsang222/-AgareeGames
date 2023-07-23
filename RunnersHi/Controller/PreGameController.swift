@@ -80,25 +80,24 @@ final class PreGameController:BaseController{
         navigationItem.backBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_icon"), style: .plain, target: self, action: nil)
     }
     
-    func configureTempCache(){
-        DispatchQueue.global(qos: .userInitiated).async {
-            let files:[URL]
-            files = try! FileManager().contentsOfDirectory(at: Global.PHOTODBURL, includingPropertiesForKeys: nil)
-            
-            for element in files{
-                let decoder = JSONDecoder()
-                do{
-                    let data = try Data(contentsOf: element)
-                    let model = try decoder.decode(GuessWhoPlayModel.self, from: data)
-                    TempCache.shared.cache[model.url] = model.photo
-                }catch{
-                    print("--------------  configureTmepCahce")
-                    print(error)
-                    print("--------------  configureTmepCahce")
-                }
-            }
-        }
-    }
+//    func configureTempCache(){
+//        DispatchQueue.global(qos: .userInitiated).async {
+//            let files:[URL]
+//            files = try! FileManager().contentsOfDirectory(at: Global.PHOTODBURL, includingPropertiesForKeys: nil)
+//
+//            for element in files{
+//                let decoder = JSONDecoder()
+//                do{
+//                    let data = try Data(contentsOf: element)
+//                    let model = try decoder.decode(GuessWhoPlayModel.self, from: data)
+//                }catch{
+//                    print("--------------  configureTmepCahce")
+//                    print(error)
+//                    print("--------------  configureTmepCahce")
+//                }
+//            }
+//        }
+//    }
     
     
     // 여기서 테스트 해봐야함 se 사이즈
@@ -113,11 +112,11 @@ final class PreGameController:BaseController{
     }
     
     @objc func playButtonTapped(){
-        guard authManager.isMicHaveAuth() else {
+        guard authManager.isMicUsable() else {
             handleAudioError(err: .AudioOff)
             return
         }
-        guard authManager.isSpeechHaveAuth() else {
+        guard authManager.isSpeechable() else {
             handleAudioError(err: .SpeechAuth)
             return
         }

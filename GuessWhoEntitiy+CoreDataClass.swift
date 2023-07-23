@@ -2,7 +2,7 @@
 //  GuessWhoEntitiy+CoreDataClass.swift
 //  AgareeGames
 //
-//  Created by 황원상 on 2023/07/19.
+//  Created by 황원상 on 2023/07/22.
 //
 //
 

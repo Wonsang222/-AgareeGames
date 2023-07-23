@@ -42,10 +42,10 @@
 		C14F27642A0521490007E7A6 /* ResourceBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14F27632A0521490007E7A6 /* ResourceBuilder.swift */; };
 		C15AA81E2A67D2C100AF24F3 /* AgareeGames.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C15AA81C2A67D2C100AF24F3 /* AgareeGames.xcdatamodeld */; };
 		C15AA81F2A67D2C100AF24F3 /* AgareeGames.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C15AA81C2A67D2C100AF24F3 /* AgareeGames.xcdatamodeld */; };
-		C15AA8342A6819A000AF24F3 /* GuessWhoEntitiy+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15AA8322A6819A000AF24F3 /* GuessWhoEntitiy+CoreDataClass.swift */; };
-		C15AA8352A6819A000AF24F3 /* GuessWhoEntitiy+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15AA8322A6819A000AF24F3 /* GuessWhoEntitiy+CoreDataClass.swift */; };
-		C15AA8362A6819A000AF24F3 /* GuessWhoEntitiy+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15AA8332A6819A000AF24F3 /* GuessWhoEntitiy+CoreDataProperties.swift */; };
-		C15AA8372A6819A000AF24F3 /* GuessWhoEntitiy+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15AA8332A6819A000AF24F3 /* GuessWhoEntitiy+CoreDataProperties.swift */; };
+		C15AA84E2A6B8D2000AF24F3 /* GuessWhoEntitiy+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15AA84C2A6B8D2000AF24F3 /* GuessWhoEntitiy+CoreDataClass.swift */; };
+		C15AA84F2A6B8D2000AF24F3 /* GuessWhoEntitiy+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15AA84C2A6B8D2000AF24F3 /* GuessWhoEntitiy+CoreDataClass.swift */; };
+		C15AA8502A6B8D2000AF24F3 /* GuessWhoEntitiy+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15AA84D2A6B8D2000AF24F3 /* GuessWhoEntitiy+CoreDataProperties.swift */; };
+		C15AA8512A6B8D2000AF24F3 /* GuessWhoEntitiy+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15AA84D2A6B8D2000AF24F3 /* GuessWhoEntitiy+CoreDataProperties.swift */; };
 		C1649BF22A47D4260094D56D /* PreGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E04C8E42A03342300357A0F /* PreGameController.swift */; };
 		C1649BF32A47D4260094D56D /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E1BEF5F2A281D5500E59F95 /* ResultViewModel.swift */; };
 		C1649BF42A47D4260094D56D /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E159D3429F89FD900C7E601 /* Global.swift */; };
@@ -128,8 +128,8 @@
 		C14F275D2A02C01B0007E7A6 /* ResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultController.swift; sourceTree = "<group>"; };
 		C14F27632A0521490007E7A6 /* ResourceBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceBuilder.swift; sourceTree = "<group>"; };
 		C15AA81D2A67D2C100AF24F3 /* AgareeGames.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AgareeGames.xcdatamodel; sourceTree = "<group>"; };
-		C15AA8322A6819A000AF24F3 /* GuessWhoEntitiy+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GuessWhoEntitiy+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		C15AA8332A6819A000AF24F3 /* GuessWhoEntitiy+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GuessWhoEntitiy+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		C15AA84C2A6B8D2000AF24F3 /* GuessWhoEntitiy+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GuessWhoEntitiy+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		C15AA84D2A6B8D2000AF24F3 /* GuessWhoEntitiy+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GuessWhoEntitiy+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		C1649C1D2A47D4260094D56D /* AgareeGames_dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgareeGames_dev.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1649C1E2A47D4260094D56D /* AgareeGames_dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = AgareeGames_dev.plist; path = /Users/hwangwonsang/Desktop/git/AgareeGames/AgareeGames_dev.plist; sourceTree = "<absolute>"; };
 		C176FECE2A1A5C8800C7EFE6 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -333,8 +333,8 @@
 		C1FFE7C429E305BC009FFD0B /* Entity */ = {
 			isa = PBXGroup;
 			children = (
-				C15AA8322A6819A000AF24F3 /* GuessWhoEntitiy+CoreDataClass.swift */,
-				C15AA8332A6819A000AF24F3 /* GuessWhoEntitiy+CoreDataProperties.swift */,
+				C15AA84C2A6B8D2000AF24F3 /* GuessWhoEntitiy+CoreDataClass.swift */,
+				C15AA84D2A6B8D2000AF24F3 /* GuessWhoEntitiy+CoreDataProperties.swift */,
 				C119CBC829F804FE00648638 /* GuessWhoDataModel.swift */,
 				C15AA81C2A67D2C100AF24F3 /* AgareeGames.xcdatamodeld */,
 			);
@@ -510,7 +510,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1649BF22A47D4260094D56D /* PreGameController.swift in Sources */,
-				C15AA8372A6819A000AF24F3 /* GuessWhoEntitiy+CoreDataProperties.swift in Sources */,
+				C15AA8512A6B8D2000AF24F3 /* GuessWhoEntitiy+CoreDataProperties.swift in Sources */,
 				C1649BF32A47D4260094D56D /* ResultViewModel.swift in Sources */,
 				C1649BF42A47D4260094D56D /* Global.swift in Sources */,
 				C1649BF52A47D4260094D56D /* GuessWhoView.swift in Sources */,
@@ -525,7 +525,7 @@
 				C1649BFE2A47D4260094D56D /* HowToPlayView.swift in Sources */,
 				C1649BFF2A47D4260094D56D /* IntroView.swift in Sources */,
 				C15AA81F2A67D2C100AF24F3 /* AgareeGames.xcdatamodeld in Sources */,
-				C15AA8352A6819A000AF24F3 /* GuessWhoEntitiy+CoreDataClass.swift in Sources */,
+				C15AA84F2A6B8D2000AF24F3 /* GuessWhoEntitiy+CoreDataClass.swift in Sources */,
 				C1649C002A47D4260094D56D /* ResourceBuilder.swift in Sources */,
 				C1649C012A47D4260094D56D /* STTEngine.swift in Sources */,
 				C1649C022A47D4260094D56D /* TimerGameController.swift in Sources */,
@@ -557,7 +557,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E04C8E52A03342300357A0F /* PreGameController.swift in Sources */,
-				C15AA8362A6819A000AF24F3 /* GuessWhoEntitiy+CoreDataProperties.swift in Sources */,
+				C15AA8502A6B8D2000AF24F3 /* GuessWhoEntitiy+CoreDataProperties.swift in Sources */,
 				7E1BEF602A281D5500E59F95 /* ResultViewModel.swift in Sources */,
 				7E159D3529F89FD900C7E601 /* Global.swift in Sources */,
 				7E20755B29F9FBE4000BFE61 /* GuessWhoView.swift in Sources */,
@@ -572,7 +572,7 @@
 				C11D6EE82A41E84B00F59E15 /* HowToPlayView.swift in Sources */,
 				7E20755D29F9FBF8000BFE61 /* IntroView.swift in Sources */,
 				C15AA81E2A67D2C100AF24F3 /* AgareeGames.xcdatamodeld in Sources */,
-				C15AA8342A6819A000AF24F3 /* GuessWhoEntitiy+CoreDataClass.swift in Sources */,
+				C15AA84E2A6B8D2000AF24F3 /* GuessWhoEntitiy+CoreDataClass.swift in Sources */,
 				C14F27642A0521490007E7A6 /* ResourceBuilder.swift in Sources */,
 				C119CBCE29F951BF00648638 /* STTEngine.swift in Sources */,
 				C148D9D72A1CE961005AB791 /* TimerGameController.swift in Sources */,
@@ -823,9 +823,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZD5K45Y4NW;
@@ -848,7 +848,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.wonsang.AgareeGames;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = AgareeGames_dev;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = AgareeGames_dist;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -865,7 +865,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = ZD5K45Y4NW;
 				GENERATE_INFOPLIST_FILE = YES;

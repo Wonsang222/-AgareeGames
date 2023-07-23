@@ -9,8 +9,14 @@ import UIKit
 
 class EmptyController:BaseController{
     
+    let mainView = GuessWhoView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         goBackToRoot()
+    }
+    
+    override func loadView() {
+        view = mainView
     }
 }

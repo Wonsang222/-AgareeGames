@@ -36,6 +36,11 @@ final class NetworkService{
      2. image를 불러오지 못했을 경우, joker 사용 - throws를쓰지않음. 메서드 내부에서 에러처리
      3. 조커는 무조건 정답으로 쳐야한다. name = * 이면 wildcard
      */
+    
+    
+    
+    //coredata fetch background
+    
     static func fetchImage(_ data:Dictionary<String,Any>) async -> [GuessWhoPlayModel]{
         // data 순회 -> url  이미지 불러오기 백그라운드로 날려버리기
         var result:Array<GuessWhoPlayModel> = []
@@ -43,18 +48,23 @@ final class NetworkService{
             let dbName = name
             var photo:UIImage?
             do{
-                guard let stringUrl = url as? String else {throw NetworkError.notconnected }
-                let dbUrl = URL(string: stringUrl)
-                guard let dbUrl = dbUrl else { throw NetworkError.notconnected }
-                let (data, response) = try await URLSession(configuration: configuration).data(from:dbUrl)
-                guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw NetworkError.notconnected }
-                photo = UIImage(data: data)
+                guard let stringUrl = url as? String,
+                      let dbUrl = URL(string: stringUrl)
+                else {throw NetworkError.notconnected }
+                
+                if let isSaved =  DataManager.shared.fetchModel(targetName: dbName){
+                    photo = UIImage(data: isSaved.photo)
+                } else {
+                    let (data, response) = try await URLSession(configuration: configuration).data(from:dbUrl)
+                    guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw NetworkError.notconnected }
+                    photo = UIImage(data: data)
+                    DataManager.shared.createModel(name: dbName, photo: data)
+                }
                 guard let urlPhoto = photo else { throw NetworkError.notconnected }
-//                ImageCacheManager.shared.setObject(urlPhoto, forKey: (dbName as NSString))
-                let model = GuessWhoPlayModel(name: dbName, photo: urlPhoto, url:stringUrl)
+                let model = GuessWhoPlayModel(name: dbName, photo: urlPhoto)
                 result.append(model)
             } catch{
-                let joker = GuessWhoPlayModel(name: "조커", photo: UIImage(named: "joker")!, url: "joker")
+                let joker = GuessWhoPlayModel(name: "조커", photo: UIImage(named: "joker")!)
                 result.append(joker)
             }
         }
