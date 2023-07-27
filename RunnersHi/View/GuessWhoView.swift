@@ -33,8 +33,8 @@ final class GuessWhoView:BaseView{
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             imageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            imageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3),
-            imageView.widthAnchor.constraint(equalTo: heightAnchor, multiplier: 0.3),
+            imageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4),
+            imageView.widthAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4),
         ])
     }
     

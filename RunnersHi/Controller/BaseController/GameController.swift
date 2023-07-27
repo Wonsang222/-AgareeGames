@@ -25,6 +25,7 @@ class GameController:BaseController{
         let pv = UIProgressView()
         pv.progressViewStyle = .default
         pv.tintColor = .systemBlue
+        pv.isHidden = true
         pv.trackTintColor = .lightGray
         pv.translatesAutoresizingMaskIntoConstraints = false
         return pv

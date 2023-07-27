@@ -61,6 +61,8 @@ final class GuessWhoController:TalkGameController{
         if !viewModel.isNetworkDone{ loaderON() }
         countView.removeFromSuperview()
         guessView.imageView.isHidden = false
+        progressView.isHidden = false
+        
         countView.layoutIfNeeded()
         if let serverErr = viewModel.networkErr{
             handleErrors(error: serverErr)
