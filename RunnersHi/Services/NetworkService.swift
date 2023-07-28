@@ -37,10 +37,6 @@ final class NetworkService{
      3. 조커는 무조건 정답으로 쳐야한다. name = * 이면 wildcard
      */
     
-    
-    
-    //coredata fetch background
-    
     static func fetchImage(_ data:Dictionary<String,Any>) async -> [GuessWhoPlayModel]{
         // data 순회 -> url  이미지 불러오기 백그라운드로 날려버리기
         var result:Array<GuessWhoPlayModel> = []

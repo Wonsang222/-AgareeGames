@@ -13,10 +13,16 @@ class EmptyController:BaseController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        goBackToRoot()
+//        goBackToRoot()
     }
     
     override func loadView() {
         view = mainView
+    }
+    
+    func test(){
+        Task{
+            NetworkService.fetchJSON(httpbaseresource:)
+        }
     }
 }

@@ -38,8 +38,8 @@ final class GuessWhoView:BaseView{
         ])
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        configureUI()
-    }
+//    override func layoutSubviews() {
+//        super.layoutSubviews()
+//        configureUI()
+//    }
 }

@@ -53,7 +53,7 @@ final class GuessWhoController:TalkGameController{
             progressView.widthAnchor.constraint(equalTo: guessView.widthAnchor, multiplier: 0.5),
             progressView.heightAnchor.constraint(equalToConstant: 20),
             progressView.centerXAnchor.constraint(equalTo: guessView.centerXAnchor),
-            progressView.bottomAnchor.constraint(equalTo: guessView.bottomAnchor, constant: -200)
+            progressView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -150)
         ])
     }
     
