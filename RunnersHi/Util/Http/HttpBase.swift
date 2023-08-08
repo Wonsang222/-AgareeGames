@@ -49,6 +49,14 @@ struct HttpBaseResource {
         }
         return returnVal
     }
+  
+    // 로그인 위함 -> protocol에 담기
+//    func parseHeader(_ resp:HTTPURLResponse){
+//        let cookies = HTTPCookie.cookies(withResponseHeaderFields: resp.allHeaderFields as! [String:String], for: resp.url!)
+//        for cookie in cookies{
+//
+//        }
+//    }
     
     init(reqMethod: HttpMethod, isMultiPart: Bool, reqHeader: [String : String], params: [String : String], path: String) {
         self.reqMethod = reqMethod

@@ -21,7 +21,6 @@ class TalkGameController:TimerGameCotoller{
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        engine?.getAuthorization()
         engine?.startEngine()
     }
     

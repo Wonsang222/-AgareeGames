@@ -13,7 +13,7 @@ final class GuessWhoView:BaseView{
        let imgView = UIImageView()
         imgView.clipsToBounds = true
         imgView.image = UIImage(systemName: "trash")
-        imgView.contentMode = .scaleAspectFill
+        imgView.contentMode = .scaleToFill
         imgView.isHidden = true
         imgView.translatesAutoresizingMaskIntoConstraints = false
         return imgView
@@ -32,14 +32,9 @@ final class GuessWhoView:BaseView{
         [imageView].forEach {addSubview($0)}
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            imageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            imageView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -100),
             imageView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4),
             imageView.widthAnchor.constraint(equalTo: heightAnchor, multiplier: 0.4),
         ])
     }
-    
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//        configureUI()
-//    }
 }

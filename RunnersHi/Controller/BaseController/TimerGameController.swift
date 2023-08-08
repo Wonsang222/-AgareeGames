@@ -7,9 +7,7 @@
 
 import UIKit
 
-// 런루프 손봐야함
-
-class TimerGameCotoller:GameController{
+class TimerGameCotoller:GameController {
     final var timer:Timer?
     final var numToCount: Float = 0.0
     final var speed:Float = 0.0
