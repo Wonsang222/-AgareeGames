@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		70D2015C0EED94459CA6F7B1 /* Pods_AgareeGames_dis.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A77BD266F112D23180BE074 /* Pods_AgareeGames_dis.framework */; };
+		7A5A82D9266CC6826E86D154 /* Pods_AgareeGames_dev.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB66B56DDDC736785D25E32F /* Pods_AgareeGames_dev.framework */; };
 		7E04C8E52A03342300357A0F /* PreGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E04C8E42A03342300357A0F /* PreGameController.swift */; };
 		7E04C8E72A033C4800357A0F /* PreGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E04C8E62A033C4800357A0F /* PreGameView.swift */; };
 		7E04C8EA2A0342C800357A0F /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E04C8E92A0342C800357A0F /* GameController.swift */; };
@@ -94,6 +96,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05D798BDE62B35868E68CF2E /* Pods-AgareeGames_dis.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgareeGames_dis.debug.xcconfig"; path = "Target Support Files/Pods-AgareeGames_dis/Pods-AgareeGames_dis.debug.xcconfig"; sourceTree = "<group>"; };
+		4E2727175CEF35876600FF6B /* Pods-AgareeGames_dev.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgareeGames_dev.debug.xcconfig"; path = "Target Support Files/Pods-AgareeGames_dev/Pods-AgareeGames_dev.debug.xcconfig"; sourceTree = "<group>"; };
 		7E04C8E42A03342300357A0F /* PreGameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreGameController.swift; sourceTree = "<group>"; };
 		7E04C8E62A033C4800357A0F /* PreGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreGameView.swift; sourceTree = "<group>"; };
 		7E04C8E92A0342C800357A0F /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
@@ -112,6 +116,8 @@
 		7E3544AA2A13160E00B844E6 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		7E49954E2A0CAFD5006D95AC /* GuessWhoHTPV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoHTPV.swift; sourceTree = "<group>"; };
 		7E60DD6F2A307A6600A511E2 /* AgareeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgareeDelegate.swift; sourceTree = "<group>"; };
+		9A77BD266F112D23180BE074 /* Pods_AgareeGames_dis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AgareeGames_dis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3E1B9A776BB89D8CCFC21D1 /* Pods-AgareeGames_dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgareeGames_dev.release.xcconfig"; path = "Target Support Files/Pods-AgareeGames_dev/Pods-AgareeGames_dev.release.xcconfig"; sourceTree = "<group>"; };
 		C119CBC429F8030600648638 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainController.swift; path = RunnersHi/Controller/MainController.swift; sourceTree = SOURCE_ROOT; };
 		C119CBC629F8033300648638 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseController.swift; path = RunnersHi/Controller/BaseController/BaseController.swift; sourceTree = SOURCE_ROOT; };
 		C119CBC829F804FE00648638 /* GuessWhoDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GuessWhoDataModel.swift; path = RunnersHi/Entity/GuessWhoDataModel.swift; sourceTree = SOURCE_ROOT; };
@@ -143,6 +149,8 @@
 		C1FFE7BA29E30425009FFD0B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C1FFE7BC29E30425009FFD0B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C1FFE7D529E8607D009FFD0B /* HttpBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpBase.swift; sourceTree = "<group>"; };
+		EB66B56DDDC736785D25E32F /* Pods_AgareeGames_dev.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AgareeGames_dev.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFCEC155B60DEC431E1BC259 /* Pods-AgareeGames_dis.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgareeGames_dis.release.xcconfig"; path = "Target Support Files/Pods-AgareeGames_dis/Pods-AgareeGames_dis.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +158,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A5A82D9266CC6826E86D154 /* Pods_AgareeGames_dev.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +166,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70D2015C0EED94459CA6F7B1 /* Pods_AgareeGames_dis.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +296,8 @@
 			isa = PBXGroup;
 			children = (
 				C1F3E80B2A64344D0004619E /* Speech.framework */,
+				EB66B56DDDC736785D25E32F /* Pods_AgareeGames_dev.framework */,
+				9A77BD266F112D23180BE074 /* Pods_AgareeGames_dis.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -297,6 +309,7 @@
 				C1FFE7AC29E30425009FFD0B /* Products */,
 				C1649C1E2A47D4260094D56D /* AgareeGames_dev.plist */,
 				C1F3E80A2A64344D0004619E /* Frameworks */,
+				E935A82933C053B7122A45A5 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -412,6 +425,18 @@
 			path = ../Extension;
 			sourceTree = "<group>";
 		};
+		E935A82933C053B7122A45A5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4E2727175CEF35876600FF6B /* Pods-AgareeGames_dev.debug.xcconfig */,
+				A3E1B9A776BB89D8CCFC21D1 /* Pods-AgareeGames_dev.release.xcconfig */,
+				05D798BDE62B35868E68CF2E /* Pods-AgareeGames_dis.debug.xcconfig */,
+				FFCEC155B60DEC431E1BC259 /* Pods-AgareeGames_dis.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -419,9 +444,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C1649C1A2A47D4260094D56D /* Build configuration list for PBXNativeTarget "AgareeGames_dev" */;
 			buildPhases = (
+				512C8C11F22A22EB70150B2F /* [CP] Check Pods Manifest.lock */,
 				C1649BF12A47D4260094D56D /* Sources */,
 				C1649C162A47D4260094D56D /* Frameworks */,
 				C1649C172A47D4260094D56D /* Resources */,
+				EDB8021A512F7A9F6F2F352C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -436,9 +463,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C1FFE7BF29E30425009FFD0B /* Build configuration list for PBXNativeTarget "AgareeGames_dis" */;
 			buildPhases = (
+				DF19A914B61CF7191D6918DB /* [CP] Check Pods Manifest.lock */,
 				C1FFE7A729E30425009FFD0B /* Sources */,
 				C1FFE7A829E30425009FFD0B /* Frameworks */,
 				C1FFE7A929E30425009FFD0B /* Resources */,
+				8846860C44B2FCF2D4FBE5E6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -503,6 +532,87 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		512C8C11F22A22EB70150B2F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AgareeGames_dev-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8846860C44B2FCF2D4FBE5E6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AgareeGames_dis/Pods-AgareeGames_dis-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AgareeGames_dis/Pods-AgareeGames_dis-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AgareeGames_dis/Pods-AgareeGames_dis-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DF19A914B61CF7191D6918DB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AgareeGames_dis-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EDB8021A512F7A9F6F2F352C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AgareeGames_dev/Pods-AgareeGames_dev-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AgareeGames_dev/Pods-AgareeGames_dev-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AgareeGames_dev/Pods-AgareeGames_dev-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C1649BF12A47D4260094D56D /* Sources */ = {
@@ -623,6 +733,7 @@
 /* Begin XCBuildConfiguration section */
 		C1649C1B2A47D4260094D56D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4E2727175CEF35876600FF6B /* Pods-AgareeGames_dev.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -665,6 +776,7 @@
 		};
 		C1649C1C2A47D4260094D56D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A3E1B9A776BB89D8CCFC21D1 /* Pods-AgareeGames_dev.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -819,6 +931,7 @@
 		};
 		C1FFE7C029E30425009FFD0B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 05D798BDE62B35868E68CF2E /* Pods-AgareeGames_dis.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -860,6 +973,7 @@
 		};
 		C1FFE7C129E30425009FFD0B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FFCEC155B60DEC431E1BC259 /* Pods-AgareeGames_dis.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

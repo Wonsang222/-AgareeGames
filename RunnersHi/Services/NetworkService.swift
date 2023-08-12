@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 final class NetworkService{
     
@@ -29,6 +30,50 @@ final class NetworkService{
         let jsonData = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! [String:Any]
         result = jsonData
         return result
+    }
+    
+    // rx를 위한 completionHandler 형태로 변환
+    private static func fetchJSON(resource:HttpBaseResource,completion:@escaping (Result<Dictionary<String,Any>, Error>) -> Void) {
+        URLSession(configuration: configuration).dataTask(with: resource.request()) { data, response, err in
+            if err != nil{
+                let err = MyServer(statusCode: 500).emitError()
+                completion(.failure(err))
+            }
+            
+            guard let status = response as? HTTPURLResponse,
+                  (200...299) ~= status.statusCode else {
+                let error = MyServer(statusCode: (response as? HTTPURLResponse)!.statusCode).emitError()
+                completion(.failure(error))
+                return
+            }
+            
+            guard let data = data else { return }
+            var jsonData = [String:Any]()
+            do{
+                jsonData = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! [String:Any]
+            } catch{
+                
+            }
+            completion(.success(jsonData))
+        
+        }
+        .resume()
+    }
+    
+    static func fetchJSONRx(resource:HttpBaseResource) -> Observable<[String:Any]> {
+        return Observable.create { emitter in
+            fetchJSON(resource: resource) { result in
+                switch result{
+                case .success(let json):
+                    break
+                case .failure(let err):
+                    break
+                }
+                
+                
+            }
+            return Disposables.create()
+        }
     }
     
     /*
