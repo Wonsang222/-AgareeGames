@@ -7,27 +7,27 @@
 
 
 import UIKit
+import RxSwift
+import RxRelay
 
-protocol GuessWhoViewModelDelegate:BaseDelegate, AnyObject{
-    func setNextTarget(with data:GuessWhoPlayModel)
-    func clearGame(isWin:Bool)
+protocol TimerUsableType{
+    var timer:Timer { get }
 }
 
 final class GuessWhoViewModel{
     
     var networkErr:Error?
     var isNetworkDone:Bool = false
-    private weak var delegate:GuessWhoViewModelDelegate?
     private var playModelArray:[GuessWhoPlayModel] = []
     
     private var targetModel:GuessWhoPlayModel?{
         didSet{
             guard let targetModel = targetModel else {
                 // 게임 이긴 경우 -> targetModel이 nil
-                delegate?.clearGame(isWin: true)
+                
                 return
             }
-            delegate?.setNextTarget(with: targetModel)
+            
         }
     }
     
@@ -38,11 +38,7 @@ final class GuessWhoViewModel{
     func next(){
         targetModel = playModelArray.popLast()
     }
-    
-    init(delegate: GuessWhoViewModelDelegate) {
-        self.delegate = delegate
-    }
-    
+
     func fetchNetworkData(httpbaseResource:HttpBaseResource){
         Task{
             do{
@@ -52,9 +48,6 @@ final class GuessWhoViewModel{
                 let array = await NetworkService.fetchImage(jsonData)
                 playModelArray = array
                 isNetworkDone = true
-                if let delegate = delegate as? GameController, await delegate.loader.isAnimating{
-                    await delegate.loaderOFF()
-                }
                 Task(priority: .low){
                     //                    saveDB()
                 }

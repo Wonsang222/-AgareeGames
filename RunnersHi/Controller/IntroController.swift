@@ -7,9 +7,8 @@
 
 import UIKit
 
-// 아가리 마크
 
-final class IntroController: BaseController, GuessWhoViewModelDelegate {
+final class IntroController: BaseController {
     func handleError(_: Error) {
 
     }
@@ -30,7 +29,7 @@ final class IntroController: BaseController, GuessWhoViewModelDelegate {
         super.viewDidLoad()
         introView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(introView)
-        viewmodel = GuessWhoViewModel(delegate: self)
+
         NSLayoutConstraint.activate([
             introView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             introView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),

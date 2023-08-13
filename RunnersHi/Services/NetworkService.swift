@@ -55,7 +55,7 @@ final class NetworkService{
                 
             }
             completion(.success(jsonData))
-        
+            
         }
         .resume()
     }
@@ -65,22 +65,15 @@ final class NetworkService{
             fetchJSON(resource: resource) { result in
                 switch result{
                 case .success(let json):
-                    break
+                    emitter.onNext(json)
+                    emitter.onCompleted()
                 case .failure(let err):
-                    break
+                    emitter.onError(err)
                 }
-                
-                
             }
             return Disposables.create()
         }
     }
-    
-    /*
-     1. 임시캐시
-     2. image를 불러오지 못했을 경우, joker 사용 - throws를쓰지않음. 메서드 내부에서 에러처리
-     3. 조커는 무조건 정답으로 쳐야한다. name = * 이면 wildcard
-     */
     
     static func fetchImage(_ data:Dictionary<String,Any>) async -> [GuessWhoPlayModel]{
         // data 순회 -> url  이미지 불러오기 백그라운드로 날려버리기
@@ -111,6 +104,7 @@ final class NetworkService{
         }
         return result
     }
+}
     // 캐시에 있으면 사용, 없으면 temp cache를 봄.
     //    private static func cacheCheck(_ name:String) -> UIImage?{
     //        let cacheKey = name as NSString
@@ -122,4 +116,4 @@ final class NetworkService{
     //        }
     //        return nil
     //    }
-}
+
