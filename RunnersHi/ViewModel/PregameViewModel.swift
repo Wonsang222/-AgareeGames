@@ -18,37 +18,43 @@ import RxSwift
  */
 
 final class PregameViewModel{
-    
     let disposeBag = DisposeBag()
+    // Input
+    var gameModel:PublishSubject<PregameModel>
     
-    // INPUT
-    var gameTitle:AnyObserver<GameKinds>
-    
-    // OUTPUT
-    
-    
-    
-    private func configureHowToPlayView(title:String) -> HowToPlayBaseView? {
-        switch title{
-        case "인물퀴즈":
-            return GuessWhoHTPV()
-        default:
-            break
-        }
-        return nil
-    }
-    
-    init(game:PlayableType){
+    // Output
+    let gameTitle:Observable<String>
+        
+    init(game:GameKinds){
         let fetching = PublishSubject<Void>()
+        let modeling = PublishSubject<PregameModel>()
+        
+        gameModel = modeling
         
         fetching
-            .flatMap { _ in
-                return Observable.create { emitter in
-                    emitter.onNext(game)
-                    return Disposables.create()
-                }
-            }
-            .
+            .flatMap { game.getObservable()}
+            .map { PregameModel(gameType: $0) }
+            .subscribe(onNext: modeling.onNext)
+            .disposed(by: disposeBag)
+        
+        gameTitle = modeling
+            .map{ $0.gameType.gameTitle}
+            .map { "\($0)"}
     }
     
+    func changePlayers(_ num:Int) {
+        
+    }
 }
+
+
+
+//private func configureHowToPlayView(title:String) -> HowToPlayBaseView? {
+//    switch title{
+//    case "인물퀴즈":
+//        return GuessWhoHTPV()
+//    default:
+//        break
+//    }
+//    return nil
+//}
