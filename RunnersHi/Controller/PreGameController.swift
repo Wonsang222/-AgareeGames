@@ -13,12 +13,10 @@ import RxSwift
 
 final class PreGameController:BaseController{
     
-    
-    
-//    lazy var preGameView = PreGameView(gameTitle:gameTitle)
-    
-    
-    private var howToPlayView:HowToPlayBaseView?
+    let viewModel:PregameViewModel
+    var disposeBag = DisposeBag()
+
+//    private var howToPlayView:HowToPlayBaseView?
 //    private lazy var authManager = AuthManager(delegate: self)
     
     //MARK: - NaviRoot
@@ -31,6 +29,11 @@ final class PreGameController:BaseController{
         return .lightContent
     }
     
+    init(viewModel:PregameViewModel = PregameViewModel(game: .GuessWho)){
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
@@ -39,18 +42,18 @@ final class PreGameController:BaseController{
         configureNaviBar()
 //        howToPlayView = configureHowToPlay()
 //        preGameView.howToPlayButton.addTarget(self, action: #selector(outerButtonTapped), for: .touchUpInside)
-        howToPlayView?.button.addTarget(self, action: #selector(innerButtonTapped), for: .touchUpInside)
+//        howToPlayView?.button.addTarget(self, action: #selector(innerButtonTapped), for: .touchUpInside)
     }
     
-    init(gameTitle: String) {
-//        self.gameTitle = gameTitle
-        super.init(nibName: nil, bundle: nil)
-
-        print("🔥🔥🔥")
-        print(Global.URL)
-        print("🔥🔥🔥")
-        
-    }
+//    init(gameTitle: String) {
+////        self.gameTitle = gameTitle
+//        super.init(nibName: nil, bundle: nil)
+//
+//        print("🔥🔥🔥")
+//        print(Global.URL)
+//        print("🔥🔥🔥")
+//
+//    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -58,20 +61,20 @@ final class PreGameController:BaseController{
     
     // 설계실수 -> 수정예정 -> 의존성 주입
     @objc private func innerButtonTapped(){
-        howToPlayView?.removeFromSuperview()
+//        howToPlayView?.removeFromSuperview()
     }
     
     @objc private func outerButtonTapped(){
-        guard let howToPlayView = howToPlayView else { return }
-        view.addSubview(howToPlayView)
-        NSLayoutConstraint.activate([
-            howToPlayView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            howToPlayView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            howToPlayView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7),
-            howToPlayView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.7)
-        ])
-        
-        howToPlayView.layoutIfNeeded()
+//        guard let howToPlayView = howToPlayView else { return }
+//        view.addSubview(howToPlayView)
+//        NSLayoutConstraint.activate([
+//            howToPlayView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            howToPlayView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+//            howToPlayView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7),
+//            howToPlayView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.7)
+//        ])
+//
+//        howToPlayView.layoutIfNeeded()
     }
     
     func configureNaviBar(){
@@ -151,15 +154,15 @@ final class PreGameController:BaseController{
     }
     
     @objc private func showHowToPlay(){
-        guard let howToPlayView = howToPlayView else { return }
-        view.addSubview(howToPlayView)
-        
-        NSLayoutConstraint.activate([
-            howToPlayView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.7),
-            howToPlayView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7),
-            howToPlayView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            howToPlayView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
+//        guard let howToPlayView = howToPlayView else { return }
+//        view.addSubview(howToPlayView)
+//
+//        NSLayoutConstraint.activate([
+//            howToPlayView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.7),
+//            howToPlayView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7),
+//            howToPlayView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            howToPlayView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+//        ])
     }
 }
 

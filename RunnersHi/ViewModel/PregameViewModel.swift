@@ -8,22 +8,15 @@
 import UIKit
 import RxSwift
 
-/*
- 1. gametitle bind  take 1
- 2. authmanager
- 3. howtoplayview
- 4. game start
- 5. how many players.
- 6. push ( create next viewmodel)  -> coordinator
- */
 
 final class PregameViewModel{
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     // Input
-    var gameModel:PublishSubject<PregameModel>
+    private let gameModel:PublishSubject<PregameModel>
     
     // Output
     let gameTitle:Observable<String>
+//    let howToPlayView:Observable<GuessWhoHTPV>
         
     init(game:GameKinds){
         let fetching = PublishSubject<Void>()
@@ -31,7 +24,7 @@ final class PregameViewModel{
         
         gameModel = modeling
         
-        fetching
+        _ = fetching
             .flatMap { game.getObservable()}
             .map { PregameModel(gameType: $0) }
             .subscribe(onNext: modeling.onNext)
@@ -40,21 +33,28 @@ final class PregameViewModel{
         gameTitle = modeling
             .map{ $0.gameType.gameTitle}
             .map { "\($0)"}
+        
     }
     
     func changePlayers(_ num:Int) {
         
     }
+    
+    private func configureHowToPlayView(title:String) -> Observable<GuessWhoHTPV>? {
+        switch title{
+        case "인물퀴즈":
+            return Observable.create { emitter in
+                emitter.onNext(GuessWhoHTPV())
+                emitter.onCompleted()
+                return Disposables.create()
+            }
+        default:
+            break
+        }
+        return nil
+    }
 }
 
 
 
-//private func configureHowToPlayView(title:String) -> HowToPlayBaseView? {
-//    switch title{
-//    case "인물퀴즈":
-//        return GuessWhoHTPV()
-//    default:
-//        break
-//    }
-//    return nil
-//}
+

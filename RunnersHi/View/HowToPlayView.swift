@@ -35,6 +35,7 @@ class HowToPlayBaseView:BaseView{
         button.backgroundColor = .systemGray
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
+      
     }()
    
     override init(frame: CGRect) {
