@@ -53,7 +53,8 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = CustomUINavigationController(rootViewController: PreGameController(gameTitle: "인물퀴즈"))
+        window?.rootViewController = EmptyController()
+//        window?.rootViewController = CustomUINavigationController(rootViewController: PreGameController(gameTitle: "인물퀴즈"))
         window?.makeKeyAndVisible()
     }
     

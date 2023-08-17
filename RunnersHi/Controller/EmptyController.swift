@@ -6,11 +6,27 @@
 //
 
 import UIKit
+import RxSwift
 
 class EmptyController:BaseController{
     
+    let viewModel = PregameViewModel(game: .GuessWho)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        goBackToRoot()
+//        goBackToRoot()
+        
+        
+        viewModel.gameInstruction
+            .subscribe { aa in
+                print(aa)
+            }
+            .disposed(by: DisposeBag())
+        
+        viewModel.gameInstruction
+            .subscribe { aa in
+                print(aa)
+            }
+        
     }
 }

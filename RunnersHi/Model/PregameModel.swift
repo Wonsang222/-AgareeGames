@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct PregameModel:PlayableType{
+struct PregameModel:PlayableType{
     let gameType: GameKinds
     var players: Int
     
@@ -20,4 +20,8 @@ public struct PregameModel:PlayableType{
         self = origin
         self.players = updatedPlayers
     }
+}
+
+extension PregameModel{
+    
 }

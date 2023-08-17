@@ -10,49 +10,33 @@ import RxSwift
 
 
 final class PregameViewModel{
-    private let disposeBag = DisposeBag()
-    // Input
-    private let gameModel:PublishSubject<PregameModel>
-    
-    // Output
+    let gameModel:Observable<PregameModel>
     let gameTitle:Observable<String>
-//    let howToPlayView:Observable<GuessWhoHTPV>
+    lazy var gameInstruction:Observable<GuessWhoHTPV> = {
+        return setInstruction(by:gameTitle)
+    }()
         
     init(game:GameKinds){
-        let fetching = PublishSubject<Void>()
-        let modeling = PublishSubject<PregameModel>()
-        
-        gameModel = modeling
-        
-        _ = fetching
-            .flatMap { game.getObservable()}
-            .map { PregameModel(gameType: $0) }
-            .subscribe(onNext: modeling.onNext)
-            .disposed(by: disposeBag)
-        
-        gameTitle = modeling
-            .map{ $0.gameType.gameTitle}
-            .map { "\($0)"}
-        
+        let gameType = Observable.just(game)
+        gameTitle = gameType.map{ "\($0.gameTitle)"}
+        gameModel = gameType.map {PregameModel(gameType: $0)}
     }
     
     func changePlayers(_ num:Int) {
         
     }
     
-    private func configureHowToPlayView(title:String) -> Observable<GuessWhoHTPV>? {
-        switch title{
-        case "인물퀴즈":
-            return Observable.create { emitter in
-                emitter.onNext(GuessWhoHTPV())
-                emitter.onCompleted()
-                return Disposables.create()
+    private func setInstruction(by observable:Observable<String>) -> Observable<GuessWhoHTPV> {
+        return observable.flatMap { title in
+            switch title {
+            case "인물퀴즈":
+                return Observable.just(GuessWhoHTPV())
+            default:
+                return Observable.empty()
             }
-        default:
-            break
         }
-        return nil
     }
+    
 }
 
 
