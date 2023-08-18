@@ -11,17 +11,17 @@ struct PregameModel:PlayableType{
     let gameType: GameKinds
     var players: Int
     
-    init(gameType: GameKinds, players: Int = 0) {
+    init(gameType: GameKinds, players: Int = 2) {
         self.gameType = gameType
         self.players = players
     }
     
-    init(origin:Self, updatedPlayers:Int){
-        self = origin
-        self.players = updatedPlayers
+    mutating func changePlayer(_ num:Int){
+        self.players = num
     }
-}
-
-extension PregameModel{
     
+    init(origin:Self, num:Int){
+        self = origin
+        self.players = num
+    }
 }

@@ -6,16 +6,17 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 final class PreGameView:BaseView{
     
-    let gameTitle:String
 
     // Font Size 바꿈 -> method 사용
     //MARK: - TitleLabel
     private lazy var titleLabel:UILabel = {
         let label = UILabel()
-        label.text = gameTitle
+        label.text = "temp"
         label.textColor = .white
         return label
     }()
@@ -110,8 +111,7 @@ final class PreGameView:BaseView{
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(gameTitle:String){
-        self.gameTitle = gameTitle
+    init(){
         super.init(frame: .zero)
         configureLabel()
         configureSeg()

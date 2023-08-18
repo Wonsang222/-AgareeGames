@@ -7,23 +7,36 @@
 
 import UIKit
 import RxSwift
-
+import RxCocoa
 
 final class PregameViewModel{
-    let gameModel:Observable<PregameModel>
+    //MARK: -  INPUT
+    let gameModel:BehaviorRelay<PregameModel>
+    
+    //MARK: - OUTPUT
     let gameTitle:Observable<String>
     lazy var gameInstruction:Observable<GuessWhoHTPV> = {
         return setInstruction(by:gameTitle)
     }()
         
+    
+    let disposeBag = DisposeBag()
+    
     init(game:GameKinds){
         let gameType = Observable.just(game)
         gameTitle = gameType.map{ "\($0.gameTitle)"}
-        gameModel = gameType.map {PregameModel(gameType: $0)}
+        gameModel = BehaviorRelay(value: PregameModel(gameType: game))
     }
     
     func changePlayers(_ num:Int) {
+        let revisionNum = num + 2
         
+        gameModel
+            .subscribe(onNext: {
+                let newModel = PregameModel(origin: $0, num: revisionNum)
+                self.gameModel.accept(newModel)
+            })
+            .disposed(by: disposeBag)
     }
     
     private func setInstruction(by observable:Observable<String>) -> Observable<GuessWhoHTPV> {
