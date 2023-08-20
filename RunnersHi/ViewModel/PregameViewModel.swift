@@ -9,47 +9,74 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+
+// take1은 언제쓰는가
+
 final class PregameViewModel{
     //MARK: -  INPUT
     let gameModel:BehaviorRelay<PregameModel>
+    let changePlayerTrigger = PublishSubject<Int>()
     
     //MARK: - OUTPUT
-    let gameTitle:Observable<String>
-    lazy var gameInstruction:Observable<GuessWhoHTPV> = {
-        return setInstruction(by:gameTitle)
+    lazy var gameTitle:Observable<String> = {
+        return getGameTitle()
     }()
-        
+    lazy var gameInstruction:Observable<GuessWhoHTPV> = {
+        return setInstruction()
+    }()
     
-    let disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     
     init(game:GameKinds){
-        let gameType = Observable.just(game)
-        gameTitle = gameType.map{ "\($0.gameTitle)"}
-        gameModel = BehaviorRelay(value: PregameModel(gameType: game))
+        let baseModel = PregameModel(gameType: game)
+        gameModel = BehaviorRelay(value: baseModel)
+
+        bindInputs()
     }
     
-    func changePlayers(_ num:Int) {
-        let revisionNum = num + 2
-        
-        gameModel
-            .subscribe(onNext: {
-                let newModel = PregameModel(origin: $0, num: revisionNum)
-                self.gameModel.accept(newModel)
-            })
+    private func bindInputs() {
+        changePlayerTrigger
+            .withLatestFrom(gameModel) { (index: $0, model: $1) }
+            .map (changePlayers)
+            .bind(to: gameModel)
             .disposed(by: disposeBag)
     }
     
-    private func setInstruction(by observable:Observable<String>) -> Observable<GuessWhoHTPV> {
-        return observable.flatMap { title in
-            switch title {
-            case "인물퀴즈":
-                return Observable.just(GuessWhoHTPV())
-            default:
-                return Observable.empty()
-            }
-        }
+    private func changePlayers(_ num:Int, _ model:PregameModel) -> PregameModel {
+        let revisionNum = num + 2
+        return PregameModel(origin: model, num: revisionNum)
+        
     }
     
+    private func setInstruction() -> Observable<GuessWhoHTPV> {
+        return gameModel
+            .asObservable()
+            .observe(on: MainScheduler.instance)
+            .map{ model in
+                switch model.gameType.gameTitle{
+                case "인물퀴즈":
+                    return GuessWhoHTPV()
+                default:
+                    break
+                }
+                return GuessWhoHTPV()
+            }
+    }
+    
+    private func getGameTitle() -> Observable<String>{
+        return gameModel
+            .asObservable()
+            .observe(on: MainScheduler.instance)
+            .map{ $0.gameType.gameTitle }
+    }
+    
+    private func setGameController() -> Observable<GuessWhoController>{
+        return Observable.create { emitter in
+            emitter.onNext(GuessWhoController())
+            
+            return Disposables.create()
+        }
+    }
 }
 
 

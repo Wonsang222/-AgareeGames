@@ -13,12 +13,10 @@ import RxSwift
 
 final class PreGameController:BaseController{
     
-    let viewModel:PregameViewModel
+    private let viewModel:PregameViewModel
     private let disposeBag = DisposeBag()
-    let pregameView = PreGameView()
-    
+    private let preGameView = PreGameView()
 
-//    private var howToPlayView:HowToPlayBaseView?
 //    private lazy var authManager = AuthManager(delegate: self)
     
     //MARK: - NaviRoot
@@ -39,46 +37,67 @@ final class PreGameController:BaseController{
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
-//        preGameView.playButton.playButton.addTarget(self, action: #selector(playButtonTapped), for: .touchUpInside)
-        //        configureTempCache()
         configureNaviBar()
-//        howToPlayView = configureHowToPlay()
-//        preGameView.howToPlayButton.addTarget(self, action: #selector(outerButtonTapped), for: .touchUpInside)
-//        howToPlayView?.button.addTarget(self, action: #selector(innerButtonTapped), for: .touchUpInside)
+        bindViewModel()
+        bindUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func bindViewModel(){
+    private func bindViewModel(){
+        viewModel.gameTitle
+            .observe(on: MainScheduler.instance)
+            .bind(to: preGameView.titleLabel.rx.text)
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindUI(){
+        preGameView.segment.rx.selectedSegmentIndex
+            .bind(to: viewModel.changePlayerTrigger)
+            .disposed(by: disposeBag)
         
+        preGameView.titleLabel.rx.methodInvoked(#selector(setter: UILabel.text))
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self, weak preGameView] _ in
+                preGameView?.titleLabel.updateLabelFontSize(view: (self?.preGameView.labelContainerView)!)
+            })
+            .disposed(by: disposeBag)
+        
+        preGameView.howToPlayButton.rx.tap
+            .withLatestFrom(viewModel.gameInstruction)
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { inst in
+                self.showHTPV(inst)
+            })
+            .disposed(by: disposeBag)
+//        
+//        preGameView.howToPlayButton.rx.tap
+//            .withLatestFrom(viewModel.gameModel)
+//            .observe(on: MainScheduler.instance)
+//            .bind(to: )
+//            .disposed(by: disposeBag)
+    }
+
+    @objc private func dissmissHTPV(_ htpv:HowToPlayBaseView){
+        htpv.superview!.removeFromSuperview()
     }
     
-    func bindUI(){
-        self.pregameView.segment.rx.selectedSegmentIndex
-            
+    @objc private func showHTPV(_ htpv:HowToPlayBaseView){
+        view.addSubview(htpv)
+        NSLayoutConstraint.activate([
+            htpv.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            htpv.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            htpv.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7),
+            htpv.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.7)
+        ])
+
+        htpv.layoutIfNeeded()
+        htpv.button.addTarget(self, action: #selector(dissmissHTPV(_:)), for: .touchUpInside)
     }
     
-    // 설계실수 -> 수정예정 -> 의존성 주입
-    @objc private func innerButtonTapped(){
-//        howToPlayView?.removeFromSuperview()
-    }
-    
-    @objc private func outerButtonTapped(){
-//        guard let howToPlayView = howToPlayView else { return }
-//        view.addSubview(howToPlayView)
-//        NSLayoutConstraint.activate([
-//            howToPlayView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            howToPlayView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-//            howToPlayView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7),
-//            howToPlayView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.7)
-//        ])
-//
-//        howToPlayView.layoutIfNeeded()
-    }
-    
-    func configureNaviBar(){
+    private func configureNaviBar(){
         let standard = UINavigationBarAppearance()
         standard.configureWithTransparentBackground()
         
@@ -88,31 +107,13 @@ final class PreGameController:BaseController{
         navigationItem.backBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_icon"), style: .plain, target: self, action: nil)
     }
 
-    func configureView(){
-//        view.addSubview(preGameView)
-//        NSLayoutConstraint.activate([
-//            preGameView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-//            preGameView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-//            preGameView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            preGameView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-//        ])
-    }
-            
-    @objc private func showHowToPlay(){
-//        guard let howToPlayView = howToPlayView else { return }
-//        view.addSubview(howToPlayView)
-//
-//        NSLayoutConstraint.activate([
-//            howToPlayView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.7),
-//            howToPlayView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7),
-//            howToPlayView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            howToPlayView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-//        ])
-    }
-}
-
-extension PreGameController:BaseDelegate{
-    func handleError(_ error: Error) {
-        handleErrors(error: error)
+    private func configureView(){
+        view.addSubview(preGameView)
+        NSLayoutConstraint.activate([
+            preGameView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            preGameView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            preGameView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            preGameView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
     }
 }

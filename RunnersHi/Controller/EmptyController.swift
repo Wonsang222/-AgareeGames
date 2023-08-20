@@ -17,16 +17,5 @@ class EmptyController:BaseController{
 //        goBackToRoot()
         
         
-        viewModel.gameInstruction
-            .subscribe { aa in
-                print(aa)
-            }
-            .disposed(by: DisposeBag())
-        
-        viewModel.gameInstruction
-            .subscribe { aa in
-                print(aa)
-            }
-        
     }
 }

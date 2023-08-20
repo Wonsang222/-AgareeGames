@@ -14,7 +14,7 @@ final class PreGameView:BaseView{
 
     // Font Size 바꿈 -> method 사용
     //MARK: - TitleLabel
-    private lazy var titleLabel:UILabel = {
+    let titleLabel:UILabel = {
         let label = UILabel()
         label.text = "temp"
         label.textColor = .white
@@ -104,7 +104,7 @@ final class PreGameView:BaseView{
         titleLabel.frame = CGRect(x: standard.midX - titleLabel.bounds.width/2,
                                   y: standard.midY - titleLabel.bounds.height/2,
                                   width: standard.width, height: standard.height)
-        titleLabel.updateLabelFontSize(view: labelContainerView)
+//        titleLabel.updateLabelFontSize(view: labelContainerView)
     }
 
     required init?(coder: NSCoder) {
