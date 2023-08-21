@@ -27,10 +27,11 @@ final class PregameViewModel{
     
     private let disposeBag = DisposeBag()
     
+    // Lifecycle
+    
     init(game:GameKinds){
         let baseModel = PregameModel(gameType: game)
         gameModel = BehaviorRelay(value: baseModel)
-
         bindInputs()
     }
     
@@ -45,7 +46,6 @@ final class PregameViewModel{
     private func changePlayers(_ num:Int, _ model:PregameModel) -> PregameModel {
         let revisionNum = num + 2
         return PregameModel(origin: model, num: revisionNum)
-        
     }
     
     private func setInstruction() -> Observable<GuessWhoHTPV> {
@@ -73,7 +73,6 @@ final class PregameViewModel{
     private func setGameController() -> Observable<GuessWhoController>{
         return Observable.create { emitter in
             emitter.onNext(GuessWhoController())
-            
             return Disposables.create()
         }
     }

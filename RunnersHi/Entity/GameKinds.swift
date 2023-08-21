@@ -21,9 +21,9 @@ extension GameKinds{
     }
     
     func getObservable() -> Observable<Self>{
-        return Observable.create { emitter in
-            emitter.onNext(self)
-            emitter.onCompleted()
+        return Observable.create { observer in
+            observer.onNext(self)
+            observer.onCompleted()
             return Disposables.create()
         }
     }
