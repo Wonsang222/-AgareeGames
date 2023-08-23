@@ -62,7 +62,7 @@ class GameController:BaseController{
     
     //MARK: - Methods
     
-    final func startCounter(handler:@escaping()->Void){
+    final func startCounter(handler:@escaping()->Void) {
         UIView.transition(with: countView, duration: 2, options: [.transitionFlipFromTop]) {
             self.countView.image = UIImage(systemName: "3.circle")
             self.countView.layoutIfNeeded()

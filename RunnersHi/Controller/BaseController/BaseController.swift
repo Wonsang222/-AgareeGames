@@ -57,7 +57,7 @@ class BaseController:UIViewController{
         DispatchQueue.main.asyncAfter(deadline: .now() + second) {
             UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                exit(1) // Exit Failure
+                exit(1)
             }
         }
     }

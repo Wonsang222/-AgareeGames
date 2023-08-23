@@ -5,7 +5,7 @@
 //  Created by 황원상 on 2023/08/13.
 //
 
-import UIKit
+import Foundation
 import RxSwift
 
 public enum GameKinds:String{
