@@ -8,16 +8,16 @@
 import Foundation
 import RxSwift
 
-class MemoryStorage:MemoStorageType{
+//class MemoryStorage:MemoStorageType{
     
-    @discardableResult
-    func createModel(name: String, photo: UIImage) -> RxSwift.Observable<Void> {
-        
-    }
+//    @discardableResult
+//    func createModel(name: String, photo: UIImage) -> RxSwift.Observable<Void> {
+//
+//    }
+//
+//    func findModel(name: String) -> RxSwift.Observable<Bool> {
+//
+//    }
     
-    func findModel(name: String) -> RxSwift.Observable<Bool> {
-        
-    }
-    
-    
-}
+//
+//}

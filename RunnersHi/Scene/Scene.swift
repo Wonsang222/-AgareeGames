@@ -18,10 +18,10 @@ extension Scene{
         
         switch self{
         case .game(let gameViewmodel):
-            
-            
+            print(123)
         case .main(let pregameViewmodel):
             print(123)
         }
+        return BaseController()
     }
 }

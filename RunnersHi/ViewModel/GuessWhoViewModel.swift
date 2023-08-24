@@ -79,10 +79,10 @@ final class GuessWhoViewModel{
         }
     }
     
-    func createResultViewModel() -> ResultViewModel{
-        
-        return ResultViewModel()
-    }
+//    func createResultViewModel() -> ResultViewModel{
+//        
+//        return ResultViewModel()
+//    }
 }
 
 

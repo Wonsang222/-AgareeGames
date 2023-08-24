@@ -49,7 +49,9 @@ final class PreGameController:BaseController{
     private func bindViewModel(){
         viewModel.gameTitle
             .observe(on: MainScheduler.instance)
-            .bind(to: preGameView.titleLabel.rx.text)
+            .subscribe(onSuccess: { title in // 1회성이라 상관없을듯
+                self.preGameView.titleLabel.text = title
+            })
             .disposed(by: disposeBag)
     }
     

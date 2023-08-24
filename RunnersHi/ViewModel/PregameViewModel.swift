@@ -18,10 +18,10 @@ final class PregameViewModel{
     let changePlayerTrigger = PublishSubject<Int>()
     
     //MARK: - OUTPUT
-    lazy var gameTitle:Observable<String> = {
+    lazy var gameTitle:Single<String> = {
         return getGameTitle()
     }()
-    lazy var gameInstruction:Observable<GuessWhoHTPV> = {
+    lazy var gameInstruction:Single<GuessWhoHTPV> = {
         return setInstruction()
     }()
     
@@ -32,7 +32,7 @@ final class PregameViewModel{
     init(game:GameKinds){
         let baseModel = PregameModel(gameType: game)
         gameModel = BehaviorRelay(value: baseModel)
-        bindInputs()
+//        bindInputs()
     }
     
     private func bindInputs() {
@@ -47,27 +47,46 @@ final class PregameViewModel{
         let revisionNum = num + 2
         return PregameModel(origin: model, num: revisionNum)
     }
+//
+//    private func setInstruction() -> Observable<GuessWhoHTPV> {
+//        return gameModel
+//            .asObservable()
+//            .observe(on: MainScheduler.instance)
+//            .map{ model in
+//                switch model.gameType.gameTitle{
+//                case "인물퀴즈":
+//                    return GuessWhoHTPV()
+//                default:
+//                    break
+//                }
+//                return GuessWhoHTPV()
+//            }
+//    }
     
-    private func setInstruction() -> Observable<GuessWhoHTPV> {
-        return gameModel
-            .asObservable()
-            .observe(on: MainScheduler.instance)
-            .map{ model in
-                switch model.gameType.gameTitle{
-                case "인물퀴즈":
-                    return GuessWhoHTPV()
-                default:
-                    break
-                }
-                return GuessWhoHTPV()
+    private func setInstruction() -> Single<GuessWhoHTPV> {
+        return Single.create { [weak self] single in
+            let gameType = self?.gameModel.value.gameType
+            
+            switch gameType{
+            case .GuessWho:
+                single(.success(GuessWhoHTPV()))
+            default:
+                single(.failure(NSError(domain: "Test", code: 11)))
             }
+            return Disposables.create()
+        }
     }
     
-    private func getGameTitle() -> Observable<String>{
-        return gameModel
-            .asObservable()
-            .observe(on: MainScheduler.instance)
-            .map{ $0.gameType.gameTitle }
+//    private func getGameTitle() -> Observable<String>{
+//        return gameModel
+//            .asObservable()
+//            .observe(on: MainScheduler.instance)
+//            .map{ $0.gameType.gameTitle }
+//    }
+    
+    private func getGameTitle() -> Single<String>{
+        return Single.just(gameModel.value.gameType.gameTitle)
+            
     }
     
     private func setGameController() -> Observable<GuessWhoController>{
