@@ -7,9 +7,12 @@ target 'AgareeGames_dev' do
 
   # Pods for AgareeGames_dev
 
-	pod 'Then'
+    pod 'Then'
     pod 'RxSwift', '6.5.0'
     pod 'RxCocoa', '6.5.0'
+    pod 'Action'
+    pod 'NSObject+Rx'
+    pod 'RxCoreData'
 
 
 end
@@ -20,8 +23,11 @@ target 'AgareeGames_dis' do
 
   # Pods for AgareeGames_dis
 
-	pod 'Then'
+    pod 'Then'
     pod 'RxSwift', '6.5.0'
     pod 'RxCocoa', '6.5.0'
+    pod 'Action'
+    pod 'NSObject+Rx'
+    pod 'RxCoreData'
 
 end
