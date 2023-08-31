@@ -14,14 +14,18 @@ enum Scene{
 }
 
 extension Scene{
-    func instantiate() -> BaseController{
+    func instantiate() -> NSObject{
         
         switch self{
+        case .main(let pregameViewmodel):
+            let main = PreGameController(viewModel: pregameViewmodel)
+            let nav = CustomUINavigationController(rootViewController: main)
+            return nav
         case .game(let gameViewmodel):
             print(123)
-        case .main(let pregameViewmodel):
-            print(123)
+        
+            
         }
-        return BaseController()
+        return UIViewController()
     }
 }

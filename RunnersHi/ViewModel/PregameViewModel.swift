@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import Action
 
 
 // take1은 언제쓰는가
@@ -16,6 +17,9 @@ final class PregameViewModel{
     //MARK: -  INPUT
     let gameModel:BehaviorRelay<PregameModel>
     let changePlayerTrigger = PublishSubject<Int>()
+    
+    let playAction:Action<PregameModel, Void>
+    let changePlayerAction:Action<Int, Void>
     
     //MARK: - OUTPUT
     lazy var gameTitle:Single<String> = {
@@ -29,10 +33,19 @@ final class PregameViewModel{
     
     // Lifecycle
     
-    init(game:GameKinds){
+    init(game:GameKinds, playAction:Action<PregameModel, Void>? = nil, changePlayerAction:Action<Int, Void>? = nil){
         let baseModel = PregameModel(gameType: game)
         gameModel = BehaviorRelay(value: baseModel)
 //        bindInputs()
+        
+        self.playAction = Action{ input in
+            if let action = playAction{
+                action.execute(input)
+            }
+            return 
+        }
+        
+        
     }
     
     private func bindInputs() {
