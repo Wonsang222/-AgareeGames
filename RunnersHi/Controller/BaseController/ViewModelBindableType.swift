@@ -14,9 +14,11 @@ protocol ViewModelBindableType{
     func bindViewModel()
 }
 
-extension ViewModelBindableType{
+extension ViewModelBindableType where Self:BaseController{
     mutating func bind(viewmodel:ViewModelType){
         self.viewModel = viewmodel
+        
+        loadViewIfNeeded()
         
         bindViewModel()
     }

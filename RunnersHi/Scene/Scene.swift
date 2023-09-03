@@ -2,7 +2,7 @@
 //  Scene.swift
 //  AgareeGames
 //
-//  Created by 위사모바일 on 2023/08/23.
+//  Created by 황원상 on 2023/08/23.
 //
 
 import UIKit
@@ -10,21 +10,30 @@ import UIKit
 enum Scene{
     case main(PregameViewModel)
     case game(GuessWhoViewModel)
-//    case result()
+    case result(ResultViewModel)
+    case inst(InstViewModel)
 }
 
 extension Scene{
-    func instantiate() -> NSObject{
+    func instantiate() -> UIViewController{
         
         switch self{
         case .main(let pregameViewmodel):
-            let main = PreGameController(viewModel: pregameViewmodel)
+            var main = PreGameController()
+            
+            DispatchQueue.main.async {
+                main.bind(viewmodel: pregameViewmodel)
+            }
+            
             let nav = CustomUINavigationController(rootViewController: main)
             return nav
         case .game(let gameViewmodel):
             print(123)
-        
             
+        case .result(let resultViewModel):
+            print(123)
+        case .inst(let instViewModel):
+            print(123)
         }
         return UIViewController()
     }

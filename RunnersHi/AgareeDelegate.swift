@@ -53,10 +53,11 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        let viewmodel = PregameModel(gameType: .GuessWho)
-        window?.rootViewController = PreGameController()
-//        window?.rootViewController = CustomUINavigationController(rootViewController: PreGameController(gameTitle: "인물퀴즈"))
-        window?.makeKeyAndVisible()
+        
+        let viewModel = PregameViewModel(game: .GuessWho)
+
+        
+        
     }
     
     func sceneDidEnterBackground(_ scene: UIScene) {

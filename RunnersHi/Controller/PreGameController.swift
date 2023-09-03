@@ -9,14 +9,13 @@ import UIKit
 import AVFoundation
 import Speech
 import RxSwift
+import NSObject_Rx
 
-
-final class PreGameController:BaseController{
+final class PreGameController:BaseController, ViewModelBindableType{
     
-    private let viewModel:PregameViewModel
-    private let disposeBag = DisposeBag()
     private let preGameView = PreGameView()
-
+    var viewModel: PregameViewModel!
+    
 //    private lazy var authManager = AuthManager(delegate: self)
     
     //MARK: - NaviRoot
@@ -28,60 +27,18 @@ final class PreGameController:BaseController{
     override var preferredStatusBarStyle: UIStatusBarStyle{
         return .lightContent
     }
-    
-    init(viewModel:PregameViewModel = PregameViewModel(game: .GuessWho)){
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
         configureNaviBar()
-        bindViewModel()
-        bindUI()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func bindViewModel(){
-        viewModel.gameTitle
-            .observe(on: MainScheduler.instance)
-            .subscribe(onSuccess: { title in // 1회성이라 상관없을듯
-                self.preGameView.titleLabel.text = title
-            })
-            .disposed(by: disposeBag)
-    }
-    
-    private func bindUI(){
-        preGameView.segment.rx.selectedSegmentIndex
-            .bind(to: viewModel.changePlayerTrigger)
-            .disposed(by: disposeBag)
+    func bindViewModel() {
         
-        preGameView.titleLabel.rx.methodInvoked(#selector(setter: UILabel.text))
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self, weak preGameView] _ in
-                preGameView?.titleLabel.updateLabelFontSize(view: (self?.preGameView.labelContainerView)!)
-            })
-            .disposed(by: disposeBag)
-        
-        preGameView.howToPlayButton.rx.tap
-            .withLatestFrom(viewModel.gameInstruction)
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { inst in
-                self.showHTPV(inst)
-            })
-            .disposed(by: disposeBag)
-//        
-//        preGameView.howToPlayButton.rx.tap
-//            .withLatestFrom(viewModel.gameModel)
-//            .observe(on: MainScheduler.instance)
-//            .bind(to: )
-//            .disposed(by: disposeBag)
     }
-
+    
+    
     @objc private func dissmissHTPV(_ htpv:HowToPlayBaseView){
         htpv.superview!.removeFromSuperview()
     }
@@ -96,7 +53,6 @@ final class PreGameController:BaseController{
         ])
 
         htpv.layoutIfNeeded()
-        htpv.button.addTarget(self, action: #selector(dissmissHTPV(_:)), for: .touchUpInside)
     }
     
     private func configureNaviBar(){
@@ -105,8 +61,6 @@ final class PreGameController:BaseController{
         
         navigationItem.standardAppearance = standard
         navigationItem.scrollEdgeAppearance = standard
-        
-        navigationItem.backBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_icon"), style: .plain, target: self, action: nil)
     }
 
     private func configureView(){

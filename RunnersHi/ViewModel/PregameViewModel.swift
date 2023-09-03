@@ -11,9 +11,8 @@ import RxCocoa
 import Action
 
 
-// take1은 언제쓰는가
 
-final class PregameViewModel{
+final class PregameViewModel:BaseViewModel{
     //MARK: -  INPUT
     let gameModel:BehaviorRelay<PregameModel>
     let changePlayerTrigger = PublishSubject<Int>()

@@ -5,14 +5,9 @@
 //  Created by 황원상 on 2023/04/26.
 //
 
-
 import UIKit
 import RxSwift
 import RxRelay
-
-protocol TimerUsableType{
-    var timer:Timer { get }
-}
 
 final class GuessWhoViewModel{
     
@@ -79,10 +74,6 @@ final class GuessWhoViewModel{
         }
     }
     
-//    func createResultViewModel() -> ResultViewModel{
-//        
-//        return ResultViewModel()
-//    }
 }
 
 
