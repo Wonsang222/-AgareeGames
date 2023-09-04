@@ -15,6 +15,7 @@ let homePath = FileManager.default.urls(for: .libraryDirectory, in: .userDomainM
 class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
     
     var window: UIWindow?
+    var appCoordinator:AppCoordinator!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -52,15 +53,18 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(windowScene: windowScene)
-//        window?.rootViewController = UIViewController()
-        let coordinator = SceneCoordinator(window: window!)
         
+        let appWindow = UIWindow(frame: windowScene.coordinateSpace.bounds)
+        appWindow.windowScene = windowScene
         
-        let viewModel = PregameViewModel(game: .GuessWho, sceneCoordinator: coordinator)
-        let mainScene = Scene.main(viewModel)
+        let navi = CustomUINavigationController()
+        appCoordinator = MainCoordinator(navigationController: navi)
+        appCoordinator.start()
         
-        coordinator.transition(to: mainScene, using: .push, animated: true)
+        appWindow.rootViewController = navi
+        appWindow.makeKeyAndVisible()
+        
+        window = appWindow
     }
     
     func sceneDidEnterBackground(_ scene: UIScene) {

@@ -32,7 +32,7 @@ final class PreGameController:BaseController, ViewModelBindableType{
         super.viewDidLoad()
         configureView()
         configureNaviBar()
-        print(123)
+        print(43)
     }
     
     func bindViewModel() {
@@ -65,6 +65,7 @@ final class PreGameController:BaseController, ViewModelBindableType{
     }
 
     private func configureView(){
+        print(88)
         view.addSubview(preGameView)
         NSLayoutConstraint.activate([
             preGameView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
