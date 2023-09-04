@@ -16,12 +16,12 @@ struct PregameModel:PlayableType{
         self.players = players
     }
     
-    mutating func changePlayer(_ num:Int){
+    init(origin:Self, num:Int){
+        self = origin
         self.players = num
     }
     
-    init(origin:Self, num:Int){
-        self = origin
+    mutating func changePlayer(_ num:Int){
         self.players = num
     }
 }

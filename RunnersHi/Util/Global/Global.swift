@@ -23,5 +23,4 @@ struct Global{
     static let URL = "https://agareegames.fly.dev"
     #endif
     static let PHOTODBURL = FileManager().urls(for: .libraryDirectory, in: .userDomainMask).first!.appendingPathComponent(Global.PHOTODB, isDirectory: true)
-    static var GAMEDIC:[String:String] = ["인물퀴즈":"GuessWho"]
 }

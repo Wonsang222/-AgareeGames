@@ -19,11 +19,11 @@ extension UIViewController{
 class SceneCoordinator:SceneCoordinatorType, HasDisposeBag{
     
     private var window:UIWindow
-    private var currentVC:UIViewController
+    private var currentVC:UIViewController? = nil
     
     required init(window:UIWindow){
         self.window = window
-        currentVC = window.rootViewController!
+//        currentVC = window.rootViewController!
     }
     
     @discardableResult
@@ -40,7 +40,7 @@ class SceneCoordinator:SceneCoordinatorType, HasDisposeBag{
             window.makeKeyAndVisible()
             subject.onCompleted()
         case .push:
-            guard let nav = currentVC.navigationController else {
+            guard let nav = currentVC?.navigationController else {
                 subject.onError(TransitionError.navigationControllerMissing)
                 break
             }
@@ -55,12 +55,29 @@ class SceneCoordinator:SceneCoordinatorType, HasDisposeBag{
             currentVC = target.sceneViewController
             subject.onCompleted()
         case .modal:
-            currentVC.present(target, animated: true){
+            currentVC?.present(target, animated: true){
                 subject.onCompleted()
             }
             currentVC = target.sceneViewController
         }
         
         return subject.asCompletable()
+    }
+    
+    @discardableResult
+    func close(animated: Bool) -> Completable {
+        return Completable.create { [unowned self] observer in
+            if let pregameVC = self.currentVC as? PreGameController{
+                pregameVC.view.subviews.last?.removeFromSuperview()
+                observer(.completed)
+            } else {
+                observer(.error(NSError(domain: "eror", code: 1)))
+            }
+            
+            return Disposables.create()
+        }
+        
+        
+        
     }
 }

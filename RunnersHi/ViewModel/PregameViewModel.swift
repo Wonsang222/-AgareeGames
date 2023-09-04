@@ -9,14 +9,11 @@ import UIKit
 import RxSwift
 import RxCocoa
 import Action
-
-
+import NSObject_Rx
 
 final class PregameViewModel:BaseViewModel{
     //MARK: -  INPUT
     let gameModel:BehaviorRelay<PregameModel>
-    let changePlayerTrigger = PublishSubject<Int>()
-    
     let playAction:Action<PregameModel, Void>
     let changePlayerAction:Action<Int, Void>
     
@@ -28,52 +25,34 @@ final class PregameViewModel:BaseViewModel{
         return setInstruction()
     }()
     
-    private let disposeBag = DisposeBag()
-    
     // Lifecycle
     
-    init(game:GameKinds, playAction:Action<PregameModel, Void>? = nil, changePlayerAction:Action<Int, Void>? = nil){
+    init(game:GameKinds, sceneCoordinator:SceneCoordinatorType){
         let baseModel = PregameModel(gameType: game)
         gameModel = BehaviorRelay(value: baseModel)
 //        bindInputs()
-        
-        self.playAction = Action{ input in
-            if let action = playAction{
-                action.execute(input)
-            }
-            return 
+        self.playAction = Action <PregameModel, Void> { input in
+            
+            return sceneCoordinator.close(animated: true)
+                .asObservable()
+                .map{ _  in }
         }
         
+        self.changePlayerAction = Action < Int, Void> { input in
+            
+            return sceneCoordinator.close(animated: true)
+                .asObservable()
+                .map{_ in }
+        }
         
+        super.init(sceneCoordinator: sceneCoordinator)
     }
     
-    private func bindInputs() {
-        changePlayerTrigger
-            .withLatestFrom(gameModel) { (index: $0, model: $1) }
-            .map (changePlayers)
-            .bind(to: gameModel)
-            .disposed(by: disposeBag)
-    }
     
     private func changePlayers(_ num:Int, _ model:PregameModel) -> PregameModel {
         let revisionNum = num + 2
         return PregameModel(origin: model, num: revisionNum)
     }
-//
-//    private func setInstruction() -> Observable<GuessWhoHTPV> {
-//        return gameModel
-//            .asObservable()
-//            .observe(on: MainScheduler.instance)
-//            .map{ model in
-//                switch model.gameType.gameTitle{
-//                case "인물퀴즈":
-//                    return GuessWhoHTPV()
-//                default:
-//                    break
-//                }
-//                return GuessWhoHTPV()
-//            }
-//    }
     
     private func setInstruction() -> Single<GuessWhoHTPV> {
         return Single.create { [weak self] single in
@@ -89,16 +68,8 @@ final class PregameViewModel:BaseViewModel{
         }
     }
     
-//    private func getGameTitle() -> Observable<String>{
-//        return gameModel
-//            .asObservable()
-//            .observe(on: MainScheduler.instance)
-//            .map{ $0.gameType.gameTitle }
-//    }
-    
     private func getGameTitle() -> Single<String>{
         return Single.just(gameModel.value.gameType.gameTitle)
-            
     }
     
     private func setGameController() -> Observable<GuessWhoController>{

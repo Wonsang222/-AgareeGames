@@ -15,4 +15,5 @@ protocol SceneCoordinatorType{
     @discardableResult
     func close(animated:Bool) -> Completable
     
+    
 }

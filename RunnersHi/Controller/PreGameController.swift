@@ -32,6 +32,7 @@ final class PreGameController:BaseController, ViewModelBindableType{
         super.viewDidLoad()
         configureView()
         configureNaviBar()
+        print(123)
     }
     
     func bindViewModel() {

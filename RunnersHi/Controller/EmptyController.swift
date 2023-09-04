@@ -6,11 +6,8 @@
 //
 
 import UIKit
-import RxSwift
 
 class EmptyController:BaseController{
-    
-    let viewModel = PregameViewModel(game: .GuessWho)
     
     override func viewDidLoad() {
         super.viewDidLoad()
