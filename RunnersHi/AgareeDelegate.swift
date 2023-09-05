@@ -15,7 +15,6 @@ let homePath = FileManager.default.urls(for: .libraryDirectory, in: .userDomainM
 class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
     
     var window: UIWindow?
-    var appCoordinator:AppCoordinator!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -54,17 +53,18 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        let appWindow = UIWindow(frame: windowScene.coordinateSpace.bounds)
-        appWindow.windowScene = windowScene
+        let navVC = CustomUINavigationController()
         
-        let navi = CustomUINavigationController()
-        appCoordinator = MainCoordinator(navigationController: navi)
-        appCoordinator.start()
+        let coordinator = MainCoordinator()
+        coordinator.navigationController = navVC
         
-        appWindow.rootViewController = navi
-        appWindow.makeKeyAndVisible()
+        let window = UIWindow(windowScene: windowScene )
+        window.rootViewController = navVC
+        window.makeKeyAndVisible()
+        self.window = window
         
-        window = appWindow
+        coordinator.start()
+        
     }
     
     func sceneDidEnterBackground(_ scene: UIScene) {

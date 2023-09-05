@@ -11,8 +11,9 @@ import Speech
 import RxSwift
 import NSObject_Rx
 
-final class PreGameController:BaseController, ViewModelBindableType{
+final class PreGameController:BaseController, ViewModelBindableType, Coordinating{
     
+    var coordinator: Coordinator?
     private let preGameView = PreGameView()
     var viewModel: PregameViewModel!
     
@@ -32,7 +33,6 @@ final class PreGameController:BaseController, ViewModelBindableType{
         super.viewDidLoad()
         configureView()
         configureNaviBar()
-        print(43)
     }
     
     func bindViewModel() {

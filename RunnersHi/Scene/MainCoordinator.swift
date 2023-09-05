@@ -6,16 +6,17 @@
 //
 
 import UIKit
-class MainCoordinator:NSObject, Coordinator{
-    var childCoordinators: [Coordinator] = []
-    
-    var navigationController: UINavigationController
-    
-    init(navigationController:UINavigationController){
-        self.navigationController = navigationController
-    }
+
+class MainCoordinator:Coordinator{
+    var navigationController: UINavigationController?
     
     func start() {
+        var vc:UIViewController & Coordinating = PreGameController()
+        vc.coordinator = self
+        navigationController?.setViewControllers([vc], animated: false)
+    }
+    
+    func eventOccured(with type: Event) {
         
     }
     
