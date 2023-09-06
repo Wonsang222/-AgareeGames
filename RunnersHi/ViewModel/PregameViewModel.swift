@@ -18,9 +18,8 @@ final class PregameViewModel:BaseViewModel{
 //    let changePlayerAction:Action<Int, Void>
     
     //MARK: - OUTPUT
-    lazy var gameTitle:Single<String> = {
-        return getGameTitle()
-    }()
+    let gameTitle:Driver<String>
+    
     lazy var gameInstruction:Single<GuessWhoHTPV> = {
         return setInstruction()
     }()
@@ -30,6 +29,9 @@ final class PregameViewModel:BaseViewModel{
     init(game:GameKinds, sceneCoordinator:Coordinator){
         let baseModel = PregameModel(gameType: game)
         gameModel = BehaviorRelay(value: baseModel)
+        self.gameTitle = Observable.just(baseModel.gameType.gameTitle).asDriver(onErrorJustReturn: "")
+        
+        
 //        bindInputs()
 //        self.playAction = Action <PregameModel, Void> { input in
 //
@@ -67,11 +69,7 @@ final class PregameViewModel:BaseViewModel{
             return Disposables.create()
         }
     }
-    
-    private func getGameTitle() -> Single<String>{
-        return Single.just(gameModel.value.gameType.gameTitle)
-    }
-    
+        
     private func setGameController() -> Observable<GuessWhoController>{
         return Observable.create { emitter in
             emitter.onNext(GuessWhoController())
