@@ -10,10 +10,10 @@ import RxSwift
 import RxCocoa
 
 class BaseViewModel:NSObject{
-    let sceneCoordinator:SceneCoordinatorType
+    let sceneCoordinator:Coordinator
 //    let storage
     
-    init(sceneCoordinator: SceneCoordinatorType) {
+    init(sceneCoordinator: Coordinator) {
         self.sceneCoordinator = sceneCoordinator
     }
 }

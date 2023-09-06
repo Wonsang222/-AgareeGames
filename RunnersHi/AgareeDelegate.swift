@@ -55,8 +55,7 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
         
         let navVC = CustomUINavigationController()
         
-        let coordinator = MainCoordinator()
-        coordinator.navigationController = navVC
+        let coordinator = AppCoordinator(navigationController: navVC)
         
         let window = UIWindow(windowScene: windowScene )
         window.rootViewController = navVC

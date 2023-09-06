@@ -14,8 +14,8 @@ import NSObject_Rx
 final class PregameViewModel:BaseViewModel{
     //MARK: -  INPUT
     let gameModel:BehaviorRelay<PregameModel>
-    let playAction:Action<PregameModel, Void>
-    let changePlayerAction:Action<Int, Void>
+//    let playAction:Action<PregameModel, Void>
+//    let changePlayerAction:Action<Int, Void>
     
     //MARK: - OUTPUT
     lazy var gameTitle:Single<String> = {
@@ -27,23 +27,23 @@ final class PregameViewModel:BaseViewModel{
     
     // Lifecycle
     
-    init(game:GameKinds, sceneCoordinator:SceneCoordinatorType){
+    init(game:GameKinds, sceneCoordinator:Coordinator){
         let baseModel = PregameModel(gameType: game)
         gameModel = BehaviorRelay(value: baseModel)
 //        bindInputs()
-        self.playAction = Action <PregameModel, Void> { input in
-            
-            return sceneCoordinator.close(animated: true)
-                .asObservable()
-                .map{ _  in }
-        }
+//        self.playAction = Action <PregameModel, Void> { input in
+//
+//            return sceneCoordinator.close(animated: true)
+//                .asObservable()
+//                .map{ _  in }
+//        }
         
-        self.changePlayerAction = Action < Int, Void> { input in
-            
-            return sceneCoordinator.close(animated: true)
-                .asObservable()
-                .map{_ in }
-        }
+//        self.changePlayerAction = Action < Int, Void> { input in
+//            
+//            return sceneCoordinator.close(animated: true)
+//                .asObservable()
+//                .map{_ in }
+//        }
         
         super.init(sceneCoordinator: sceneCoordinator)
     }

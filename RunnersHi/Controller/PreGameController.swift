@@ -11,9 +11,8 @@ import Speech
 import RxSwift
 import NSObject_Rx
 
-final class PreGameController:BaseController, ViewModelBindableType, Coordinating{
-    
-    var coordinator: Coordinator?
+final class PreGameController:BaseController, ViewModelBindableType{
+
     private let preGameView = PreGameView()
     var viewModel: PregameViewModel!
     

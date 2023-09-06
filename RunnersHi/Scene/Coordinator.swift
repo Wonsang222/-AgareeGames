@@ -6,19 +6,18 @@
 //
 
 import UIKit
+import RxSwift
 
-enum Event{
-    case buttonTapped
-}
-
-protocol Coordinator{
-    var navigationController:UINavigationController? { get set }
+protocol Coordinator:AnyObject{
+    var navigationController:CustomUINavigationController { get set }
+    var childCoordinators:[Coordinator] { get set }
     
-    func start()
-    func eventOccured(with type:Event)
+    @discardableResult
+    func start()-> Completable
 }
+
 
 protocol Coordinating{
-    var coordinator:Coordinator? { get set }
+    var coordinator:Coordinator { get set }
     
 }
