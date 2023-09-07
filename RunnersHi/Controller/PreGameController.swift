@@ -9,6 +9,7 @@ import UIKit
 import AVFoundation
 import Speech
 import RxSwift
+import RxCocoa
 import NSObject_Rx
 
 final class PreGameController:BaseController, ViewModelBindableType{
@@ -35,6 +36,15 @@ final class PreGameController:BaseController, ViewModelBindableType{
     }
     
     func bindViewModel() {
+        viewModel.gameTitle
+            .observe(on: MainScheduler.instance)
+            .subscribe(onSuccess: { [weak self] title in
+                guard let self = self else { return }
+                let targetView = self.preGameView
+                targetView.titleLabel.text = title
+                targetView.titleLabel.updateLabelFontSize(view: targetView.labelContainerView)
+            })
+            .disposed(by: rx.disposeBag)
         
     }
     
@@ -64,7 +74,6 @@ final class PreGameController:BaseController, ViewModelBindableType{
     }
 
     private func configureView(){
-        print(88)
         view.addSubview(preGameView)
         NSLayoutConstraint.activate([
             preGameView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),

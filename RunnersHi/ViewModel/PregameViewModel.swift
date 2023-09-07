@@ -18,18 +18,17 @@ final class PregameViewModel:BaseViewModel{
 //    let changePlayerAction:Action<Int, Void>
     
     //MARK: - OUTPUT
-    let gameTitle:Driver<String>
+    let gameTitle:Single<String>
+//    let gameInst:Driver<GuessWhoHTPV>
     
     lazy var gameInstruction:Single<GuessWhoHTPV> = {
         return setInstruction()
     }()
-    
-    // Lifecycle
-    
+
     init(game:GameKinds, sceneCoordinator:Coordinator){
         let baseModel = PregameModel(gameType: game)
         gameModel = BehaviorRelay(value: baseModel)
-        self.gameTitle = Observable.just(baseModel.gameType.gameTitle).asDriver(onErrorJustReturn: "")
+        self.gameTitle = Observable.just(baseModel.gameType.gameTitle).asSingle()
         
         
 //        bindInputs()

@@ -38,7 +38,7 @@ struct GuessWhoPlayModel:Codable{
         self.photo = photo
     }
     
-    enum CodingKeys:String, CodingKey{
+    private enum CodingKeys:String, CodingKey{
         case name
         case photo
     }

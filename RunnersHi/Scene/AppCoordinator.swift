@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 class AppCoordinator:Coordinator{
     var navigationController: CustomUINavigationController
@@ -18,13 +19,9 @@ class AppCoordinator:Coordinator{
     
     @discardableResult
     func start() -> Completable  {
-        let subject = PublishSubject<Never>()
         let child = PregameCoordinator(navigationController: navigationController)
-         child.parentCoordinator = self
-         childCoordinators.append(child)
-         child.start()
-        subject.onCompleted()
-        return subject.asCompletable()
+        child.parentCoordinator = self
+        childCoordinators.append(child)
+        return child.start()
     }
-    
 }

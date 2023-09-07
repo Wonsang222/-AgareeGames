@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class GameCoordinator: Coordinator {
     var navigationController: CustomUINavigationController
@@ -16,8 +17,11 @@ class GameCoordinator: Coordinator {
         self.navigationController = navigationController
     }
     
-    func start() {
+    func start() -> Completable {
         
+        let subject = PublishSubject<Never>()
+        
+        return subject.asCompletable()
     }
 
 }

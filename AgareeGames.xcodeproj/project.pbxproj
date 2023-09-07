@@ -419,8 +419,8 @@
 		C1FFE7C529E305C4009FFD0B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				7E159D3B29F8A0E400C7E601 /* GuessWhoViewModel.swift */,
 				C10891912A8754750014A0EE /* PregameViewModel.swift */,
+				7E159D3B29F8A0E400C7E601 /* GuessWhoViewModel.swift */,
 				C18BCD3C2AA321F200667A49 /* ResultViewModel.swift */,
 				C18BCD482AA47F9000667A49 /* InstViewModel.swift */,
 				C18BCD4B2AA47FC000667A49 /* BaseViewModel.swift */,
