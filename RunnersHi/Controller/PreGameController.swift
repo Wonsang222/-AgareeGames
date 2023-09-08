@@ -6,19 +6,16 @@
 //
 
 import UIKit
-import AVFoundation
-import Speech
 import RxSwift
 import RxCocoa
+import RxViewController
 import NSObject_Rx
 
 final class PreGameController:BaseController, ViewModelBindableType{
 
     private let preGameView = PreGameView()
     var viewModel: PregameViewModel!
-    
-//    private lazy var authManager = AuthManager(delegate: self)
-    
+        
     //MARK: - NaviRoot
     
     override var prefersStatusBarHidden: Bool{
@@ -36,6 +33,16 @@ final class PreGameController:BaseController, ViewModelBindableType{
     }
     
     func bindViewModel() {
+        
+        let viewWillAppear = rx.viewWillAppear
+            .take(1)
+            .map{ _ in }
+        
+
+        
+        
+        
+        
         viewModel.gameTitle
             .observe(on: MainScheduler.instance)
             .subscribe(onSuccess: { [weak self] title in
@@ -46,6 +53,22 @@ final class PreGameController:BaseController, ViewModelBindableType{
             })
             .disposed(by: rx.disposeBag)
         
+        preGameView.segment.rx.selectedSegmentIndex
+            .subscribe(onNext: { [weak self] idx in
+                self?.viewModel.updateModel(idx)
+            })
+            .disposed(by: rx.disposeBag)
+        
+        preGameView.howToPlayButton.rx.tap
+            .flatMap{ [weak self] _ in
+                return self?.viewModel.gameInst.asObservable() ?? .empty()
+            }
+            .subscribe(onNext: { [weak self] instView in
+                instView.button.addTarget(self, action: #selector(self?.dissmissHTPV(_:)), for: .touchUpInside)
+                self?.showHTPV(instView)
+            })
+            .disposed(by: rx.disposeBag)
+            
     }
     
     

@@ -35,7 +35,6 @@ class PregameCoordinator: Coordinator {
     }
     
     
-    
 //    @discardableResult
 //    func start() -> Completable{
 //        return Completable.create {[weak self] ob in
@@ -51,6 +50,13 @@ class PregameCoordinator: Coordinator {
 //        }
 //    }
     
+    @discardableResult
+    func playGame() -> Completable{
+        let subject = PublishSubject<Never>()
+        
+        return subject.asCompletable()
+        
+    }
 
 }
 

@@ -11,13 +11,7 @@ import AVFoundation
 
 
 class AuthManager{
-    weak var delegate:BaseDelegate?
-    
-    init(delegate: BaseDelegate? = nil) {
-        self.delegate = delegate
-        getMicAuthorization()
-    }
-    
+
     func getMicAuthorization(){
         AVAudioSession.sharedInstance().requestRecordPermission { granted in
             if granted {
@@ -32,9 +26,11 @@ class AuthManager{
             case .authorized:
                 break
             case .denied,.notDetermined :
-                self.delegate?.handleError(AudioError.SpeechAuth)
+                break
+//                self.delegate?.handleError(AudioError.SpeechAuth)
             case .restricted:
-                self.delegate?.handleError(AudioError.SpeechError)
+//                self.delegate?.handleError(AudioError.SpeechError)
+                break
             @unknown default:
                 break
             }

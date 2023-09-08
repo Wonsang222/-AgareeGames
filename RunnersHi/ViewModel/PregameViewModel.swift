@@ -11,62 +11,42 @@ import RxCocoa
 import Action
 import NSObject_Rx
 
+import AVFoundation
+import Speech
+
 final class PregameViewModel:BaseViewModel{
     //MARK: -  INPUT
-    let gameModel:BehaviorRelay<PregameModel>
+    
+    private lazy var authManager = AuthManager()
 //    let playAction:Action<PregameModel, Void>
-//    let changePlayerAction:Action<Int, Void>
+    
+    lazy var updateModel:(Int) -> Void = { [weak self] num in
+        if var currentModel = try? self?.gameModel.value(){
+            let convertedNum = num + 2
+            let updatedModel = currentModel.changePlayer(convertedNum)
+            print(updatedModel)
+            self?.gameModel.onNext(updatedModel)
+        }
+    }
     
     //MARK: - OUTPUT
+    let gameModel:BehaviorSubject<PregameModel>
     let gameTitle:Single<String>
-//    let gameInst:Driver<GuessWhoHTPV>
+    let gameInst:Single<GuessWhoHTPV>
     
-    lazy var gameInstruction:Single<GuessWhoHTPV> = {
-        return setInstruction()
-    }()
-
     init(game:GameKinds, sceneCoordinator:Coordinator){
         let baseModel = PregameModel(gameType: game)
-        gameModel = BehaviorRelay(value: baseModel)
+        gameModel = BehaviorSubject(value: baseModel)
         self.gameTitle = Observable.just(baseModel.gameType.gameTitle).asSingle()
+        self.gameInst = Observable.just(baseModel.getInstView()).asSingle()
         
-        
-//        bindInputs()
 //        self.playAction = Action <PregameModel, Void> { input in
 //
 //            return sceneCoordinator.close(animated: true)
 //                .asObservable()
 //                .map{ _  in }
 //        }
-        
-//        self.changePlayerAction = Action < Int, Void> { input in
-//            
-//            return sceneCoordinator.close(animated: true)
-//                .asObservable()
-//                .map{_ in }
-//        }
-        
         super.init(sceneCoordinator: sceneCoordinator)
-    }
-    
-    
-    private func changePlayers(_ num:Int, _ model:PregameModel) -> PregameModel {
-        let revisionNum = num + 2
-        return PregameModel(origin: model, num: revisionNum)
-    }
-    
-    private func setInstruction() -> Single<GuessWhoHTPV> {
-        return Single.create { [weak self] single in
-            let gameType = self?.gameModel.value.gameType
-            
-            switch gameType{
-            case .GuessWho:
-                single(.success(GuessWhoHTPV()))
-            default:
-                single(.failure(NSError(domain: "Test", code: 11)))
-            }
-            return Disposables.create()
-        }
     }
         
     private func setGameController() -> Observable<GuessWhoController>{

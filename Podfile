@@ -13,6 +13,7 @@ target 'AgareeGames_dev' do
     pod 'Action'
     pod 'NSObject+Rx'
     pod 'RxCoreData'
+    pod 'RxViewController'
 
 
 end
@@ -29,5 +30,6 @@ target 'AgareeGames_dis' do
     pod 'Action'
     pod 'NSObject+Rx'
     pod 'RxCoreData'
+    pod 'RxViewController'
 
 end

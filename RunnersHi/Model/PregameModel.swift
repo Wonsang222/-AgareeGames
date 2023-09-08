@@ -21,7 +21,18 @@ struct PregameModel:PlayableType{
         self.players = num
     }
     
-    mutating func changePlayer(_ num:Int){
-        self.players = num
+    mutating func changePlayer(_ num:Int) -> Self {
+        var newModel = self
+        newModel.players = num
+        return newModel
+    }
+    
+    func getInstView() -> GuessWhoHTPV{
+        switch gameType{
+        case .GuessWho:
+            return GuessWhoHTPV()
+        default:
+            break
+        }
     }
 }
