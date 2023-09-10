@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import RxSwift
 import Speech
 import AVFoundation
 
 
 class AuthManager{
 
-    func getMicAuthorization(){
+    static func getMicAuthorization(){
         AVAudioSession.sharedInstance().requestRecordPermission { granted in
             if granted {
                 self.getSpechAuthorization()
@@ -20,7 +21,7 @@ class AuthManager{
         }
     }
     
-    func getSpechAuthorization(){
+    static func getSpechAuthorization(){
         SFSpeechRecognizer.requestAuthorization { authStatus in
             switch authStatus {
             case .authorized:
@@ -37,7 +38,7 @@ class AuthManager{
         }
     }
     
-    func isMicUsable() -> Bool{
+    static func isMicUsable() -> Bool{
         let micStatus = AVCaptureDevice.authorizationStatus(for: .audio)
         switch micStatus{
         case .authorized:
@@ -49,7 +50,22 @@ class AuthManager{
         }
     }
     
-    func isSpeechable()-> Bool{
+    static func checkMicUsable() -> Completable{
+        return Completable.create { completable in
+            let micStatus = AVCaptureDevice.authorizationStatus(for: .audio)
+            switch micStatus{
+            case .authorized:
+                completable(.completed)
+            case .denied, .notDetermined, .restricted:
+                completable(.error(AudioError.AudioOff))
+            @unknown default:
+                completable(.error(AudioError.TotalAudioError))
+            }
+            return Disposables.create()
+        }
+    }
+    
+    static func isSpeechable()-> Bool{
         let speechStatus = SFSpeechRecognizer.authorizationStatus()
         switch speechStatus{
         case .authorized:
@@ -59,9 +75,21 @@ class AuthManager{
         @unknown default:
             return false
         }
-
     }
     
     
-    
+    static func checkSpeechable() -> Completable{
+        return Completable.create { completable in
+            let speechStatus = SFSpeechRecognizer.authorizationStatus()
+            switch speechStatus{
+            case .authorized:
+                completable(.completed)
+            case .denied, .notDetermined, .restricted:
+                completable(.error(AudioError.SpeechAuth))
+            @unknown default:
+                completable(.error(AudioError.SpeechError))
+            }
+            return Disposables.create()
+        }
+    }
 }

@@ -15,8 +15,8 @@ import AVFoundation
 import Speech
 
 final class PregameViewModel:BaseViewModel{
-    //MARK: -  INPUT
     
+    //MARK: -  INPUT
     private lazy var authManager = AuthManager()
 //    let playAction:Action<PregameModel, Void>
     
@@ -24,7 +24,6 @@ final class PregameViewModel:BaseViewModel{
         if var currentModel = try? self?.gameModel.value(){
             let convertedNum = num + 2
             let updatedModel = currentModel.changePlayer(convertedNum)
-            print(updatedModel)
             self?.gameModel.onNext(updatedModel)
         }
     }
@@ -32,7 +31,7 @@ final class PregameViewModel:BaseViewModel{
     //MARK: - OUTPUT
     let gameModel:BehaviorSubject<PregameModel>
     let gameTitle:Single<String>
-    let gameInst:Single<GuessWhoHTPV>
+    let gameInst:Single<HowToPlayBaseView>
     
     init(game:GameKinds, sceneCoordinator:Coordinator){
         let baseModel = PregameModel(gameType: game)

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class BaseController:UIViewController{
     
@@ -34,20 +35,7 @@ class BaseController:UIViewController{
         return .darkContent
     }
             
-    final func alert(message:String, agree:((UIAlertAction)->Void)?, disagree:((UIAlertAction)->Void)? = nil){
-        let alert = UIAlertController(title: "알림", message: message, preferredStyle: .alert)
-        
-        if let agree = agree{
-            let agreeAction = UIAlertAction(title: "확인", style: .default, handler: agree)
-            alert.addAction(agreeAction)
-        }
-        
-        if let disagree = disagree{
-            let disagreeAction = UIAlertAction(title: "취소", style: .default, handler: disagree)
-            alert.addAction(disagreeAction)
-        }
-        self.present(alert, animated: true)
-    }
+
     
     final func goBackToRoot(){
         navigationController?.popToRootViewController(animated: true)
@@ -91,6 +79,30 @@ class BaseController:UIViewController{
         default:
             showAppTerminatingAlert()
             print("😱😱😱😱😱😱😱😱😱😱😱")
+        }
+    }
+    
+    final func handleErrorRX(error:Error) -> Completable{
+        return Completable.create { [weak self] completable in
+            switch error{
+            case let audioErr as AudioError:
+                break
+            case let serverErr as MyServer.ErrList:
+//                handleServerErr(err: serverErr)
+                break
+                // fly io 서버 리부팅에 대한 error 처리
+            case is URLError:
+                break
+//                self.alert(message: "현재 서버와 연결이 어렵습니다. \n 잠시 후 다시 시도해주세요.", agree: { alert in
+//                    self.goBackToRoot()
+//                }, disagree: nil)
+            default:
+                break
+//                showAppTerminatingAlert()
+                print("😱😱😱😱😱😱😱😱😱😱😱")
+                
+            }
+            return Disposables.create()
         }
     }
     

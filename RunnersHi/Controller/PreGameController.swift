@@ -33,16 +33,7 @@ final class PreGameController:BaseController, ViewModelBindableType{
     }
     
     func bindViewModel() {
-        
-        let viewWillAppear = rx.viewWillAppear
-            .take(1)
-            .map{ _ in }
-        
 
-        
-        
-        
-        
         viewModel.gameTitle
             .observe(on: MainScheduler.instance)
             .subscribe(onSuccess: { [weak self] title in
@@ -68,6 +59,11 @@ final class PreGameController:BaseController, ViewModelBindableType{
                 self?.showHTPV(instView)
             })
             .disposed(by: rx.disposeBag)
+        
+        preGameView.playButton.playButton.rx.tap
+            .flatMap{ AuthManager.checkMicUsable()}
+            .retry(when: <#T##(Observable<Error>) -> ObservableType#>)
+       
             
     }
     

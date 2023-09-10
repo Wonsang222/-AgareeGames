@@ -27,7 +27,7 @@ struct PregameModel:PlayableType{
         return newModel
     }
     
-    func getInstView() -> GuessWhoHTPV{
+    func getInstView() -> HowToPlayBaseView{
         switch gameType{
         case .GuessWho:
             return GuessWhoHTPV()
