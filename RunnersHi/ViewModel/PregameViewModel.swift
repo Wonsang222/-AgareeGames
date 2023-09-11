@@ -17,7 +17,6 @@ import Speech
 final class PregameViewModel:BaseViewModel{
     
     //MARK: -  INPUT
-    private lazy var authManager = AuthManager()
 //    let playAction:Action<PregameModel, Void>
     
     lazy var updateModel:(Int) -> Void = { [weak self] num in

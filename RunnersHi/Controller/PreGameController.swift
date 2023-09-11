@@ -61,9 +61,23 @@ final class PreGameController:BaseController, ViewModelBindableType{
             .disposed(by: rx.disposeBag)
         
         preGameView.playButton.playButton.rx.tap
-            .flatMap{ AuthManager.checkMicUsable()}
-            .retry(when: <#T##(Observable<Error>) -> ObservableType#>)
-       
+            .flatMap { _ -> Observable<Void> in
+                return AuthManager.checkMicUsable()
+                    .andThen(AuthManager.checkSpeechable())
+                    .asObservable()
+                    .map { _ in }
+            }
+            .subscribe(
+                onNext: { [unowned self] in
+//                    self.viewModel.sceneCoordinator.start()
+                },
+                onError: { [unowned self] err in
+                    self.viewModel.errorTrigger.onNext(err)
+                }
+            )
+            .disposed(by: rx.disposeBag)
+
+
             
     }
     
