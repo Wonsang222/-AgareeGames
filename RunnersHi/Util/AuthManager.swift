@@ -37,18 +37,7 @@ class AuthManager{
             }
         }
     }
-    
-    static func isMicUsable() -> Bool{
-        let micStatus = AVCaptureDevice.authorizationStatus(for: .audio)
-        switch micStatus{
-        case .authorized:
-            return true
-        case .denied, .notDetermined, .restricted:
-            return false
-        @unknown default:
-            return false
-        }
-    }
+
     
     static func checkMicUsable() -> Completable{
         return Completable.create { completable in
@@ -64,19 +53,7 @@ class AuthManager{
             return Disposables.create()
         }
     }
-    
-    static func isSpeechable()-> Bool{
-        let speechStatus = SFSpeechRecognizer.authorizationStatus()
-        switch speechStatus{
-        case .authorized:
-            return true
-        case .denied, .notDetermined, .restricted:
-            return false
-        @unknown default:
-            return false
-        }
-    }
-    
+
     
     static func checkSpeechable() -> Completable{
         return Completable.create { completable in

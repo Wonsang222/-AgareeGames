@@ -10,9 +10,6 @@ import UIKit
 class GameController:BaseController{
 
     //MARK: - Properties
-    
-    var gameTitle:String? = nil
-    var howMany:Int? = nil
 
     final let countView:UIImageView = {
         let iv = UIImageView()

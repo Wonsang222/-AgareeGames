@@ -60,24 +60,40 @@ final class PreGameController:BaseController, ViewModelBindableType{
             })
             .disposed(by: rx.disposeBag)
         
-        preGameView.playButton.playButton.rx.tap
-            .flatMap { _ -> Observable<Void> in
+        let willEnterForeground = NotificationCenter.default.rx
+            .notification(UIApplication.willEnterForegroundNotification)
+            .flatMapLatest { _ -> Observable<Void> in  // flatMapLatest를 사용
                 return AuthManager.checkMicUsable()
                     .andThen(AuthManager.checkSpeechable())
                     .asObservable()
                     .map { _ in }
             }
-            .subscribe(
-                onNext: { [unowned self] in
-//                    self.viewModel.sceneCoordinator.start()
-                },
-                onError: { [unowned self] err in
-                    self.viewModel.errorTrigger.onNext(err)
-                }
-            )
+            .catch({ [unowned self] err in
+                self.handleErrors(error: err)
+                print("err")
+                return Observable.never()  // 스트림을 유지
+            })
+
+        let playButtonTapped = preGameView.playButton.playButton.rx.tap
+            .flatMapLatest { _ -> Observable<Void> in  // flatMapLatest를 사용
+                return AuthManager.checkMicUsable()
+                    .andThen(AuthManager.checkSpeechable())
+                    .asObservable()
+                    .map { _ in }
+            }
+            .catch({ [unowned self] err in
+                self.handleErrors(error: err)
+                print("err")
+                return Observable.never()  // 스트림을 유지
+            })
+
+        Observable.merge(willEnterForeground, playButtonTapped)
+            .subscribe(onNext: { [unowned self] in
+                print("next")
+            })
             .disposed(by: rx.disposeBag)
 
-
+            
             
     }
     
