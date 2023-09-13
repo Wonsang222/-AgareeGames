@@ -59,26 +59,24 @@ final class PreGameController:BaseController, ViewModelBindableType{
                 self?.showHTPV(instView)
             })
             .disposed(by: rx.disposeBag)
-
-
-        let playButtonTapped = preGameView.playButton.playButton.rx.tap
-            .flatMapLatest { _ -> Observable<Void> in  // flatMapLatest를 사용
-                return AuthManager.checkMicUsable()
-                    .andThen(AuthManager.checkSpeechable())
-                    .asObservable()
-                    .map { _ in }
-            }
-            .catch({ [unowned self] err in
-                self.handleErrors(error: err)
-                print("err")
-                return Observable.never()  // 스트림을 유지
+        
+        
+        preGameView.playButton.playButton.rx.tap
+            .share()
+        
+        let checkRecordable = AuthManager.checkRecordable()
+        let checkMicusable = AuthManager.checkMicUsableRX()
+        let checkSpeechable = AuthManager.checkSpeechableRX()
+        
+   
+        
+        Observable.of( buttonTapped,checkRecordable, checkMicusable, checkSpeechable)
+            .merge()
+            .subscribe(onNext: { [weak self] err in
+                print(err)
+            },onCompleted: {
+                print("done")
             })
-
-        Observable.merge(willEnterForeground, playButtonTapped)
-            .subscribe(onNext: { [unowned self] in
-                print("next")
-            })
-            .disposed(by: rx.disposeBag)
 
             
             

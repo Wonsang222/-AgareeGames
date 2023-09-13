@@ -12,29 +12,17 @@ import AVFoundation
 
 
 class AuthManager{
-
-    static func getMicAuthorization(){
-        AVAudioSession.sharedInstance().requestRecordPermission { granted in
-            if granted {
-                self.getSpechAuthorization()
-            }
-        }
-    }
     
-    static func getSpechAuthorization(){
-        SFSpeechRecognizer.requestAuthorization { authStatus in
-            switch authStatus {
-            case .authorized:
-                break
-            case .denied,.notDetermined :
-                break
-//                self.delegate?.handleError(AudioError.SpeechAuth)
-            case .restricted:
-//                self.delegate?.handleError(AudioError.SpeechError)
-                break
-            @unknown default:
-                break
+    static func checkRecordable() -> Observable<RXAudioError>{
+        return Observable.create { observer in
+            AVAudioSession.sharedInstance().requestRecordPermission { granted in
+                if granted {
+                    observer.onCompleted()
+                } else{
+                    observer.onNext(RXAudioError.RecordError)
+                }
             }
+            return Disposables.create()
         }
     }
     
