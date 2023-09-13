@@ -59,20 +59,7 @@ final class PreGameController:BaseController, ViewModelBindableType{
                 self?.showHTPV(instView)
             })
             .disposed(by: rx.disposeBag)
-        
-        let willEnterForeground = NotificationCenter.default.rx
-            .notification(UIApplication.willEnterForegroundNotification)
-            .flatMapLatest { _ -> Observable<Void> in  // flatMapLatest를 사용
-                return AuthManager.checkMicUsable()
-                    .andThen(AuthManager.checkSpeechable())
-                    .asObservable()
-                    .map { _ in }
-            }
-            .catch({ [unowned self] err in
-                self.handleErrors(error: err)
-                print("err")
-                return Observable.never()  // 스트림을 유지
-            })
+
 
         let playButtonTapped = preGameView.playButton.playButton.rx.tap
             .flatMapLatest { _ -> Observable<Void> in  // flatMapLatest를 사용

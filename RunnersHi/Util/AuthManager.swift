@@ -37,34 +37,32 @@ class AuthManager{
             }
         }
     }
-
     
-    static func checkMicUsable() -> Completable{
-        return Completable.create { completable in
+    static func checkMicUsableRX() -> Observable<RXAudioError>{
+        return Observable.create { observer in
             let micStatus = AVCaptureDevice.authorizationStatus(for: .audio)
             switch micStatus{
             case .authorized:
-                completable(.completed)
+                observer.onCompleted()
             case .denied, .notDetermined, .restricted:
-                completable(.error(AudioError.AudioOff))
+                observer.onNext(RXAudioError.AudioOff)
             @unknown default:
-                completable(.error(AudioError.TotalAudioError))
+                observer.onNext(RXAudioError.TotalAudioError)
             }
             return Disposables.create()
         }
     }
-
     
-    static func checkSpeechable() -> Completable{
-        return Completable.create { completable in
+    static func checkSpeechableRX() -> Observable<RXAudioError>{
+        return Observable.create { observer in
             let speechStatus = SFSpeechRecognizer.authorizationStatus()
             switch speechStatus{
             case .authorized:
-                completable(.completed)
+                observer.onCompleted()
             case .denied, .notDetermined, .restricted:
-                completable(.error(AudioError.SpeechAuth))
+                observer.onNext(RXAudioError.SpeechAuth)
             @unknown default:
-                completable(.error(AudioError.SpeechError))
+                observer.onNext(RXAudioError.SpeechError)
             }
             return Disposables.create()
         }
