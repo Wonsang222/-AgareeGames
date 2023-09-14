@@ -93,6 +93,8 @@
 		C1649C152A47D4260094D56D /* HttpBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFE7D529E8607D009FFD0B /* HttpBase.swift */; };
 		C1649C182A47D4260094D56D /* CustomFont.otf in Resources */ = {isa = PBXBuildFile; fileRef = C140802F2A17E7950091F861 /* CustomFont.otf */; };
 		C1649C192A47D4260094D56D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1FFE7B729E30425009FFD0B /* Assets.xcassets */; };
+		C16B18A22AB336E2001D804F /* GuessWhoViewModelRX.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16B18A12AB336E2001D804F /* GuessWhoViewModelRX.swift */; };
+		C16B18A32AB336E2001D804F /* GuessWhoViewModelRX.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16B18A12AB336E2001D804F /* GuessWhoViewModelRX.swift */; };
 		C176FECF2A1A5C8800C7EFE6 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C176FECE2A1A5C8800C7EFE6 /* Reachability.swift */; };
 		C176FED22A1A5FCB00C7EFE6 /* GuessWhoPlayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C176FED12A1A5FCB00C7EFE6 /* GuessWhoPlayModel.swift */; };
 		C18BCD3D2AA321F200667A49 /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18BCD3C2AA321F200667A49 /* ResultViewModel.swift */; };
@@ -160,6 +162,7 @@
 		C15AA84D2A6B8D2000AF24F3 /* GuessWhoEntitiy+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "GuessWhoEntitiy+CoreDataProperties.swift"; path = "RunnersHi/Entity/CoreData/GuessWhoEntitiy+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		C1649C1D2A47D4260094D56D /* AgareeGames_dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgareeGames_dev.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1649C1E2A47D4260094D56D /* AgareeGames_dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = AgareeGames_dev.plist; path = /Users/hwangwonsang/Desktop/git/AgareeGames/AgareeGames_dev.plist; sourceTree = "<absolute>"; };
+		C16B18A12AB336E2001D804F /* GuessWhoViewModelRX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoViewModelRX.swift; sourceTree = "<group>"; };
 		C176FECE2A1A5C8800C7EFE6 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		C176FED12A1A5FCB00C7EFE6 /* GuessWhoPlayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoPlayModel.swift; sourceTree = "<group>"; };
 		C18BCD3C2AA321F200667A49 /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
@@ -421,6 +424,7 @@
 			children = (
 				C10891912A8754750014A0EE /* PregameViewModel.swift */,
 				7E159D3B29F8A0E400C7E601 /* GuessWhoViewModel.swift */,
+				C16B18A12AB336E2001D804F /* GuessWhoViewModelRX.swift */,
 				C18BCD3C2AA321F200667A49 /* ResultViewModel.swift */,
 				C18BCD4B2AA47FC000667A49 /* BaseViewModel.swift */,
 			);
@@ -708,6 +712,7 @@
 				C1649C022A47D4260094D56D /* TimerGameController.swift in Sources */,
 				C1649C032A47D4260094D56D /* CustomUINavigationController.swift in Sources */,
 				7E6A36FF2A89B77900B7F0BC /* PlayableType.swift in Sources */,
+				C16B18A32AB336E2001D804F /* GuessWhoViewModelRX.swift in Sources */,
 				C1649C052A47D4260094D56D /* AppDelegate.swift in Sources */,
 				C1649C072A47D4260094D56D /* PreGameView.swift in Sources */,
 				C1649C082A47D4260094D56D /* Extension.swift in Sources */,
@@ -765,6 +770,7 @@
 				C148D9D72A1CE961005AB791 /* TimerGameController.swift in Sources */,
 				7E04C8EC2A0342FE00357A0F /* CustomUINavigationController.swift in Sources */,
 				C19683792A88F63C0098774F /* GameKinds.swift in Sources */,
+				C16B18A22AB336E2001D804F /* GuessWhoViewModelRX.swift in Sources */,
 				C10362442AA6164400FC65CF /* Coordinator.swift in Sources */,
 				C10362462AA616D800FC65CF /* AppCoordinator.swift in Sources */,
 				C1FFE7AF29E30425009FFD0B /* AppDelegate.swift in Sources */,

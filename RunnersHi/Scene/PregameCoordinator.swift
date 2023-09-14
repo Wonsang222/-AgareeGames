@@ -51,11 +51,30 @@ class PregameCoordinator: Coordinator {
 //    }
     
     @discardableResult
-    func playGame() -> Completable{
+    func playGame(viewmodel:GuessWhoViewModelRX) -> Completable{
         let subject = PublishSubject<Never>()
-        
+        let child = GameCoordinator(navigationController: navigationController)
+        child.parentCoordinator = self
+        childCoordinators.append(child  )
+        // 뷰모델 전달
+        // 컨트롤러 이동
+        subject.onCompleted()
         return subject.asCompletable()
         
+    }
+    
+    @discardableResult
+    func childDidFinish(_ child:Coordinator) -> Completable{
+        let subject = PublishSubject<Never>()
+        for (idx, coordinator) in childCoordinators.enumerated(){
+            if coordinator === child{
+                childCoordinators.remove(at: idx)
+                subject.onCompleted()
+                break
+            }
+        }
+        
+        return subject.asCompletable()
     }
 
 }

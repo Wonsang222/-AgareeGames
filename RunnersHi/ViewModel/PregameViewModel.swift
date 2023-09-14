@@ -17,7 +17,6 @@ import Speech
 final class PregameViewModel:BaseViewModel{
     
     //MARK: -  INPUT
-//    let playAction:Action<PregameModel, Void>
     
     lazy var updateModel:(Int) -> Void = { [weak self] num in
         if var currentModel = try? self?.gameModel.value(){
@@ -38,20 +37,7 @@ final class PregameViewModel:BaseViewModel{
         self.gameTitle = Observable.just(baseModel.gameType.gameTitle).asSingle()
         self.gameInst = Observable.just(baseModel.getInstView()).asSingle()
         
-//        self.playAction = Action <PregameModel, Void> { input in
-//
-//            return sceneCoordinator.close(animated: true)
-//                .asObservable()
-//                .map{ _  in }
-//        }
         super.init(sceneCoordinator: sceneCoordinator)
-    }
-        
-    private func setGameController() -> Observable<GuessWhoController>{
-        return Observable.create { emitter in
-            emitter.onNext(GuessWhoController())
-            return Disposables.create()
-        }
     }
 }
 

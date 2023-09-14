@@ -8,8 +8,9 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import RxViewController
 import NSObject_Rx
+import Speech
+import AVFoundation
 
 final class PreGameController:BaseController, ViewModelBindableType{
 
@@ -60,26 +61,34 @@ final class PreGameController:BaseController, ViewModelBindableType{
             })
             .disposed(by: rx.disposeBag)
         
-        
         preGameView.playButton.playButton.rx.tap
-            .share()
-        
-        let checkRecordable = AuthManager.checkRecordable()
-        let checkMicusable = AuthManager.checkMicUsableRX()
-        let checkSpeechable = AuthManager.checkSpeechableRX()
-        
-   
-        
-        Observable.of( buttonTapped,checkRecordable, checkMicusable, checkSpeechable)
-            .merge()
-            .subscribe(onNext: { [weak self] err in
-                print(err)
-            },onCompleted: {
-                print("done")
-            })
+            .flatMap { _ -> Observable<Void> in
+                return Observable.create { observer in
+                    let disposeBag = DisposeBag()
 
-            
-            
+                    let observables = [
+                        AuthManager.checkRecordable(),
+                        AuthManager.checkMicUsableRX(),
+//                        AuthManager.checkSpeechableRX()
+                    ]
+                    
+                    Observable.merge(observables)
+                        .subscribe(
+                            onNext: { [weak self] error in
+                                self?.handleAudioError(err: error)
+                            },
+                            onCompleted: {
+                                let controller = ResultController(isWin: true)
+                                self.navigationController?.pushViewController(controller, animated: true)
+                                observer.onCompleted()
+                            })
+                        .disposed(by: disposeBag)
+                    
+                    return Disposables.create()
+                }
+            }
+            .subscribe()
+            .disposed(by: rx.disposeBag)
     }
     
     
