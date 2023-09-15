@@ -9,9 +9,33 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+/*
+ 에러 종류로 분기 -> scene 이동
+ 
+ time 에러 -> 패배
+ 
+ next 에러 -> 승리
+ 
+ 
+ 
+ */
+
+
 class GuessWhoViewModelRX:BaseViewModel{
     
-    let targetModel:GuessWhoPlayModel
+    private var targetModel = BehaviorSubject<GuessWhoPlayModel?>(value: nil)
+    
+    private var targetArray = [GuessWhoPlayModel]()
+    
+    func next() ->  ㄹ {
+        return Completable.create { ob in
+            
+            
+            
+            return Disposables.create()
+        }
+    }
+    
     
     
     
