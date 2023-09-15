@@ -17,6 +17,14 @@ class AuthManager{
         return Observable.create { observer in
             AVAudioSession.sharedInstance().requestRecordPermission { granted in
                 if granted {
+                    
+                    let dis = DisposeBag()
+                    
+                checkMicUsableRX()
+                        .subscribe()
+                        .disposed(by: dis)
+                
+                    
                     observer.onCompleted()
                 } else{
                     observer.onNext(RXAudioError.RecordError)
