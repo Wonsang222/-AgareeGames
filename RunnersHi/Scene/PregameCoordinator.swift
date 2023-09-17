@@ -34,33 +34,16 @@ class PregameCoordinator: Coordinator {
         return subject.asCompletable()
     }
     
-    
-//    @discardableResult
-//    func start() -> Completable{
-//        return Completable.create {[weak self] ob in
-//            print(123)
-//            let viewModel = PregameViewModel(game: .GuessWho, sceneCoordinator: self!)
-//            var vc = PreGameController()
-////            DispatchQueue.main.async {
-//                vc.bind(viewmodel: viewModel)
-////            }
-//            self!.navigationController.setViewControllers([vc], animated: false)
-//            ob(.completed)
-//            return Disposables.create()
-//        }
-//    }
-    
     @discardableResult
     func playGame(viewmodel:GuessWhoViewModelRX) -> Completable{
         let subject = PublishSubject<Never>()
         let child = GameCoordinator(navigationController: navigationController)
         child.parentCoordinator = self
-        childCoordinators.append(child  )
-        // 뷰모델 전달
-        // 컨트롤러 이동
+        childCoordinators.append(child)
+        
+        child.start(viewModel: viewmodel)
         subject.onCompleted()
         return subject.asCompletable()
-        
     }
     
     @discardableResult
@@ -73,9 +56,20 @@ class PregameCoordinator: Coordinator {
                 break
             }
         }
-        
         return subject.asCompletable()
     }
-
+    
+    @discardableResult
+    func testing() -> Completable{
+        let subject = PublishSubject<Never>()
+        let child = GameCoordinator(navigationController: navigationController)
+        child.parentCoordinator = self
+        childCoordinators.append(child)
+        
+        child.start(viewModel: viewmodel)
+        subject.onCompleted()
+        return subject.asCompletable()
+    }
+    
 }
 

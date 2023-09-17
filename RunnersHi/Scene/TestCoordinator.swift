@@ -1,15 +1,15 @@
 //
-//  GameCoordinator.swift
+//  TestCoordinator.swift
 //  AgareeGames
 //
-//  Created by 황원상 on 2023/09/06.
+//  Created by 황원상 on 2023/09/17.
 //
 
 import UIKit
 import RxSwift
 import RxCocoa
 
-class GameCoordinator: Coordinator {
+class TestCoordinator: Coordinator {
     var navigationController: CustomUINavigationController
     var childCoordinators = [Coordinator]()
     weak var parentCoordinator: Coordinator?
@@ -22,7 +22,7 @@ class GameCoordinator: Coordinator {
     
     
     @discardableResult
-    func start(viewModel:GuessWhoViewModelRX) -> Completable {
+    func start() -> Completable {
         let subject = PublishSubject<Never>()
         // 함수화
         navigationController.rx.willShow
@@ -32,6 +32,8 @@ class GameCoordinator: Coordinator {
             })
             .disposed(by: bag)
         
+        let target = ResultController(isWin: true)
+        navigationController.pushViewController(target, animated: true)
         subject.onCompleted()
         return subject.asCompletable()
     }

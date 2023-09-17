@@ -9,8 +9,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 import NSObject_Rx
-import Speech
-import AVFoundation
 
 final class PreGameController:BaseController, ViewModelBindableType{
 
@@ -34,7 +32,7 @@ final class PreGameController:BaseController, ViewModelBindableType{
     }
     
     func bindViewModel() {
-
+        
         viewModel.gameTitle
             .observe(on: MainScheduler.instance)
             .subscribe(onSuccess: { [weak self] title in
@@ -61,34 +59,27 @@ final class PreGameController:BaseController, ViewModelBindableType{
             })
             .disposed(by: rx.disposeBag)
         
+        
         preGameView.playButton.playButton.rx.tap
-            .flatMap { _ -> Observable<Void> in
-                return Observable.create { observer in
+            .flatMap{ _ -> Observable<Void> in
+                return Observable.create { ob in
                     let disposeBag = DisposeBag()
-
-                    let observables = [
-                        AuthManager.checkRecordable(),
-                        AuthManager.checkMicUsableRX(),
-//                        AuthManager.checkSpeechableRX()
-                    ]
+                    
+                    let observables = [AuthManager.checkMicUsableRX(),
+                                       AuthManager.checkRecordable(),
+                                        AuthManager.checkSpeechableRX()]
                     
                     Observable.merge(observables)
-                        .subscribe(
-                            onNext: { [weak self] error in
-                                self?.handleAudioError(err: error)
-                            },
-                            onCompleted: {
-                                let controller = ResultController(isWin: true)
-                                self.navigationController?.pushViewController(controller, animated: true)
-                                observer.onCompleted()
-                            })
+                        .withUnretained(self)
+                        .subscribe(onNext: { vc, err in
+                            vc.handleAudioError(err: err)
+                        }, onCompleted: {
+                            
+                        })
                         .disposed(by: disposeBag)
-                    
                     return Disposables.create()
                 }
             }
-            .subscribe()
-            .disposed(by: rx.disposeBag)
     }
     
     

@@ -12,8 +12,6 @@ protocol Coordinator:AnyObject{
     var navigationController:CustomUINavigationController { get set }
     var childCoordinators:[Coordinator] { get set }
     
-    @discardableResult
-    func start()-> Completable
 }
 
 

@@ -27,14 +27,14 @@ class GuessWhoViewModelRX:BaseViewModel{
     
     private var targetArray = [GuessWhoPlayModel]()
     
-    func next() ->  ㄹ {
-        return Completable.create { ob in
-            
-            
-            
-            return Disposables.create()
-        }
-    }
+//    func next() ->  ㄹ {
+//        return Completable.create { ob in
+//            
+//            
+//            
+//            return Disposables.create()
+//        }
+//    }
     
     
     
