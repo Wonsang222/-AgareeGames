@@ -61,25 +61,20 @@ final class PreGameController:BaseController, ViewModelBindableType{
         
         
         preGameView.playButton.playButton.rx.tap
-            .flatMap{ _ -> Observable<Void> in
-                return Observable.create { ob in
-                    let disposeBag = DisposeBag()
-                    
-                    let observables = [AuthManager.checkMicUsableRX(),
-                                       AuthManager.checkRecordable(),
-                                        AuthManager.checkSpeechableRX()]
-                    
-                    Observable.merge(observables)
-                        .withUnretained(self)
-                        .subscribe(onNext: { vc, err in
-                            vc.handleAudioError(err: err)
-                        }, onCompleted: {
-                            
-                        })
-                        .disposed(by: disposeBag)
-                    return Disposables.create()
-                }
-            }
+
+        
+        let observables = [AuthManager.checkMicUsableRX(), AuthManager.checkRecordable(), AuthManager.checkSpeechableRX()]
+        
+        Observable.merge(observables)
+            .withUnretained(self)
+            .subscribe(onNext: { vc, err in
+                vc.handleAudioError(err: err)
+            },
+                       onCompleted: { [weak self] in
+                self?.viewModel.sceneCoordinator
+            })
+    
+
     }
     
     

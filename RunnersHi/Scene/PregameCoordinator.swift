@@ -62,11 +62,11 @@ class PregameCoordinator: Coordinator {
     @discardableResult
     func testing() -> Completable{
         let subject = PublishSubject<Never>()
-        let child = GameCoordinator(navigationController: navigationController)
+        let child = TestCoordinator(navigationController: navigationController)
         child.parentCoordinator = self
         childCoordinators.append(child)
         
-        child.start(viewModel: viewmodel)
+        child.start()
         subject.onCompleted()
         return subject.asCompletable()
     }

@@ -65,8 +65,6 @@ class BaseController:UIViewController{
     
     final func handleErrors(error:Error){
         switch error{
-        case let audioErr as AudioError:
-            print(123)
         case let serverErr as MyServer.ErrList:
             handleServerErr(err: serverErr)
             // fly io 서버 리부팅에 대한 error 처리
