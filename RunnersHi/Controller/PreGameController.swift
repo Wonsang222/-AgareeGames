@@ -31,6 +31,8 @@ final class PreGameController:BaseController, ViewModelBindableType{
         configureNaviBar()
     }
     
+    
+    // 버튼 binding main scheduler에서 ..
     func bindViewModel() {
         
         viewModel.gameTitle
@@ -59,24 +61,19 @@ final class PreGameController:BaseController, ViewModelBindableType{
             })
             .disposed(by: rx.disposeBag)
         
-        
         preGameView.playButton.playButton.rx.tap
-
-        
-        let observables = [AuthManager.checkMicUsableRX(), AuthManager.checkRecordable(), AuthManager.checkSpeechableRX()]
-        
-        Observable.merge(observables)
+            .flatMap { _ in
+                return Observable.of(AuthManager.checkMicUsableRX(),
+                                     AuthManager.checkRecordable(),
+                                     AuthManager.checkSpeechableRX())
+                    .merge(maxConcurrent: 1)
+            }
             .withUnretained(self)
-            .subscribe(onNext: { vc, err in
+            .subscribe(onNext: { vc , err in
                 vc.handleAudioError(err: err)
-            },
-                       onCompleted: { [weak self] in
-                self?.viewModel.sceneCoordinator
-            })
-    
-
+            }, onCompleted: { print(123)  })
+            .disposed(by: rx.disposeBag)
     }
-    
     
     @objc private func dissmissHTPV(_ htpv:HowToPlayBaseView){
         htpv.superview!.removeFromSuperview()

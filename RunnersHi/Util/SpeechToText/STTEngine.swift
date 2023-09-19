@@ -40,7 +40,7 @@ final class STTEngine{
                 try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
             } catch {
                 DispatchQueue.main.async {
-                    self.delegate?.handleError(AudioError.AudioOff)
+  
                 }
             }
             
@@ -104,7 +104,7 @@ final class STTEngine{
                     try self.audioEngine.start()
                 } catch {
                     DispatchQueue.main.async { [weak self] in
-                        self?.delegate?.handleError(AudioError.TotalAudioError)
+       
                     }
                 }
             }
