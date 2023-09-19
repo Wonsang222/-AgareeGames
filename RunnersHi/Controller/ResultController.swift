@@ -9,7 +9,7 @@
 
 import UIKit
 
-final class ResultController:UIViewController{
+final class ResultController:BaseController{
     
     var isWin:Bool
     

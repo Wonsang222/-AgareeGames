@@ -19,21 +19,21 @@ class GameCoordinator: Coordinator {
     init(navigationController:CustomUINavigationController){
         self.navigationController = navigationController
     }
-    
-    
-    @discardableResult
-    func start(viewModel:GuessWhoViewModelRX) -> Completable {
-        let subject = PublishSubject<Never>()
-        // 함수화
-        navigationController.rx.willShow
-            .withUnretained(self)
-            .subscribe(onNext: { coordinator, event in
-                coordinator.navigationController = event.viewController.navigationController! as! CustomUINavigationController
-            })
-            .disposed(by: bag)
-        
-        subject.onCompleted()
-        return subject.asCompletable()
-    }
+
+//
+//    @discardableResult
+//    func start(viewModel:GuessWhoViewModelRX) -> Completable {
+//        let subject = PublishSubject<Never>()
+//        // 함수화
+//        navigationController.rx.willShow
+//            .withUnretained(self)
+//            .subscribe(onNext: { coordinator, event in
+//                coordinator.navigationController = event.viewController.navigationController! as! CustomUINavigationController
+//            })
+//            .disposed(by: bag)
+//
+//        subject.onCompleted()
+//        return subject.asCompletable()
+//    }
 
 }

@@ -10,12 +10,12 @@ import RxSwift
 import RxCocoa
 
 class PregameCoordinator: Coordinator {
-    var navigationController: CustomUINavigationController
+    var navi: CustomUINavigationController
     var childCoordinators = [Coordinator]()
     weak var parentCoordinator: Coordinator?
     
-    init(navigationController: CustomUINavigationController) {
-        self.navigationController = navigationController
+    init(navi: CustomUINavigationController) {
+        self.navi = navi
     }
     
     @discardableResult

@@ -6,22 +6,23 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
 
 class AppCoordinator:Coordinator{
-    var navigationController: CustomUINavigationController
-    var childCoordinators = [Coordinator]()
     
-    init(navigationController: CustomUINavigationController) {
-        self.navigationController = navigationController
+    var navi: CustomUINavigationController
+    var childCoordinators = [Coordinator]()
+    var window: UIWindow
+    
+    init(navi: CustomUINavigationController, window:UIWindow) {
+        self.navi = navi
+        self.window = window
     }
     
-    @discardableResult
-    func start() -> Completable  {
-        let child = PregameCoordinator(navigationController: navigationController)
+    func start(){
+        let child = PregameCoordinator(navi: navi)
         child.parentCoordinator = self
         childCoordinators.append(child)
-        return child.start()
+        window.rootViewController = child.navi
+        window.makeKeyAndVisible()
     }
 }

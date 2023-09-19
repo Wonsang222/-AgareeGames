@@ -10,7 +10,6 @@ import RxSwift
 
 enum TransitionStyle{
     case push
-    case root
     case back
 }
 
@@ -20,7 +19,7 @@ enum Scene{
 }
 
 extension Scene{
-    func instantiate(from:BaseController) -> UIViewController{
+    func instantiate() -> BaseController{
         switch self{
         case .pregame(let viewmodel):
             var vc = PreGameController()
@@ -32,18 +31,38 @@ extension Scene{
             var vc = ResultController(isWin: true)
             return vc
         @unknown default:
-            return UIViewController()
+            return BaseController()
         }
-        
     }
 }
 
 protocol Coordinator:AnyObject{
-    var navigationController:CustomUINavigationController { get set }
+    var navi:CustomUINavigationController { get set }
     var childCoordinators:[Coordinator] { get set }
     
-    func transition(to scene:Scene, using style:TransitionStyle, animation:Bool)
+    func start()
+}
+
+extension Coordinator{
     
+    @discardableResult
+    func transition(to scene:Scene, using style:TransitionStyle, animation:Bool) -> Completable{
+        let subject = PublishSubject<Never>()
+        
+        let target = scene.instantiate()
+        
+        switch style{
+        case .push:
+            print(123)
+            subject.onCompleted()
+        case .back:
+            print(123)
+            subject.onCompleted()
+        default:
+            subject.onError(NSError(domain: "Err", code: 1))
+        }
+        return subject.asCompletable()
+    }
 }
 
 
