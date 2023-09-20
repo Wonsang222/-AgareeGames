@@ -9,7 +9,7 @@ import UIKit
 import Speech
 import AVFoundation
 
-protocol STTEngineDelegate:BaseDelegate,AnyObject{
+protocol STTEngineDelegate:AnyObject{
     func runRecognizer(_ text:String)
 }
 

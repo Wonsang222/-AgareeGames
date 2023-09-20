@@ -28,7 +28,6 @@ class AppCoordinator:Coordinator{
         child.start()
         window.rootViewController = child.navi
         window.makeKeyAndVisible()
-        print(99)
         subject.onCompleted()
         return subject.asCompletable()
     }

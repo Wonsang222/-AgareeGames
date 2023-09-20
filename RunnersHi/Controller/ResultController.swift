@@ -23,7 +23,7 @@ final class ResultController:BaseController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureEmptyController()
+       
         view.addSubview(resultLabel)
         NSLayoutConstraint.activate([
             resultLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -52,12 +52,6 @@ final class ResultController:BaseController{
         }
     }
     
-    func configureEmptyController(){
-        if var stack = navigationController?.viewControllers, let index = stack.firstIndex(of: self){
-            stack.insert(EmptyController(), at: index)
-            navigationController?.viewControllers = stack
-        }
-    }
     
     deinit{
         print("---------------")

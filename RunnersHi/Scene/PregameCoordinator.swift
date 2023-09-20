@@ -29,9 +29,7 @@ class PregameCoordinator: Coordinator {
             vc.bind(viewmodel: viewModel)
         }
         navi.setViewControllers([vc], animated: true)
-        print(456)
         subject.onCompleted()
-
         return subject.asCompletable()
     }
     
@@ -46,19 +44,6 @@ class PregameCoordinator: Coordinator {
 //        subject.onCompleted()
 //        return subject.asCompletable()
 //    }
-    
-    @discardableResult
-    func childDidFinish(_ child:Coordinator) -> Completable{
-        let subject = PublishSubject<Never>()
-        for (idx, coordinator) in childCoordinators.enumerated(){
-            if coordinator === child{
-                childCoordinators.remove(at: idx)
-                subject.onCompleted()
-                break
-            }
-        }
-        return subject.asCompletable()
-    }
     
     @discardableResult
     func testing() -> Completable{

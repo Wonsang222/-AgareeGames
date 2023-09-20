@@ -70,6 +70,7 @@ final class PreGameController:BaseController, ViewModelBindableType{
             }
             .withUnretained(self)
             .subscribe(onNext: { vc , err in
+                print(1234)
                 vc.handleAudioError(err: err)
             }, onCompleted: { print(123)  })
             .disposed(by: rx.disposeBag)
