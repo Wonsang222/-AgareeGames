@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class AppCoordinator:Coordinator{
     
@@ -18,11 +19,17 @@ class AppCoordinator:Coordinator{
         self.window = window
     }
     
-    func start(){
+    @discardableResult
+    func start() -> Completable{
+        let subject = PublishSubject<Never>()
         let child = PregameCoordinator(navi: navi)
         child.parentCoordinator = self
         childCoordinators.append(child)
+        child.start()
         window.rootViewController = child.navi
         window.makeKeyAndVisible()
+        print(99)
+        subject.onCompleted()
+        return subject.asCompletable()
     }
 }

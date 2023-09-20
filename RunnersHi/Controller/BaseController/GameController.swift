@@ -46,7 +46,7 @@ class GameController:BaseController{
         super.viewDidLoad()
         modalPresentationStyle = .fullScreen
         modalTransitionStyle = .partialCurl
-        configureNavi()
+//        configureNavi()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,7 +78,9 @@ class GameController:BaseController{
         }
     }
 
-    final func configureNavi(){
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_icon"), style: .plain, target: self, action: nil)
-    }
+    
+    // 메인으로 가기
+//    final func configureNavi(){
+//        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_icon"), style: .plain, target: self, action: nil)
+//    }
 }

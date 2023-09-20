@@ -109,8 +109,6 @@
 		C196837B2A88F6A60098774F /* PregameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C196837A2A88F6A60098774F /* PregameModel.swift */; };
 		C196837D2A88F6FB0098774F /* PlayableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C196837C2A88F6FB0098774F /* PlayableType.swift */; };
 		C1A778B22A5D844600F08678 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E17BBA92A5D062E00D94230 /* AuthManager.swift */; };
-		C1AA630F2AB72D600090983E /* TestCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AA630E2AB72D600090983E /* TestCoordinator.swift */; };
-		C1AA63102AB72D600090983E /* TestCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AA630E2AB72D600090983E /* TestCoordinator.swift */; };
 		C1E439A42AAC2B0900BAB674 /* UIViewController+UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E439A32AAC2B0900BAB674 /* UIViewController+UIAlertController.swift */; };
 		C1E439A52AAC2B0900BAB674 /* UIViewController+UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E439A32AAC2B0900BAB674 /* UIViewController+UIAlertController.swift */; };
 		C1FFE7AF29E30425009FFD0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFE7AE29E30425009FFD0B /* AppDelegate.swift */; };
@@ -174,7 +172,6 @@
 		C19683782A88F63C0098774F /* GameKinds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameKinds.swift; sourceTree = "<group>"; };
 		C196837A2A88F6A60098774F /* PregameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PregameModel.swift; sourceTree = "<group>"; };
 		C196837C2A88F6FB0098774F /* PlayableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayableType.swift; sourceTree = "<group>"; };
-		C1AA630E2AB72D600090983E /* TestCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCoordinator.swift; sourceTree = "<group>"; };
 		C1E439A32AAC2B0900BAB674 /* UIViewController+UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+UIAlertController.swift"; sourceTree = "<group>"; };
 		C1F3E80B2A64344D0004619E /* Speech.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Speech.framework; path = System/Library/Frameworks/Speech.framework; sourceTree = SDKROOT; };
 		C1FFE7AB29E30425009FFD0B /* AgareeGames_dis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgareeGames_dis.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -277,7 +274,6 @@
 				C10362452AA616D800FC65CF /* AppCoordinator.swift */,
 				C18C78EB2AA8A391002AFF34 /* PregameCoordinator.swift */,
 				C18C78E82AA8A193002AFF34 /* GameCoordinator.swift */,
-				C1AA630E2AB72D600090983E /* TestCoordinator.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -714,7 +710,6 @@
 				C1649C002A47D4260094D56D /* ResourceBuilder.swift in Sources */,
 				C1649C012A47D4260094D56D /* STTEngine.swift in Sources */,
 				C1649C022A47D4260094D56D /* TimerGameController.swift in Sources */,
-				C1AA63102AB72D600090983E /* TestCoordinator.swift in Sources */,
 				C1649C032A47D4260094D56D /* CustomUINavigationController.swift in Sources */,
 				7E6A36FF2A89B77900B7F0BC /* PlayableType.swift in Sources */,
 				C16B18A32AB336E2001D804F /* GuessWhoViewModelRX.swift in Sources */,
@@ -773,7 +768,6 @@
 				C14F27642A0521490007E7A6 /* ResourceBuilder.swift in Sources */,
 				C119CBCE29F951BF00648638 /* STTEngine.swift in Sources */,
 				C148D9D72A1CE961005AB791 /* TimerGameController.swift in Sources */,
-				C1AA630F2AB72D600090983E /* TestCoordinator.swift in Sources */,
 				7E04C8EC2A0342FE00357A0F /* CustomUINavigationController.swift in Sources */,
 				C19683792A88F63C0098774F /* GameKinds.swift in Sources */,
 				C16B18A22AB336E2001D804F /* GuessWhoViewModelRX.swift in Sources */,

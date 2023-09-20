@@ -52,17 +52,15 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
+          window = UIWindow(windowScene: windowScene)
+        guard let safeWindow = window else {return}
         
-        let navVC = CustomUINavigationController()
-        
-        let coordinator = AppCoordinator(navigationController: navVC)
-        
-        let window = UIWindow(windowScene: windowScene )
-        window.rootViewController = navVC
-        window.makeKeyAndVisible()
-        self.window = window
-        
+        let nav = CustomUINavigationController()
+        let coordinator = AppCoordinator(navi: nav, window: safeWindow)
+
         coordinator.start()
+        
+        
         
     }
     

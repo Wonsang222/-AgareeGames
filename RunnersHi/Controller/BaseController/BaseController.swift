@@ -39,7 +39,7 @@ class BaseController:UIViewController{
         navigationController?.popToRootViewController(animated: true)
     }
     
-    final func terminateAppGracefullyAfter(second: Double) {
+    final func terminateAppAfter(second: Double) {
         DispatchQueue.main.asyncAfter(deadline: .now() + second) {
             UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -59,7 +59,7 @@ class BaseController:UIViewController{
 //            
 //        alert.addAction(terminateAction)
 //        present(alert, animated: true) {
-//            self.terminateAppGracefullyAfter(second: 5.0) // 5초 후 우아한 앱 종료
+//            self.terminateAppAfter(second: 5.0) // 5초 후 우아한 앱 종료
 //        }
     }
     

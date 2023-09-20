@@ -11,6 +11,7 @@ import RxSwift
 enum TransitionStyle{
     case push
     case back
+    case root
 }
 
 enum Scene{
@@ -27,7 +28,7 @@ extension Scene{
                 vc.bind(viewmodel: viewmodel)
             }
             return vc
-        case .test(let viewmodel):
+        case .test(_):
             var vc = ResultController(isWin: true)
             return vc
         @unknown default:
@@ -40,7 +41,8 @@ protocol Coordinator:AnyObject{
     var navi:CustomUINavigationController { get set }
     var childCoordinators:[Coordinator] { get set }
     
-    func start()
+    @discardableResult
+    func start() -> Completable
 }
 
 extension Coordinator{
@@ -53,13 +55,13 @@ extension Coordinator{
         
         switch style{
         case .push:
-            print(123)
+            navi.pushViewController(target, animated: true)
             subject.onCompleted()
         case .back:
             print(123)
             subject.onCompleted()
-        default:
-            subject.onError(NSError(domain: "Err", code: 1))
+        case .root:
+            print(123)
         }
         return subject.asCompletable()
     }
