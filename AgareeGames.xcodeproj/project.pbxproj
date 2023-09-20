@@ -296,14 +296,6 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
-		C148D9D82A1CE996005AB791 /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Protocol;
-			path = RunnersHi/Util/Protocol;
-			sourceTree = SOURCE_ROOT;
-		};
 		C148D9DC2A2095F7005AB791 /* BaseController */ = {
 			isa = PBXGroup;
 			children = (
@@ -456,7 +448,6 @@
 				7E17BBA82A5D061300D94230 /* Auth */,
 				C148D9DD2A21C34E005AB791 /* Cache */,
 				7E246FA52A1DB7A30068CF9E /* Error */,
-				C148D9D82A1CE996005AB791 /* Protocol */,
 				C176FECD2A1A5C7800C7EFE6 /* Reachability */,
 				C119CBCC29F951AE00648638 /* SpeechToText */,
 				7E159D3329F89FCF00C7E601 /* Global */,

@@ -60,19 +60,17 @@ final class PreGameController:BaseController, ViewModelBindableType{
                 self?.showHTPV(instView)
             })
             .disposed(by: rx.disposeBag)
-        
+
         preGameView.playButton.playButton.rx.tap
-            .flatMap { _ in
-                return Observable.of(AuthManager.checkMicUsableRX(),
-                                     AuthManager.checkRecordable(),
-                                     AuthManager.checkSpeechableRX())
+            .flatMap{ _ in
+                return Observable.of(AuthManager.checkMicUsableRX(), AuthManager.checkSpeechableRX())
                     .merge(maxConcurrent: 1)
             }
-            .withUnretained(self)
-            .subscribe(onNext: { vc , err in
-                print(1234)
-                vc.handleAudioError(err: err)
-            }, onCompleted: { print(123)  })
+            .subscribe(onNext: { a in
+                print(a.rawValue)
+            }, onCompleted: {
+                print("무야호")
+            })
             .disposed(by: rx.disposeBag)
     }
     

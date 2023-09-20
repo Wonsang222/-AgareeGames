@@ -32,7 +32,7 @@ extension Scene{
             var vc = ResultController(isWin: true)
             return vc
         @unknown default:
-            return BaseController()
+            break
         }
     }
 }
