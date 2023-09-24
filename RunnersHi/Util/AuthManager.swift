@@ -12,67 +12,60 @@ import AVFoundation
 
 
 class AuthManager{
-    
-    static let a = true
-    
-    static func checkRecordable() -> Observable<RXAudioError>{
-        return Observable.create { observer in
-//            AVAudioSession.sharedInstance().requestRecordPermission { granted in
-//                if granted {
-//                    observer.onCompleted()
-//                } else{
-//                    observer.onNext(RXAudioError.RecordError)
-//                }
-//            }
-            if a == true{
-                observer.onCompleted()
-            } else{
-                observer.onNext(RXAudioError.AudioOff)
-            }
-            return Disposables.create()
-        }
-    }
-    
-    static func checkMicUsableRX() -> Observable<RXAudioError>{
-        return Observable.create { observer in
-//            let micStatus = AVCaptureDevice.authorizationStatus(for: .audio)
-//            switch micStatus{
-//            case .authorized:
-//                observer.onCompleted()
-//            case .denied, .notDetermined, .restricted:
-//                observer.onNext(RXAudioError.AudioOff)
-//            @unknown default:
-//                observer.onNext(RXAudioError.TotalAudioError)
-//            }
-            
-            if a == true{
-                observer.onCompleted()
-            } else{
-        
-                observer.onNext(RXAudioError.TotalAudioError)
 
+    static func getMicAuthrization() -> Observable<RXAudioError> {
+        return Observable.create { observer in
+            AVAudioSession.sharedInstance().requestRecordPermission { granted in
+                if granted {
+                    observer.onCompleted()
+                } else{
+                }
             }
             return Disposables.create()
         }
     }
     
-    static func checkSpeechableRX() -> Observable<RXAudioError>{
+    static func getSpechAuthorization() -> Observable<RXAudioError> {
         return Observable.create { observer in
-//            let speechStatus = SFSpeechRecognizer.authorizationStatus()
-//            switch speechStatus{
-//            case .authorized:
-//                observer.onCompleted()
-//            case .denied, .notDetermined, .restricted:
-//                observer.onNext(RXAudioError.SpeechAuth)
-//            @unknown default:
-//                observer.onNext(RXAudioError.SpeechError)
-//            }
-            
-            if a == true{
+            SFSpeechRecognizer.requestAuthorization { authStatus in
+                switch authStatus {
+                case .authorized:
+                    observer.onCompleted()
+                case .denied,.notDetermined, .restricted :
+                    observer.onNext(RXAudioError.SpeechError)
+                @unknown default:
+                    break
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    static func checkMicUsableRX() -> Observable<RXAudioError> {
+        return Observable.create { observer in
+            let micStatus = AVCaptureDevice.authorizationStatus(for: .audio)
+            switch micStatus{
+            case .authorized:
                 observer.onCompleted()
-            } else{
-                
-                observer.onNext(RXAudioError.RecordError)
+            case .denied, .notDetermined, .restricted:
+                observer.onNext(RXAudioError.AudioOff)
+            @unknown default:
+                break
+            }
+            return Disposables.create()
+        }
+    }
+    
+    static func checkSpeechableRX() -> Observable<RXAudioError> {
+        return Observable.create { observer in
+            let speechStatus = SFSpeechRecognizer.authorizationStatus()
+            switch speechStatus{
+            case .authorized:
+                observer.onCompleted()
+            case .denied, .notDetermined, .restricted:
+                observer.onNext(RXAudioError.SpeechAuth)
+            @unknown default:
+                break
             }
             return Disposables.create()
         }

@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import RxViewController
 import NSObject_Rx
 
 final class PreGameController:BaseController, ViewModelBindableType{
@@ -35,6 +36,25 @@ final class PreGameController:BaseController, ViewModelBindableType{
     // 버튼 binding main scheduler에서 ..
     func bindViewModel() {
         
+        rx.viewWillAppear
+            .take(1)
+            .flatMap{ _ -> Observable<RXAudioError> in
+                return Observable.create { observer in
+                    
+                    let bag = DisposeBag()
+                    let observables = [AuthManager.getMicAuthrization(), AuthManager.getSpechAuthorization()]
+                    Observable.concat(observables)
+                        .withUnretained(self)
+                        .subscribe(onNext: { vc, err in
+                            vc.handleAudioError(err: err)
+                        })
+                        .disposed(by: bag)
+                    return Disposables.create()
+                }
+            }
+            .subscribe()
+            .disposed(by: rx.disposeBag)
+        
         viewModel.gameTitle
             .observe(on: MainScheduler.instance)
             .subscribe(onSuccess: { [weak self] title in
@@ -56,21 +76,32 @@ final class PreGameController:BaseController, ViewModelBindableType{
                 return self?.viewModel.gameInst.asObservable() ?? .empty()
             }
             .subscribe(onNext: { [weak self] instView in
-                instView.button.addTarget(self, action: #selector(self?.dissmissHTPV(_:)), for: .touchUpInside)
+                instView.button.addTarget(self,
+                                          action: #selector(self?.dissmissHTPV(_:)),
+                                          for: .touchUpInside)
                 self?.showHTPV(instView)
             })
             .disposed(by: rx.disposeBag)
 
         preGameView.playButton.playButton.rx.tap
-            .flatMap{ _ in
-                return Observable.of(AuthManager.checkMicUsableRX(), AuthManager.checkSpeechableRX())
-                    .merge(maxConcurrent: 1)
+            .flatMap{ _ -> Observable<Void> in
+                return Observable.create { ob in
+                    
+                    let bag = DisposeBag()
+                    let observables = [AuthManager.checkMicUsableRX(),
+                                       AuthManager.checkSpeechableRX()]
+                    
+                    Observable.concat(observables)
+                        .withUnretained(self)
+                        .subscribe(onNext: { vc, err in
+                            vc.handleAudioError(err: err)
+                        },
+                        onCompleted: { print("done")  })
+                        .disposed(by: bag)
+                    return Disposables.create()
+                }
             }
-            .subscribe(onNext: { a in
-                print(a.rawValue)
-            }, onCompleted: {
-                print("무야호")
-            })
+            .subscribe()
             .disposed(by: rx.disposeBag)
     }
     
