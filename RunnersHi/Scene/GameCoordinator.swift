@@ -14,12 +14,7 @@ class GameCoordinator: Coordinator {
     var navi: CustomUINavigationController!
     var child = [Coordinator]()
     weak var parent: Coordinator?
-    
-    private let bag = DisposeBag()
-    
-    init(navi:CustomUINavigationController){
-        self.navi = navi
-    }
+    var bag = DisposeBag()
     
     func start() -> RxSwift.Completable {
         let subject = PublishSubject<Never>()
@@ -28,8 +23,7 @@ class GameCoordinator: Coordinator {
         return subject.asCompletable()
         
     }
-    
-    
+
     
 //    navi.rx.willShow
 //        .withUnretained(self)
@@ -38,23 +32,4 @@ class GameCoordinator: Coordinator {
 //        })
 //        .disposed(by: bag)
     
-    
-    
-
-//
-//    @discardableResult
-//    func start(viewModel:GuessWhoViewModelRX) -> Completable {
-//        let subject = PublishSubject<Never>()
-//        // 함수화
-//        navigationController.rx.willShow
-//            .withUnretained(self)
-//            .subscribe(onNext: { coordinator, event in
-//                coordinator.navigationController = event.viewController.navigationController! as! CustomUINavigationController
-//            })
-//            .disposed(by: bag)
-//
-//        subject.onCompleted()
-//        return subject.asCompletable()
-//    }
-
 }

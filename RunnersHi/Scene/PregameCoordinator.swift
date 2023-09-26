@@ -13,6 +13,7 @@ class PregameCoordinator: Coordinator {
     var navi: CustomUINavigationController!
     var child = [Coordinator]()
     weak var parent: Coordinator?
+    var bag:DisposeBag = DisposeBag()
     
     @discardableResult
     func start() -> Completable {

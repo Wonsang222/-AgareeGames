@@ -14,6 +14,8 @@ class AppCoordinator:Coordinator{
     let window: UIWindow
     var parent: Coordinator? = nil
     
+    var bag:DisposeBag = DisposeBag()
+    
     init(window:UIWindow) {
         self.window = window
     }

@@ -9,7 +9,11 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+
+// 추가할것 각 coordinator 마다 다른 특성의 navigationcontroller 갖고있음 좋을듯 - uinavigationconroller 공부 다시 해야함
+
 protocol Coordinator:AnyObject{
+    
     var navi:CustomUINavigationController! { get set }
     var child:[Coordinator] { get set }
     var parent:Coordinator? {  get set }
@@ -18,10 +22,6 @@ protocol Coordinator:AnyObject{
 
 extension Coordinator{
     
-    var bag:DisposeBag {
-        return DisposeBag()
-    }
-
     @discardableResult
     func transition(to scene:Scene, using style:TransitionStyle, animation:Bool) -> Completable{
         let subject = PublishSubject<Never>()
@@ -30,7 +30,6 @@ extension Coordinator{
         
         switch style{
         case .push:
-            
             navi.rx.willShow
                 .withUnretained(self)
                 .subscribe(onNext: { coordinator, evt in
@@ -66,8 +65,8 @@ extension Coordinator{
 }
 
 protocol Coordinating{
-    var coordinator:Coordinator { get set }
     
+    var coordinator:Coordinator { get set }
 }
 
 
