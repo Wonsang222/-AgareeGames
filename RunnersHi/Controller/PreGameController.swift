@@ -42,7 +42,8 @@ final class PreGameController:BaseController, ViewModelBindableType{
                 return Observable.create { observer in
                     
                     let bag = DisposeBag()
-                    let observables = [AuthManager.getMicAuthrization(), AuthManager.getSpechAuthorization()]
+                    let observables = [AuthManager.getMicAuthrization(),
+                                       AuthManager.getSpechAuthorization()]
                     Observable.concat(observables)
                         .withUnretained(self)
                         .subscribe(onNext: { vc, err in

@@ -11,9 +11,9 @@ import RxCocoa
 
 class GameCoordinator: Coordinator {
     
-    var navi: CustomUINavigationController
-    var childCoordinators = [Coordinator]()
-    weak var parentCoordinator: Coordinator?
+    var navi: CustomUINavigationController!
+    var child = [Coordinator]()
+    weak var parent: Coordinator?
     
     private let bag = DisposeBag()
     

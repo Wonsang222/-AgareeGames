@@ -10,13 +10,9 @@ import RxSwift
 import RxCocoa
 
 class PregameCoordinator: Coordinator {
-    var navi: CustomUINavigationController
-    var childCoordinators = [Coordinator]()
-    weak var parentCoordinator: Coordinator?
-    
-    init(navi: CustomUINavigationController) {
-        self.navi = navi
-    }
+    var navi: CustomUINavigationController!
+    var child = [Coordinator]()
+    weak var parent: Coordinator?
     
     @discardableResult
     func start() -> Completable {
@@ -48,11 +44,11 @@ class PregameCoordinator: Coordinator {
     @discardableResult
     func testing() -> Completable{
         let subject = PublishSubject<Never>()
-        let child = GameCoordinator(navi: navi)
-        child.parentCoordinator = self
-        childCoordinators.append(child)
-        
-        child.start()
+//        let child = GameCoordinator(navi: navi)
+//        child.parentCoordinator = self
+//        child.append(child)
+//        
+//        child.start()
         subject.onCompleted()
         return subject.asCompletable()
     }

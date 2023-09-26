@@ -9,25 +9,24 @@ import UIKit
 import RxSwift
 
 class AppCoordinator:Coordinator{
+    var navi: CustomUINavigationController!
+    var child = [Coordinator]()
+    let window: UIWindow
+    var parent: Coordinator? = nil
     
-    var navi: CustomUINavigationController
-    var childCoordinators = [Coordinator]()
-    var window: UIWindow
-    
-    init(navi: CustomUINavigationController, window:UIWindow) {
-        self.navi = navi
+    init(window:UIWindow) {
         self.window = window
     }
     
     @discardableResult
-    func start() -> Completable{
+    func start(children:Coordinator) -> Completable{
         let subject = PublishSubject<Never>()
-        let child = PregameCoordinator(navi: navi)
-        child.parentCoordinator = self
-        childCoordinators.append(child)
-        child.start()
-        window.rootViewController = child.navi
+        children.navi = self.navi
+        children.parent = self
+        self.child.append(children)
+        window.rootViewController = children.navi
         window.makeKeyAndVisible()
+        children.transition(to: <#T##Scene#>, using: .root, animation: true)
         subject.onCompleted()
         return subject.asCompletable()
     }

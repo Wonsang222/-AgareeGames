@@ -7,46 +7,21 @@
 
 import UIKit
 import RxSwift
-
-enum TransitionStyle{
-    case push
-    case back
-    case root
-}
-
-enum Scene{
-    case pregame(PregameViewModel)
-    case test(ResultViewModel)
-}
-
-extension Scene{
-    func instantiate() -> BaseController{
-        switch self{
-        case .pregame(let viewmodel):
-            var vc = PreGameController()
-            DispatchQueue.main.async {
-                vc.bind(viewmodel: viewmodel)
-            }
-            return vc
-        case .test(_):
-            var vc = ResultController(isWin: true)
-            return vc
-        @unknown default:
-            break
-        }
-    }
-}
+import RxCocoa
 
 protocol Coordinator:AnyObject{
-    var navi:CustomUINavigationController { get set }
-    var childCoordinators:[Coordinator] { get set }
-    
-    @discardableResult
-    func start() -> Completable
+    var navi:CustomUINavigationController! { get set }
+    var child:[Coordinator] { get set }
+    var parent:Coordinator? {  get set }
+    var bag:DisposeBag { get set }
 }
 
 extension Coordinator{
     
+    var bag:DisposeBag {
+        return DisposeBag()
+    }
+
     @discardableResult
     func transition(to scene:Scene, using style:TransitionStyle, animation:Bool) -> Completable{
         let subject = PublishSubject<Never>()
@@ -55,24 +30,33 @@ extension Coordinator{
         
         switch style{
         case .push:
+            
+            navi.rx.willShow
+                .withUnretained(self)
+                .subscribe(onNext: { coordinator, evt in
+                    coordinator.navi = (evt.viewController as! CustomUINavigationController)
+                })
+                .disposed(by: bag)
+            
             navi.pushViewController(target, animated: true)
             subject.onCompleted()
         case .back:
             print(123)
             subject.onCompleted()
         case .root:
-            print(123)
+            navi.setViewControllers([target], animated: true)
+            subject.onCompleted()
         }
         return subject.asCompletable()
     }
-    
-    
+        
     @discardableResult
-    func childDidFinish(_ child:Coordinator) -> Completable{
+    func childDidFinish(_ target:Coordinator) -> Completable{
         let subject = PublishSubject<Never>()
-        for (idx, coordinator) in childCoordinators.enumerated(){
-            if coordinator === child{
-                childCoordinators.remove(at: idx)
+        
+        for (idx, coordinator) in child.enumerated(){
+            if coordinator === target{
+                child.remove(at: idx)
                 subject.onCompleted()
                 break
             }
@@ -80,7 +64,6 @@ extension Coordinator{
         return subject.asCompletable()
     }
 }
-
 
 protocol Coordinating{
     var coordinator:Coordinator { get set }
