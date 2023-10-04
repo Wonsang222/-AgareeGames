@@ -17,6 +17,10 @@ final class CustomUINavigationController:UINavigationController{
         return topViewController
     }
     
+    override var childForHomeIndicatorAutoHidden: UIViewController?{
+        return topViewController
+    }
+    
     override func viewDidLoad() {
     }
 }
