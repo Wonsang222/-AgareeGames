@@ -104,6 +104,32 @@ final class NetworkService{
         }
         return result
     }
+    
+    
+    func tempConnect() -> Observable<[String:Any]>{
+        return Observable.create { emitter in
+            let url = URL(string: "dfasdf")
+            let task = URLSession.shared.dataTask(with: URLRequest(url: url!)){ data, _, err in
+                guard err == nil else {
+                    emitter.onError(err!)
+                    return
+                }
+                
+                if let dat = data {
+//                    emitter.onNext(dat)
+                }
+                
+                emitter.onCompleted()
+            }
+    
+            task.resume()
+            
+            
+            return Disposables.create(){
+                task.cancel()
+            }
+        }
+    }
 }
     // 캐시에 있으면 사용, 없으면 temp cache를 봄.
     //    private static func cacheCheck(_ name:String) -> UIImage?{
