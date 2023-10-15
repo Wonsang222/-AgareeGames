@@ -10,10 +10,35 @@ import RxSwift
 import RxCocoa
 
 class PregameCoordinator: Coordinator {
-    var navi: CustomUINavigationController!
-    var child = [Coordinator]()
+    
+    var navi: BaseNavigationController!
+    var children = [Coordinator]()
     weak var parent: Coordinator?
+    var window: UIWindow? = nil
+
     var bag:DisposeBag = DisposeBag()
+    
+    required init(window:UIWindow, navi:BaseNavigationController) {
+        self.window = window
+        self.navi = navi
+    }
+    
+    @discardableResult
+    func start(child:Coordinator) -> Completable{
+        let subject = PublishSubject<Never>()
+        child.parent = self
+        self.children.append(child)
+        
+        let viewModel = PregameViewModel(game: .GuessWho, sceneCoordinator: child)
+        let scene = Scene.pregame(viewModel)
+        
+        child.transition(to: scene, using: .root, animation: true)
+        window?.rootViewController = child.navi
+        window?.makeKeyAndVisible()
+    
+        subject.onCompleted()
+        return subject.asCompletable()
+    }
     
     @discardableResult
     func start() -> Completable {
@@ -29,18 +54,6 @@ class PregameCoordinator: Coordinator {
         subject.onCompleted()
         return subject.asCompletable()
     }
-    
-//    @discardableResult
-//    func playGame(viewmodel:GuessWhoViewModelRX) -> Completable{
-//        let subject = PublishSubject<Never>()
-//        let child = GameCoordinator(navigationController: navi)
-//        child.parentCoordinator = self
-//        childCoordinators.append(child)
-//
-//        child.start()
-//        subject.onCompleted()
-//        return subject.asCompletable()
-//    }
     
     @discardableResult
     func testing() -> Completable{

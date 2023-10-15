@@ -9,26 +9,31 @@ import UIKit
 import RxSwift
 
 class AppCoordinator:Coordinator{
-    var navi: CustomUINavigationController!
-    var child = [Coordinator]()
-    let window: UIWindow
+    var navi: BaseNavigationController!
+    var children = [Coordinator]()
+    var window: UIWindow? = nil
     var parent: Coordinator? = nil
     
     var bag:DisposeBag = DisposeBag()
     
-    init(window:UIWindow) {
+    required init(window:UIWindow, navi:BaseNavigationController) {
         self.window = window
+        self.navi = navi
     }
     
     @discardableResult
-    func start(children:Coordinator) -> Completable{
+    func start(child:Coordinator) -> Completable{
         let subject = PublishSubject<Never>()
-        children.navi = self.navi
-        children.parent = self
-        self.child.append(children)
-        window.rootViewController = children.navi
-        window.makeKeyAndVisible()
-        children.transition(to: <#T##Scene#>, using: .root, animation: true)
+        child.parent = self
+        self.children.append(child)
+        
+        let viewModel = PregameViewModel(game: .GuessWho, sceneCoordinator: child)
+        let scene = Scene.pregame(viewModel)
+        
+        child.transition(to: scene, using: .root, animation: true)
+        window?.rootViewController = child.navi
+        window?.makeKeyAndVisible()
+    
         subject.onCompleted()
         return subject.asCompletable()
     }

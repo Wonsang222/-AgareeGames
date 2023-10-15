@@ -7,21 +7,16 @@
 
 import UIKit
 
-final class GameNavigationController:UINavigationController{
+class GameNavigationController:BaseNavigationController{
         
     override var prefersHomeIndicatorAutoHidden: Bool{
         return true
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle{
-        return .lightContent
     }
     
     override var prefersStatusBarHidden: Bool{
         return false
     }
 
-    
     override func viewDidLoad() {
     }
 }

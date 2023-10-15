@@ -55,16 +55,16 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
         window = UIWindow(windowScene: windowScene)
         guard let safeWindow = window else {return}
         
-        let nav = CustomUINavigationController()
-        let coordinator = AppCoordinator(navi: nav, window: safeWindow)
-
-        coordinator.start()
+        let nav = BaseNavigationController()
+        let mainCoordinator = AppCoordinator(window: safeWindow, navi: nav)
+        let pregameCoordinator = PregameCoordinator(window: safeWindow, navi: nav)
+        mainCoordinator.start(child: pregameCoordinator)
     }
     
     func sceneDidEnterBackground(_ scene: UIScene) {
         guard let windowScene = scene as? UIWindowScene,
               let window = windowScene.windows.first,
-              let rootVC = window.rootViewController as? CustomUINavigationController,
+              let rootVC = window.rootViewController as? BaseNavigationController,
               let topVC = rootVC.topViewController else { return }
         
         if let vc = topVC as? TalkGameController{
@@ -80,7 +80,7 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
     func sceneWillEnterForeground(_ scene: UIScene) {
         guard let windowScenne = scene as? UIWindowScene,
               let window = windowScenne.windows.first,
-              let rootVC = window.rootViewController as? CustomUINavigationController,
+              let rootVC = window.rootViewController as? BaseNavigationController,
               let topVC = rootVC.topViewController else { return }
         
         if let vc = topVC as? GameController{
@@ -93,7 +93,7 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
     func sceneWillResignActive(_ scene: UIScene) {
         guard let windowScenne = scene as? UIWindowScene,
               let window = windowScenne.windows.first,
-              let rootVC = window.rootViewController as? CustomUINavigationController,
+              let rootVC = window.rootViewController as? BaseNavigationController,
               let topVC = rootVC.topViewController else { return }
         
         if let vc = topVC as? GameController{

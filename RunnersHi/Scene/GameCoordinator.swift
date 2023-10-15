@@ -10,26 +10,16 @@ import RxSwift
 import RxCocoa
 
 class GameCoordinator: Coordinator {
-    
-    var navi: CustomUINavigationController!
-    var child = [Coordinator]()
+
+    var navi: BaseNavigationController!
+    var children = [Coordinator]()
     weak var parent: Coordinator?
+    var window: UIWindow?
+
     var bag = DisposeBag()
     
-    func start() -> RxSwift.Completable {
-        let subject = PublishSubject<Never>()
-        
-        
-        return subject.asCompletable()
-        
+    required init(window:UIWindow, navi:BaseNavigationController) {
+        self.window = window
+        self.navi = navi
     }
-
-    
-//    navi.rx.willShow
-//        .withUnretained(self)
-//        .subscribe(onNext: { coordinator, event in
-//            coordinator.navigationController = event.viewController.navigationController! as! CustomUINavigationController
-//        })
-//        .disposed(by: bag)
-    
 }

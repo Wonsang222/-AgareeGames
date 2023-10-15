@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class PreNavigationController:UINavigationController{
+class BaseNavigationController:UINavigationController{
     
     override var prefersStatusBarHidden: Bool{
         return false
@@ -17,7 +17,6 @@ final class PreNavigationController:UINavigationController{
         return .lightContent
     }
 
-    
     override func viewDidLoad() {
     }
 }
