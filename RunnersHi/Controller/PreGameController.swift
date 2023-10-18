@@ -44,7 +44,7 @@ final class PreGameController:BaseController, ViewModelBindableType{
                     let bag = DisposeBag()
                     let observables = [AuthManager.getMicAuthrization(),
                                        AuthManager.getSpechAuthorization()]
-                    Observable.concat(observables)
+                    Observable.merge(observables)
                         .withUnretained(self)
                         .subscribe(onNext: { vc, err in
                             vc.handleAudioError(err: err)
@@ -53,7 +53,7 @@ final class PreGameController:BaseController, ViewModelBindableType{
                     return Disposables.create()
                 }
             }
-            .subscribe()
+            .subscribe(onCompleted: {  })
             .disposed(by: rx.disposeBag)
         
         viewModel.gameTitle

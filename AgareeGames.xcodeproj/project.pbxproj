@@ -422,6 +422,7 @@
 		C1FFE7C529E305C4009FFD0B /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				C108918E2A8739A30014A0EE /* ViewModelBindableType.swift */,
 				C10891912A8754750014A0EE /* PregameViewModel.swift */,
 				7E159D3B29F8A0E400C7E601 /* GuessWhoViewModel.swift */,
 				C16B18A12AB336E2001D804F /* GuessWhoViewModelRX.swift */,
@@ -450,7 +451,6 @@
 			children = (
 				7EE819312ACE3BA7004CBA1B /* NaviCtr */,
 				7E04C8E42A03342300357A0F /* PreGameController.swift */,
-				C108918E2A8739A30014A0EE /* ViewModelBindableType.swift */,
 				C148D9DC2A2095F7005AB791 /* BaseCtr */,
 				7E04C8E82A0342A900357A0F /* GameCtr */,
 				C14F275D2A02C01B0007E7A6 /* ResultController.swift */,
