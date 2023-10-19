@@ -14,13 +14,15 @@ class PregameCoordinator: Coordinator {
     var navi: BaseNavigationController!
     var children = [Coordinator]()
     weak var parent: Coordinator?
-    var window: UIWindow? = nil
-
+    var window: UIWindow
+    let model:PregameModel
+    
     var bag:DisposeBag = DisposeBag()
     
-    required init(window:UIWindow, navi:BaseNavigationController) {
+    init(window:UIWindow, navi:BaseNavigationController, model:PregameModel) {
         self.window = window
         self.navi = navi
+        self.model = model
     }
     
     @discardableResult
@@ -30,11 +32,11 @@ class PregameCoordinator: Coordinator {
         self.children.append(child)
         
         let viewModel = PregameViewModel(game: .GuessWho, sceneCoordinator: child)
-        let scene = Scene.pregame(viewModel)
+        let scene = Scene.Pregame(viewModel)
         
         child.transition(to: scene, using: .root, animation: true)
-        window?.rootViewController = child.navi
-        window?.makeKeyAndVisible()
+        window.rootViewController = child.navi
+        window.makeKeyAndVisible()
     
         subject.onCompleted()
         return subject.asCompletable()
@@ -56,13 +58,13 @@ class PregameCoordinator: Coordinator {
     }
     
     @discardableResult
-    func testing() -> Completable{
+    // 여기서 뭔가를 넣어줘야 올바른 실행이 될듯 viewmodel으로 분기 아니지 게임 타입으로
+    func play() -> Completable{
         let subject = PublishSubject<Never>()
-//        let child = GameCoordinator(navi: navi)
-//        child.parentCoordinator = self
-//        child.append(child)
-//        
-//        child.start()
+        let child = GameCoordinator(window: self.window, navi: self.navi)
+        child.parent = self
+        children.append(child)
+        child.start()
         subject.onCompleted()
         return subject.asCompletable()
     }

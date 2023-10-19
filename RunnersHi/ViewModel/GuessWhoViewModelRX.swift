@@ -15,9 +15,6 @@ import RxCocoa
  time 에러 -> 패배
  
  next 에러 -> 승리
- 
- 
- 
  */
 
 

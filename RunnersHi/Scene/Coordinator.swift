@@ -14,10 +14,8 @@ protocol Coordinator:AnyObject{
     var navi:BaseNavigationController! { get set }
     var children:[Coordinator] { get set }
     var parent:Coordinator? {  get set }
-    var window:UIWindow? { get set }
+    var window:UIWindow { get set }
     var bag:DisposeBag { get set }
-    
-    init(window:UIWindow, navi:BaseNavigationController)
 }
 
 extension Coordinator{
@@ -62,10 +60,4 @@ extension Coordinator{
         return subject.asCompletable()
     }
 }
-
-protocol Coordinating{
-    
-    var coordinator:Coordinator { get set }
-}
-
 

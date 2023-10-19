@@ -14,21 +14,28 @@ enum TransitionStyle{
 }
 
 enum Scene{
-    case pregame(PregameViewModel)
-    case test(ResultViewModel)
+    case Pregame(PregameViewModel)
+    case Test(ResultViewModel)
+    case GuessWho(GuessWhoViewModelRX)
 }
 
 extension Scene{
     func instantiate() -> BaseController{
         switch self{
-        case .pregame(let viewmodel):
+        case .Pregame(let viewmodel):
             var vc = PreGameController()
             DispatchQueue.main.async {
                 vc.bind(viewmodel: viewmodel)
             }
             return vc
-        case .test(_):
+        case .Test(_):
             let vc = ResultController(isWin: true)
+            return vc
+        case .GuessWho(_):
+            let vc = GuessWhoController()
+//            DispatchQueue.main.async {
+//                vc.bind(viewmodel: viewmodel)
+//            }
             return vc
         }
     }

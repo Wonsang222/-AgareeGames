@@ -57,8 +57,7 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
         
         let nav = BaseNavigationController()
         let mainCoordinator = AppCoordinator(window: safeWindow, navi: nav)
-        let pregameCoordinator = PregameCoordinator(window: safeWindow, navi: nav)
-        mainCoordinator.start(child: pregameCoordinator)
+        mainCoordinator.start()
     }
     
     func sceneDidEnterBackground(_ scene: UIScene) {

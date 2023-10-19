@@ -14,12 +14,21 @@ class GameCoordinator: Coordinator {
     var navi: BaseNavigationController!
     var children = [Coordinator]()
     weak var parent: Coordinator?
-    var window: UIWindow?
+    var window: UIWindow
 
     var bag = DisposeBag()
     
     required init(window:UIWindow, navi:BaseNavigationController) {
         self.window = window
         self.navi = navi
+    }
+    
+    @discardableResult
+    func start() -> Completable {
+        
+        let subject = PublishSubject<Never>()
+        
+        
+        return subject.asCompletable()
     }
 }
