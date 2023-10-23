@@ -13,14 +13,6 @@ import NSObject_Rx
 
 final class PregameViewModel:BaseViewModel{
     
-    // 여기에 auth 관련 코드 작성 해야함.
-    
-    /*
-     ctr -  appear, button merge  ->
-     
-     vm -  특정한 something을 실행시킴 -> 각각 조건에 맞게 하고 맞으면 coordinator에서 진행시켜
-     */
-    
     //MARK: -  INPUT
     
     lazy var updateModel:(Int) -> Void = { [weak self] num in
@@ -30,6 +22,8 @@ final class PregameViewModel:BaseViewModel{
             self?.gameModel.onNext(updatedModel)
         }
     }
+    
+    
     
     //MARK: - OUTPUT
     let gameModel:BehaviorSubject<PregameModel>

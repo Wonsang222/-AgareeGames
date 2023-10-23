@@ -32,9 +32,17 @@ final class PreGameController:BaseController, ViewModelBindableType{
         configureNaviBar()
     }
     
-    
     // 버튼 binding main scheduler에서 ..
     func bindViewModel() {
+        
+        let firstLoad = rx.viewWillAppear
+            .take(1)
+            .map{ _ in }
+        let buttonTapped = preGameView.playButton.playButton.rx.tap
+            .map{ _ in }
+        
+        Observable.merge([firstLoad, buttonTapped])
+            .bind(to: <#T##(Observable<Void>) -> Result#>)
         
         rx.viewWillAppear
             .take(1)
@@ -92,7 +100,7 @@ final class PreGameController:BaseController, ViewModelBindableType{
                     let observables = [AuthManager.checkMicUsableRX(),
                                        AuthManager.checkSpeechableRX()]
                     
-                    Observable.concat(observables)
+                    Observable.merge(observables)
                         .withUnretained(self)
                         .subscribe(onNext: { vc, err in
                             vc.handleAudioError(err: err)
