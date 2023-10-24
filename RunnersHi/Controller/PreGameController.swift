@@ -41,29 +41,6 @@ final class PreGameController:BaseController, ViewModelBindableType{
         let buttonTapped = preGameView.playButton.playButton.rx.tap
             .map{ _ in }
         
-        Observable.merge([firstLoad, buttonTapped])
-            .bind(to: <#T##(Observable<Void>) -> Result#>)
-        
-        rx.viewWillAppear
-            .take(1)
-            .flatMap{ _ -> Observable<RXAudioError> in
-                return Observable.create { observer in
-                    
-                    let bag = DisposeBag()
-                    let observables = [AuthManager.getMicAuthrization(),
-                                       AuthManager.getSpechAuthorization()]
-                    Observable.merge(observables)
-                        .withUnretained(self)
-                        .subscribe(onNext: { vc, err in
-                            vc.handleAudioError(err: err)
-                        })
-                        .disposed(by: bag)
-                    return Disposables.create()
-                }
-            }
-            .subscribe(onCompleted: {  })
-            .disposed(by: rx.disposeBag)
-        
         viewModel.gameTitle
             .observe(on: MainScheduler.instance)
             .subscribe(onSuccess: { [weak self] title in
@@ -91,27 +68,22 @@ final class PreGameController:BaseController, ViewModelBindableType{
                 self?.showHTPV(instView)
             })
             .disposed(by: rx.disposeBag)
-
+        
         preGameView.playButton.playButton.rx.tap
-            .flatMap{ _ -> Observable<Void> in
-                return Observable.create { ob in
-                    
-                    let bag = DisposeBag()
-                    let observables = [AuthManager.checkMicUsableRX(),
-                                       AuthManager.checkSpeechableRX()]
-                    
-                    Observable.merge(observables)
-                        .withUnretained(self)
-                        .subscribe(onNext: { vc, err in
-                            vc.handleAudioError(err: err)
-                        },
-                        onCompleted: { print("done")  })
-                        .disposed(by: bag)
-                    return Disposables.create()
+            .flatMap{ [weak self] _ -> Observable<RXAudioError> in
+                guard let self = self else{
+                    return Observable.empty()
                 }
+                return self.viewModel.permissions
             }
-            .subscribe()
+            .withUnretained(self)
+            .subscribe(onNext: { vc, err in
+                vc.handleAudioError(err: err)
+            }, onCompleted: {
+                
+                print("done")})
             .disposed(by: rx.disposeBag)
+        
     }
     
     @objc private func dissmissHTPV(_ htpv:HowToPlayBaseView){
