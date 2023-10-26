@@ -11,7 +11,7 @@ import RxCocoa
 import Action
 import NSObject_Rx
 
-final class PregameViewModel:BaseViewModel{
+final class PregameViewModel:BaseViewModel {
     
     //MARK: -  INPUT
     
@@ -23,25 +23,21 @@ final class PregameViewModel:BaseViewModel{
         }
     }
     
-
-    
-    
-    
     //MARK: - OUTPUT
     let gameModel:BehaviorSubject<PregameModel>
     let gameTitle:Single<String>
     let gameInst:Single<HowToPlayBaseView>
-    var permissions:Observable<RXAudioError>{
+    var permissions:Observable<RXAudioError> {
         return Observable.merge([AuthManager.checkMicUsableRX(),
                                  AuthManager.checkSpeechableRX()])
     }
     
-    init(game:GameKinds, sceneCoordinator:Coordinator){
+    init(game:GameKinds, sceneCoordinator:Coordinator) {
+        
         let baseModel = PregameModel(gameType: game)
         gameModel = BehaviorSubject(value: baseModel)
         self.gameTitle = Observable.just(baseModel.gameType.gameTitle).asSingle()
         self.gameInst = Observable.just(baseModel.getInstView()).asSingle()
-
         
         super.init(sceneCoordinator: sceneCoordinator)
     }

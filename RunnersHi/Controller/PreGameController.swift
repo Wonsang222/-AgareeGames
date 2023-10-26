@@ -16,16 +16,6 @@ final class PreGameController:BaseController, ViewModelBindableType{
     private let preGameView = PreGameView()
     var viewModel: PregameViewModel!
         
-    //MARK: - NaviRoot
-    
-    override var prefersStatusBarHidden: Bool{
-        return false
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle{
-        return .lightContent
-    }
-        
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
@@ -51,16 +41,18 @@ final class PreGameController:BaseController, ViewModelBindableType{
             })
             .disposed(by: rx.disposeBag)
         
+        
+        // checker 
         preGameView.segment.rx.selectedSegmentIndex
+            .debug("checker")
             .subscribe(onNext: { [weak self] idx in
                 self?.viewModel.updateModel(idx)
             })
             .disposed(by: rx.disposeBag)
         
         preGameView.howToPlayButton.rx.tap
-            .flatMap{ [weak self] _ in
-                return self?.viewModel.gameInst.asObservable() ?? .empty()
-            }
+            .withUnretained(self)
+            .flatMap{ vc in vc.0.viewModel.gameInst.asObservable()}
             .subscribe(onNext: { [weak self] instView in
                 instView.button.addTarget(self,
                                           action: #selector(self?.dissmissHTPV(_:)),
@@ -70,20 +62,12 @@ final class PreGameController:BaseController, ViewModelBindableType{
             .disposed(by: rx.disposeBag)
         
         preGameView.playButton.playButton.rx.tap
-            .flatMap{ [weak self] _ -> Observable<RXAudioError> in
-                guard let self = self else{
-                    return Observable.empty()
-                }
-                return self.viewModel.permissions
-            }
             .withUnretained(self)
-            .subscribe(onNext: { vc, err in
-                vc.handleAudioError(err: err)
-            }, onCompleted: {
-                
-                print("done")})
+            .flatMap{ vc in vc.0.viewModel.permissions }
+            .subscribe(onNext: { [weak self] err in
+                self?.handleAudioError(err: err)
+            })
             .disposed(by: rx.disposeBag)
-        
     }
     
     @objc private func dissmissHTPV(_ htpv:HowToPlayBaseView){
