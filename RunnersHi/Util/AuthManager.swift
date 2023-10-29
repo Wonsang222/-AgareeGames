@@ -70,4 +70,38 @@ class AuthManager{
             return Disposables.create()
         }
     }
+    
+    static func tester1() -> Observable<AudioError> {
+            return Observable.create { observer in
+                let micStatus = AVCaptureDevice.authorizationStatus(for: .audio)
+                switch micStatus{
+                case .authorized:
+                    observer.onCompleted()
+                case .denied, .notDetermined, .restricted:
+                    observer.onError(AudioError.AudioOff)
+                @unknown default:
+                    break
+                }
+                return Disposables.create()
+            }
+    }
+    
+    static func tester2() -> Observable<AudioError> {
+        return Observable.create { observer in
+            let speechStatus = SFSpeechRecognizer.authorizationStatus()
+            switch speechStatus{
+            case .authorized:
+                observer.onCompleted()
+            case .denied, .notDetermined, .restricted:
+                observer.onError(AudioError.SpeechAuth)
+            @unknown default:
+                break
+            }
+            return Disposables.create()
+        }
+    }
+    
+    
+    
+    
 }

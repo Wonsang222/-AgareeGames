@@ -25,11 +25,24 @@ final class PreGameController:BaseController, ViewModelBindableType{
     // 버튼 binding main scheduler에서 ..
     func bindViewModel() {
         
-        let firstLoad = rx.viewWillAppear
+        let firstLoad = rx.viewDidAppear
             .take(1)
             .map{ _ in }
         let buttonTapped = preGameView.playButton.playButton.rx.tap
             .map{ _ in }
+                
+        Observable.merge([firstLoad, buttonTapped])
+            .withUnretained(self)
+            .flatMap{ vc in
+                vc.0.viewModel.permit
+                .catch{ [weak self] err in
+                    self?.handleErrors(error: err)
+                    return .empty()}}
+            .subscribe(onCompleted: { [weak self] in
+                self?.viewModel.sceneCoordinator
+                print("it done")
+            })
+            .disposed(by: rx.disposeBag)
         
         viewModel.gameTitle
             .observe(on: MainScheduler.instance)
@@ -44,7 +57,6 @@ final class PreGameController:BaseController, ViewModelBindableType{
         
         // checker 
         preGameView.segment.rx.selectedSegmentIndex
-            .debug("checker")
             .subscribe(onNext: { [weak self] idx in
                 self?.viewModel.updateModel(idx)
             })
@@ -58,14 +70,6 @@ final class PreGameController:BaseController, ViewModelBindableType{
                                           action: #selector(self?.dissmissHTPV(_:)),
                                           for: .touchUpInside)
                 self?.showHTPV(instView)
-            })
-            .disposed(by: rx.disposeBag)
-        
-        preGameView.playButton.playButton.rx.tap
-            .withUnretained(self)
-            .flatMap{ vc in vc.0.viewModel.permissions }
-            .subscribe(onNext: { [weak self] err in
-                self?.handleAudioError(err: err)
             })
             .disposed(by: rx.disposeBag)
     }

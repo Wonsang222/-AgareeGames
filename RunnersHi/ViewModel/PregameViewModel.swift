@@ -23,10 +23,15 @@ final class PregameViewModel:BaseViewModel {
         }
     }
     
+    lazy var permit:Observable<AudioError> = {
+            return Observable.merge([AuthManager.tester1(),
+                                     AuthManager.tester2()])
+    }()
+    
     //MARK: - OUTPUT
     let gameModel:BehaviorSubject<PregameModel>
     let gameTitle:Single<String>
-    let gameInst:Single<HowToPlayBaseView>
+    let gameInst:Single<HowToPlayBaseView>    
     var permissions:Observable<RXAudioError> {
         return Observable.merge([AuthManager.checkMicUsableRX(),
                                  AuthManager.checkSpeechableRX()])

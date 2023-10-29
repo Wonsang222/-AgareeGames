@@ -31,8 +31,6 @@ struct PregameModel:PlayableType{
         switch gameType{
         case .GuessWho:
             return GuessWhoHTPV()
-        default:
-            break
         }
     }
 }
