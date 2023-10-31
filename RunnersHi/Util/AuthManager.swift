@@ -13,7 +13,7 @@ import AVFoundation
 
 class AuthManager{
 
-    static func getMicAuthrization() -> Observable<RXAudioError> {
+    static func getMicAuth() -> Observable<AudioError> {
         return Observable.create { observer in
             AVAudioSession.sharedInstance().requestRecordPermission { granted in
                 if granted {
@@ -24,54 +24,8 @@ class AuthManager{
             return Disposables.create()
         }
     }
-    
-    static func getSpechAuthorization() -> Observable<RXAudioError> {
-        return Observable.create { observer in
-            SFSpeechRecognizer.requestAuthorization { authStatus in
-                switch authStatus {
-                case .authorized:
-                    observer.onCompleted()
-                case .denied,.notDetermined, .restricted :
-                    observer.onNext(RXAudioError.SpeechError)
-                @unknown default:
-                    break
-                }
-            }
-            return Disposables.create()
-        }
-    }
-    
-    static func checkMicUsableRX() -> Observable<RXAudioError> {
-        return Observable.create { observer in
-            let micStatus = AVCaptureDevice.authorizationStatus(for: .audio)
-            switch micStatus{
-            case .authorized:
-                observer.onCompleted()
-            case .denied, .notDetermined, .restricted:
-                observer.onNext(RXAudioError.AudioOff)
-            @unknown default:
-                break
-            }
-            return Disposables.create()
-        }
-    }
-    
-    static func checkSpeechableRX() -> Observable<RXAudioError> {
-        return Observable.create { observer in
-            let speechStatus = SFSpeechRecognizer.authorizationStatus()
-            switch speechStatus{
-            case .authorized:
-                observer.onCompleted()
-            case .denied, .notDetermined, .restricted:
-                observer.onNext(RXAudioError.SpeechAuth)
-            @unknown default:
-                break
-            }
-            return Disposables.create()
-        }
-    }
-    
-    static func tester1() -> Observable<AudioError> {
+
+    static func getRecordAuth() -> Observable<AudioError> {
             return Observable.create { observer in
                 let micStatus = AVCaptureDevice.authorizationStatus(for: .audio)
                 switch micStatus{
@@ -86,7 +40,7 @@ class AuthManager{
             }
     }
     
-    static func tester2() -> Observable<AudioError> {
+    static func getSpeechAuth() -> Observable<AudioError> {
         return Observable.create { observer in
             let speechStatus = SFSpeechRecognizer.authorizationStatus()
             switch speechStatus{
@@ -100,8 +54,4 @@ class AuthManager{
             return Disposables.create()
         }
     }
-    
-    
-    
-    
 }

@@ -15,6 +15,7 @@ final class PreGameController:BaseController, ViewModelBindableType{
 
     private let preGameView = PreGameView()
     var viewModel: PregameViewModel!
+    var bag = DisposeBag()
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,24 +26,28 @@ final class PreGameController:BaseController, ViewModelBindableType{
     // 버튼 binding main scheduler에서 ..
     func bindViewModel() {
         
-        let firstLoad = rx.viewDidAppear
+        let entrance = rx.viewDidAppear
             .take(1)
             .map{ _ in }
         let buttonTapped = preGameView.playButton.playButton.rx.tap
             .map{ _ in }
                 
-        Observable.merge([firstLoad, buttonTapped])
+        Observable.merge([entrance, buttonTapped])
             .withUnretained(self)
-            .flatMap{ vc in
-                vc.0.viewModel.permit
-                .catch{ [weak self] err in
-                    self?.handleErrors(error: err)
-                    return .empty()}}
-            .subscribe(onCompleted: { [weak self] in
+            .flatMapLatest { vc -> Observable<[AudioError]> in
+                return vc.0.viewModel.permissions
+                    .toArray()
+                    .asObservable()
+                    .catch{ [weak self] err -> Observable<[AudioError]> in
+                        self?.handleAudioError(err: err as! AudioError)
+                        return .empty()
+                    }
+            }
+            .subscribe(onNext: { [weak self] _ in
                 self?.viewModel.sceneCoordinator
-                print("it done")
             })
-            .disposed(by: rx.disposeBag)
+            .disposed(by:bag)
+        
         
         viewModel.gameTitle
             .observe(on: MainScheduler.instance)
@@ -52,7 +57,7 @@ final class PreGameController:BaseController, ViewModelBindableType{
                 targetView.titleLabel.text = title
                 targetView.titleLabel.updateLabelFontSize(view: targetView.labelContainerView)
             })
-            .disposed(by: rx.disposeBag)
+            .disposed(by: bag)
         
         
         // checker 
@@ -60,7 +65,7 @@ final class PreGameController:BaseController, ViewModelBindableType{
             .subscribe(onNext: { [weak self] idx in
                 self?.viewModel.updateModel(idx)
             })
-            .disposed(by: rx.disposeBag)
+            .disposed(by: bag)
         
         preGameView.howToPlayButton.rx.tap
             .withUnretained(self)
@@ -71,7 +76,7 @@ final class PreGameController:BaseController, ViewModelBindableType{
                                           for: .touchUpInside)
                 self?.showHTPV(instView)
             })
-            .disposed(by: rx.disposeBag)
+            .disposed(by: bag)
     }
     
     @objc private func dissmissHTPV(_ htpv:HowToPlayBaseView){

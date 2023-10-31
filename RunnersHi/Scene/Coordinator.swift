@@ -36,9 +36,10 @@ extension Coordinator{
             
             navi.pushViewController(target, animated: true)
             subject.onCompleted()
+            
         case .back:
-            print(123)
             subject.onCompleted()
+            
         case .root:
             navi.setViewControllers([target], animated: true)
             subject.onCompleted()

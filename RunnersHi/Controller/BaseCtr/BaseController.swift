@@ -97,33 +97,7 @@ class BaseController:UIViewController{
             }
     }
     
-    final func handleAudioError(err:RXAudioError){
-        switch err{
-        case .TotalAudioError:
-            alert(message: err.rawValue) { alert in
-                print("boom")
-            }
-        case .AudioOff:
-            alert(message: err.rawValue) { alert in
-                if let appSetting = URL(string: UIApplication.openSettingsURLString){
-                    UIApplication.shared.open(appSetting)
-                }
-            }
-        case .SpeechAuth:
-            alert(message: err.rawValue) { alert in
-                if let appSetting = URL(string: UIApplication.openSettingsURLString){
-                    UIApplication.shared.open(appSetting)
-                }
-            }
-        case .SpeechError:
-            alert(message: err.rawValue) { alert in
-                print("boom")
-            }
-        case .RecordError:
-            print("boom")
-        }
-    }
-    
+
     final func handleAudioError(err:AudioError){
         print(err)
         switch err{
