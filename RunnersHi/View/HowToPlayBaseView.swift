@@ -41,10 +41,15 @@ class HowToPlayBaseView:BaseView{
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
+        button.addTarget(self, action: #selector(dissmissHTPV(_:)), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc private func dissmissHTPV(_ htpv:HowToPlayBaseView){
+        htpv.superview!.removeFromSuperview()
     }
     
     

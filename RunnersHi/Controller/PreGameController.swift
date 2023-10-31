@@ -71,17 +71,11 @@ final class PreGameController:BaseController, ViewModelBindableType{
             .withUnretained(self)
             .flatMap{ vc in vc.0.viewModel.gameInst.asObservable()}
             .subscribe(onNext: { [weak self] instView in
-                instView.button.addTarget(self,
-                                          action: #selector(self?.dissmissHTPV(_:)),
-                                          for: .touchUpInside)
                 self?.showHTPV(instView)
             })
             .disposed(by: bag)
     }
     
-    @objc private func dissmissHTPV(_ htpv:HowToPlayBaseView){
-        htpv.superview!.removeFromSuperview()
-    }
     
     @objc private func showHTPV(_ htpv:HowToPlayBaseView){
         view.addSubview(htpv)
