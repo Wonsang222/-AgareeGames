@@ -18,20 +18,9 @@ import RxCocoa
  */
 
 
-class GuessWhoViewModelRX:BaseViewModel{
+final class GuessWhoViewModelRX:BaseViewModel {
     
-    private var targetArray = [GuessWhoPlayModel]()
-    private var targetModel = BehaviorSubject<GuessWhoPlayModel?>(value: nil)
-    
-    
-//    func next() ->  ㄹ {
-//        return Completable.create { ob in
-//            
-//            
-//            
-//            return Disposables.create()
-//        }
-//    }
+    let target:BehaviorSubject<GuessWhoPlayModel>
     
     
     

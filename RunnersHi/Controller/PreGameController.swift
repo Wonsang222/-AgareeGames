@@ -48,7 +48,6 @@ final class PreGameController:BaseController, ViewModelBindableType{
             })
             .disposed(by:bag)
         
-        
         viewModel.gameTitle
             .observe(on: MainScheduler.instance)
             .subscribe(onSuccess: { [weak self] title in

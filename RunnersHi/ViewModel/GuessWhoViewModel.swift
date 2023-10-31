@@ -44,7 +44,6 @@ final class GuessWhoViewModel{
                 playModelArray = array
                 isNetworkDone = true
                 Task(priority: .low){
-                    //                    saveDB()
                 }
             } catch{
                 networkErr = error
