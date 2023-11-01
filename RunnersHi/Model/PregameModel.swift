@@ -33,4 +33,13 @@ struct PregameModel:PlayableType{
             return GuessWhoHTPV()
         }
     }
+    
+    func getParam() -> HttpBaseResource {
+        let param = ResourceBuilder.shared
+            .setReqMethod(.GET)
+            .setPath(self.gameType.gameTitle)
+            .setParams("numberOfPlayers", self.players)
+            .build()
+        return param
+    }
 }

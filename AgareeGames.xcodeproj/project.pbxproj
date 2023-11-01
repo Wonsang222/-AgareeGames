@@ -27,6 +27,8 @@
 		7E20755D29F9FBF8000BFE61 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E20755C29F9FBF8000BFE61 /* IntroView.swift */; };
 		7E246FA72A1DB7A80068CF9E /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E246FA62A1DB7A80068CF9E /* Error.swift */; };
 		7E3544AB2A13160E00B844E6 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3544AA2A13160E00B844E6 /* BaseView.swift */; };
+		7E36A1822AF1F4BD00E95E4D /* TargetStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E36A1812AF1F4BD00E95E4D /* TargetStore.swift */; };
+		7E36A1832AF1F4BD00E95E4D /* TargetStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E36A1812AF1F4BD00E95E4D /* TargetStore.swift */; };
 		7E49954F2A0CAFD5006D95AC /* GuessWhoHTPV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E49954E2A0CAFD5006D95AC /* GuessWhoHTPV.swift */; };
 		7E4E1A5C2ACF884900AEBEE2 /* GameNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4E1A5B2ACF884900AEBEE2 /* GameNavigationController.swift */; };
 		7E4E1A5D2ACF884900AEBEE2 /* GameNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4E1A5B2ACF884900AEBEE2 /* GameNavigationController.swift */; };
@@ -137,6 +139,7 @@
 		7E20755C29F9FBF8000BFE61 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
 		7E246FA62A1DB7A80068CF9E /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		7E3544AA2A13160E00B844E6 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		7E36A1812AF1F4BD00E95E4D /* TargetStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetStore.swift; sourceTree = "<group>"; };
 		7E49954E2A0CAFD5006D95AC /* GuessWhoHTPV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoHTPV.swift; sourceTree = "<group>"; };
 		7E4E1A5B2ACF884900AEBEE2 /* GameNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameNavigationController.swift; sourceTree = "<group>"; };
 		7E60DD6F2A307A6600A511E2 /* AgareeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgareeDelegate.swift; sourceTree = "<group>"; };
@@ -239,6 +242,14 @@
 				7E246FA62A1DB7A80068CF9E /* Error.swift */,
 			);
 			path = Error;
+			sourceTree = "<group>";
+		};
+		7E36A1802AF1F48600E95E4D /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				7E36A1812AF1F4BD00E95E4D /* TargetStore.swift */,
+			);
+			path = Domain;
 			sourceTree = "<group>";
 		};
 		7E60DD712A307B1300A511E2 /* etc */ = {
@@ -394,6 +405,7 @@
 		C1FFE7AD29E30425009FFD0B /* RunnersHi */ = {
 			isa = PBXGroup;
 			children = (
+				7E36A1802AF1F48600E95E4D /* Domain */,
 				7E85C6022A944FB000DE1132 /* Scene */,
 				C176FED02A1A5FA900C7EFE6 /* Model */,
 				C140802E2A17E7000091F861 /* Resource */,
@@ -694,6 +706,7 @@
 				7E1837722AC277F9004B506D /* Scene.swift in Sources */,
 				7E6A37022A89C8E000B7F0BC /* PregameModel.swift in Sources */,
 				C1649BF42A47D4260094D56D /* Global.swift in Sources */,
+				7E36A1832AF1F4BD00E95E4D /* TargetStore.swift in Sources */,
 				C1649BF52A47D4260094D56D /* GuessWhoView.swift in Sources */,
 				C1649BF62A47D4260094D56D /* GuessWhoController.swift in Sources */,
 				7E4E1A5D2ACF884900AEBEE2 /* GameNavigationController.swift in Sources */,
@@ -753,6 +766,7 @@
 				7E1837712AC277F9004B506D /* Scene.swift in Sources */,
 				C15AA8502A6B8D2000AF24F3 /* GuessWhoEntitiy+CoreDataProperties.swift in Sources */,
 				7E159D3529F89FD900C7E601 /* Global.swift in Sources */,
+				7E36A1822AF1F4BD00E95E4D /* TargetStore.swift in Sources */,
 				7E20755B29F9FBE4000BFE61 /* GuessWhoView.swift in Sources */,
 				C196837B2A88F6A60098774F /* PregameModel.swift in Sources */,
 				7E4E1A5C2ACF884900AEBEE2 /* GameNavigationController.swift in Sources */,
