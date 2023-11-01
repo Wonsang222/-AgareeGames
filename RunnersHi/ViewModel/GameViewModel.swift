@@ -23,17 +23,14 @@ class GameViewModel<T>:BaseViewModel {
     
     let fetchTargets:AnyObserver<Void>
     
-    
-    
     init(game:PregameModel, coordinator:Coordinator) {
                 
         let fetching = PublishSubject<Void>()
         
-        
         fetchTargets = fetching.asObserver()
         
         fetching
-            .
+            .flatMap{ Targe }
         
         
         super.init(sceneCoordinator: coordinator)

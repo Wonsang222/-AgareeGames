@@ -12,4 +12,13 @@ protocol TargetFetchable {
     func fetchTarget(_ :HttpBaseResource) -> Observable<[String:Any]>
 }
 
-
+class TargetStore:TargetFetchable {
+    func fetchTarget(_ source:HttpBaseResource) -> RxSwift.Observable<[String : Any]> {
+        struct Response {
+            let targets:[[String:Any]]
+        }
+        return NetworkService.fetchJSONRx(resource: source)
+    }
+    
+    
+}
