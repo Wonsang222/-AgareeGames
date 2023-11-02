@@ -10,6 +10,8 @@ import RxSwift
 
 final class NetworkService{
     
+    static let serialQueue = DispatchQueue(label: "serial")
+    
     private static let configuration:URLSessionConfiguration = {
         let configuration = URLSessionConfiguration.default
         configuration.networkServiceType = .responsiveData
@@ -20,64 +22,67 @@ final class NetworkService{
     
     static func fetchJSON(httpbaseresource:HttpBaseResource) async throws -> [String:Any]{
         var result:[String:Any] = [:]
-        let (data, response)  = try await URLSession(configuration: configuration).data(for: httpbaseresource.request())
+        let (data, response)  = try await URLSession(configuration: configuration).data(for: httpbaseresource.getRequest())
         guard let status = response as? HTTPURLResponse,
               (200...299) ~= status.statusCode else {
-            let error = MyServer(statusCode: (response as? HTTPURLResponse)!.statusCode).emitError()
+            let error = MyServer(statusCode: (response as? HTTPURLResponse)!.statusCode).getError()
             throw error
         }
-        // 내 서버이기에, codable 사용하지않음.
         let jsonData = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! [String:Any]
         result = jsonData
         return result
     }
     
-    // rx를 위한 completionHandler 형태로 변환
-    private static func fetchJSON(resource:HttpBaseResource,completion:@escaping (Result<Dictionary<String,Any>, Error>) -> Void) {
-        URLSession(configuration: configuration).dataTask(with: resource.request()) { data, response, err in
-            if err != nil{
-                let err = MyServer(statusCode: 500).emitError()
-                completion(.failure(err))
-            }
-            
-            guard let status = response as? HTTPURLResponse,
-                  (200...299) ~= status.statusCode else {
-                let error = MyServer(statusCode: (response as? HTTPURLResponse)!.statusCode).emitError()
-                completion(.failure(error))
-                return
-            }
-            
-            guard let data = data else { return }
-            var jsonData = [String:Any]()
-            do{
-                jsonData = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as! [String:Any]
-            } catch{
+    static func fetchJsonRX(resource:HttpBaseResource) -> Observable<[String:Any]> {
+        return Observable.create { observer in
+            let task = URLSession(configuration: configuration).dataTask(with: resource.getRequest()) { data, res, err in
+                if err != nil {
+                    observer.onError(MyServer(statusCode: 500).getError())
+                }
+                guard let res = res as? HTTPURLResponse,
+                      (200...299) ~= res.statusCode else {
+                    let error = MyServer(statusCode: 400).getError()
+                    observer.onError(error)
+                }
                 
-            }
-            completion(.success(jsonData))
-            
-        }
-        .resume()
-    }
-    
-    static func fetchJSONRx(resource:HttpBaseResource) -> Observable<[String:Any]> {
-        return Observable.create { emitter in
-            fetchJSON(resource: resource) { result in
-                switch result{
-                case .success(let json):
-                    emitter.onNext(json)
-                    emitter.onCompleted()
-                case .failure(let err):
-                    emitter.onError(err)
+                guard let data = data else {
+                    let error = MyServer(statusCode: 400).getError()
+                    observer.onError(error)
+                }
+                
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data,
+                                                                options: JSONSerialization.ReadingOptions()) as! [String:Any]
+                    observer.onNext(json)
+                    observer.onCompleted()
+                } catch {
+                    let error = MyServer(statusCode: 400).getError()
+                    observer.onError(error)
                 }
             }
-            return Disposables.create()
+            task.resume()
+            return Disposables.create {
+                task.cancel()
+            }
         }
     }
     
-    static func fetchImage(_ data:Dictionary<String,Any>) async -> [GuessWhoPlayModel]{
+    static func fetchImageRX(source:Dictionary<String,Any>) -> Observable<[GamePlayModel]> {
+        return Observable.create { observer in
+            for (idx, obj) in source.enumerated() {
+                
+            }
+            return Disposables.create {
+                
+            }
+        }
+    }
+    
+    
+    // 이 코드 dispatch group ++ serial 이용해서 다시 바꿔봐도 재밋을듯
+    static func fetchImage(_ data:Dictionary<String,Any>) async -> [GamePlayModel]{
         // data 순회 -> url  이미지 불러오기 백그라운드로 날려버리기
-        var result:Array<GuessWhoPlayModel> = []
+        var result:Array<GamePlayModel> = []
         for (name, url) in data{
             let dbName = name
             var photo:UIImage?
@@ -95,41 +100,29 @@ final class NetworkService{
                     DataManager.shared.createModel(name: dbName, photo: data)
                 }
                 guard let urlPhoto = photo else { throw NetworkError.notconnected }
-                let model = GuessWhoPlayModel(name: dbName, photo: urlPhoto)
+                let model = GamePlayModel(name: dbName, photo: urlPhoto)
                 result.append(model)
             } catch{
-                let joker = GuessWhoPlayModel(name: "조커", photo: UIImage(named: "joker")!)
+                let joker = GamePlayModel(name: "조커", photo: UIImage(named: "joker")!)
                 result.append(joker)
             }
         }
         return result
     }
     
-    
-    func tempConnect() -> Observable<[String:Any]>{
-        return Observable.create { emitter in
-            let url = URL(string: "dfasdf")
-            let task = URLSession.shared.dataTask(with: URLRequest(url: url!)){ data, _, err in
-                guard err == nil else {
-                    emitter.onError(err!)
-                    return
-                }
+    static func temp2(_ dic:[String:Any], completion:@escaping([GamePlayModel]) -> Void) {
+        
+        // lazy var 동시접근 막아야한다. -> 읽기는 괜찮나
+        
+        
+        for (name, url) in dic {
+            serialQueue.async {
                 
-                if let dat = data {
-//                    emitter.onNext(dat)
-                }
-                
-                emitter.onCompleted()
-            }
-    
-            task.resume()
-            
-            
-            return Disposables.create(){
-                task.cancel()
             }
         }
     }
+    
+    
 }
     // 캐시에 있으면 사용, 없으면 temp cache를 봄.
     //    private static func cacheCheck(_ name:String) -> UIImage?{

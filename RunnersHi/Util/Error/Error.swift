@@ -30,7 +30,7 @@ struct MyServer{
     }
     
     // timeout은 어떻게 처리되는지
-    func emitError() -> ErrList{
+    func getError() -> ErrList{
         switch statusCode{
         case 400:
             return ErrList.RateLimit

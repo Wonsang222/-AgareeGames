@@ -15,7 +15,7 @@ struct HttpBaseResource {
     private var params = [String:String]()
     private var path:String
     
-    func request()->URLRequest{
+    func getRequest()->URLRequest{
         var resultReq:URLRequest
         
         let urlString = reqUrl + "/\(path)"
