@@ -8,8 +8,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
-import NSObject_Rx
-
+import Action
 /*
  1. 서버 통신
  2. 게임 로직 -> 게임시작 -> targets에서 하나씩 pop -> subject로 next -> nil -> 게임승리(페이지 이동)
@@ -17,25 +16,52 @@ import NSObject_Rx
  3.
  */
 
-class GameViewModel<T>:BaseViewModel {
+class GameViewModel:BaseViewModel {
 
-    private var targets = [T]()
+    private var targetArr = [GamePlayModel]()
     
     let fetchTargets:AnyObserver<Void>
+    
+    let target = BehaviorSubject<GamePlayModel?>(value: nil)
+    let errorMessage = BehaviorSubject<Error?>(value: nil)
+    
+    let bag = DisposeBag()
     
     init(game:PregameModel, coordinator:Coordinator) {
                 
         let fetching = PublishSubject<Void>()
+        let fetchImages = PublishSubject<Dictionary<String, String>>()
         
         fetchTargets = fetching.asObserver()
         
-        fetching
-            .flatMap{ Targe }
-        
-        
         super.init(sceneCoordinator: coordinator)
         
+        fetching
+            .flatMap{ NetworkService.shared.fetchJsonRX(resource: game.getParam()) }
+            .do(onError: { [weak self] err in
+                self?.errorMessage.onNext(err)
+            })
+            .subscribe(onNext: { json in
+                fetchImages.onNext(json)
+            })
+            .disposed(by: bag)
+        
+        fetchImages
+            .flatMap{ NetworkService.shared.fetchImageRX(source: $0)}
+            .do(onError: { [weak self] err in
+                self?.errorMessage.onNext(err)
+            })
+            .subscribe(onNext: { [unowned self] targets in
+                self.targetArr = targets
+            })
+            .disposed(by: bag)
     }
+    
+    func next()  {
+        let new = targetArr.popLast()
+        target.onNext(new)
+    }
+    
     
 }
 

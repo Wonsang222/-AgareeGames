@@ -9,16 +9,21 @@ import Foundation
 import RxSwift
 
 protocol TargetFetchable {
-    func fetchTarget(_ :HttpBaseResource) -> Observable<[String:Any]>
+    func fetchURL(_ :HttpBaseResource) -> Observable<[String:String]>
 }
 
 class TargetStore:TargetFetchable {
-    func fetchTarget(_ source:HttpBaseResource) -> RxSwift.Observable<[String : Any]> {
+    func fetchURL(_ source:HttpBaseResource) -> RxSwift.Observable<[String : String]> {
         struct Response {
             let targets:[[String:Any]]
         }
-        return NetworkService.fetchJSONRx(resource: source)
+        return NetworkService.shared.fetchJsonRX(resource: source)
+            
+        
+        
     }
-    
-    
+    func fetchImage(_ dic:[String:String]) -> Observable<[GamePlayModel]> {
+        
+        return NetworkService.shared.fetchImageRX2(source: dic)
+    }
 }
