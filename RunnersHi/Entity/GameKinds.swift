@@ -8,7 +8,8 @@
 import Foundation
 import RxSwift
 
-public enum GameKinds:String{
+public enum GameKinds:String {
+    // drive
     case GuessWho = "인물퀴즈"
 }
 

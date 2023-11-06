@@ -16,17 +16,11 @@ struct PregameModel:PlayableType{
         self.players = players
     }
     
-    init(origin:Self, num:Int){
+    init(origin:Self, num:Int) {
         self = origin
         self.players = num
     }
-    
-    mutating func changePlayer(_ num:Int) -> Self {
-        var newModel = self
-        newModel.players = num
-        return newModel
-    }
-    
+
     func getInstView() -> HowToPlayBaseView{
         switch gameType{
         case .GuessWho:

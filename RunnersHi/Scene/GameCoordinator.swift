@@ -28,7 +28,6 @@ class GameCoordinator: Coordinator {
         
         let subject = PublishSubject<Never>()
         
-        
         return subject.asCompletable()
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol PlayableType{
+protocol PlayableType {
     var gameType:GameKinds { get }
     var players:Int { get }
 }

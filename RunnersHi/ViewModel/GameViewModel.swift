@@ -21,7 +21,7 @@ class GameViewModel:BaseViewModel {
     private var targetArr = [GamePlayModel]()
     
     let fetchTargets:AnyObserver<Void>
-    
+
     let target = BehaviorSubject<GamePlayModel?>(value: nil)
     let errorMessage = BehaviorSubject<Error?>(value: nil)
     
@@ -57,9 +57,31 @@ class GameViewModel:BaseViewModel {
             .disposed(by: bag)
     }
     
-    func next()  {
+    func next() {
+        
+        // new == nil -> win
+        
+        
         let new = targetArr.popLast()
         target.onNext(new)
+    }
+    
+    func answerAction() -> Action<String, Void> {
+        return Action<String, Void> { [unowned self] input in
+            
+            let answer = try! self.target.value()!.name
+            let submit = input.components(separatedBy: "").joined()
+            if answer.contains(submit) {
+                
+                return self.sceneCoordinator.transition(to: .Test(ResultViewModel(isWin: true)),
+                                                        using: .push, animation: true)
+                    .asObservable()
+                    .map { _ in }
+            }
+            
+            return Observable.
+            
+        }
     }
     
     

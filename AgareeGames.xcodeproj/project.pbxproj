@@ -27,8 +27,6 @@
 		7E20755D29F9FBF8000BFE61 /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E20755C29F9FBF8000BFE61 /* IntroView.swift */; };
 		7E246FA72A1DB7A80068CF9E /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E246FA62A1DB7A80068CF9E /* Error.swift */; };
 		7E3544AB2A13160E00B844E6 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3544AA2A13160E00B844E6 /* BaseView.swift */; };
-		7E36A1822AF1F4BD00E95E4D /* TargetStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E36A1812AF1F4BD00E95E4D /* TargetStore.swift */; };
-		7E36A1832AF1F4BD00E95E4D /* TargetStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E36A1812AF1F4BD00E95E4D /* TargetStore.swift */; };
 		7E49954F2A0CAFD5006D95AC /* GuessWhoHTPV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E49954E2A0CAFD5006D95AC /* GuessWhoHTPV.swift */; };
 		7E4E1A5C2ACF884900AEBEE2 /* GameNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4E1A5B2ACF884900AEBEE2 /* GameNavigationController.swift */; };
 		7E4E1A5D2ACF884900AEBEE2 /* GameNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4E1A5B2ACF884900AEBEE2 /* GameNavigationController.swift */; };
@@ -95,8 +93,6 @@
 		C1649C152A47D4260094D56D /* HttpBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFE7D529E8607D009FFD0B /* HttpBase.swift */; };
 		C1649C182A47D4260094D56D /* CustomFont.otf in Resources */ = {isa = PBXBuildFile; fileRef = C140802F2A17E7950091F861 /* CustomFont.otf */; };
 		C1649C192A47D4260094D56D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1FFE7B729E30425009FFD0B /* Assets.xcassets */; };
-		C16B18A22AB336E2001D804F /* GuessWhoViewModelRX.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16B18A12AB336E2001D804F /* GuessWhoViewModelRX.swift */; };
-		C16B18A32AB336E2001D804F /* GuessWhoViewModelRX.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16B18A12AB336E2001D804F /* GuessWhoViewModelRX.swift */; };
 		C176FECF2A1A5C8800C7EFE6 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C176FECE2A1A5C8800C7EFE6 /* Reachability.swift */; };
 		C176FED22A1A5FCB00C7EFE6 /* GamePlayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C176FED12A1A5FCB00C7EFE6 /* GamePlayModel.swift */; };
 		C18BCD3D2AA321F200667A49 /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18BCD3C2AA321F200667A49 /* ResultViewModel.swift */; };
@@ -139,7 +135,6 @@
 		7E20755C29F9FBF8000BFE61 /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
 		7E246FA62A1DB7A80068CF9E /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		7E3544AA2A13160E00B844E6 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
-		7E36A1812AF1F4BD00E95E4D /* TargetStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetStore.swift; sourceTree = "<group>"; };
 		7E49954E2A0CAFD5006D95AC /* GuessWhoHTPV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoHTPV.swift; sourceTree = "<group>"; };
 		7E4E1A5B2ACF884900AEBEE2 /* GameNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameNavigationController.swift; sourceTree = "<group>"; };
 		7E60DD6F2A307A6600A511E2 /* AgareeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgareeDelegate.swift; sourceTree = "<group>"; };
@@ -167,7 +162,6 @@
 		C15AA84D2A6B8D2000AF24F3 /* GuessWhoEntitiy+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "GuessWhoEntitiy+CoreDataProperties.swift"; path = "RunnersHi/Entity/CoreData/GuessWhoEntitiy+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		C1649C1D2A47D4260094D56D /* AgareeGames_dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgareeGames_dev.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1649C1E2A47D4260094D56D /* AgareeGames_dev.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = AgareeGames_dev.plist; path = /Users/hwangwonsang/Desktop/git/AgareeGames/AgareeGames_dev.plist; sourceTree = "<absolute>"; };
-		C16B18A12AB336E2001D804F /* GuessWhoViewModelRX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoViewModelRX.swift; sourceTree = "<group>"; };
 		C176FECE2A1A5C8800C7EFE6 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		C176FED12A1A5FCB00C7EFE6 /* GamePlayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayModel.swift; sourceTree = "<group>"; };
 		C18BCD3C2AA321F200667A49 /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
@@ -242,14 +236,6 @@
 				7E246FA62A1DB7A80068CF9E /* Error.swift */,
 			);
 			path = Error;
-			sourceTree = "<group>";
-		};
-		7E36A1802AF1F48600E95E4D /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-				7E36A1812AF1F4BD00E95E4D /* TargetStore.swift */,
-			);
-			path = Domain;
 			sourceTree = "<group>";
 		};
 		7E60DD712A307B1300A511E2 /* etc */ = {
@@ -405,7 +391,6 @@
 		C1FFE7AD29E30425009FFD0B /* RunnersHi */ = {
 			isa = PBXGroup;
 			children = (
-				7E36A1802AF1F48600E95E4D /* Domain */,
 				7E85C6022A944FB000DE1132 /* Scene */,
 				C176FED02A1A5FA900C7EFE6 /* Model */,
 				C140802E2A17E7000091F861 /* Resource */,
@@ -440,7 +425,6 @@
 				C108918E2A8739A30014A0EE /* ViewModelBindableType.swift */,
 				C10891912A8754750014A0EE /* PregameViewModel.swift */,
 				7E159D3B29F8A0E400C7E601 /* GuessWhoViewModel.swift */,
-				C16B18A12AB336E2001D804F /* GuessWhoViewModelRX.swift */,
 				C18BCD3C2AA321F200667A49 /* ResultViewModel.swift */,
 				C18BCD4B2AA47FC000667A49 /* BaseViewModel.swift */,
 				C1A2F4932AF138C500AD3DB9 /* GameViewModel.swift */,
@@ -706,7 +690,6 @@
 				7E1837722AC277F9004B506D /* Scene.swift in Sources */,
 				7E6A37022A89C8E000B7F0BC /* PregameModel.swift in Sources */,
 				C1649BF42A47D4260094D56D /* Global.swift in Sources */,
-				7E36A1832AF1F4BD00E95E4D /* TargetStore.swift in Sources */,
 				C1649BF52A47D4260094D56D /* GuessWhoView.swift in Sources */,
 				C1649BF62A47D4260094D56D /* GuessWhoController.swift in Sources */,
 				7E4E1A5D2ACF884900AEBEE2 /* GameNavigationController.swift in Sources */,
@@ -729,7 +712,6 @@
 				C1649C022A47D4260094D56D /* TimerGameController.swift in Sources */,
 				C1649C032A47D4260094D56D /* BaseNavigationController.swift in Sources */,
 				7E6A36FF2A89B77900B7F0BC /* PlayableType.swift in Sources */,
-				C16B18A32AB336E2001D804F /* GuessWhoViewModelRX.swift in Sources */,
 				C1649C052A47D4260094D56D /* AppDelegate.swift in Sources */,
 				C1649C072A47D4260094D56D /* PreGameView.swift in Sources */,
 				C1649C082A47D4260094D56D /* Extension.swift in Sources */,
@@ -766,7 +748,6 @@
 				7E1837712AC277F9004B506D /* Scene.swift in Sources */,
 				C15AA8502A6B8D2000AF24F3 /* GuessWhoEntitiy+CoreDataProperties.swift in Sources */,
 				7E159D3529F89FD900C7E601 /* Global.swift in Sources */,
-				7E36A1822AF1F4BD00E95E4D /* TargetStore.swift in Sources */,
 				7E20755B29F9FBE4000BFE61 /* GuessWhoView.swift in Sources */,
 				C196837B2A88F6A60098774F /* PregameModel.swift in Sources */,
 				7E4E1A5C2ACF884900AEBEE2 /* GameNavigationController.swift in Sources */,
@@ -789,7 +770,6 @@
 				C148D9D72A1CE961005AB791 /* TimerGameController.swift in Sources */,
 				7E04C8EC2A0342FE00357A0F /* BaseNavigationController.swift in Sources */,
 				C19683792A88F63C0098774F /* GameKinds.swift in Sources */,
-				C16B18A22AB336E2001D804F /* GuessWhoViewModelRX.swift in Sources */,
 				C10362442AA6164400FC65CF /* Coordinator.swift in Sources */,
 				C10362462AA616D800FC65CF /* AppCoordinator.swift in Sources */,
 				C1FFE7AF29E30425009FFD0B /* AppDelegate.swift in Sources */,

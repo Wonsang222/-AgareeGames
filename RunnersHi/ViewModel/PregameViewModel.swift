@@ -14,11 +14,11 @@ import NSObject_Rx
 final class PregameViewModel:BaseViewModel {
     
     //MARK: -  INPUT
-    
+    // Action 으로 교체
     lazy var updateModel:(Int) -> Void = { [weak self] num in
-        if var currentModel = try? self?.gameModel.value(){
+        if var currentModel = try? self?.gameModel.value() {
             let convertedNum = num + 2
-            let updatedModel = currentModel.changePlayer(convertedNum)
+            let updatedModel = PregameModel(origin: currentModel, num: convertedNum)
             self?.gameModel.onNext(updatedModel)
         }
     }

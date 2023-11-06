@@ -18,5 +18,6 @@ class BaseNavigationController:UINavigationController{
     }
 
     override func viewDidLoad() {
+        
     }
 }

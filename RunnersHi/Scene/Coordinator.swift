@@ -20,6 +20,8 @@ protocol Coordinator:AnyObject{
 
 extension Coordinator{
     
+    
+    // 수정해야함
     @discardableResult
     func transition(to scene:Scene, using style:TransitionStyle, animation:Bool) -> Completable{
         let subject = PublishSubject<Never>()

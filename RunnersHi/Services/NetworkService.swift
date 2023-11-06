@@ -27,7 +27,7 @@ final class NetworkService{
         return configuration
     }()
     
-    func fetchJSON(httpbaseresource:HttpBaseResource) async throws -> [String:Any]{
+    func fetchJSON(httpbaseresource:HttpBaseResource) async throws -> [String:Any] {
         var result:[String:Any] = [:]
         let (data, response)  = try await URLSession(configuration: configuration).data(for: httpbaseresource.getRequest())
         guard let status = response as? HTTPURLResponse,
@@ -76,11 +76,10 @@ final class NetworkService{
         }
     }
     
-    // 이 코드 dispatch group ++ serial 이용해서 다시 바꿔봐도 재밋을듯
     func fetchImage(_ data:Dictionary<String,Any>) async -> [GamePlayModel]{
         // data 순회 -> url  이미지 불러오기 백그라운드로 날려버리기
         var result:Array<GamePlayModel> = []
-        for (name, url) in data{
+        for (name, url) in data {
             let dbName = name
             var photo:UIImage?
             do{
