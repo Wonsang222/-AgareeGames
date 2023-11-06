@@ -111,6 +111,8 @@
 		C1A778B22A5D844600F08678 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E17BBA92A5D062E00D94230 /* AuthManager.swift */; };
 		C1E439A42AAC2B0900BAB674 /* UIViewController+UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E439A32AAC2B0900BAB674 /* UIViewController+UIAlertController.swift */; };
 		C1E439A52AAC2B0900BAB674 /* UIViewController+UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E439A32AAC2B0900BAB674 /* UIViewController+UIAlertController.swift */; };
+		C1F4B7772AF93287009DCF35 /* Documentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = C1F4B7762AF93287009DCF35 /* Documentation.docc */; };
+		C1F4B7782AF93287009DCF35 /* Documentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = C1F4B7762AF93287009DCF35 /* Documentation.docc */; };
 		C1FFE7AF29E30425009FFD0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFE7AE29E30425009FFD0B /* AppDelegate.swift */; };
 		C1FFE7B129E30425009FFD0B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFE7B029E30425009FFD0B /* SceneDelegate.swift */; };
 		C1FFE7B829E30425009FFD0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1FFE7B729E30425009FFD0B /* Assets.xcassets */; };
@@ -174,6 +176,7 @@
 		C1A2F4932AF138C500AD3DB9 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		C1E439A32AAC2B0900BAB674 /* UIViewController+UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+UIAlertController.swift"; sourceTree = "<group>"; };
 		C1F3E80B2A64344D0004619E /* Speech.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Speech.framework; path = System/Library/Frameworks/Speech.framework; sourceTree = SDKROOT; };
+		C1F4B7762AF93287009DCF35 /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
 		C1FFE7AB29E30425009FFD0B /* AgareeGames_dis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgareeGames_dis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1FFE7AE29E30425009FFD0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1FFE7B029E30425009FFD0B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -406,6 +409,7 @@
 				7E60DD6F2A307A6600A511E2 /* AgareeDelegate.swift */,
 				C1FFE7B929E30425009FFD0B /* LaunchScreen.storyboard */,
 				C1FFE7BC29E30425009FFD0B /* Info.plist */,
+				C1F4B7762AF93287009DCF35 /* Documentation.docc */,
 			);
 			path = RunnersHi;
 			sourceTree = "<group>";
@@ -708,6 +712,7 @@
 				7E7D16DA2A95B02B00D3FE52 /* MemoryStorage.swift in Sources */,
 				C15AA84F2A6B8D2000AF24F3 /* GuessWhoEntitiy+CoreDataClass.swift in Sources */,
 				C1649C002A47D4260094D56D /* ResourceBuilder.swift in Sources */,
+				C1F4B7782AF93287009DCF35 /* Documentation.docc in Sources */,
 				C1649C012A47D4260094D56D /* STTEngine.swift in Sources */,
 				C1649C022A47D4260094D56D /* TimerGameController.swift in Sources */,
 				C1649C032A47D4260094D56D /* BaseNavigationController.swift in Sources */,
@@ -766,6 +771,7 @@
 				C15AA81E2A67D2C100AF24F3 /* AgareeGames.xcdatamodeld in Sources */,
 				C15AA84E2A6B8D2000AF24F3 /* GuessWhoEntitiy+CoreDataClass.swift in Sources */,
 				C14F27642A0521490007E7A6 /* ResourceBuilder.swift in Sources */,
+				C1F4B7772AF93287009DCF35 /* Documentation.docc in Sources */,
 				C119CBCE29F951BF00648638 /* STTEngine.swift in Sources */,
 				C148D9D72A1CE961005AB791 /* TimerGameController.swift in Sources */,
 				7E04C8EC2A0342FE00357A0F /* BaseNavigationController.swift in Sources */,

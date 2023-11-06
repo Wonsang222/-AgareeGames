@@ -18,17 +18,8 @@ final class GuessWhoController:GameController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let base = ResourceBuilder.shared
-//            .setReqMethod(.GET)
-//            .setPath(gameTitle!)
-//            .setParams("numberOfPlayers", howMany!+2)
-//            .build()
-        
-//        viewModel.fetchNetworkData(httpbaseResource: base)
         configureUI()
-//        startCounter {
-//            self.startGame()
-//        }
+
     }
     //MARK: - Methods
     private func configureUI(){
@@ -103,24 +94,3 @@ final class GuessWhoController:GameController{
 //    }
 }
 
-//MARK: - Extension
-    
-//    func setNextTarget(with data: GuessWhoPlayModel) {
-//        setTimer(Global.GAMESPEED, repeater: true)
-//        answer = ""
-//        self.guessView.imageView.image = data.photo
-//        self.guessView.imageView.layoutIfNeeded()
-//    }
-//
-//    func clearGame(isWin:Bool) {
-//        let nextVC = ResultController(isWin: isWin)
-//        navigationController?.pushViewController(nextVC, animated: true)
-//        print(#function)
-//    }
-//}
-//
-////extension GuessWhoController:STTEngineDelegate{
-////    func runRecognizer(_ text: String) {
-////        self.answer += text
-////    }
-////}

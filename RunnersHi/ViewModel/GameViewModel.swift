@@ -57,15 +57,6 @@ class GameViewModel:BaseViewModel {
             .disposed(by: bag)
     }
     
-    func next() {
-        
-        // new == nil -> win
-        
-        
-        let new = targetArr.popLast()
-        target.onNext(new)
-    }
-    
     func answerAction() -> Action<String, Void> {
         return Action<String, Void> { [unowned self] input in
             
@@ -79,12 +70,20 @@ class GameViewModel:BaseViewModel {
                     .map { _ in }
             }
             
-            return Observable.
+            //계속 유지되는건가
+            return Observable.just(())
             
         }
     }
     
-    
+    func timeoutAction() -> Action<Void, Void> {
+        
+        return Action<Void, Void> { [unowned self] _ in
+            return self.sceneCoordinator.transition(to: .Test(ResultViewModel(isWin: false)), using: .push, animation: true)
+                .asObservable()
+                .map{ _ in }
+        }
+    }
 }
 
 
