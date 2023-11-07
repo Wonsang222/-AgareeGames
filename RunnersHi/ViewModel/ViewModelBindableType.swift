@@ -19,6 +19,7 @@ extension ViewModelBindableType where Self:BaseController{
         self.viewModel = viewmodel
         
         loadViewIfNeeded()
+        // _ = vc.view 이렇게 해도 동일한 효과 -> viewcontroller의 view는 lazy하게 생김
         
         bindViewModel()
     }

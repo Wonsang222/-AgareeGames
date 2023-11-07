@@ -20,7 +20,6 @@ protocol Coordinator:AnyObject{
 
 extension Coordinator{
     
-    
     // 수정해야함
     @discardableResult
     func transition(to scene:Scene, using style:TransitionStyle, animation:Bool) -> Completable{
@@ -38,7 +37,6 @@ extension Coordinator{
             
             navi.pushViewController(target, animated: true)
             subject.onCompleted()
-            
         case .back:
             subject.onCompleted()
             

@@ -11,6 +11,7 @@ import RxCocoa
 
 class BaseViewModel:NSObject{
     let sceneCoordinator:Coordinator
+    let errorMessage = BehaviorSubject<Error?>(value: nil)
     
     init(sceneCoordinator: Coordinator) {
         self.sceneCoordinator = sceneCoordinator

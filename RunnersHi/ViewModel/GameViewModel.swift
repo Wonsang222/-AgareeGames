@@ -9,30 +9,25 @@ import Foundation
 import RxSwift
 import RxCocoa
 import Action
-/*
- 1. 서버 통신
- 2. 게임 로직 -> 게임시작 -> targets에서 하나씩 pop -> subject로 next -> nil -> 게임승리(페이지 이동)
-    timeour (VC) -> error -> 게임패배 (페이지 이동)
- 3.
- */
 
 class GameViewModel:BaseViewModel {
-
+    
     private var targetArr = [GamePlayModel]()
     
     let fetchTargets:AnyObserver<Void>
-
-    let target = BehaviorSubject<GamePlayModel?>(value: nil)
-    let errorMessage = BehaviorSubject<Error?>(value: nil)
+    let loadTarget:PublishRelay<Void>
+    
+    let target = BehaviorRelay<GamePlayModel?>(value: nil)
     
     let bag = DisposeBag()
     
     init(game:PregameModel, coordinator:Coordinator) {
-                
+        
         let fetching = PublishSubject<Void>()
         let fetchImages = PublishSubject<Dictionary<String, String>>()
         
         fetchTargets = fetching.asObserver()
+        loadTarget = PublishRelay<Void>()
         
         super.init(sceneCoordinator: coordinator)
         
@@ -55,35 +50,38 @@ class GameViewModel:BaseViewModel {
                 self.targetArr = targets
             })
             .disposed(by: bag)
+        
+        loadTarget
+            .subscribe(onNext: { [weak self] _ in
+                let next = self?.targetArr.popLast()
+                self?.target.accept(next)
+            })
+            .disposed(by: bag)
     }
     
     func answerAction() -> Action<String, Void> {
         return Action<String, Void> { [unowned self] input in
             
-            let answer = try! self.target.value()!.name
+            let next = targetArr.popLast()
+            let answer = self.target.value!.name
             let submit = input.components(separatedBy: "").joined()
-            if answer.contains(submit) {
-                
-                return self.sceneCoordinator.transition(to: .Test(ResultViewModel(isWin: true)),
-                                                        using: .push, animation: true)
-                    .asObservable()
-                    .map { _ in }
+ 
+            guard answer.contains(submit) else {
+                return Observable.just(())
             }
-            
-            //계속 유지되는건가
+            loadTarget.accept(())
             return Observable.just(())
-            
         }
     }
     
-    func timeoutAction() -> Action<Void, Void> {
+    func judgeAction(isWin:Bool) -> Action<Void, Void> {
         
         return Action<Void, Void> { [unowned self] _ in
-            return self.sceneCoordinator.transition(to: .Test(ResultViewModel(isWin: false)), using: .push, animation: true)
-                .asObservable()
-                .map{ _ in }
+            return self.sceneCoordinator.transition(to: .Test(ResultViewModel(isWin: isWin)),
+                                                    using: .push,
+                                                    animation: true)
+            .asObservable()
+            .map{ _ in }
         }
     }
 }
-
-
