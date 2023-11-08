@@ -58,7 +58,6 @@ final class PreGameController:BaseController, ViewModelBindableType{
             })
             .disposed(by: bag)
         
-        
         // checker 
         preGameView.segment.rx.selectedSegmentIndex
             .subscribe(onNext: { [weak self] idx in
@@ -74,7 +73,6 @@ final class PreGameController:BaseController, ViewModelBindableType{
             })
             .disposed(by: bag)
     }
-    
     
     @objc private func showHTPV(_ htpv:HowToPlayBaseView){
         view.addSubview(htpv)

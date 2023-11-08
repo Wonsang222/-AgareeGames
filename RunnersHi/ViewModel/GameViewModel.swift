@@ -16,7 +16,7 @@ class GameViewModel:BaseViewModel {
     
     let fetchTargets:AnyObserver<Void>
     let loadTarget:PublishRelay<Void>
-    
+  
     let target = BehaviorRelay<GamePlayModel?>(value: nil)
     
     let bag = DisposeBag()

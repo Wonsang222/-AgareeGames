@@ -142,13 +142,15 @@ final class NetworkService{
                     observer.onError(MyServer(statusCode: 500).getError())
                     return Disposables.create()
                 }
-                let req = URLRequest(url: url)
+                var req = URLRequest(url: url)
+                req.cachePolicy = .returnCacheDataElseLoad
                 let task = URLSession(configuration: self.configuration).dataTask(with: req) { data, res, err in
                     
                     if let error = err {
                         observer.onError(error)
                         return
                     }
+
                     guard let httpResponse = res as? HTTPURLResponse,
                           (200...299) ~= httpResponse.statusCode else {
                         observer.onError(MyServer(statusCode: 400).getError())

@@ -29,32 +29,12 @@ class GameController:BaseController{
     }()
 
     //MARK: - Lifecycle
-    
-    override var prefersHomeIndicatorAutoHidden: Bool{
-        return true
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle{
-        return .lightContent
-    }
-    
-    override var prefersStatusBarHidden: Bool{
-        return false
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         modalPresentationStyle = .fullScreen
         modalTransitionStyle = .partialCurl
 //        configureNavi()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        guard Reachability.networkConnected() else {
-            handleErrors(error:MyServer.ErrList.Unkwown)
-            return
-        }
     }
     
     //MARK: - Methods
@@ -77,10 +57,4 @@ class GameController:BaseController{
             }
         }
     }
-
-    
-    // 메인으로 가기
-//    final func configureNavi(){
-//        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_icon"), style: .plain, target: self, action: nil)
-//    }
 }

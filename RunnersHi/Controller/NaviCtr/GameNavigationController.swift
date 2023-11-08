@@ -8,15 +8,15 @@
 import UIKit
 
 class GameNavigationController:BaseNavigationController{
-        
+    
     override var prefersHomeIndicatorAutoHidden: Bool{
         return true
     }
-    
-    override var prefersStatusBarHidden: Bool{
-        return false
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return .darkContent
     }
-
+    
     override func viewDidLoad() {
+        
     }
 }
