@@ -9,46 +9,49 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-protocol Coordinator:AnyObject{
-    
-    var navi:BaseNavigationController! { get set }
-    var children:[Coordinator] { get set }
-    var parent:Coordinator? {  get set }
-    var window:UIWindow { get set }
-    var bag:DisposeBag { get set }
-}
 
-extension Coordinator{
+class Coordinator1 {
+    var navigationVC:BaseNavigationController
+    var children = [Coordinator1]()
+    var parent:Coordinator1?
+    let window:UIWindow
+    let bag = DisposeBag()
     
-    // 수정해야함
+    init(navigationVC: BaseNavigationController, parent: Coordinator1? = nil, window: UIWindow) {
+        self.navigationVC = navigationVC
+        self.parent = parent
+        self.window = window
+    }
+    
     @discardableResult
-    func transition(to scene:Scene, using style:TransitionStyle, animation:Bool) -> Completable{
+    final func transition(to scene:Scene, using style:TransitionStyle, animation:Bool) -> Completable {
         let subject = PublishSubject<Never>()
         let target = scene.instantiate()
         
         switch style {
         case .push:
-            navi.rx.willShow
+            navigationVC.rx.willShow
                 .withUnretained(self)
                 .subscribe(onNext: { coordinator, evt in
-                    coordinator.navi = (evt.viewController as! BaseNavigationController)
+                    coordinator.navigationVC = (evt.viewController as! BaseNavigationController)
                 })
                 .disposed(by: bag)
             
-            navi.pushViewController(target, animated: true)
+            navigationVC.pushViewController(target, animated: true)
             subject.onCompleted()
+            
         case .back:
             subject.onCompleted()
             
         case .root:
-            navi.setViewControllers([target], animated: true)
+            navigationVC.setViewControllers([target], animated: true)
             subject.onCompleted()
         }
         return subject.asCompletable()
     }
-        
+    
     @discardableResult
-    func childDidFinish(_ target:Coordinator) -> Completable{
+    final func childDidFinish(_ target:Coordinator1) -> Completable {
         let subject = PublishSubject<Never>()
         
         for (idx, coordinator) in children.enumerated(){
@@ -60,5 +63,70 @@ extension Coordinator{
         }
         return subject.asCompletable()
     }
+    
+    @discardableResult
+    func start() -> Completable {
+        return Completable.create { observer in
+            
+            // Abstract
+            
+            return Disposables.create()
+        }
+    }
 }
 
+
+//protocol Coordinator:AnyObject{
+//    
+//    var navi:BaseNavigationController! { get set }
+//    var children:[Coordinator] { get set }
+//    var parent:Coordinator? {  get set }
+//    var window:UIWindow { get set }
+//    var bag:DisposeBag { get set }
+//}
+//
+//extension Coordinator{
+//    
+//    // 수정해야함
+//    @discardableResult
+//    func transition(to scene:Scene, using style:TransitionStyle, animation:Bool) -> Completable{
+//        let subject = PublishSubject<Never>()
+//        let target = scene.instantiate()
+//        
+//        switch style {
+//        case .push:
+//            navi.rx.willShow
+//                .withUnretained(self)
+//                .subscribe(onNext: { coordinator, evt in
+//                    coordinator.navi = (evt.viewController as! BaseNavigationController)
+//                })
+//                .disposed(by: bag)
+//            
+//            navi.pushViewController(target, animated: true)
+//            subject.onCompleted()
+//            
+//        case .back:
+//            subject.onCompleted()
+//            
+//        case .root:
+//            navi.setViewControllers([target], animated: true)
+//            subject.onCompleted()
+//        }
+//        return subject.asCompletable()
+//    }
+//        
+//    @discardableResult
+//    func childDidFinish(_ target:Coordinator) -> Completable{
+//        let subject = PublishSubject<Never>()
+//        
+//        for (idx, coordinator) in children.enumerated(){
+//            if coordinator === target{
+//                children.remove(at: idx)
+//                subject.onCompleted()
+//                break
+//            }
+//        }
+//        return subject.asCompletable()
+//    }
+//}
+//

@@ -22,7 +22,8 @@ final class NetworkService{
     let configuration:URLSessionConfiguration = {
         let configuration = URLSessionConfiguration.default
         configuration.networkServiceType = .responsiveData
-        configuration.timeoutIntervalForRequest = 5
+        configuration.waitsForConnectivity = true
+        configuration.timeoutIntervalForResource = 2
         configuration.httpAdditionalHeaders = ["Authorization":Global.UUID, "User-Agent": Global.BUNDLEIDENTIFIER]
         return configuration
     }()
@@ -45,6 +46,7 @@ final class NetworkService{
             let task = URLSession(configuration: self.configuration).dataTask(with: resource.getRequest()) { data, res, err in
                 if err != nil {
                     observer.onError(MyServer(statusCode: 500).getError())
+                    return
                 }
                 guard let res = res as? HTTPURLResponse,
                       (200...299) ~= res.statusCode else {
@@ -129,9 +131,7 @@ final class NetworkService{
                     completion(.success(target))
                     self.sem.signal()
                 }
-                
             }
-            
         }
     }
     
@@ -143,19 +143,27 @@ final class NetworkService{
                     return Disposables.create()
                 }
                 var req = URLRequest(url: url)
-                req.cachePolicy = .returnCacheDataElseLoad
+                req.cachePolicy = .useProtocolCachePolicy
                 let task = URLSession(configuration: self.configuration).dataTask(with: req) { data, res, err in
                     
                     if let error = err {
+                        let error = MyServer(statusCode: 500).getError()
                         observer.onError(error)
                         return
                     }
 
-                    guard let httpResponse = res as? HTTPURLResponse,
-                          (200...299) ~= httpResponse.statusCode else {
+                    guard let resp = res as? HTTPURLResponse else {
                         observer.onError(MyServer(statusCode: 400).getError())
                         return
                     }
+                    
+                    let statusCode = resp.statusCode
+                    
+                    guard (200...299) ~= statusCode else {
+                        observer.onError(MyServer(statusCode: statusCode).getError())
+                        return
+                    }
+                    
                     guard let data = data, let img = UIImage(data: data) else {
                         observer.onError(MyServer(statusCode: 400).getError())
                         return

@@ -113,6 +113,8 @@
 		C1E439A52AAC2B0900BAB674 /* UIViewController+UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E439A32AAC2B0900BAB674 /* UIViewController+UIAlertController.swift */; };
 		C1F4B7772AF93287009DCF35 /* Documentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = C1F4B7762AF93287009DCF35 /* Documentation.docc */; };
 		C1F4B7782AF93287009DCF35 /* Documentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = C1F4B7762AF93287009DCF35 /* Documentation.docc */; };
+		C1F4B77C2AFA8B24009DCF35 /* Practice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F4B77B2AFA8B24009DCF35 /* Practice.swift */; };
+		C1F4B77D2AFA8B24009DCF35 /* Practice.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1F4B77B2AFA8B24009DCF35 /* Practice.swift */; };
 		C1FFE7AF29E30425009FFD0B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFE7AE29E30425009FFD0B /* AppDelegate.swift */; };
 		C1FFE7B129E30425009FFD0B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFE7B029E30425009FFD0B /* SceneDelegate.swift */; };
 		C1FFE7B829E30425009FFD0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1FFE7B729E30425009FFD0B /* Assets.xcassets */; };
@@ -177,6 +179,7 @@
 		C1E439A32AAC2B0900BAB674 /* UIViewController+UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+UIAlertController.swift"; sourceTree = "<group>"; };
 		C1F3E80B2A64344D0004619E /* Speech.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Speech.framework; path = System/Library/Frameworks/Speech.framework; sourceTree = SDKROOT; };
 		C1F4B7762AF93287009DCF35 /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
+		C1F4B77B2AFA8B24009DCF35 /* Practice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Practice.swift; sourceTree = "<group>"; };
 		C1FFE7AB29E30425009FFD0B /* AgareeGames_dis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgareeGames_dis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1FFE7AE29E30425009FFD0B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1FFE7B029E30425009FFD0B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -491,6 +494,7 @@
 			children = (
 				7E0A83802A01F8A30031B3E3 /* Extension.swift */,
 				C1E439A32AAC2B0900BAB674 /* UIViewController+UIAlertController.swift */,
+				C1F4B77B2AFA8B24009DCF35 /* Practice.swift */,
 			);
 			name = Extension;
 			path = ../Extension;
@@ -690,6 +694,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1649BF22A47D4260094D56D /* PreGameController.swift in Sources */,
+				C1F4B77D2AFA8B24009DCF35 /* Practice.swift in Sources */,
 				C15AA8512A6B8D2000AF24F3 /* GuessWhoEntitiy+CoreDataProperties.swift in Sources */,
 				7E1837722AC277F9004B506D /* Scene.swift in Sources */,
 				7E6A37022A89C8E000B7F0BC /* PregameModel.swift in Sources */,
@@ -749,6 +754,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E04C8E52A03342300357A0F /* PreGameController.swift in Sources */,
+				C1F4B77C2AFA8B24009DCF35 /* Practice.swift in Sources */,
 				C196837D2A88F6FB0098774F /* PlayableType.swift in Sources */,
 				7E1837712AC277F9004B506D /* Scene.swift in Sources */,
 				C15AA8502A6B8D2000AF24F3 /* GuessWhoEntitiy+CoreDataProperties.swift in Sources */,

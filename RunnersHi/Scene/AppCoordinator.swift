@@ -8,11 +8,25 @@
 import UIKit
 import RxSwift
 
+class AppCoordinator1:Coordinator1 {
+    
+    @discardableResult
+    override func start() -> Completable {
+        let sub = PublishSubject<Never>()
+        // start point
+        let child = PregameCoordinator1(navigationVC:  , parent: self, window: self.window)
+        
+        
+        return sub.asCompletable()
+    }
+}
+
+
 class AppCoordinator:Coordinator{
     var navi: BaseNavigationController!
     var children = [Coordinator]()
     var window: UIWindow
-    var parent: Coordinator? = nil
+    var parent: Coordinator? = nil  
     
     var bag:DisposeBag = DisposeBag()
     
