@@ -56,6 +56,9 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
         guard let safeWindow = window else {return}
         
         let nav = BaseNavigationController()
+        
+        let mainCdr = AppCoordinator1(navigationVC: nav, window: safeWindow)
+        
         let mainCoordinator = AppCoordinator(window: safeWindow, navi: nav)
         mainCoordinator.start()
     }

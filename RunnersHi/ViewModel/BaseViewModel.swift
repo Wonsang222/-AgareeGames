@@ -10,10 +10,10 @@ import RxSwift
 import RxCocoa
 
 class BaseViewModel:NSObject{
-    let sceneCoordinator:Coordinator
+    let sceneCoordinator:Coordinator1
     let errorMessage = BehaviorSubject<Error?>(value: nil)
     
-    init(sceneCoordinator: Coordinator) {
+    init(sceneCoordinator: Coordinator1) {
         self.sceneCoordinator = sceneCoordinator
     }
     

@@ -16,6 +16,10 @@ class GameNavigationController:BaseNavigationController{
         return .darkContent
     }
     
+    override var prefersStatusBarHidden: Bool{
+        return false
+    }
+    
     override func viewDidLoad() {
         
     }

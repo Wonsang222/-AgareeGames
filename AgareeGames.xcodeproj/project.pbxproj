@@ -34,6 +34,8 @@
 		7E6A36FF2A89B77900B7F0BC /* PlayableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C196837C2A88F6FB0098774F /* PlayableType.swift */; };
 		7E6A37002A89B77C00B7F0BC /* GameKinds.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19683782A88F63C0098774F /* GameKinds.swift */; };
 		7E6A37022A89C8E000B7F0BC /* PregameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C196837A2A88F6A60098774F /* PregameModel.swift */; };
+		7E7201752AFC6D7B00CF901D /* PreNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7201742AFC6D7B00CF901D /* PreNavigationController.swift */; };
+		7E7201762AFC6D7B00CF901D /* PreNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7201742AFC6D7B00CF901D /* PreNavigationController.swift */; };
 		7E7D16D62A95AF1100D3FE52 /* MemoStorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7D16D52A95AF1100D3FE52 /* MemoStorageType.swift */; };
 		7E7D16D72A95AF1100D3FE52 /* MemoStorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7D16D52A95AF1100D3FE52 /* MemoStorageType.swift */; };
 		7E7D16D92A95B02B00D3FE52 /* MemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7D16D82A95B02B00D3FE52 /* MemoryStorage.swift */; };
@@ -142,6 +144,7 @@
 		7E49954E2A0CAFD5006D95AC /* GuessWhoHTPV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoHTPV.swift; sourceTree = "<group>"; };
 		7E4E1A5B2ACF884900AEBEE2 /* GameNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameNavigationController.swift; sourceTree = "<group>"; };
 		7E60DD6F2A307A6600A511E2 /* AgareeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgareeDelegate.swift; sourceTree = "<group>"; };
+		7E7201742AFC6D7B00CF901D /* PreNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreNavigationController.swift; sourceTree = "<group>"; };
 		7E7D16D52A95AF1100D3FE52 /* MemoStorageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoStorageType.swift; sourceTree = "<group>"; };
 		7E7D16D82A95B02B00D3FE52 /* MemoryStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryStorage.swift; sourceTree = "<group>"; };
 		9A77BD266F112D23180BE074 /* Pods_AgareeGames_dis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AgareeGames_dis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -289,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				7E04C8EB2A0342FE00357A0F /* BaseNavigationController.swift */,
+				7E7201742AFC6D7B00CF901D /* PreNavigationController.swift */,
 				7E4E1A5B2ACF884900AEBEE2 /* GameNavigationController.swift */,
 			);
 			path = NaviCtr;
@@ -736,6 +740,7 @@
 				C10891902A8739A30014A0EE /* ViewModelBindableType.swift in Sources */,
 				C1649C0C2A47D4260094D56D /* MainView.swift in Sources */,
 				C1649C0D2A47D4260094D56D /* GuessWhoViewModel.swift in Sources */,
+				7E7201762AFC6D7B00CF901D /* PreNavigationController.swift in Sources */,
 				C1649C0E2A47D4260094D56D /* AgareeDelegate.swift in Sources */,
 				C1649C0F2A47D4260094D56D /* NetworkService.swift in Sources */,
 				C1649C102A47D4260094D56D /* BaseController.swift in Sources */,
@@ -796,6 +801,7 @@
 				C108918F2A8739A30014A0EE /* ViewModelBindableType.swift in Sources */,
 				7E125E7D2A00FF9D0044D881 /* MainView.swift in Sources */,
 				7E159D3C29F8A0E400C7E601 /* GuessWhoViewModel.swift in Sources */,
+				7E7201752AFC6D7B00CF901D /* PreNavigationController.swift in Sources */,
 				7E60DD702A307A6600A511E2 /* AgareeDelegate.swift in Sources */,
 				C14F272C29FEA3E00007E7A6 /* NetworkService.swift in Sources */,
 				7E17BBAA2A5D062E00D94230 /* AuthManager.swift in Sources */,

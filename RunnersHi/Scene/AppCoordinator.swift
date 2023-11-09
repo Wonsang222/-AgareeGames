@@ -14,9 +14,17 @@ class AppCoordinator1:Coordinator1 {
     override func start() -> Completable {
         let sub = PublishSubject<Never>()
         // start point
-        let child = PregameCoordinator1(navigationVC:  , parent: self, window: self.window)
+        let root = PreGameController()
+        let nav = BaseNavigationController(rootViewController:root)
+        let child = PregameCoordinator1(navigationVC:nav, parent: self, window: self.window)
+        let vm = PregameViewModel(game: .GuessWho, sceneCoordinator:child)
+
         
+        child.parent = self
+        children.append(child)
         
+        window.rootViewController = child.navigationVC
+        window.makeKeyAndVisible()
         return sub.asCompletable()
     }
 }

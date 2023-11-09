@@ -15,7 +15,7 @@ class Coordinator1 {
     var children = [Coordinator1]()
     var parent:Coordinator1?
     let window:UIWindow
-    let bag = DisposeBag()
+    private let bag = DisposeBag()
     
     init(navigationVC: BaseNavigationController, parent: Coordinator1? = nil, window: UIWindow) {
         self.navigationVC = navigationVC

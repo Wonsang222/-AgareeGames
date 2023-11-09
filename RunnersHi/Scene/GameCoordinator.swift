@@ -9,6 +9,14 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+class GameCoordinator1:Coordinator1 {
+    override func start() -> Completable {
+        let subject = PublishSubject<Never>()
+        
+        return subject.asCompletable()
+    }
+}
+
 class GameCoordinator: Coordinator {
 
     var navi: BaseNavigationController!
