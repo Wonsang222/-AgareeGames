@@ -77,11 +77,11 @@ class GameViewModel:BaseViewModel {
     func judgeAction(isWin:Bool) -> Action<Void, Void> {
         
         return Action<Void, Void> { [unowned self] _ in
-            return self.sceneCoordinator.transition(to: .Test(ResultViewModel(isWin: isWin)),
-                                                    using: .push,
-                                                    animation: true)
+            return sceneCoordinator.transition(to: .Play(.result(ResultViewModel(isWin: true, sc:sceneCoordinator)))
+                                               , using: .push
+                                               , animation: true)
             .asObservable()
-            .map{ _ in }
+            .map { _ in } 
         }
     }
 }

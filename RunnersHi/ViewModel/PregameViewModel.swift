@@ -33,7 +33,7 @@ final class PregameViewModel:BaseViewModel {
                                      AuthManager.getSpeechAuth()])
     }()
     
-    init(game:GameKinds, sceneCoordinator:Coordinator1) {
+    init(game:GameKinds, sceneCoordinator:Coordinator) {
         
         let baseModel = PregameModel(gameType: game)
         gameModel = BehaviorSubject(value: baseModel)

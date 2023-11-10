@@ -12,7 +12,7 @@ struct GamePlayModel {
     let name:String
     var photo:UIImage?
     
-//    // 여기까지 왔을땐, 무조건 이미지 파일이 존재해야함
+
 //    func encode(to encoder: Encoder) throws {
 //        var container = encoder.container(keyedBy:CodingKeys.self)
 //        try container.encode(name, forKey: .name)

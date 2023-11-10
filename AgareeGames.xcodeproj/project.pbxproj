@@ -101,10 +101,6 @@
 		C18BCD3E2AA321F200667A49 /* ResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18BCD3C2AA321F200667A49 /* ResultViewModel.swift */; };
 		C18BCD4C2AA47FC000667A49 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18BCD4B2AA47FC000667A49 /* BaseViewModel.swift */; };
 		C18BCD4D2AA47FC000667A49 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18BCD4B2AA47FC000667A49 /* BaseViewModel.swift */; };
-		C18C78E92AA8A193002AFF34 /* GameCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18C78E82AA8A193002AFF34 /* GameCoordinator.swift */; };
-		C18C78EA2AA8A193002AFF34 /* GameCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18C78E82AA8A193002AFF34 /* GameCoordinator.swift */; };
-		C18C78EC2AA8A391002AFF34 /* PregameCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18C78EB2AA8A391002AFF34 /* PregameCoordinator.swift */; };
-		C18C78ED2AA8A391002AFF34 /* PregameCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C18C78EB2AA8A391002AFF34 /* PregameCoordinator.swift */; };
 		C19683792A88F63C0098774F /* GameKinds.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19683782A88F63C0098774F /* GameKinds.swift */; };
 		C196837B2A88F6A60098774F /* PregameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C196837A2A88F6A60098774F /* PregameModel.swift */; };
 		C196837D2A88F6FB0098774F /* PlayableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C196837C2A88F6FB0098774F /* PlayableType.swift */; };
@@ -173,8 +169,6 @@
 		C176FED12A1A5FCB00C7EFE6 /* GamePlayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayModel.swift; sourceTree = "<group>"; };
 		C18BCD3C2AA321F200667A49 /* ResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewModel.swift; sourceTree = "<group>"; };
 		C18BCD4B2AA47FC000667A49 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
-		C18C78E82AA8A193002AFF34 /* GameCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCoordinator.swift; sourceTree = "<group>"; };
-		C18C78EB2AA8A391002AFF34 /* PregameCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PregameCoordinator.swift; sourceTree = "<group>"; };
 		C19683782A88F63C0098774F /* GameKinds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameKinds.swift; sourceTree = "<group>"; };
 		C196837A2A88F6A60098774F /* PregameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PregameModel.swift; sourceTree = "<group>"; };
 		C196837C2A88F6FB0098774F /* PlayableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayableType.swift; sourceTree = "<group>"; };
@@ -282,8 +276,6 @@
 				7E1837702AC277F9004B506D /* Scene.swift */,
 				C10362432AA6164400FC65CF /* Coordinator.swift */,
 				C10362452AA616D800FC65CF /* AppCoordinator.swift */,
-				C18C78EB2AA8A391002AFF34 /* PregameCoordinator.swift */,
-				C18C78E82AA8A193002AFF34 /* GameCoordinator.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -717,7 +709,6 @@
 				C1649BFE2A47D4260094D56D /* HowToPlayBaseView.swift in Sources */,
 				C1649BFF2A47D4260094D56D /* IntroView.swift in Sources */,
 				C15AA81F2A67D2C100AF24F3 /* AgareeGames.xcdatamodeld in Sources */,
-				C18C78EA2AA8A193002AFF34 /* GameCoordinator.swift in Sources */,
 				7E7D16DA2A95B02B00D3FE52 /* MemoryStorage.swift in Sources */,
 				C15AA84F2A6B8D2000AF24F3 /* GuessWhoEntitiy+CoreDataClass.swift in Sources */,
 				C1649C002A47D4260094D56D /* ResourceBuilder.swift in Sources */,
@@ -733,7 +724,6 @@
 				C1A2F4952AF138C500AD3DB9 /* GameViewModel.swift in Sources */,
 				C18BCD4D2AA47FC000667A49 /* BaseViewModel.swift in Sources */,
 				C18BCD3E2AA321F200667A49 /* ResultViewModel.swift in Sources */,
-				C18C78ED2AA8A391002AFF34 /* PregameCoordinator.swift in Sources */,
 				7E11DBDE2AA6D44F007F4A29 /* Coordinator.swift in Sources */,
 				C1649C0B2A47D4260094D56D /* TalkGameController.swift in Sources */,
 				7E6A37002A89B77C00B7F0BC /* GameKinds.swift in Sources */,
@@ -778,7 +768,6 @@
 				C11D6EE82A41E84B00F59E15 /* HowToPlayBaseView.swift in Sources */,
 				7E20755D29F9FBF8000BFE61 /* IntroView.swift in Sources */,
 				7E7D16D92A95B02B00D3FE52 /* MemoryStorage.swift in Sources */,
-				C18C78E92AA8A193002AFF34 /* GameCoordinator.swift in Sources */,
 				C15AA81E2A67D2C100AF24F3 /* AgareeGames.xcdatamodeld in Sources */,
 				C15AA84E2A6B8D2000AF24F3 /* GuessWhoEntitiy+CoreDataClass.swift in Sources */,
 				C14F27642A0521490007E7A6 /* ResourceBuilder.swift in Sources */,
@@ -794,7 +783,6 @@
 				C1A2F4942AF138C500AD3DB9 /* GameViewModel.swift in Sources */,
 				7E0A83812A01F8A30031B3E3 /* Extension.swift in Sources */,
 				C18BCD4C2AA47FC000667A49 /* BaseViewModel.swift in Sources */,
-				C18C78EC2AA8A391002AFF34 /* PregameCoordinator.swift in Sources */,
 				C18BCD3D2AA321F200667A49 /* ResultViewModel.swift in Sources */,
 				C176FED22A1A5FCB00C7EFE6 /* GamePlayModel.swift in Sources */,
 				C148D9D52A1CE95C005AB791 /* TalkGameController.swift in Sources */,

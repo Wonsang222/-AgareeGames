@@ -9,8 +9,10 @@
 
 import UIKit
 
-final class ResultController:BaseController{
+final class ResultController:BaseController {
     
+    var viewmodel:ResultViewModel!
+
     var isWin:Bool
     
     let resultLabel:UILabel = {
@@ -23,6 +25,12 @@ final class ResultController:BaseController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var backButton = UIBarButtonItem(title: "처음으로", style: .done, target: nil, action: nil)
+        
+        backButton.rx.action = viewmodel.popAction
+        navigationItem.backBarButtonItem = backButton
+        
        
         view.addSubview(resultLabel)
         NSLayoutConstraint.activate([

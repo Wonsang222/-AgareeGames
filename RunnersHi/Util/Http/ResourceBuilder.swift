@@ -19,7 +19,7 @@ final class ResourceBuilder{
     private var params:[String:String] = [String:String]()
     private var path:String = ""
     
-    func setReqMethod(_ method:HttpMethod) -> Self{
+    func setReqMethod(_ method:HttpMethod) -> Self {
         self.reqMethod = method
         return self
     }
@@ -29,7 +29,7 @@ final class ResourceBuilder{
         return self
     }
     
-    func setParams(_ param1:String, _ param2:Any) -> Self{
+    func setParams(_ param1:String, _ param2:Any) -> Self {
         switch param2{
         case let num as Int:
             self.params[param1] = String(num)
@@ -46,7 +46,7 @@ final class ResourceBuilder{
         return self
     }
     
-    func setReqHeader(_ header1:String, _ header2:String) -> Self{
+    func setReqHeader(_ header1:String, _ header2:String) -> Self {
         self.reqHeader[header1] = header2
         return self
     }

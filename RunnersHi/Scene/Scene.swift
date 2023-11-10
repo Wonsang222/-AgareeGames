@@ -10,54 +10,29 @@ import Foundation
 enum TransitionStyle{
     case push
     case back
-    case root
+//    case root
 //    case modal
 }
 
 enum Scene{
     
-    enum Preplay {
+    enum play {
         case pregame(PregameViewModel)
+        case guesswho(GuessWhoViewModel)
+        case result(ResultViewModel)
     }
-    
-    enum GamePlay {
-        case guessWho(GameViewModel)
-        case test(ResultViewModel)
-    }
-    
-    case preplay(Preplay)
-    case gamePlay(GamePlay)
+    case Play(play)
 }
 
 extension Scene{
+    
     func instantiate() -> BaseController {
         switch self {
-        case .preplay(let pre): return setPreVC(pre)
-        case .gamePlay(let gp): return setGameVC(gp)
+        case .Play(let pp): return setPlayVC(pp)        
         }
-        
-        
-//        switch self {
-//        case .Pregame(let viewmodel):
-//            var vc = PreGameController()
-//            DispatchQueue.main.async {
-//                vc.bind(viewmodel: viewmodel)
-//            }
-//            return vc
-//        case .Test(_):
-//            let vc = ResultController(isWin: true)
-//            return vc
-//        case .GuessWho(_):
-//            let vc = GuessWhoController()
-////            DispatchQueue.main.async {
-////                vc.bind(viewmodel: viewmodel)
-////            }
-//            return vc
-//        }
-        
     }
     
-    private func setPreVC(_ pr:Preplay) -> BaseController {
+    private func setPlayVC(_ pr:play) -> BaseController {
         switch pr {
         case .pregame(let vm):
             var vc = PreGameController()
@@ -65,18 +40,13 @@ extension Scene{
                 vc.bind(viewmodel: vm)
             }
             return vc
-        }
-    }
-    
-    private func setGameVC(_ pr:GamePlay) -> BaseController {
-        switch pr {
-        case .guessWho(let vm):
+        case .guesswho(let vm):
             var vc = GuessWhoController()
 //            DispatchQueue.main.async {
 //                vc.bind(viewmodel: vm)
 //            }
             return vc
-        case .test(let vm):
+        case .result(let vm):
             var vc = GuessWhoController()
 //            DispatchQueue.main.async {
 //                vc.bind(viewmodel: vm)

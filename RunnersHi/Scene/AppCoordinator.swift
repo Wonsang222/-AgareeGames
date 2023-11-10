@@ -8,58 +8,14 @@
 import UIKit
 import RxSwift
 
-class AppCoordinator1:Coordinator1 {
+class AppCoordinator1:Coordinator {
     
     @discardableResult
     override func start() -> Completable {
         let sub = PublishSubject<Never>()
         // start point
-        let root = PreGameController()
-        let nav = BaseNavigationController(rootViewController:root)
-        let child = PregameCoordinator1(navigationVC:nav, parent: self, window: self.window)
-        let vm = PregameViewModel(game: .GuessWho, sceneCoordinator:child)
-
-        
-        child.parent = self
-        children.append(child)
-        
-        window.rootViewController = child.navigationVC
+        window.rootViewController = navigationVC
         window.makeKeyAndVisible()
         return sub.asCompletable()
-    }
-}
-
-
-class AppCoordinator:Coordinator{
-    var navi: BaseNavigationController!
-    var children = [Coordinator]()
-    var window: UIWindow
-    var parent: Coordinator? = nil  
-    
-    var bag:DisposeBag = DisposeBag()
-    
-    init(window:UIWindow, navi:BaseNavigationController) {
-        self.window = window
-        self.navi = navi
-    }
-    
-    @discardableResult
-    func start() -> Completable{
-        let subject = PublishSubject<Never>()
-        // start point
-        let model = PregameModel(gameType: .GuessWho)
-        let child = PregameCoordinator(window: self.window, navi: self.navi, model: model)
-        child.parent = self
-        self.children.append(child)
-        
-        let viewModel = PregameViewModel(game: .GuessWho, sceneCoordinator: child)
-        let scene = Scene.Pregame(viewModel)
-        
-        child.transition(to: scene, using: .root, animation: true)
-        window.rootViewController = child.navi
-        window.makeKeyAndVisible()
-    
-        subject.onCompleted()
-        return subject.asCompletable()
     }
 }

@@ -44,15 +44,6 @@ struct MyServer{
     }
 }
 
-enum RXAudioError:String{
-    case AudioOff = "디바이스의 Audio 권한이 부여되지 않았습니다. \n 직접 설정합니다."
-    case TotalAudioError = "디바이스의 Audio 에러로 음성 기능을 사용할 수 없습니다."
-    case SpeechError = "음성인식 기능오류입니다."
-    case SpeechAuth = "음성인식 기능 권한이 설정되지 않았습니다."
-    case RecordError = "음성 녹음 권한을 수락하셔야합니다."
-}
-
-
 enum AudioError: String, Error{
     case AudioOff = "디바이스의 Audio 권한이 부여되지 않았습니다. \n 직접 설정합니다."
     case TotalAudioError = "디바이스의 Audio 에러로 음성 기능을 사용할 수 없습니다."

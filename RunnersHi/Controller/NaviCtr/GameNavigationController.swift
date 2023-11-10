@@ -21,6 +21,5 @@ class GameNavigationController:BaseNavigationController{
     }
     
     override func viewDidLoad() {
-        
     }
 }

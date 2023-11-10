@@ -8,12 +8,23 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import Action
 
-final class ResultViewModel{
+final class ResultViewModel:BaseViewModel {
     var isWin:Bool
     
-    init(isWin: Bool) {
+    
+    
+    init(isWin: Bool, sc:Coordinator) {
         self.isWin = isWin
+        super.init(sceneCoordinator: sc)
+    }
+    
+    lazy var popAction = CocoaAction { [unowned self] in
+        return self.sceneCoordinator.close(animated: true)
+            .asObservable()
+            .map { _ in }
+        
     }
     
 
