@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxViewController
+import Action
 import NSObject_Rx
 
 final class PreGameController:BaseController, ViewModelBindableType{
@@ -38,6 +39,7 @@ final class PreGameController:BaseController, ViewModelBindableType{
                 return vc.0.viewModel.permissions
                     .toArray()
                     .asObservable()
+                    .observe(on: MainScheduler.instance)
                     .catch{ [weak self] err -> Observable<[AudioError]> in
                         self?.handleAudioError(err: err as! AudioError)
                         return .empty()

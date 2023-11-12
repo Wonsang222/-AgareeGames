@@ -29,7 +29,9 @@ final class ResultController:BaseController {
         var backButton = UIBarButtonItem(title: "처음으로", style: .done, target: nil, action: nil)
         
         backButton.rx.action = viewmodel.popAction
-        navigationItem.backBarButtonItem = backButton
+//        navigationItem.backBarButtonItem = backButton
+        navigationItem.hidesBackButton = true
+        navigationItem.leftBarButtonItem = backButton
         
        
         view.addSubview(resultLabel)

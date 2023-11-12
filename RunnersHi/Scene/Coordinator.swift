@@ -40,13 +40,12 @@ class Coordinator {
             navigationVC.rx.willShow
                 .withUnretained(self)
                 .subscribe(onNext: { coordinator, evt in
-                    coordinator.navigationVC = (evt.viewController as! BaseNavigationController)
+                    coordinator.navigationVC = (evt.viewController.navigationController as! BaseNavigationController)
                 })
                 .disposed(by: bag)
             
             navigationVC.pushViewController(target, animated: true)
             subject.onCompleted()
-            
         case .back:
             subject.onCompleted()
         }
