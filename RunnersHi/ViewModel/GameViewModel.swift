@@ -10,13 +10,18 @@ import RxSwift
 import RxCocoa
 import Action
 
+// fetching + start
+
 class GameViewModel:BaseViewModel {
     
     private var targetArr = [GamePlayModel]()
     
     let fetchTargets:AnyObserver<Void>
+    let startGame:AnyObserver<Void>
+    let timer:Observable<Int>
+    
     let loadTarget:PublishRelay<Void>
-  
+
     let target = BehaviorRelay<GamePlayModel?>(value: nil)
     
     let bag = DisposeBag()
@@ -25,8 +30,10 @@ class GameViewModel:BaseViewModel {
         
         let fetching = PublishSubject<Void>()
         let fetchImages = PublishSubject<Dictionary<String, String>>()
+        let starting = PublishSubject<Void>()
         
         fetchTargets = fetching.asObserver()
+        startGame = starting.asObserver()
         loadTarget = PublishRelay<Void>()
         
         super.init(sceneCoordinator: coordinator)
@@ -57,6 +64,11 @@ class GameViewModel:BaseViewModel {
                 self?.target.accept(next)
             })
             .disposed(by: bag)
+        
+        // timer + loadTarget + STT?
+        
+        starting
+            .
     }
     
     func answerAction() -> Action<String, Void> {
