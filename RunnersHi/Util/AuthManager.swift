@@ -13,6 +13,8 @@ import AVFoundation
 
 class AuthManager{
 
+    // completable로 교체
+    
     static func getMicAuth() -> Observable<AudioError> {
         return Observable.create { observer in
             AVAudioSession.sharedInstance().requestRecordPermission { granted in

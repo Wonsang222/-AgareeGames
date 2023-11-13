@@ -17,7 +17,7 @@ class TimerGameCotoller:GameController {
         super.viewDidLoad()
     }
     
-    final func setTimer(_ second:Float, userinfo:Any? = nil, repeater:Bool){
+    final func setTimer(_ second:Float, userinfo:Any? = nil, repeater:Bool) {
         guard timer == nil else { return }
         numToCount = 0.0
         self.speed = (1.0 / second) * 0.1

@@ -48,6 +48,10 @@ class Coordinator {
             subject.onCompleted()
         case .back:
             subject.onCompleted()
+        case .root:
+            navigationVC.setViewControllers([target], animated: true)
+            subject.onCompleted()
+            break
         }
         return subject.asCompletable()
     }

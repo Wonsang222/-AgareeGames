@@ -10,7 +10,7 @@ import Foundation
 enum TransitionStyle{
     case push
     case back
-//    case root
+    case root
 //    case modal
 }
 

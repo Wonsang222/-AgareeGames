@@ -12,7 +12,7 @@ enum HttpMethod:String{
     case POST
 }
 
-final class ResourceBuilder{
+final class ResourceBuilder {
     private var reqMethod:HttpMethod = .GET
     private var isMultiPart = false
     private var reqHeader = [String:String]()
