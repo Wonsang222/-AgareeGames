@@ -9,6 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 import Action
+import NSObject_Rx
 
 // fetching + start
 
@@ -18,14 +19,12 @@ class GameViewModel:BaseViewModel {
     
     let fetchTargets:AnyObserver<Void>
     let startGame:AnyObserver<Void>
-    let timer:Observable<Int>
     
     let loadTarget:PublishRelay<Void>
-
     let target = BehaviorRelay<GamePlayModel?>(value: nil)
     
-    let bag = DisposeBag()
-    
+    let timer:Observable<Int>
+
     init(game:PregameModel, coordinator:Coordinator) {
         
         let fetching = PublishSubject<Void>()
@@ -36,7 +35,12 @@ class GameViewModel:BaseViewModel {
         startGame = starting.asObserver()
         loadTarget = PublishRelay<Void>()
         
+        timer = Observable<Int>.interval(.milliseconds(20),
+                                         scheduler: ConcurrentDispatchQueueScheduler(qos: .userInteractive))
+        
+        
         super.init(sceneCoordinator: coordinator)
+
         
         fetching
             .flatMap{ NetworkService.shared.fetchJsonRX(resource: game.getParam()) }
@@ -46,7 +50,7 @@ class GameViewModel:BaseViewModel {
             .subscribe(onNext: { json in
                 fetchImages.onNext(json)
             })
-            .disposed(by: bag)
+            .disposed(by: rx.disposeBag)
         
         fetchImages
             .flatMap{ NetworkService.shared.fetchImageRX(source: $0)}
@@ -56,19 +60,26 @@ class GameViewModel:BaseViewModel {
             .subscribe(onNext: { [unowned self] targets in
                 self.targetArr = targets
             })
-            .disposed(by: bag)
+            .disposed(by: rx.disposeBag)
         
         loadTarget
             .subscribe(onNext: { [weak self] _ in
                 let next = self?.targetArr.popLast()
                 self?.target.accept(next)
             })
-            .disposed(by: bag)
+            .disposed(by: rx.disposeBag)
         
         // timer + loadTarget + STT?
-        
         starting
-            .
+            .do(onNext: { _ in
+                
+            })
+            .do(onNext: { _ in
+                    
+            })
+            .subscribe(onNext: <#T##((Void) -> Void)?##((Void) -> Void)?##(Void) -> Void#>)
+            .disposed(by: rx.disposeBag)
+     
     }
     
     func answerAction() -> Action<String, Void> {
@@ -89,7 +100,9 @@ class GameViewModel:BaseViewModel {
     func judgeAction(isWin:Bool) -> Action<Void, Void> {
         
         return Action<Void, Void> { [unowned self] _ in
-            return sceneCoordinator.transition(to: .Play(.result(ResultViewModel(isWin: true, sc:sceneCoordinator)))
+            let viewModel = ResultViewModel(isWin: true, sc: self.sceneCoordinator)
+            let nextScene:Scene = .Play(.result(viewModel))
+            return sceneCoordinator.transition(to: nextScene
                                                , using: .push
                                                , animation: true)
             .asObservable()

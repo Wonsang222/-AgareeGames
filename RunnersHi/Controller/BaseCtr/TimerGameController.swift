@@ -14,7 +14,7 @@ class TimerGameCotoller:GameController {
     final var isRunning = true
 
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewDidLoad() 
     }
     
     final func setTimer(_ second:Float, userinfo:Any? = nil, repeater:Bool) {
