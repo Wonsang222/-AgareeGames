@@ -22,25 +22,26 @@ class GameViewModel:BaseViewModel {
     
     let loadTarget:PublishRelay<Void>
     let target = BehaviorRelay<GamePlayModel?>(value: nil)
+    let timer:PublishSubject<Double>
     
-    let timer:Observable<Int>
-
+    let repeater:Observable<Double>
+    
     init(game:PregameModel, coordinator:Coordinator) {
         
         let fetching = PublishSubject<Void>()
         let fetchImages = PublishSubject<Dictionary<String, String>>()
         let starting = PublishSubject<Void>()
-        
+        let answer = PublishSubject<String>()
+    
         fetchTargets = fetching.asObserver()
         startGame = starting.asObserver()
         loadTarget = PublishRelay<Void>()
-        
-        timer = Observable<Int>.interval(.milliseconds(20),
-                                         scheduler: ConcurrentDispatchQueueScheduler(qos: .userInteractive))
-        
+        timer = PublishSubject<Double>()
+        repeater = Observable<Int>.interval(.milliseconds(20), scheduler: ConcurrentDispatchQueueScheduler(qos: .userInteractive))
+            .map{ _ in 0.02 }
+            .scan(0, accumulator: +)
         
         super.init(sceneCoordinator: coordinator)
-
         
         fetching
             .flatMap{ NetworkService.shared.fetchJsonRX(resource: game.getParam()) }
@@ -71,13 +72,14 @@ class GameViewModel:BaseViewModel {
         
         // timer + loadTarget + STT?
         starting
-            .do(onNext: { _ in
+            .do(onNext: { [weak self] _ in
                 
             })
-            .do(onNext: { _ in
-                    
+            .flatMap{ [unowned self] in self.repeater }
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] second in
+                self?.timer.onNext(second)
             })
-            .subscribe(onNext: <#T##((Void) -> Void)?##((Void) -> Void)?##(Void) -> Void#>)
             .disposed(by: rx.disposeBag)
      
     }
