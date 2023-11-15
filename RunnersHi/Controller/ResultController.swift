@@ -9,6 +9,7 @@
 
 import UIKit
 
+@available(iOS 16.0, *)
 final class ResultController:BaseController {
     
     var viewmodel:ResultViewModel!
@@ -24,6 +25,9 @@ final class ResultController:BaseController {
     }()
 
     override func viewDidLoad() {
+        
+        let dataContainer = URL(filePath: NSHomeDirectory())
+        
         super.viewDidLoad()
         
         var backButton = UIBarButtonItem(title: "처음으로", style: .done, target: nil, action: nil)

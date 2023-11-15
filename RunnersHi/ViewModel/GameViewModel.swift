@@ -19,12 +19,13 @@ class GameViewModel:BaseViewModel {
     
     let fetchTargets:AnyObserver<Void>
     let startGame:AnyObserver<Void>
-    
     let loadTarget:PublishRelay<Void>
+    
+    private let repeater:Observable<Void>
+    
+    // output
     let target = BehaviorRelay<GamePlayModel?>(value: nil)
     let timer:PublishSubject<Double>
-    
-    let repeater:Observable<Double>
     
     init(game:PregameModel, coordinator:Coordinator) {
         
@@ -32,15 +33,30 @@ class GameViewModel:BaseViewModel {
         let fetchImages = PublishSubject<Dictionary<String, String>>()
         let starting = PublishSubject<Void>()
         let answer = PublishSubject<String>()
+        let reloading = PublishSubject<Void>()
     
         fetchTargets = fetching.asObserver()
         startGame = starting.asObserver()
         loadTarget = PublishRelay<Void>()
         timer = PublishSubject<Double>()
-        repeater = Observable<Int>.interval(.milliseconds(20), scheduler: ConcurrentDispatchQueueScheduler(qos: .userInteractive))
+        repeater = Observable<Int>.interval(.milliseconds(20),
+                                            scheduler: ConcurrentDispatchQueueScheduler(qos: .userInteractive))
             .map{ _ in 0.02 }
-            .scan(0, accumulator: +)
+            .scan(0.0, accumulator: { total, newValue in
+                    return total + newValue
+            })
+            .withUnretained(self)
+            .flatMap{ viewmodel,total -> Observable<Void> in
+                if total > 5.0 {
+                    viewmodel.judgeAction(isWin: false)
+                    return .empty()
+                } else {
+                    viewmodel.timer.onNext(total)
+                    return .empty()
+                }
+            }
         
+
         super.init(sceneCoordinator: coordinator)
         
         fetching
@@ -64,36 +80,41 @@ class GameViewModel:BaseViewModel {
             .disposed(by: rx.disposeBag)
         
         loadTarget
-            .subscribe(onNext: { [weak self] _ in
-                let next = self?.targetArr.popLast()
-                self?.target.accept(next)
+            .withUnretained(self)
+            .do(onNext: { viewmodel, _ in
+                // 리피터를 연결 끊고 다시 시작
+                
             })
-            .disposed(by: rx.disposeBag)
+            .
         
-        // timer + loadTarget + STT?
+        // timer + loadTarget + STT?   -> 에러 메세지 체크 프로세스
         starting
             .do(onNext: { [weak self] _ in
                 
             })
-            .flatMap{ [unowned self] in self.repeater }
+            .withUnretained(self)
+            .flatMap{ vm, _ in vm.repeater }
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] second in
                 self?.timer.onNext(second)
             })
             .disposed(by: rx.disposeBag)
-     
     }
     
     func answerAction() -> Action<String, Void> {
         return Action<String, Void> { [unowned self] input in
             
-            let next = targetArr.popLast()
-            let answer = self.target.value!.name
+            guard let answer = self.target.value?.name else {
+                errorMessage.onNext(GameError.InGame)
+                return .empty()
+            }
+                
             let submit = input.components(separatedBy: "").joined()
  
             guard answer.contains(submit) else {
                 return Observable.just(())
             }
+            
             loadTarget.accept(())
             return Observable.just(())
         }

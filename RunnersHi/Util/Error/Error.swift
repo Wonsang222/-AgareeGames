@@ -50,3 +50,7 @@ enum AudioError: String, Error{
     case SpeechError = "음성인식 기능오류입니다."
     case SpeechAuth = "음성인식 기능 권한이 설정되지 않았습니다."
 }
+
+enum GameError:Error {
+    case InGame
+}
