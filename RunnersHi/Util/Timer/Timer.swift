@@ -8,9 +8,9 @@
 import Foundation
 import RxSwift
 
-class Timer {
+class MyTimer {
     
-    static let shared = Timer()
+    static let shared = MyTimer()
     let time = PublishSubject<Double>()
     let bag = DisposeBag()
     
@@ -23,7 +23,7 @@ class Timer {
                   })
                   .withUnretained(self)
                   .flatMap{ timer,total -> Observable<Void> in
-                      if total > Global.GAMESEC {
+                      if total >= Global.GAMESEC {
                           timer.flag.onNext(false)
                           return .empty()
                       }

@@ -20,10 +20,7 @@ class GameViewModel:BaseViewModel {
     let fetchTargets:AnyObserver<Void>
     let startGame:AnyObserver<Void>
     let loadTarget:PublishRelay<Void>
-    
-    private let repeater:Observable<Double>
-    private let timerController:BehaviorSubject<Bool>
-    
+
     // output
     let target = BehaviorRelay<GamePlayModel?>(value: nil)
     
@@ -37,15 +34,7 @@ class GameViewModel:BaseViewModel {
         fetchTargets = fetching.asObserver()
         startGame = starting.asObserver()
         loadTarget = PublishRelay<Void>()
-        timerController = BehaviorSubject(value: false)
-
-        repeater = Observable<Int>.interval(.milliseconds(20),
-                                            scheduler: ConcurrentDispatchQueueScheduler(qos: .userInteractive))
-        .map { _ in 0.02 }
-        .scan(0, accumulator: { total, newValue in
-            return total + newValue
-        })
-
+        
         super.init(sceneCoordinator: coordinator)
         
         fetching
