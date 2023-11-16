@@ -26,20 +26,17 @@ class GameViewModel:BaseViewModel {
     
     // output
     let target = BehaviorRelay<GamePlayModel?>(value: nil)
-    let timer:PublishSubject<Double>
     
     init(game:PregameModel, coordinator:Coordinator) {
         
         let fetching = PublishSubject<Void>()
         let fetchImages = PublishSubject<Dictionary<String, String>>()
         let starting = PublishSubject<Void>()
-        let answering = PublishSubject<String>()
         let reloading = PublishSubject<Void>()
     
         fetchTargets = fetching.asObserver()
         startGame = starting.asObserver()
         loadTarget = PublishRelay<Void>()
-        timer = PublishSubject<Double>()
         timerController = BehaviorSubject(value: false)
 
         repeater = Observable<Int>.interval(.milliseconds(20),
@@ -48,16 +45,6 @@ class GameViewModel:BaseViewModel {
         .scan(0, accumulator: { total, newValue in
             return total + newValue
         })
-        
-        .flatMap{ [weak self] total in
-            if total > 5.0 {
-                 // 게임 패배
-                self?.timerController.onNext(false)
-            }
-            
-            return Observable.just(0.0)
-        }
-        
 
         super.init(sceneCoordinator: coordinator)
         

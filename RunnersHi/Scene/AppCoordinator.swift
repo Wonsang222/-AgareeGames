@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-class AppCoordinator1:Coordinator {
+class AppCoordinator:Coordinator {
     
     @discardableResult
     override func start() -> Completable {

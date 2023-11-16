@@ -10,7 +10,7 @@ import UIKit
 struct Global{
     
     //MARK: - Game Setting
-    static let GAMESPEED:Float = 5.0
+    static let GAMESEC:Double = 5.0
     static let APPFONT = "Goryeong-Strawberry"
     static let PHOTODB = "PhotoDB"
     

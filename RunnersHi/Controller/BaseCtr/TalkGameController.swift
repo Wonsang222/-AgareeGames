@@ -8,7 +8,7 @@
 import UIKit
 import Speech
 
-class TalkGameController:TimerGameCotoller{
+class TalkGameController:BaseController{
     
     var engine:STTEngine?
     

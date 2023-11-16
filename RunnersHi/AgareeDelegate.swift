@@ -57,10 +57,10 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
         
         let nav = BaseNavigationController()
         
-        let mainCdr = AppCoordinator1(navigationVC: nav, window: safeWindow)
-        
-        let mainCoordinator = AppCoordinator(window: safeWindow, navi: nav)
-        mainCoordinator.start()
+//        let mainCdr = AppCoordinator1(navigationVC: nav, window: safeWindow)
+//        
+//        let mainCoordinator = AppCoordinator(window: safeWindow, navi: nav)
+//        mainCoordinator.start()
     }
     
     func sceneDidEnterBackground(_ scene: UIScene) {
@@ -69,14 +69,14 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
               let rootVC = window.rootViewController as? BaseNavigationController,
               let topVC = rootVC.topViewController else { return }
         
-        if let vc = topVC as? TalkGameController{
-            vc.engine?.offEngine()
-        }
-        if let vc = topVC as? TimerGameCotoller{
-            vc.timer?.invalidate()
-            vc.timer = nil
-            vc.isRunning = false
-        }
+//        if let vc = topVC as? TalkGameController{
+//            vc.engine?.offEngine()
+//        }
+//        if let vc = topVC as? TimerGameCotoller{
+//            vc.timer?.invalidate()
+//            vc.timer = nil
+//            vc.isRunning = false
+//        }
     }
     
     func sceneWillEnterForeground(_ scene: UIScene) {
