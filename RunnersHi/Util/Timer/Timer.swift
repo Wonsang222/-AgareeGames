@@ -36,6 +36,7 @@ class MyTimer {
     
     lazy var flag:BehaviorSubject<Bool> =  { [unowned self] in
        let sub = BehaviorSubject<Bool>(value: false)
+        
         sub
             .filter{$0}
             .flatMap{ _ in self.repeater }

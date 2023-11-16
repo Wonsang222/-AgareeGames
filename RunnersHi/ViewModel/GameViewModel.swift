@@ -13,9 +13,9 @@ import NSObject_Rx
 
 // fetching + start
 
-class GameViewModel:BaseViewModel {
+class GameViewModel<T>:BaseViewModel where T:Playable {
     
-    private var targetArr = [GamePlayModel]()
+    private var targetArr = [T]()
     
     let fetchTargets:AnyObserver<Void>
     let startGame:AnyObserver<Void>
@@ -24,7 +24,7 @@ class GameViewModel:BaseViewModel {
     // output
     let target = BehaviorRelay<GamePlayModel?>(value: nil)
     
-    init(game:PregameModel, coordinator:Coordinator) {
+    init<V>(game:V, coordinator:Coordinator) where V:Networkable {
         
         let fetching = PublishSubject<Void>()
         let fetchImages = PublishSubject<Dictionary<String, String>>()
@@ -53,7 +53,7 @@ class GameViewModel:BaseViewModel {
                 self?.errorMessage.onNext(err)
             })
             .subscribe(onNext: { [unowned self] targets in
-                self.targetArr = targets
+                self.target = targets
             })
             .disposed(by: rx.disposeBag)
         

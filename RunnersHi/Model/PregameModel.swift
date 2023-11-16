@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PregameModel:PlayableType{
+struct PregameModel:Networkable{
     let gameType: GameKinds
     var players: Int
     

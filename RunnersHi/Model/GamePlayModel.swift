@@ -6,9 +6,15 @@
 //
 import UIKit
 
-// 실수 -> struct를 json 파일로 인코딩
+protocol Playable {
+    var name:String { get }
+    var photo:UIImage? { get set }
+    init(name:String, photo:UIImage?)
+}
 
-struct GamePlayModel {
+
+
+struct GamePlayModel:Playable {
     let name:String
     var photo:UIImage?
     

@@ -135,9 +135,9 @@ final class NetworkService{
         }
     }
     
-    func fetchImageRX(source:Dictionary<String,String>) -> Observable<[GamePlayModel]> {
+    func fetchImageRX<T:Playable>(source:Dictionary<String,String>) -> Observable<[T]>  {
         let ob = source.map{ name, url in
-            return Observable<GamePlayModel>.create { [unowned self] observer in
+            return Observable<T>.create { [unowned self] observer in
                 guard let url = URL(string: url) else {
                     observer.onError(MyServer(statusCode: 500).getError())
                     return Disposables.create()
@@ -168,7 +168,7 @@ final class NetworkService{
                         observer.onError(MyServer(statusCode: 400).getError())
                         return
                     }
-                    let model = GamePlayModel(name: name, photo: img)
+                    let model = T(name: name, photo: img)
                     observer.onNext(model)
                     observer.onCompleted()
                 }

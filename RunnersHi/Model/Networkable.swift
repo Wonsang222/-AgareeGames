@@ -7,7 +7,9 @@
 
 import Foundation
 
-protocol PlayableType {
+protocol Networkable {
     var gameType:GameKinds { get }
     var players:Int { get }
+    
+    func getParam() -> HttpBaseResource
 }
