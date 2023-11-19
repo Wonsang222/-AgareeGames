@@ -11,7 +11,6 @@ import RxSwift
 final class NetworkService{
     
     static let shared = NetworkService()
-    
     private init () {}
     
     let serialQueue = DispatchQueue(label: "serial")

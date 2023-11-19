@@ -24,7 +24,7 @@ class GameViewModel<T>:BaseViewModel where T:Playable {
     // output
     let target = BehaviorRelay<GamePlayModel?>(value: nil)
     
-    init<V>(game:V, coordinator:Coordinator) where V:Networkable {
+    init<V:Networkable>(game:V, coordinator:Coordinator) {
         
         let fetching = PublishSubject<Void>()
         let fetchImages = PublishSubject<Dictionary<String, String>>()
@@ -53,7 +53,7 @@ class GameViewModel<T>:BaseViewModel where T:Playable {
                 self?.errorMessage.onNext(err)
             })
             .subscribe(onNext: { [unowned self] targets in
-                self.target = targets
+                self.targetArr = targets
             })
             .disposed(by: rx.disposeBag)
         

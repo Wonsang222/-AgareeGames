@@ -106,6 +106,8 @@
 		C196837D2A88F6FB0098774F /* Networkable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C196837C2A88F6FB0098774F /* Networkable.swift */; };
 		C1A2F4942AF138C500AD3DB9 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A2F4932AF138C500AD3DB9 /* GameViewModel.swift */; };
 		C1A2F4952AF138C500AD3DB9 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A2F4932AF138C500AD3DB9 /* GameViewModel.swift */; };
+		C1A328DE2B088DC700CD09E2 /* STTEngineRX.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A328DD2B088DC700CD09E2 /* STTEngineRX.swift */; };
+		C1A328DF2B088DC700CD09E2 /* STTEngineRX.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A328DD2B088DC700CD09E2 /* STTEngineRX.swift */; };
 		C1A778B22A5D844600F08678 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E17BBA92A5D062E00D94230 /* AuthManager.swift */; };
 		C1E439A42AAC2B0900BAB674 /* UIViewController+UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E439A32AAC2B0900BAB674 /* UIViewController+UIAlertController.swift */; };
 		C1E439A52AAC2B0900BAB674 /* UIViewController+UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E439A32AAC2B0900BAB674 /* UIViewController+UIAlertController.swift */; };
@@ -173,6 +175,7 @@
 		C196837A2A88F6A60098774F /* PregameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PregameModel.swift; sourceTree = "<group>"; };
 		C196837C2A88F6FB0098774F /* Networkable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networkable.swift; sourceTree = "<group>"; };
 		C1A2F4932AF138C500AD3DB9 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		C1A328DD2B088DC700CD09E2 /* STTEngineRX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = STTEngineRX.swift; sourceTree = "<group>"; };
 		C1E439A32AAC2B0900BAB674 /* UIViewController+UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+UIAlertController.swift"; sourceTree = "<group>"; };
 		C1F3E80B2A64344D0004619E /* Speech.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Speech.framework; path = System/Library/Frameworks/Speech.framework; sourceTree = SDKROOT; };
 		C1F4B7762AF93287009DCF35 /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
@@ -302,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				C119CBCD29F951BF00648638 /* STTEngine.swift */,
+				C1A328DD2B088DC700CD09E2 /* STTEngineRX.swift */,
 			);
 			path = SpeechToText;
 			sourceTree = "<group>";
@@ -715,6 +719,7 @@
 				C1649BFB2A47D4260094D56D /* Reachability.swift in Sources */,
 				C1649BFD2A47D4260094D56D /* BaseView.swift in Sources */,
 				C1649BFE2A47D4260094D56D /* HowToPlayBaseView.swift in Sources */,
+				C1A328DF2B088DC700CD09E2 /* STTEngineRX.swift in Sources */,
 				C1649BFF2A47D4260094D56D /* IntroView.swift in Sources */,
 				C15AA81F2A67D2C100AF24F3 /* AgareeGames.xcdatamodeld in Sources */,
 				7E7D16DA2A95B02B00D3FE52 /* MemoryStorage.swift in Sources */,
@@ -774,6 +779,7 @@
 				C176FECF2A1A5C8800C7EFE6 /* Reachability.swift in Sources */,
 				7E3544AB2A13160E00B844E6 /* BaseView.swift in Sources */,
 				C11D6EE82A41E84B00F59E15 /* HowToPlayBaseView.swift in Sources */,
+				C1A328DE2B088DC700CD09E2 /* STTEngineRX.swift in Sources */,
 				7E20755D29F9FBF8000BFE61 /* IntroView.swift in Sources */,
 				7E7D16D92A95B02B00D3FE52 /* MemoryStorage.swift in Sources */,
 				C15AA81E2A67D2C100AF24F3 /* AgareeGames.xcdatamodeld in Sources */,
