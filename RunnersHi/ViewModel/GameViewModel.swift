@@ -18,24 +18,16 @@ class GameViewModel<T>:BaseViewModel where T:Playable {
     private var targetArr = [T]()
     
     let fetchTargets:AnyObserver<Void>
-    let startGame:AnyObserver<Void>
-    
-    
-    let loadTarget:PublishRelay<Void>
-
+    let target:BehaviorRelay<T?> = BehaviorRelay(value: nil)
     // output
-    let target:Driver<T>
     
     init<V:Networkable>(game:V, coordinator:Coordinator) {
         
         let fetching = PublishSubject<Void>()
         let fetchImages = PublishSubject<Dictionary<String, String>>()
-        let starting = PublishSubject<Void>()
         let reloading = PublishSubject<Void>()
     
         fetchTargets = fetching.asObserver()
-        startGame = starting.asObserver()
-        loadTarget = PublishRelay<Void>()
         
         super.init(sceneCoordinator: coordinator)
         
@@ -58,40 +50,41 @@ class GameViewModel<T>:BaseViewModel where T:Playable {
                 self.targetArr = targets
             })
             .disposed(by: rx.disposeBag)
+
     }
     
-    private func answerAction() -> Action<String, Void> {
-        return Action<String, Void> { [unowned self] input in
-            
-            
-     
-            
-            guard let answer = self.target.value?.name else {
-                errorMessage.onNext(GameError.InGame)
-                return .empty()
-            }
-                
-            let submit = input.components(separatedBy: "").joined()
- 
-            guard answer.contains(submit) else {
-                return Observable.just(())
-            }
-            
-            loadTarget.accept(())
-            return Observable.just(())
-        }
-    }
+//    private func answerAction() -> Action<String, Void> {
+//        return Action<String, Void> { [unowned self] input in
+//            
+//            
+//     
+//            
+//            guard let answer = self.target.value?.name else {
+//                errorMessage.onNext(GameError.InGame)
+//                return .empty()
+//            }
+//                
+//            let submit = input.components(separatedBy: "").joined()
+// 
+//            guard answer.contains(submit) else {
+//                return Observable.just(())
+//            }
+//            
+//            loadTarget.accept(())
+//            return Observable.just(())
+//        }
+//    }
     
-    private func judgeAction(isWin:Bool) -> Action<Void, Void> {
-        
-        return Action<Void, Void> { [unowned self] _ in
-            let viewModel = ResultViewModel(isWin: true, sc: self.sceneCoordinator)
-            let nextScene:Scene = .Play(.result(viewModel))
-            return sceneCoordinator.transition(to: nextScene
-                                               , using: .push
-                                               , animation: true)
-            .asObservable()
-            .map { _ in } 
-        }
-    }
+//    private func judgeAction(isWin:Bool) -> Action<Void, Void> {
+//        
+//        return Action<Void, Void> { [unowned self] _ in
+//            let viewModel = ResultViewModel(isWin: true, sc: self.sceneCoordinator)
+//            let nextScene:Scene = .Play(.result(viewModel))
+//            return sceneCoordinator.transition(to: nextScene
+//                                               , using: .push
+//                                               , animation: true)
+//            .asObservable()
+//            .map { _ in } 
+//        }
+//    }
 }
