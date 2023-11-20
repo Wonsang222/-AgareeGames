@@ -14,7 +14,7 @@ protocol Playable {
 
 
 
-struct GamePlayModel:Playable {
+struct GuessWhoPlayModel:Playable {
     let name:String
     var photo:UIImage?
     

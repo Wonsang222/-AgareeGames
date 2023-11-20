@@ -9,9 +9,13 @@ import UIKit
 import RxSwift
 import RxRelay
 
-final class GuessWhoViewModel:GameViewModel {
+final class GuessWhoViewModel:GameViewModel<GuessWhoPlayModel> {
     
-
+    override init<V>(game: V, coordinator: Coordinator) where V : Networkable {
+        
+        super.init(game: game, coordinator: coordinator)
+    }
+    
 }
 
 

@@ -10,14 +10,6 @@ import RxSwift
 import Speech
 import AVFoundation
 
-extension AVAudioEngine {
-    var rx_isRunning:Observable<Bool> {
-        return Observable.create{[unowned self] ob in
-            ob.onNext(self.isRunning)
-            return Disposables.create()
-        }
-    }
-}
 
 final class STTEngineRX:NSObject {
     
@@ -66,6 +58,17 @@ final class STTEngineRX:NSObject {
     @discardableResult
     func runRecognizer() -> Observable<String> {
         return Observable.create { [unowned self] ob in
+            
+            if self.audioEngine.isRunning {
+                self.audioEngine.stop()
+                self.recognitionRequest?.endAudio()
+                self.audioEngine.inputNode.removeTap(onBus: 0)
+            }
+                
+            if self.recognitionTask != nil {
+                self.recognitionTask?.cancel()
+                self.recognitionTask = nil
+            }
           
             let inputNode = self.audioEngine.inputNode
             
@@ -73,7 +76,8 @@ final class STTEngineRX:NSObject {
                 return Disposables.create()
             }
             
-            self.recognitionTask = self.speechRecognizer.recognitionTask(with: recognitionRequest, resultHandler: { (result, error) in
+            self.recognitionTask = self.speechRecognizer.recognitionTask(with: recognitionRequest,
+                                                                         resultHandler: { (result, error) in
                 
                 var isFinal = false
                 
@@ -81,8 +85,7 @@ final class STTEngineRX:NSObject {
                     let text = result?.bestTranscription.formattedString
                     guard let text = text else { return }
                     ob.onNext(text)
-               
-
+            
                     isFinal = (result?.isFinal)!
                 }
                 
@@ -108,7 +111,6 @@ final class STTEngineRX:NSObject {
             return Disposables.create()
         }
     }
-    
 
     /*
      1. custom rx extension 구현
