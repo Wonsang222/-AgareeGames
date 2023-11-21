@@ -32,9 +32,6 @@ class GameController:BaseController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        modalPresentationStyle = .fullScreen
-        modalTransitionStyle = .partialCurl
-//        configureNavi()
     }
     
     //MARK: - Methods

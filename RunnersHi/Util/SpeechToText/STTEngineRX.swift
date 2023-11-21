@@ -19,6 +19,8 @@ final class STTEngineRX:NSObject {
     private var recognitionRequest:SFSpeechAudioBufferRecognitionRequest?
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
+    var submittedText = ""
+    let submit = PublishSubject<String>()
     
     @discardableResult
     func startEngine()  -> Completable {
@@ -84,7 +86,9 @@ final class STTEngineRX:NSObject {
                 if result != nil {
                     let text = result?.bestTranscription.formattedString
                     guard let text = text else { return }
-                    ob.onNext(text)
+                    
+                    self.submittedText = text
+                    self.submit.onNext(submittedText)
             
                     isFinal = (result?.isFinal)!
                 }
@@ -110,6 +114,10 @@ final class STTEngineRX:NSObject {
             } catch {  }
             return Disposables.create()
         }
+    }
+    
+    func resetText() {
+        submittedText = ""
     }
 
     /*

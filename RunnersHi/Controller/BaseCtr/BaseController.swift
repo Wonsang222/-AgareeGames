@@ -31,10 +31,6 @@ class BaseController:UIViewController{
         loader.removeFromSuperview()
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle{
-        return .darkContent
-    }
-                
     final func goBackToRoot(){
         navigationController?.popToRootViewController(animated: true)
     }

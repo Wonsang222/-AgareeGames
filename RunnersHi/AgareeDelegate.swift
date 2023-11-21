@@ -61,6 +61,10 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
 //        
 //        let mainCoordinator = AppCoordinator(window: safeWindow, navi: nav)
 //        mainCoordinator.start()
+        
+        
+        window?.rootViewController = GuessWhoController()
+        window?.makeKeyAndVisible()
     }
     
     func sceneDidEnterBackground(_ scene: UIScene) {

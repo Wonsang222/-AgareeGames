@@ -12,6 +12,7 @@ import RxRelay
 final class GuessWhoViewModel:GameViewModel<GuessWhoPlayModel> {
     
     let startGame:AnyObserver<Void>
+
     
     override init<V>(game: V, coordinator: Coordinator) where V : Networkable {
         
