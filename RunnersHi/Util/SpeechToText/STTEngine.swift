@@ -62,6 +62,7 @@ final class STTEngine{
                     self.recognitionTask = nil
                 }
                 
+                // input output effect mixer other 노드 존재
                 let inputNode = self.audioEngine.inputNode
                 
                 guard let recognitionRequest = self.recognitionRequest else { return }
@@ -99,9 +100,6 @@ final class STTEngine{
                 do {
                     try self.audioEngine.start()
                 } catch {
-                    DispatchQueue.main.async { [weak self] in
-       
-                    }
                 }
             }
         }

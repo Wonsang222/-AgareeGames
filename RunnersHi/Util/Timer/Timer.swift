@@ -12,7 +12,9 @@ class MyTimer {
     
     static let shared = MyTimer()
     let time = PublishSubject<Double>()
-    let bag = DisposeBag()
+    private let bag = DisposeBag()
+    let starting:AnyObserver<Void>
+    
     
     lazy var repeater:Observable<Void> = {
        let repeater = Observable<Int>.interval(.milliseconds(20),
@@ -23,6 +25,7 @@ class MyTimer {
                   })
                   .withUnretained(self)
                   .flatMap{ timer,total -> Observable<Void> in
+                      print(total)
                       if total >= Global.GAMESEC {
                           timer.flag.onNext(false)
                           return .empty()
@@ -34,7 +37,7 @@ class MyTimer {
         return repeater
     }()
     
-    lazy var flag:BehaviorSubject<Bool> =  { [unowned self] in
+    private lazy var flag:BehaviorSubject<Bool> =  { [unowned self] in
        let sub = BehaviorSubject<Bool>(value: false)
         
         sub
@@ -46,5 +49,16 @@ class MyTimer {
         return sub
     }()
 
-    private init() {}
+    private init() {
+        let starter = PublishSubject<Void>()
+        
+        starting = starter.asObserver()
+        
+        starter
+            .flatMap{ [unowned self] _ in self.repeater}
+            .debug()
+            .subscribe()
+            .disposed(by: bag)
+        
+    }
 }
