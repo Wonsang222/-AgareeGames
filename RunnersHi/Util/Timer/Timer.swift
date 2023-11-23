@@ -7,13 +7,14 @@
 
 import Foundation
 import RxSwift
+import RxRelay
 
 class MyTimer {
     
     static let shared = MyTimer()
     let time = PublishSubject<Double>()
     private let bag = DisposeBag()
-    let starting:AnyObserver<Void>
+    let flag = BehaviorRelay(value: false)
     
     
     lazy var repeater:Observable<Void> = {
@@ -27,7 +28,7 @@ class MyTimer {
                   .flatMap{ timer,total -> Observable<Void> in
                       print(total)
                       if total >= Global.GAMESEC {
-                          timer.flag.onNext(false)
+                          timer.flag.accept(false)
                           return .empty()
                       }
                       timer.time.onNext(total)
@@ -37,28 +38,14 @@ class MyTimer {
         return repeater
     }()
     
-    private lazy var flag:BehaviorSubject<Bool> =  { [unowned self] in
-       let sub = BehaviorSubject<Bool>(value: false)
-        
-        sub
-            .filter{$0}
-            .flatMap{ _ in self.repeater }
-            .subscribe(onNext: { _ in })
-            .disposed(by: self.bag )
-        
-        return sub
-    }()
+
 
     private init() {
-        let starter = PublishSubject<Void>()
         
-        starting = starter.asObserver()
-        
-        starter
-            .flatMap{ [unowned self] _ in self.repeater}
-            .debug()
-            .subscribe()
-            .disposed(by: bag)
-        
+        .filter{$0}
+        .flatMap{ _ in self.repeater }
+        .subscribe(onNext: { _ in })
+        .disposed(by: self.bag )
+
     }
 }
