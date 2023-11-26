@@ -16,6 +16,4 @@ class BaseViewModel:NSObject{
     init(sceneCoordinator: Coordinator) {
         self.sceneCoordinator = sceneCoordinator
     }
-    
-    
 }

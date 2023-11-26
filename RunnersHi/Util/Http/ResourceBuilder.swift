@@ -30,7 +30,7 @@ final class ResourceBuilder {
     }
     
     func setParams(_ param1:String, _ param2:Any) -> Self {
-        switch param2{
+        switch param2 {
         case let num as Int:
             self.params[param1] = String(num)
         case let str as String:
@@ -41,7 +41,7 @@ final class ResourceBuilder {
         return self
     }
     
-    func setPath(_ path:String) -> Self{
+    func setPath(_ path:String) -> Self {
         self.path = path
         return self
     }

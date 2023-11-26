@@ -8,6 +8,7 @@
 import Foundation
 
 struct HttpBaseResource {
+    
     private let reqUrl = Global.URL
     private let reqMethod:HttpMethod
     private let isMultiPart:Bool
@@ -29,7 +30,7 @@ struct HttpBaseResource {
         resultReq.allowsCellularAccess = true
         resultReq.httpMethod = reqMethod.rawValue
         
-        for (key, value) in reqHeader{
+        for (key, value) in reqHeader {
             resultReq.addValue(value, forHTTPHeaderField: key)
         }
         return resultReq

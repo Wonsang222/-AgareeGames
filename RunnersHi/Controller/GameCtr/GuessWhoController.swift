@@ -10,7 +10,6 @@ import RxSwift
 import RxCocoa
 import NSObject_Rx
 
-
 final class GuessWhoController:GameController {
 
     //MARK: - Properties
@@ -21,47 +20,29 @@ final class GuessWhoController:GameController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
-        progressView.isHidden = false
-       
-        MyTimer.shared.time
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] time in
-                self?.progressView.progress = Float(time)
-            })
-            .disposed(by: rx.disposeBag)
-        
-//        rx.viewDidAppear
-//            .map{ _ in }
-//            .take(1)
-//            .subscribe(MyTimer.shared.starting)
-//            .disposed(by: rx.disposeBag)
-        
-        MyTimer.shared.repeater
-            .observe(on: ConcurrentDispatchQueueScheduler.init(qos: .userInteractive))
-            .subscribe()
-            .disposed(by: rx.disposeBag)
-        
-        
-        
-       
-        
-        
-        
-        
-        
-        
+        configureUI()   
     }
     
     
     func bindViewModel() {
         
-        
+        viewModel.getPhoto
+            .drive(guessView.imageView.rx.image)
+            .disposed(by: rx.disposeBag)
     }
     
+    private func bindView() {
+        
+        MyTimer.shared.time
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [unowned self] second in
+                let floatSec = Float(second)
+                self.progressView.progress = floatSec
+            })
+            .disposed(by: rx.disposeBag)
+    }
     
 
-    
     //MARK: - Methods
     private func configureUI(){
         view.addSubview(guessView)

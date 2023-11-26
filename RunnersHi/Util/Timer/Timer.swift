@@ -14,38 +14,38 @@ class MyTimer {
     static let shared = MyTimer()
     let time = PublishSubject<Double>()
     private let bag = DisposeBag()
-    let flag = BehaviorRelay(value: false)
-    
-    
-    lazy var repeater:Observable<Void> = {
-       let repeater = Observable<Int>.interval(.milliseconds(20),
-                                               scheduler: ConcurrentDispatchQueueScheduler(qos: .userInteractive))
-                  .map{ _ in 0.02 }
-                  .scan(0, accumulator: { total, newValue in
-                          return total + newValue
-                  })
-                  .withUnretained(self)
-                  .flatMap{ timer,total -> Observable<Void> in
-                      print(total)
-                      if total >= Global.GAMESEC {
-                          timer.flag.accept(false)
-                          return .empty()
-                      }
-                      timer.time.onNext(total)
-                      return .empty()
-                  }
-                  .take(until: flag.filter({!$0}))
-        return repeater
-    }()
-    
-
+    private var repeater:Observable<Void>!
+    let timerControlelr = BehaviorRelay(value: false)
 
     private init() {
+        setTimer()
+    }
+    
+    private func setTimer() {
         
-        .filter{$0}
-        .flatMap{ _ in self.repeater }
-        .subscribe(onNext: { _ in })
-        .disposed(by: self.bag )
-
+        repeater = Observable<Int>.interval(.milliseconds(20),
+                                            scheduler: SerialDispatchQueueScheduler(qos: .userInteractive))
+        .map { _ in 0.02 }
+        .scan(0, accumulator: { total, newValue in
+            return total + newValue
+        })
+        .withUnretained(self)
+        .flatMap{ timer, total -> Observable<Void> in
+            print(total)
+            if total >= Global.GAMESEC {
+                timer.timerControlelr.accept(false)
+                return .empty()
+            }
+            timer.time.onNext(total)
+            return .empty()
+        }
+        .take(until: timerControlelr.filter({!$0}))
+        
+        timerControlelr
+            .filter { $0 }
+            .flatMap{[unowned self] _ in self.repeater }
+            .subscribe()
+            .disposed(by: bag)
+        
     }
 }

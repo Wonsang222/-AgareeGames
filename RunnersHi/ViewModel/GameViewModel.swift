@@ -16,9 +16,33 @@ import NSObject_Rx
 class GameViewModel<T>:BaseViewModel where T:Playable {
     
     private var targetArr = [T]()
-    
+    private let target:BehaviorRelay<T?> = BehaviorRelay(value: nil)
     let fetchTargets:AnyObserver<Void>
-    let target:BehaviorRelay<T?> = BehaviorRelay(value: nil)
+    
+    var getPhoto:Driver<UIImage> {
+        return Observable.create { [weak self] ob in
+            if let photo = self?.target.value?.photo {
+                ob.onNext(photo)
+            } else {
+                ob.onNext(UIImage(resource: .joker))
+            }
+            ob.onCompleted()
+            return Disposables.create()
+        }.asDriver(onErrorJustReturn: UIImage(resource: .joker))
+    }
+    
+    var getAnswer:Driver<String> {
+        return Observable.create { [weak self] ob in
+            if let name = self?.target.value?.name {
+                ob.onNext(name)
+            } else {
+                ob.onNext("")
+            }
+            ob.onCompleted()
+            return Disposables.create()
+        }.asDriver(onErrorJustReturn: "")
+    }
+    
     // output
     
     init<V:Networkable>(game:V, coordinator:Coordinator) {

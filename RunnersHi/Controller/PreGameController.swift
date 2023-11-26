@@ -12,7 +12,7 @@ import RxViewController
 import Action
 import NSObject_Rx
 
-final class PreGameController:BaseController, ViewModelBindableType{
+final class PreGameController:BaseController, ViewModelBindableType {
 
     private let preGameView = PreGameView()
     var viewModel: PregameViewModel!
@@ -34,12 +34,12 @@ final class PreGameController:BaseController, ViewModelBindableType{
             .map{ _ in }
                 
         Observable.merge([entrance, buttonTapped])
+            .observe(on: MainScheduler.instance)
             .withUnretained(self)
             .flatMapLatest { vc -> Observable<[AudioError]> in
                 return vc.0.viewModel.permissions
                     .toArray()
                     .asObservable()
-                    .observe(on: MainScheduler.instance)
                     .catch{ [weak self] err -> Observable<[AudioError]> in
                         self?.handleAudioError(err: err as! AudioError)
                         return .empty()
@@ -50,7 +50,7 @@ final class PreGameController:BaseController, ViewModelBindableType{
             })
             .disposed(by:bag)
         
-        // 수정할것
+        // 수정할것 (bind)  +  updateLabelFontsize 함수변경
         viewModel.gameTitle
             .observe(on: MainScheduler.instance)
             .subscribe(onSuccess: { [weak self] title in
@@ -61,14 +61,16 @@ final class PreGameController:BaseController, ViewModelBindableType{
             })
             .disposed(by: bag)
         
-        // checker 
+        // checker
         preGameView.segment.rx.selectedSegmentIndex
+            .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] idx in
                 self?.viewModel.updateModel(idx)
             })
             .disposed(by: bag)
         
         preGameView.howToPlayButton.rx.tap
+            .observe(on: MainScheduler.instance)
             .withUnretained(self)
             .flatMap{ vc in vc.0.viewModel.gameInst.asObservable()}
             .subscribe(onNext: { [weak self] instView in
@@ -85,7 +87,6 @@ final class PreGameController:BaseController, ViewModelBindableType{
             htpv.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7),
             htpv.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.7)
         ])
-
         htpv.layoutIfNeeded()
     }
     

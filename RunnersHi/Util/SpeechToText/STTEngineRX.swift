@@ -7,6 +7,7 @@
 
 import Foundation
 import RxSwift
+import RxRelay
 import Speech
 import AVFoundation
 
@@ -20,7 +21,7 @@ final class STTEngineRX:NSObject {
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
     private var submittedText = ""
-    let submit = PublishSubject<String>()
+    let submit = PublishRelay<String>()
     
     @discardableResult
     func startEngine()  -> Completable {
@@ -35,6 +36,7 @@ final class STTEngineRX:NSObject {
         
         self.recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
         guard let recognitionRequest = self.recognitionRequest else {
+
             return .error(NSError(domain: "temp", code: 111))
         }
         recognitionRequest.shouldReportPartialResults = true
@@ -75,7 +77,8 @@ final class STTEngineRX:NSObject {
         
         let inputNode = self.audioEngine.inputNode
         
-        guard let recognitionRequest = self.recognitionRequest else { return sub.asCompletable()
+        guard let recognitionRequest = self.recognitionRequest else {
+            return sub.asCompletable()
         }
         
         self.recognitionTask = self.speechRecognizer.recognitionTask(with: recognitionRequest,
@@ -87,8 +90,8 @@ final class STTEngineRX:NSObject {
                 let text = result?.bestTranscription.formattedString
                 guard let text = text else { return }
                 
-                self.submittedText = text
-                self.submit.onNext(submittedText)
+                self.submittedText += text
+                self.submit.accept(submittedText)
                 
                 isFinal = (result?.isFinal)!
             }
