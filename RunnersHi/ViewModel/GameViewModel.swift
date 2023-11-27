@@ -42,9 +42,7 @@ class GameViewModel<T>:BaseViewModel where T:Playable {
             return Disposables.create()
         }.asDriver(onErrorJustReturn: "")
     }
-    
-    // output
-    
+
     init<V:Networkable>(game:V, coordinator:Coordinator) {
         
         let fetching = PublishSubject<Void>()
@@ -76,39 +74,4 @@ class GameViewModel<T>:BaseViewModel where T:Playable {
             .disposed(by: rx.disposeBag)
 
     }
-    
-//    private func answerAction() -> Action<String, Void> {
-//        return Action<String, Void> { [unowned self] input in
-//            
-//            
-//     
-//            
-//            guard let answer = self.target.value?.name else {
-//                errorMessage.onNext(GameError.InGame)
-//                return .empty()
-//            }
-//                
-//            let submit = input.components(separatedBy: "").joined()
-// 
-//            guard answer.contains(submit) else {
-//                return Observable.just(())
-//            }
-//            
-//            loadTarget.accept(())
-//            return Observable.just(())
-//        }
-//    }
-    
-//    private func judgeAction(isWin:Bool) -> Action<Void, Void> {
-//        
-//        return Action<Void, Void> { [unowned self] _ in
-//            let viewModel = ResultViewModel(isWin: true, sc: self.sceneCoordinator)
-//            let nextScene:Scene = .Play(.result(viewModel))
-//            return sceneCoordinator.transition(to: nextScene
-//                                               , using: .push
-//                                               , animation: true)
-//            .asObservable()
-//            .map { _ in } 
-//        }
-//    }
 }

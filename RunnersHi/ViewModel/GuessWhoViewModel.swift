@@ -25,8 +25,13 @@ final class GuessWhoViewModel:GameViewModel<GuessWhoPlayModel> {
         
         starting
             .do(onNext: { _ in
-                
+                STTEngineRX.shared.startEngine()
             })
+            .do(onNext: { _ in
+                MyTimer.shared.timerControlelr.accept(true)
+            })
+            .flatMap{ STTEngineRX.shared.submit }
+            .
         
         
     }

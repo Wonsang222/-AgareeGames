@@ -23,7 +23,6 @@ final class GuessWhoController:GameController {
         configureUI()   
     }
     
-    
     func bindViewModel() {
         
         viewModel.getPhoto

@@ -13,9 +13,9 @@ class MyTimer {
     
     static let shared = MyTimer()
     let time = PublishSubject<Double>()
-    private let bag = DisposeBag()
-    private var repeater:Observable<Void>!
     let timerControlelr = BehaviorRelay(value: false)
+    private var repeater:Observable<Void>!
+    private let bag = DisposeBag()
 
     private init() {
         setTimer()

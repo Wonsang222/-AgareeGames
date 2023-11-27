@@ -118,14 +118,14 @@ final class STTEngineRX:NSObject {
         return sub.asCompletable()
     }
     
-    func resetText() {
+    func resetText() -> Completable {
+        let sub = PublishSubject<Never>()
+        
         submittedText = ""
+        sub.onCompleted()
+        return sub.asCompletable()
+        
     }
-    
-    /*
-     1. custom rx extension 구현
-     2. kvo 사용 avaudioengine이 kvo 를 지원하는가 -> 지원 x
-     */
     
     private override init () { }
 }
