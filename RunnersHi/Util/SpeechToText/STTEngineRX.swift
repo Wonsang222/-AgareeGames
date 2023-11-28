@@ -95,7 +95,7 @@ final class STTEngineRX:NSObject {
                 
                 self.submittedText += text
                 self.submit.accept(submittedText)
-                
+                sub.onCompleted()
                 isFinal = (result?.isFinal)!
             }
             
@@ -117,6 +117,7 @@ final class STTEngineRX:NSObject {
         
         do {
             try self.audioEngine.start()
+            sub.onCompleted()
         } catch {  }
         return sub.asCompletable()
     }
