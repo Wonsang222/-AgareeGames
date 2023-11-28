@@ -40,7 +40,10 @@ final class STTEngineRX:NSObject {
             return .error(NSError(domain: "temp", code: 111))
         }
         recognitionRequest.shouldReportPartialResults = true
-        sub.onCompleted()
+       
+        
+        
+        
         
         return sub.asCompletable()
     }

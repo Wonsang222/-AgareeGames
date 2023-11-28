@@ -21,6 +21,11 @@ final class GuessWhoController:GameController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()   
+          guessView.imageView.isHidden = false
+            progressView.isHidden = false
+        
+        
+        bindViewModel()
     }
     
     func bindViewModel() {
@@ -28,17 +33,20 @@ final class GuessWhoController:GameController {
         viewModel.getPhoto
             .drive(guessView.imageView.rx.image)
             .disposed(by: rx.disposeBag)
+        
+        
+        bindView()
     }
     
     private func bindView() {
-        
-        MyTimer.shared.time
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [unowned self] second in
-                let floatSec = Float(second)
-                self.progressView.progress = floatSec
-            })
-            .disposed(by: rx.disposeBag)
+//        
+//        MyTimer.shared.time
+//            .observe(on: MainScheduler.instance)
+//            .subscribe(onNext: { [unowned self] second in
+//                let floatSec = Float(second)
+//                self.progressView.progress = floatSec
+//            })
+//            .disposed(by: rx.disposeBag)
     }
     
 

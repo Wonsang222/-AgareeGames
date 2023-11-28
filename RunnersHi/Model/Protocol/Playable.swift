@@ -11,6 +11,9 @@ import RxSwift
 protocol Playable {
     var name:String { get }
     var photo:UIImage? { get set }
-    func matchAnswer(submission:String) -> Observable<Bool>
+    
     init(name:String, photo:UIImage?)
+    
+    func matchAnswer(submission:String) -> Observable<Bool>
+    
 }

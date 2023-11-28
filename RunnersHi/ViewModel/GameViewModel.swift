@@ -17,6 +17,7 @@ class GameViewModel<T>:BaseViewModel where T:Playable {
     
     private var targetArr = [T]()
     private let target:BehaviorRelay<T?> = BehaviorRelay(value: nil)
+    
     let fetchTargets:AnyObserver<Void>
     
     var getPhoto:Driver<UIImage> {
@@ -45,6 +46,8 @@ class GameViewModel<T>:BaseViewModel where T:Playable {
 
     init<V:Networkable>(game:V, coordinator:Coordinator) {
         
+
+        
         let fetching = PublishSubject<Void>()
         let fetchImages = PublishSubject<Dictionary<String, String>>()
         let reloading = PublishSubject<Void>()
@@ -53,25 +56,34 @@ class GameViewModel<T>:BaseViewModel where T:Playable {
         
         super.init(sceneCoordinator: coordinator)
         
+        let testGameModel = GuessWhoPlayModel(name: "민지", photo: UIImage(resource: .joker))
         fetching
-            .flatMap{ NetworkService.shared.fetchJsonRX(resource: game.getParam()) }
-            .do(onError: { [weak self] err in
-                self?.errorMessage.onNext(err)
+            .do(onNext: { [weak self] _ in
+                self?.target.accept(testGameModel as? T)
             })
-            .subscribe(onNext: { json in
-                fetchImages.onNext(json)
-            })
+            .subscribe()
             .disposed(by: rx.disposeBag)
         
-        fetchImages
-            .flatMap{ NetworkService.shared.fetchImageRX(source: $0)}
-            .do(onError: { [weak self] err in
-                self?.errorMessage.onNext(err)
-            })
-            .subscribe(onNext: { [unowned self] targets in
-                self.targetArr = targets
-            })
-            .disposed(by: rx.disposeBag)
+//
+//        fetching
+//            .flatMap{ NetworkService.shared.fetchJsonRX(resource: game.getParam()) }
+//            .do(onError: { [weak self] err in
+//                self?.errorMessage.onNext(err)
+//            })
+//            .subscribe(onNext: { json in
+//                fetchImages.onNext(json)
+//            })
+//            .disposed(by: rx.disposeBag)
+//        
+//        fetchImages
+//            .flatMap{ NetworkService.shared.fetchImageRX(source: $0)}
+//            .do(onError: { [weak self] err in
+//                self?.errorMessage.onNext(err)
+//            })
+//            .subscribe(onNext: { [unowned self] targets in
+//                self.targetArr = targets
+//            })
+//            .disposed(by: rx.disposeBag)
 
     }
 }

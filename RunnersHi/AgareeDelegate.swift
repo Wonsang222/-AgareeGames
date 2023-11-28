@@ -19,8 +19,6 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         var libraryFolderUrl = homePath.appendingPathComponent(Global.PHOTODB, isDirectory: true)
-        // coredata 초기화
-        DataManager.shared.setup(modelName: "AgareeGames")
         
         if !UserDefaults.standard.bool(forKey: initialKey){
             //처음 부팅
@@ -63,7 +61,14 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
 //        mainCoordinator.start()
         
         
-        window?.rootViewController = GuessWhoController()
+        
+        let preGameModel = PregameModel(gameType: .GuessWho, players: 1)
+
+        let testVM = GuessWhoViewModel(game: preGameModel, coordinator: AppCoordinator(navigationVC: BaseNavigationController(), window: window!))
+        let vc = GuessWhoController()
+        vc.viewModel = testVM
+        
+        window?.rootViewController = vc
         window?.makeKeyAndVisible()
     }
     

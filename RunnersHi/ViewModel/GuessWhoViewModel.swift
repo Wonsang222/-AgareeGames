@@ -18,6 +18,8 @@ final class GuessWhoViewModel:GameViewModel<GuessWhoPlayModel> {
     
     override init<V>(game: V, coordinator: Coordinator) where V : Networkable {
         
+        
+        
         let starting = PublishSubject<Void>()
         startGame = starting.asObserver()
         
@@ -27,11 +29,12 @@ final class GuessWhoViewModel:GameViewModel<GuessWhoPlayModel> {
             .do(onNext: { _ in
                 STTEngineRX.shared.startEngine()
             })
-            .do(onNext: { _ in
-                MyTimer.shared.timerControlelr.accept(true)
-            })
+//            .do(onNext: { _ in
+//                MyTimer.shared.timerControlelr.accept(true)
+//            })
             .flatMap{ STTEngineRX.shared.submit }
-            .
+        
+            
         
         
     }
