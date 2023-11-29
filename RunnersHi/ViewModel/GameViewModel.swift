@@ -45,9 +45,7 @@ class GameViewModel<T>:BaseViewModel where T:Playable {
     }
 
     init<V:Networkable>(game:V, coordinator:Coordinator) {
-        
-
-        
+    
         let fetching = PublishSubject<Void>()
         let fetchImages = PublishSubject<Dictionary<String, String>>()
         let reloading = PublishSubject<Void>()

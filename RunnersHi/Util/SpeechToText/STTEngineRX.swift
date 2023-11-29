@@ -21,32 +21,8 @@ final class STTEngineRX:NSObject {
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
     private var submittedText = ""
+    // oop 관점에서 좋은 publishRelay가 좋은 선택인지 모르겠다.
     let submit = PublishRelay<String>()
-    
-    @discardableResult
-    func startEngine()  -> Completable {
-        let sub = PublishSubject<Never>()
-        
-        let audioSession = AVAudioSession.sharedInstance()
-        do {
-            try audioSession.setCategory(AVAudioSession.Category.record)
-            try audioSession.setMode(AVAudioSession.Mode.measurement)
-            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
-        } catch {}
-        
-        self.recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
-        guard let recognitionRequest = self.recognitionRequest else {
-
-            return .error(NSError(domain: "temp", code: 111))
-        }
-        recognitionRequest.shouldReportPartialResults = true
-       
-        
-        
-        
-        
-        return sub.asCompletable()
-    }
     
     @discardableResult
     func offEngine() -> Completable {
@@ -62,10 +38,22 @@ final class STTEngineRX:NSObject {
         return sub.asCompletable()
     }
     
-    @discardableResult
     func runRecognizer() -> Completable {
         
         let sub = PublishSubject<Never>()
+        
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setCategory(AVAudioSession.Category.record)
+            try audioSession.setMode(AVAudioSession.Mode.measurement)
+            try audioSession.setActive(true, options: .notifyOthersOnDeactivation)
+        } catch {}
+        
+        self.recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
+        guard let recognitionRequest = self.recognitionRequest else {
+            return .error(NSError(domain: "temp", code: 111))
+        }
+        recognitionRequest.shouldReportPartialResults = true
         
         if self.audioEngine.isRunning {
             self.audioEngine.stop()
@@ -95,10 +83,10 @@ final class STTEngineRX:NSObject {
                 
                 self.submittedText += text
                 self.submit.accept(submittedText)
-                sub.onCompleted()
                 isFinal = (result?.isFinal)!
             }
             
+            // 에러 발생
             if error != nil || isFinal {
                 self.audioEngine.stop()
                 inputNode.removeTap(onBus: 0)
@@ -130,7 +118,6 @@ final class STTEngineRX:NSObject {
         return sub.asCompletable()
         
     }
-    
     private override init () { }
 }
 
