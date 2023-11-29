@@ -13,7 +13,7 @@ import NSObject_Rx
 
 // fetching + start
 
-class GameViewModel<T>:BaseViewModel where T:Playable {
+    class GameViewModel<T>:BaseViewModel where T:Playable {
     
     private var targetArr = [T]()
     private let target:BehaviorRelay<T?> = BehaviorRelay(value: nil)
@@ -46,21 +46,20 @@ class GameViewModel<T>:BaseViewModel where T:Playable {
 
     init<V:Networkable>(game:V, coordinator:Coordinator) {
     
-        let fetching = PublishSubject<Void>()
+//        let fetching = PublishSubject<Void>()
         let fetchImages = PublishSubject<Dictionary<String, String>>()
         let reloading = PublishSubject<Void>()
     
-        fetchTargets = fetching.asObserver()
+//        fetchTargets = fetching.asObserver()
         
         super.init(sceneCoordinator: coordinator)
-        
-        let testGameModel = GuessWhoPlayModel(name: "민지", photo: UIImage(resource: .joker))
-        fetching
-            .do(onNext: { [weak self] _ in
-                self?.target.accept(testGameModel as? T)
-            })
-            .subscribe()
-            .disposed(by: rx.disposeBag)
+//
+//        fetching
+//            .do(onNext: { [weak self] _ in
+//                self?.target.accept(testGameModel as? T)
+//            })
+//            .subscribe()
+//            .disposed(by: rx.disposeBag)
         
 //
 //        fetching

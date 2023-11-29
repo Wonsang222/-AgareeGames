@@ -22,7 +22,7 @@ final class STTEngineRX:NSObject {
     private let audioEngine = AVAudioEngine()
     private var submittedText = ""
     // oop 관점에서 좋은 publishRelay가 좋은 선택인지 모르겠다.
-    let submit = PublishRelay<String>()
+    let textRelay = PublishRelay<String>()
     
     @discardableResult
     func offEngine() -> Completable {
@@ -82,7 +82,7 @@ final class STTEngineRX:NSObject {
                 guard let text = text else { return }
                 
                 self.submittedText += text
-                self.submit.accept(submittedText)
+                self.textRelay.accept(submittedText)
                 isFinal = (result?.isFinal)!
             }
             

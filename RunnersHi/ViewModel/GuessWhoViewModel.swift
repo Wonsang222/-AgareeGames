@@ -14,33 +14,49 @@ import RxCocoa
 
 final class GuessWhoViewModel:GameViewModel<GuessWhoPlayModel> {
     
-    let aa = 5
     let startGame:AnyObserver<Void>
     
-    
+    private var targetArr = [GuessWhoPlayModel]()
 
-    
     override init<V>(game: V, coordinator: Coordinator) where V : Networkable {
         
         let starting = PublishSubject<Void>()
         let judging = PublishSubject<Void>()
+
         startGame = starting.asObserver()
         
         super.init(game: game, coordinator: coordinator)
+
+        let fetching = PublishSubject <Void>()
+        let testGameModel1 = GuessWhoPlayModel(name: "조커", photo: UIImage(resource: .joker))
+        let testGameModel2 = GuessWhoPlayModel(name: "민지", photo: UIImage(resource: .minji))
+        let testGameModel3 = GuessWhoPlayModel(name: "잡스", photo: UIImage(resource: .jobs))
+        
+        
         
         starting
-//            .do(onNext: { _ in
-//                MyTimer.shared.timerControlelr.accept(true)
-//            })
+        //            .do(onNext: { _ in
+        //                MyTimer.shared.timerControlelr.accept(true)
+        //            })
             .flatMap{ STTEngineRX.shared.runRecognizer() }
             .subscribe()
             .disposed(by: rx.disposeBag)
         
         
         judging
-            .flatMap{ STTEngineRX.shared.submit }
-//            .filter{ $0 }
- 
+            .flatMap{ STTEngineRX.shared.textRelay }
+        //            .filter{ $0 }
+        
+        
+        fetching
+            .do(onNext: { _ in
+                    targetArr = [testGameModel1, testGameModel2, testGameModel3]
+            })
+            
+        
+            
+        
+        
     }
 }
 
