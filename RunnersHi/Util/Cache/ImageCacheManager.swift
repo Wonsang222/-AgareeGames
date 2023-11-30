@@ -24,7 +24,7 @@ final class TempCache{
 }
 
 
-class DataManager{
+class DataManager {
     static let shared = DataManager()
     private init(){}
     

@@ -38,25 +38,17 @@ final class GuessWhoViewModel:GameViewModel<GuessWhoPlayModel> {
         //            .do(onNext: { _ in
         //                MyTimer.shared.timerControlelr.accept(true)
         //            })
+            .do(onNext: { [unowned self] _ in
+                self.targetArr = [testGameModel1, testGameModel2, testGameModel3]
+                
+            })
             .flatMap{ STTEngineRX.shared.runRecognizer() }
             .subscribe()
             .disposed(by: rx.disposeBag)
         
-        
         judging
             .flatMap{ STTEngineRX.shared.textRelay }
         //            .filter{ $0 }
-        
-        
-        fetching
-            .do(onNext: { _ in
-                    targetArr = [testGameModel1, testGameModel2, testGameModel3]
-            })
-            
-        
-            
-        
-        
     }
 }
 

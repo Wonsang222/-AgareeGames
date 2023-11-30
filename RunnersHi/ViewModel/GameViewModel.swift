@@ -18,8 +18,8 @@ import NSObject_Rx
     private var targetArr = [T]()
     private let target:BehaviorRelay<T?> = BehaviorRelay(value: nil)
     
-    let fetchTargets:AnyObserver<Void>
-    
+//    let fetchTargets:AnyObserver<Void>
+//    
     var getPhoto:Driver<UIImage> {
         return Observable.create { [weak self] ob in
             if let photo = self?.target.value?.photo {
@@ -60,6 +60,8 @@ import NSObject_Rx
 //            })
 //            .subscribe()
 //            .disposed(by: rx.disposeBag)
+        
+        
         
 //
 //        fetching

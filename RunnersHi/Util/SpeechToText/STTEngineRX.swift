@@ -11,7 +11,6 @@ import RxRelay
 import Speech
 import AVFoundation
 
-
 final class STTEngineRX:NSObject {
     
     static let shared = STTEngineRX()
@@ -21,8 +20,12 @@ final class STTEngineRX:NSObject {
     private var recognitionTask: SFSpeechRecognitionTask?
     private let audioEngine = AVAudioEngine()
     private var submittedText = ""
+    
+    private let bag = DisposeBag()
     // oop 관점에서 좋은 publishRelay가 좋은 선택인지 모르겠다.
     let textRelay = PublishRelay<String>()
+    private let serialScheduler = SerialDispatchQueueScheduler(qos: .userInteractive)
+    private let textSubject = PublishSubject<String>()
     
     @discardableResult
     func offEngine() -> Completable {
@@ -38,6 +41,7 @@ final class STTEngineRX:NSObject {
         return sub.asCompletable()
     }
     
+    // 비동기 처리 해야함 -> serial queue에서 submittedText에 접근하고 textRealay로 전달
     func runRecognizer() -> Completable {
         
         let sub = PublishSubject<Never>()
@@ -74,26 +78,26 @@ final class STTEngineRX:NSObject {
         
         self.recognitionTask = self.speechRecognizer.recognitionTask(with: recognitionRequest,
                                                                      resultHandler: { [unowned self] (result, error) in
-            
-            var isFinal = false
-            
-            if result != nil {
-                let text = result?.bestTranscription.formattedString
-                guard let text = text else { return }
-                
-                self.submittedText += text
-                self.textRelay.accept(submittedText)
-                isFinal = (result?.isFinal)!
-            }
-            
-            // 에러 발생
-            if error != nil || isFinal {
-                self.audioEngine.stop()
-                inputNode.removeTap(onBus: 0)
-                
-                self.recognitionRequest = nil
-                self.recognitionTask = nil
-            }
+
+                    var isFinal = false
+                    
+                    if result != nil {
+                        let text = result?.bestTranscription.formattedString
+                        guard let text = text else { return }
+                        
+                        self.textSubject.onNext(text)
+                        
+                        isFinal = (result?.isFinal)!
+                    }
+                    
+                    // 에러 발생
+                    if error != nil || isFinal {
+                        self.audioEngine.stop()
+                        inputNode.removeTap(onBus: 0)
+                        
+                        self.recognitionRequest = nil
+                        self.recognitionTask = nil
+                    }
         })
         
         let recordingFormat = inputNode.outputFormat(forBus: 0)
@@ -110,6 +114,7 @@ final class STTEngineRX:NSObject {
         return sub.asCompletable()
     }
     
+    @discardableResult
     func resetText() -> Completable {
         let sub = PublishSubject<Never>()
         
@@ -118,7 +123,17 @@ final class STTEngineRX:NSObject {
         return sub.asCompletable()
         
     }
-    private override init () { }
+    private override init () {
+        super.init()
+        
+        textSubject
+            .observe(on: serialScheduler)
+            .subscribe(onNext: { [unowned self] char in
+                self.submittedText += char
+                self.textRelay.accept(submittedText)
+            })
+            .disposed(by: bag)
+    }
 }
 
 
