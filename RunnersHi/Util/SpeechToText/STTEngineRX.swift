@@ -11,7 +11,7 @@ import RxRelay
 import Speech
 import AVFoundation
 
-final class STTEngineRX:NSObject {
+final class STTEngineRX {
     
     static let shared = STTEngineRX()
     
@@ -25,7 +25,6 @@ final class STTEngineRX:NSObject {
     // oop 관점에서 좋은 publishRelay가 좋은 선택인지 모르겠다.
     let textRelay = PublishRelay<String>()
     private let serialScheduler = SerialDispatchQueueScheduler(qos: .userInteractive)
-    private let textSubject = PublishSubject<String>()
     
     @discardableResult
     func offEngine() -> Completable {
@@ -36,16 +35,18 @@ final class STTEngineRX:NSObject {
         recognitionTask = nil
         audioEngine.inputNode.removeTap(onBus: 0)
         audioEngine.stop()
-        sub.onCompleted()
         
+        sub.onCompleted()
         return sub.asCompletable()
     }
     
-    // 비동기 처리 해야함 -> serial queue에서 submittedText에 접근하고 textRealay로 전달
+    //serial queue에서 submittedText에 접근하고 textRealay로 전달 -> race condition -> recognitionTask 내부적 serial 처리
+    @discardableResult
     func runRecognizer() -> Completable {
         
         let sub = PublishSubject<Never>()
         
+        print("start")
         let audioSession = AVAudioSession.sharedInstance()
         do {
             try audioSession.setCategory(AVAudioSession.Category.record)
@@ -85,7 +86,9 @@ final class STTEngineRX:NSObject {
                         let text = result?.bestTranscription.formattedString
                         guard let text = text else { return }
                         
-                        self.textSubject.onNext(text)
+                        self.submittedText += text
+                        print(submittedText)
+                        self.textRelay.accept(submittedText)
                         
                         isFinal = (result?.isFinal)!
                     }
@@ -123,17 +126,7 @@ final class STTEngineRX:NSObject {
         return sub.asCompletable()
         
     }
-    private override init () {
-        super.init()
-        
-        textSubject
-            .observe(on: serialScheduler)
-            .subscribe(onNext: { [unowned self] char in
-                self.submittedText += char
-                self.textRelay.accept(submittedText)
-            })
-            .disposed(by: bag)
-    }
+    private init () {}
 }
 
 

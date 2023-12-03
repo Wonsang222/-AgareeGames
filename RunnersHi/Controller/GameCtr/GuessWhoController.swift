@@ -29,13 +29,13 @@ final class GuessWhoController:GameController {
     }
     
     func bindViewModel() {
-        
-        viewModel.getPhoto
-            .drive(guessView.imageView.rx.image)
-            .disposed(by: rx.disposeBag)
-        
-        
         bindView()
+        
+        rx.viewDidLoad
+            .take(1)
+            .map{ _ in }
+            .bind(to: viewModel.gameStart)
+            .disposed(by: rx.disposeBag)
     }
     
     private func bindView() {

@@ -15,5 +15,18 @@ protocol Playable {
     init(name:String, photo:UIImage?)
     
     func matchAnswer(submission:String) -> Observable<Bool>
+}
+
+extension Playable {
+    func getName() -> String {
+        return name
+    }
     
+    func getPhoto() -> UIImage? {
+        return photo
+    }
+    
+    func isAnswer(text:String) -> Bool {
+        return self.name == text ? true : false
+    }
 }
