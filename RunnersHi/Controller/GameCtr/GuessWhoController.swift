@@ -34,7 +34,10 @@ final class GuessWhoController:GameController {
         rx.viewDidLoad
             .take(1)
             .map{ _ in }
-            .bind(to: viewModel.gameStart)
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                self?.viewModel.gameStart.onNext(())
+            })
             .disposed(by: rx.disposeBag)
     }
     
