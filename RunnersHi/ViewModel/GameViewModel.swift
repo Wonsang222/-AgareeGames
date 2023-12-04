@@ -15,7 +15,7 @@ import NSObject_Rx
 
 class GameViewModel<T>:BaseViewModel where T:Playable {
     
-    private var targetArr = [T]()
+//    private var targetArr = [T]()
     let target:BehaviorRelay<T?> = BehaviorRelay(value: nil)
     
     //    let fetchTargets:AnyObserver<Void>

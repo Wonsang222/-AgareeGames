@@ -13,8 +13,6 @@ protocol Playable {
     var photo:UIImage? { get set }
     
     init(name:String, photo:UIImage?)
-    
-    func matchAnswer(submission:String) -> Observable<Bool>
 }
 
 extension Playable {
@@ -27,6 +25,7 @@ extension Playable {
     }
     
     func isAnswer(text:String) -> Bool {
-        return self.name == text ? true : false
+        let submittedText = text.components(separatedBy: " ").joined()
+        return submittedText.contains(self.name)
     }
 }

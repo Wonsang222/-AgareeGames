@@ -9,12 +9,13 @@ import UIKit
 import RxSwift
 import RxRelay
 import RxCocoa
-import Action
-
-// timer - sign , setup photo, stt on
 
 final class GuessWhoViewModel:GameViewModel<GuessWhoPlayModel> {
-    private var targetArr = [GuessWhoPlayModel]()
+    
+    let timeLimit = 5.0
+    var targetArr = [GuessWhoPlayModel]()
+    
+    let timeSubject = PublishSubject<Double>()
     
     let gameStart:AnyObserver<Void>
 
@@ -24,7 +25,7 @@ final class GuessWhoViewModel:GameViewModel<GuessWhoPlayModel> {
         
         super.init(game: game, coordinator: coordinator)
         
-        let loading = PublishSubject<GuessWhoPlayModel?>()
+        let loading = PublishSubject<Void>()
         
         let testGameModel1 = GuessWhoPlayModel(name: "조커", photo: UIImage(resource: .joker))
         let testGameModel2 = GuessWhoPlayModel(name: "민지", photo: UIImage(resource: .minji))
@@ -32,33 +33,32 @@ final class GuessWhoViewModel:GameViewModel<GuessWhoPlayModel> {
         targetArr = [testGameModel1,testGameModel2,testGameModel3 ]
         
        starting
-            .debug()
-            .do(onNext: { [weak self] _ in
-                let a = self?.targetArr.popLast()
-                loading.onNext(a)
-                print(123)
+            .do(onNext: { _ in
+                loading.onNext(())
                 TimerManager.shared.timerControlelr.accept(true)
-//                STTEngineRX.shared.runRecognizer()
+                STTEngineRX.shared.runRecognizer()
             })
+            .take(1)
             .subscribe()
             .disposed(by: rx.disposeBag)
         
         // loading만 담당  -> next nil ? 성공
         loading
-            .flatMap{ [weak self] model -> Completable in
-                if let model = model {
-                    print(5)
-                    self?.target.accept(model)
-                    return Completable.empty()
-                } else {
-                    print("game clear")
-                    return Completable.empty()
-                }
+            .withUnretained(self)
+            .map { viewmodel in
+                return viewmodel.0.targetArr.popLast()
             }
-            .subscribe()
+            .subscribe(onNext: { [weak self] model in
+                if let model = model {
+                    self?.target.accept(model)
+                } else {
+                    // nil -> game clear
+                    print("game clear")
+                    
+                }
+            })
             .disposed(by: rx.disposeBag)
-    
-        // 맞추면 reset -> 맞출때까지 무한반복 + timeout  -> game over
+
        STTEngineRX.shared.textRelay
             .filter { [weak self] text in
                 guard let self  = self,
@@ -69,22 +69,25 @@ final class GuessWhoViewModel:GameViewModel<GuessWhoPlayModel> {
             }
             .subscribe(onNext: { [weak self] _ in
                     print("right")
+                STTEngineRX.shared.resetText()
+                
             })
             .disposed(by: rx.disposeBag)
         
         TimerManager.shared.time
-            .filter{ [weak self] time in
-                    
+            .withUnretained(self)
+            .filter{ data in
+                if data.1 > data.0.timeLimit {
+                    TimerManager.shared.timerControlelr.accept(false)
+                    return false
+                }
                 return true
             }
-            .subscribe(onNext: { [weak self] _ in
-                    print("time out")
+            .subscribe(onNext: { [weak self] time in
+                
+                self?.timeSubject.onNext(time.1)
             })
             .disposed(by: rx.disposeBag)
-        
-        
-        
-        
     }
 }
 

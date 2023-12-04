@@ -120,11 +120,9 @@ final class STTEngineRX {
     @discardableResult
     func resetText() -> Completable {
         let sub = PublishSubject<Never>()
-        
         submittedText = ""
         sub.onCompleted()
         return sub.asCompletable()
-        
     }
     private init () {}
 }
