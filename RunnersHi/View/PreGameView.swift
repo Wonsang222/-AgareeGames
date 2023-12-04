@@ -11,7 +11,6 @@ import RxCocoa
 
 final class PreGameView:BaseView{
     
-
     // Font Size 바꿈 -> method 사용
     //MARK: - TitleLabel
     let titleLabel:UILabel = {
@@ -33,8 +32,12 @@ final class PreGameView:BaseView{
         sc.tintColor = .white
         sc.selectedSegmentTintColor = .systemBlue
         let font = UIFont(name: Global.APPFONT, size: 13)
-        sc.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white, .font:font as Any], for: .selected)
-        sc.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white, .font:font as Any], for: .normal)
+        sc.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white,
+                                   .font:font as Any],
+                                  for: .selected)
+        sc.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white,
+                                   .font:font as Any],
+                                  for: .normal)
         sc.selectedSegmentIndex = 0
         sc.translatesAutoresizingMaskIntoConstraints = false
         return sc
@@ -52,35 +55,44 @@ final class PreGameView:BaseView{
                                                        .foregroundColor:UIColor.systemGray]
         let attributes2:[NSAttributedString.Key:Any] = [.font: UIFont.systemFont(ofSize: 16),
                                                        .foregroundColor:UIColor.white]
-        let attText1 = NSAttributedString(string: "게임방법이 궁금하신가요?", attributes: attributes1)
-        let attText2 = NSAttributedString(string: "좋습니다", attributes: attributes2)
-        button.setAttributedTitle(attText1, for: .normal)
-        button.setAttributedTitle(attText2, for: .highlighted)
+        let attText1 = NSAttributedString(string: "게임방법이 궁금하신가요?",
+                                          attributes: attributes1)
+        let attText2 = NSAttributedString(string: "좋습니다",
+                                          attributes: attributes2)
+        button.setAttributedTitle(attText1,
+                                  for: .normal)
+        button.setAttributedTitle(attText2,
+                                  for: .highlighted)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
-    private func configureTitle(){
+    private func configureTitle() {
         addSubview(labelContainerView)
         
         NSLayoutConstraint.activate([
-            labelContainerView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.35),
-            labelContainerView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.8),
+            labelContainerView.heightAnchor.constraint(equalTo: heightAnchor,
+                                                       multiplier: 0.35),
+            labelContainerView.widthAnchor.constraint(equalTo: widthAnchor,
+                                                      multiplier: 0.8),
             labelContainerView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            labelContainerView.topAnchor.constraint(equalTo: topAnchor, constant: 20)
+            labelContainerView.topAnchor.constraint(equalTo: topAnchor,
+                                                    constant: 20)
         ])
     }
     
-    private func configureSeg(){
+    private func configureSeg() {
         addSubview(segment)
         NSLayoutConstraint.activate([
-            segment.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            segment.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            segment.leadingAnchor.constraint(equalTo: leadingAnchor,
+                                             constant: 20),
+            segment.trailingAnchor.constraint(equalTo: trailingAnchor,
+                                              constant: -20),
             segment.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
     
-    private func configureLabel(){
+    private func configureLabel() {
         addSubview(howToPlayButton)
         NSLayoutConstraint.activate([
             howToPlayButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20),
@@ -96,14 +108,18 @@ final class PreGameView:BaseView{
         let width = height
         let y = (((howToPlayButton.frame.minY - segment.frame.maxY) / 2) + segment.frame.maxY) - (width / 2)
         let x = frame.midX - (width / 2)
-        playButton.frame = CGRect(x: x, y: y, width: width, height: height)
+        playButton.frame = CGRect(x: x,
+                                  y: y,
+                                  width: width,
+                                  height: height)
         playButton.layer.cornerRadius = playButton.frame.width / 2
         
         labelContainerView.addSubview(titleLabel)
         let standard = labelContainerView.bounds
         titleLabel.frame = CGRect(x: standard.midX - titleLabel.bounds.width/2,
                                   y: standard.midY - titleLabel.bounds.height/2,
-                                  width: standard.width, height: standard.height)
+                                  width: standard.width,
+                                  height: standard.height)
 //        titleLabel.updateLabelFontSize(view: labelContainerView)
     }
 
@@ -116,6 +132,5 @@ final class PreGameView:BaseView{
         configureLabel()
         configureSeg()
         configureTitle()
-
     }
 }

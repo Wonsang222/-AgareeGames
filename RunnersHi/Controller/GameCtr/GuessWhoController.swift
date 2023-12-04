@@ -11,7 +11,7 @@ import RxCocoa
 import NSObject_Rx
 
 final class GuessWhoController:GameController {
-
+    
     //MARK: - Properties
     private let guessView = GuessWhoView()
     var viewModel: GuessWhoViewModel!
@@ -20,9 +20,19 @@ final class GuessWhoController:GameController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()   
-          guessView.imageView.isHidden = false
-            progressView.isHidden = false
+        configureUI()
+        guessView.imageView.isHidden = false
+        progressView.isHidden = false
+        
+        rx.viewWillAppear
+            .take(1)
+            .map{ _ in }
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                print(999)
+                self?.viewModel.gameStart.onNext(())
+            })
+            .disposed(by: rx.disposeBag)
         
         
         bindViewModel()
@@ -31,28 +41,27 @@ final class GuessWhoController:GameController {
     func bindViewModel() {
         bindView()
         
-        rx.viewDidLoad
-            .take(1)
-            .map{ _ in }
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] _ in
-                self?.viewModel.gameStart.onNext(())
-            })
-            .disposed(by: rx.disposeBag)
+        
     }
     
     private func bindView() {
-//        
-//        MyTimer.shared.time
-//            .observe(on: MainScheduler.instance)
-//            .subscribe(onNext: { [unowned self] second in
-//                let floatSec = Float(second)
-//                self.progressView.progress = floatSec
-//            })
-//            .disposed(by: rx.disposeBag)
+        //
+        //        MyTimer.shared.time
+        //            .observe(on: MainScheduler.instance)
+        //            .subscribe(onNext: { [unowned self] second in
+        //                let floatSec = Float(second)
+        //                self.progressView.progress = floatSec
+        //            })
+        //            .disposed(by: rx.disposeBag)
+        
+        
+        viewModel.target
+            .map { $0?.getPhoto() ?? UIImage(resource: .joker) }
+            .bind(to: guessView.imageView.rx.image)
+            .disposed(by: rx.disposeBag)
     }
     
-
+    
     //MARK: - Methods
     private func configureUI(){
         view.addSubview(guessView)
@@ -69,7 +78,7 @@ final class GuessWhoController:GameController {
             countView.centerYAnchor.constraint(equalTo: guessView.centerYAnchor),
             countView.heightAnchor.constraint(equalToConstant: 200),
             countView.widthAnchor.constraint(equalToConstant: 200),
-
+            
             progressView.widthAnchor.constraint(equalTo: guessView.widthAnchor, multiplier: 0.5),
             progressView.heightAnchor.constraint(equalToConstant: 20),
             progressView.centerXAnchor.constraint(equalTo: guessView.centerXAnchor),
@@ -77,18 +86,10 @@ final class GuessWhoController:GameController {
         ])
     }
     
-    private func startGame(){
-//        if !viewModel.isNetworkDone{ loaderON() }
-//        countView.removeFromSuperview()
-//        guessView.imageView.isHidden = false
-//        progressView.isHidden = false
-        
-//        countView.layoutIfNeeded()
-//        if let serverErr = viewModel.networkErr{
-//            handleErrors(error: serverErr)
-//        }
-//        viewModel.next()
+    private func startGame() {
+        countView.removeFromSuperview()
+        guessView.imageView.isHidden = false
+        progressView.isHidden = false
     }
-
 }
 

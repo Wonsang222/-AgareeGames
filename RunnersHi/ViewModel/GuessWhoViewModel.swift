@@ -24,13 +24,7 @@ final class GuessWhoViewModel:GameViewModel<GuessWhoPlayModel> {
         
         super.init(game: game, coordinator: coordinator)
         
-       
         let loading = PublishSubject<GuessWhoPlayModel?>()
-        print(456)
-        
-        
-        
-//        startGame = starting.asObserver()
         
         let testGameModel1 = GuessWhoPlayModel(name: "조커", photo: UIImage(resource: .joker))
         let testGameModel2 = GuessWhoPlayModel(name: "민지", photo: UIImage(resource: .minji))
@@ -43,7 +37,8 @@ final class GuessWhoViewModel:GameViewModel<GuessWhoPlayModel> {
                 let a = self?.targetArr.popLast()
                 loading.onNext(a)
                 print(123)
-                STTEngineRX.shared.runRecognizer()
+                TimerManager.shared.timerControlelr.accept(true)
+//                STTEngineRX.shared.runRecognizer()
             })
             .subscribe()
             .disposed(by: rx.disposeBag)
@@ -52,6 +47,7 @@ final class GuessWhoViewModel:GameViewModel<GuessWhoPlayModel> {
         loading
             .flatMap{ [weak self] model -> Completable in
                 if let model = model {
+                    print(5)
                     self?.target.accept(model)
                     return Completable.empty()
                 } else {
@@ -64,7 +60,7 @@ final class GuessWhoViewModel:GameViewModel<GuessWhoPlayModel> {
     
         // 맞추면 reset -> 맞출때까지 무한반복 + timeout  -> game over
        STTEngineRX.shared.textRelay
-            .filter{ [weak self] text in
+            .filter { [weak self] text in
                 guard let self  = self,
                       let value = self.target.value else {
                     return false
@@ -76,7 +72,7 @@ final class GuessWhoViewModel:GameViewModel<GuessWhoPlayModel> {
             })
             .disposed(by: rx.disposeBag)
         
-        MyTimer.shared.time
+        TimerManager.shared.time
             .filter{ [weak self] time in
                     
                 return true

@@ -118,7 +118,10 @@ class LabelButton:UIView{
         st.axis = .vertical
         st.distribution = .fillEqually
         st.alignment = .center
-        st.layoutMargins = UIEdgeInsets(top: 15, left: 0, bottom: 0, right: 0)
+        st.layoutMargins = UIEdgeInsets(top: 15,
+                                        left: 0,
+                                        bottom: 0,
+                                        right: 0)
         st.isLayoutMarginsRelativeArrangement = true
         st.translatesAutoresizingMaskIntoConstraints = false
         return st
@@ -142,7 +145,8 @@ class LabelButton:UIView{
             buttonStack.leadingAnchor.constraint(equalTo: playButton.leadingAnchor),
             buttonStack.trailingAnchor.constraint(equalTo: playButton.trailingAnchor),
             
-            buttonImage.widthAnchor.constraint(equalTo: buttonStack.widthAnchor, multiplier: 0.5),
+            buttonImage.widthAnchor.constraint(equalTo: buttonStack.widthAnchor,
+                                               multiplier: 0.5),
         ])
         
     }

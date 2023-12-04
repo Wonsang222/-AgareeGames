@@ -9,9 +9,9 @@ import Foundation
 import RxSwift
 import RxRelay
 
-class MyTimer {
+class TimerManager {
     
-    static let shared = MyTimer()
+    static let shared = TimerManager()
     let time = PublishSubject<Double>()
     let timerControlelr = BehaviorRelay(value: false)
     private var repeater:Observable<Void>!
@@ -31,11 +31,7 @@ class MyTimer {
         })
         .withUnretained(self)
         .flatMap{ timer, total -> Observable<Void> in
-            print(total)
-            if total >= Global.GAMESEC {
-                timer.timerControlelr.accept(false)
-                return .empty()
-            }
+//            print(total)
             timer.time.onNext(total)
             return .empty()
         }
@@ -43,9 +39,8 @@ class MyTimer {
         
         timerControlelr
             .filter { $0 }
-            .flatMap{[unowned self] _ in self.repeater }
+            .flatMap { [unowned self] _ in self.repeater }
             .subscribe()
             .disposed(by: bag)
-        
     }
 }

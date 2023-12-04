@@ -34,14 +34,16 @@
 		7E6A36FF2A89B77900B7F0BC /* Networkable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C196837C2A88F6FB0098774F /* Networkable.swift */; };
 		7E6A37002A89B77C00B7F0BC /* GameKinds.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19683782A88F63C0098774F /* GameKinds.swift */; };
 		7E6A37022A89C8E000B7F0BC /* PregameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C196837A2A88F6A60098774F /* PregameModel.swift */; };
-		7E6BAC492B0599C900D04118 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6BAC482B0599C900D04118 /* Timer.swift */; };
-		7E6BAC4A2B0599C900D04118 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6BAC482B0599C900D04118 /* Timer.swift */; };
+		7E6BAC492B0599C900D04118 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6BAC482B0599C900D04118 /* TimerManager.swift */; };
+		7E6BAC4A2B0599C900D04118 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6BAC482B0599C900D04118 /* TimerManager.swift */; };
 		7E7201752AFC6D7B00CF901D /* PreNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7201742AFC6D7B00CF901D /* PreNavigationController.swift */; };
 		7E7201762AFC6D7B00CF901D /* PreNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7201742AFC6D7B00CF901D /* PreNavigationController.swift */; };
 		7E7D16D62A95AF1100D3FE52 /* MemoStorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7D16D52A95AF1100D3FE52 /* MemoStorageType.swift */; };
 		7E7D16D72A95AF1100D3FE52 /* MemoStorageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7D16D52A95AF1100D3FE52 /* MemoStorageType.swift */; };
 		7E7D16D92A95B02B00D3FE52 /* MemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7D16D82A95B02B00D3FE52 /* MemoryStorage.swift */; };
 		7E7D16DA2A95B02B00D3FE52 /* MemoryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7D16D82A95B02B00D3FE52 /* MemoryStorage.swift */; };
+		7EE84D712B1D6B5000BA7E5C /* UILabel+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE84D702B1D6B5000BA7E5C /* UILabel+Custom.swift */; };
+		7EE84D722B1D6B5000BA7E5C /* UILabel+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EE84D702B1D6B5000BA7E5C /* UILabel+Custom.swift */; };
 		C1013D5D2B1317A400AFE789 /* Playable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1013D5C2B1317A400AFE789 /* Playable.swift */; };
 		C1013D5E2B1317D500AFE789 /* Playable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1013D5C2B1317A400AFE789 /* Playable.swift */; };
 		C10362442AA6164400FC65CF /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10362432AA6164400FC65CF /* Coordinator.swift */; };
@@ -140,10 +142,11 @@
 		7E49954E2A0CAFD5006D95AC /* GuessWhoHTPV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessWhoHTPV.swift; sourceTree = "<group>"; };
 		7E4E1A5B2ACF884900AEBEE2 /* GameNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameNavigationController.swift; sourceTree = "<group>"; };
 		7E60DD6F2A307A6600A511E2 /* AgareeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgareeDelegate.swift; sourceTree = "<group>"; };
-		7E6BAC482B0599C900D04118 /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		7E6BAC482B0599C900D04118 /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerManager.swift; sourceTree = "<group>"; };
 		7E7201742AFC6D7B00CF901D /* PreNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreNavigationController.swift; sourceTree = "<group>"; };
 		7E7D16D52A95AF1100D3FE52 /* MemoStorageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoStorageType.swift; sourceTree = "<group>"; };
 		7E7D16D82A95B02B00D3FE52 /* MemoryStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryStorage.swift; sourceTree = "<group>"; };
+		7EE84D702B1D6B5000BA7E5C /* UILabel+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Custom.swift"; sourceTree = "<group>"; };
 		9A77BD266F112D23180BE074 /* Pods_AgareeGames_dis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AgareeGames_dis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3E1B9A776BB89D8CCFC21D1 /* Pods-AgareeGames_dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgareeGames_dev.release.xcconfig"; path = "Target Support Files/Pods-AgareeGames_dev/Pods-AgareeGames_dev.release.xcconfig"; sourceTree = "<group>"; };
 		C1013D5C2B1317A400AFE789 /* Playable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playable.swift; sourceTree = "<group>"; };
@@ -266,7 +269,7 @@
 		7E6BAC472B0599BF00D04118 /* Timer */ = {
 			isa = PBXGroup;
 			children = (
-				7E6BAC482B0599C900D04118 /* Timer.swift */,
+				7E6BAC482B0599C900D04118 /* TimerManager.swift */,
 			);
 			path = Timer;
 			sourceTree = "<group>";
@@ -509,6 +512,7 @@
 			children = (
 				7E0A83802A01F8A30031B3E3 /* Extension.swift */,
 				C1E439A32AAC2B0900BAB674 /* UIViewController+UIAlertController.swift */,
+				7EE84D702B1D6B5000BA7E5C /* UILabel+Custom.swift */,
 			);
 			name = Extension;
 			path = ../Extension;
@@ -707,6 +711,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EE84D722B1D6B5000BA7E5C /* UILabel+Custom.swift in Sources */,
 				C1649BF22A47D4260094D56D /* PreGameController.swift in Sources */,
 				C15AA8512A6B8D2000AF24F3 /* GuessWhoEntitiy+CoreDataProperties.swift in Sources */,
 				7E1837722AC277F9004B506D /* Scene.swift in Sources */,
@@ -756,7 +761,7 @@
 				C10891932A8754750014A0EE /* PregameViewModel.swift in Sources */,
 				C1A778B22A5D844600F08678 /* AuthManager.swift in Sources */,
 				C1649C142A47D4260094D56D /* GuessWhoHTPV.swift in Sources */,
-				7E6BAC4A2B0599C900D04118 /* Timer.swift in Sources */,
+				7E6BAC4A2B0599C900D04118 /* TimerManager.swift in Sources */,
 				C1649C152A47D4260094D56D /* HttpBase.swift in Sources */,
 				C1013D5E2B1317D500AFE789 /* Playable.swift in Sources */,
 			);
@@ -766,6 +771,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EE84D712B1D6B5000BA7E5C /* UILabel+Custom.swift in Sources */,
 				7E04C8E52A03342300357A0F /* PreGameController.swift in Sources */,
 				C196837D2A88F6FB0098774F /* Networkable.swift in Sources */,
 				7E1837712AC277F9004B506D /* Scene.swift in Sources */,
@@ -815,7 +821,7 @@
 				C10891922A8754750014A0EE /* PregameViewModel.swift in Sources */,
 				C119CBC929F804FE00648638 /* GuessWhoDataModel.swift in Sources */,
 				7E49954F2A0CAFD5006D95AC /* GuessWhoHTPV.swift in Sources */,
-				7E6BAC492B0599C900D04118 /* Timer.swift in Sources */,
+				7E6BAC492B0599C900D04118 /* TimerManager.swift in Sources */,
 				C1FFE7D629E8607D009FFD0B /* HttpBase.swift in Sources */,
 				C1013D5D2B1317A400AFE789 /* Playable.swift in Sources */,
 			);

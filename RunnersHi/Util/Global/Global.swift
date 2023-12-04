@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct Global{
+struct Global {
     
     //MARK: - Game Setting
     static let GAMESEC:Double = 5.0
