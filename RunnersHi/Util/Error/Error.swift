@@ -2,7 +2,7 @@
 //  File.swift
 //  AgareeGames
 //
-//  Created by 위사모바일 on 2023/05/24.
+//  Created by 황원상 on 2023/05/24.
 //
 
 import Foundation

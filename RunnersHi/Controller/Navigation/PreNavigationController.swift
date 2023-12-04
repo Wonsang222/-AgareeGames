@@ -2,7 +2,7 @@
 //  PreNavigationController.swift
 //  AgareeGames
 //
-//  Created by 위사모바일 on 11/9/23.
+//  Created by 황원상 on 11/9/23.
 //
 
 import UIKit

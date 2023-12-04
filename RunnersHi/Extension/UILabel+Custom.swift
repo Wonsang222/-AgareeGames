@@ -2,7 +2,7 @@
 //  UILabel+Custom.swift
 //  AgareeGames
 //
-//  Created by 위사모바일 on 12/4/23.
+//  Created by 황원상 on 12/4/23.
 //
 
 import UIKit
