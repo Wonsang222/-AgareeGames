@@ -121,6 +121,7 @@ final class STTEngineRX {
     func resetText() -> Completable {
         let sub = PublishSubject<Never>()
         submittedText = ""
+        print("text reset")
         sub.onCompleted()
         return sub.asCompletable()
     }

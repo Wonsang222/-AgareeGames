@@ -10,6 +10,8 @@ import RxSwift
 import RxCocoa
 import Action
 
+
+// navi barbutton left -> hide and replace custom bar button
 final class ResultViewModel:BaseViewModel {
     var isWin:Bool
     

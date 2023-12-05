@@ -12,9 +12,9 @@ import RxCocoa
 
 final class GuessWhoViewModel:GameViewModel<GuessWhoPlayModel> {
     
-    let timeLimit = 5.0
+    private let timeLimit = 5.0
     var targetArr = [GuessWhoPlayModel]()
-    
+    // observable로 바꿔야하나 -> oop
     let timeSubject = PublishSubject<Double>()
     
     let gameStart:AnyObserver<Void>
@@ -54,7 +54,7 @@ final class GuessWhoViewModel:GameViewModel<GuessWhoPlayModel> {
                 } else {
                     // nil -> game clear
                     print("game clear")
-                    
+                    TimerManager.shared.timerControlelr.accept(false)
                 }
             })
             .disposed(by: rx.disposeBag)
@@ -69,8 +69,9 @@ final class GuessWhoViewModel:GameViewModel<GuessWhoPlayModel> {
             }
             .subscribe(onNext: { [weak self] _ in
                     print("right")
+                // 이거 체크해야함
                 STTEngineRX.shared.resetText()
-                
+                loading.onNext(())
             })
             .disposed(by: rx.disposeBag)
         
@@ -84,7 +85,6 @@ final class GuessWhoViewModel:GameViewModel<GuessWhoPlayModel> {
                 return true
             }
             .subscribe(onNext: { [weak self] time in
-                
                 self?.timeSubject.onNext(time.1)
             })
             .disposed(by: rx.disposeBag)
