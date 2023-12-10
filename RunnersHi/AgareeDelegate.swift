@@ -62,7 +62,7 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
         
         
         
-        let preGameModel = PregameModel(gameType: .GuessWho, players: 1)
+        let preGameModel = PregameModel(gameType: .GuessWho, players: 3)
 
         let testVM = GuessWhoViewModel(game: preGameModel, coordinator: AppCoordinator(navigationVC: BaseNavigationController(), window: window!))
         let vc = GuessWhoController()

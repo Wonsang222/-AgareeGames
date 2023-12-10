@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class GameController:BaseController{
 
@@ -54,4 +55,27 @@ class GameController:BaseController{
             }
         }
     }
+    
+    lazy var startCounterRX:Completable =  {
+        let sub = PublishSubject<Never>()
+        UIView.transition(with: countView, duration: 2, options: [.transitionFlipFromTop]) {
+            self.countView.image = UIImage(systemName: "3.circle")
+            self.countView.layoutIfNeeded()
+        } completion: { finished in
+            UIView.transition(with: self.countView, duration: 2, options: [.transitionFlipFromTop]) {
+                self.countView.image = UIImage(systemName: "2.circle")
+                self.countView.layoutIfNeeded()
+            } completion: { finished in
+                UIView.transition(with: self.countView, duration: 2, options: [.transitionFlipFromTop]) {
+                    self.countView.image = UIImage(systemName: "1.circle")
+                    self.countView.layoutIfNeeded()
+                } completion: { finished in
+                    sub.onCompleted()
+                }
+            }
+        }
+        return sub.asCompletable()
+    }()
+    
+    
 }

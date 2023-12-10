@@ -18,7 +18,7 @@ struct Global {
     static let BUNDLEIDENTIFIER = "com.kr.magic"
     static let UUID = "59287382-e52d-4090-a829-864b5b578bc1"
     #if DEV
-    static let URL = "http://192.168.200.121:8080"
+    static let URL = "http://192.168.200.146:8080"
     #else
     static let URL = "https://agareegames.fly.dev"
     #endif

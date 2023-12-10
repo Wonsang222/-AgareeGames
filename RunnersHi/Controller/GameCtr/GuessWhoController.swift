@@ -26,33 +26,31 @@ final class GuessWhoController:GameController {
         
         rx.viewWillAppear
             .take(1)
-            .map{ _ in }
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] _ in
-                print(999)
-                self?.viewModel.gameStart.onNext(())
+            .withUnretained(self)
+            .do(onNext: { controller in
             })
+            .map{ _ in }
+            .bind(to: viewModel.fetchTargets)
             .disposed(by: rx.disposeBag)
         
-        
         bindViewModel()
+        
+
     }
     
     func bindViewModel() {
         bindView()
-        
-        
     }
     
     private func bindView() {
-        //
-        //        MyTimer.shared.time
-        //            .observe(on: MainScheduler.instance)
-        //            .subscribe(onNext: { [unowned self] second in
-        //                let floatSec = Float(second)
-        //                self.progressView.progress = floatSec
-        //            })
-        //            .disposed(by: rx.disposeBag)
+        
+        TimerManager.shared.time
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [unowned self] second in
+                let floatSec = Float(second)
+                self.progressView.progress = floatSec
+            })
+            .disposed(by: rx.disposeBag)
         
         
         viewModel.target
@@ -60,7 +58,6 @@ final class GuessWhoController:GameController {
             .bind(to: guessView.imageView.rx.image)
             .disposed(by: rx.disposeBag)
     }
-    
     
     //MARK: - Methods
     private func configureUI(){

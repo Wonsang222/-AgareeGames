@@ -23,7 +23,8 @@ class TimerManager {
     
     private func setTimer() {
         
-        repeater = Observable<Int>.interval(.milliseconds(20),
+        repeater = Observable<Int>
+            .interval(.milliseconds(20),
                                             scheduler: SerialDispatchQueueScheduler(qos: .userInteractive))
         .map { _ in 0.02 }
         .scan(0, accumulator: { total, newValue in

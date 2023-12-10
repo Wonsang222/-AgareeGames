@@ -12,17 +12,12 @@ final class NetworkService{
     
     static let shared = NetworkService()
     private init () {}
-    
-    let serialQueue = DispatchQueue(label: "serial")
-    let concurrnetQueue = DispatchQueue(label: "concurrent", attributes: .concurrent)
-    
-    let sem = DispatchSemaphore(value: 1)
-    
+
     let configuration:URLSessionConfiguration = {
         let configuration = URLSessionConfiguration.default
         configuration.networkServiceType = .responsiveData
-        configuration.waitsForConnectivity = true
-        configuration.timeoutIntervalForResource = 2
+//        configuration.waitsForConnectivity = true
+//        configuration.timeoutIntervalForResource = 2
         configuration.httpAdditionalHeaders = ["Authorization":Global.UUID, "User-Agent": Global.BUNDLEIDENTIFIER]
         return configuration
     }()
@@ -76,64 +71,7 @@ final class NetworkService{
             }
         }
     }
-    
-//    func fetchImage(_ data:Dictionary<String,Any>) async -> [GamePlayModel]{
-//        // data 순회 -> url  이미지 불러오기 백그라운드로 날려버리기
-//        var result:Array<GamePlayModel> = []
-//        for (name, url) in data {
-//            let dbName = name
-//            var photo:UIImage?
-//            do{
-//                guard let stringUrl = url as? String,
-//                      let dbUrl = URL(string: stringUrl)
-//                else {throw NetworkError.notconnected }
-//                
-//                if let isSaved =  DataManager.shared.fetchModel(targetName: dbName){
-//                    photo = UIImage(data: isSaved.photo)
-//                } else {
-//                    let (data, response) = try await URLSession(configuration: configuration).data(from:dbUrl)
-//                    guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw NetworkError.notconnected }
-//                    photo = UIImage(data: data)
-//                    DataManager.shared.createModel(name: dbName, photo: data)
-//                }
-//                guard let urlPhoto = photo else { throw NetworkError.notconnected }
-//                let model = GamePlayModel(name: dbName, photo: urlPhoto)
-//                result.append(model)
-//            } catch{
-//                let joker = GamePlayModel(name: "조커", photo: UIImage(named: "joker")!)
-//                result.append(joker)
-//            }
-//        }
-//        return result
-//    }
-//    
-//    func temp2(_ dic:[String:Any], completion:@escaping(Result<GamePlayModel, Error>) -> Void) {
-//        concurrnetQueue.async { [unowned self] in
-//            for ( _ , obj) in dic.enumerated() {
-//                let name = obj.key
-//                let url = URL(string: obj.value as! String)!
-//                let req = URLRequest(url: url)
-//                URLSession(configuration: self.configuration).dataTask(with: req) { [unowned self] data, res, err in
-//                    if err != nil  {
-//                        print(err!)
-//                        return
-//                    }
-//                    guard let res = res as? HTTPURLResponse,
-//                          (200...299).contains(res.statusCode) else { return }
-//                    
-//                    guard let data = data else { return }
-//                    
-//                    let img = UIImage(data: data)
-//                    let target = GamePlayModel(name: name, photo: img)
-//                    
-//                    self.sem.wait()
-//                    completion(.success(target))
-//                    self.sem.signal()
-//                }
-//            }
-//        }
-//    }
-    
+
     func fetchImageRX<T:Playable>(source:Dictionary<String,String>) -> Observable<[T]>  {
         let ob = source.map{ name, url in
             return Observable<T>.create { [unowned self] observer in
@@ -147,12 +85,14 @@ final class NetworkService{
                     
                     if let error = err {
                         let error = MyServer(statusCode: 500).getError()
+                        print("에러 1")
                         observer.onError(error)
                         return
                     }
 
                     guard let resp = res as? HTTPURLResponse else {
                         observer.onError(MyServer(statusCode: 400).getError())
+                        print("에러 2")
                         return
                     }
                     
@@ -160,11 +100,13 @@ final class NetworkService{
                     
                     guard (200...299) ~= statusCode else {
                         observer.onError(MyServer(statusCode: statusCode).getError())
+                        print("에러 3")
                         return
                     }
                     
                     guard let data = data, let img = UIImage(data: data) else {
                         observer.onError(MyServer(statusCode: 400).getError())
+                        print("에러 5")
                         return
                     }
                     let model = T(name: name, photo: img)

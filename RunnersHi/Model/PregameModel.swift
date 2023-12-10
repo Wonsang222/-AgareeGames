@@ -31,7 +31,7 @@ struct PregameModel:Networkable{
     func getParam() -> HttpBaseResource {
         let param = ResourceBuilder.shared
             .setReqMethod(.GET)
-            .setPath(self.gameType.gameTitle)
+            .setPath(self.gameType.getPath)
             .setParams("numberOfPlayers", self.players)
             .build()
         return param

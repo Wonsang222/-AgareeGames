@@ -10,11 +10,10 @@ import RxSwift
 
 struct GuessWhoPlayModel:Playable {
 
-    
     let name:String
     var photo:UIImage?
     
-    init(name:String, photo:UIImage? = nil){
+    init(name:String, photo:UIImage? = nil) {
         self.name = name
         self.photo = photo
     }

@@ -13,15 +13,22 @@ public enum GameKinds:String {
     case GuessWho = "인물퀴즈"
 }
 
-extension GameKinds{
-    var gameTitle:String{
-        switch self{
+extension GameKinds {
+    var gameTitle:String {
+        switch self {
         case .GuessWho:
             return self.rawValue
         }
     }
     
-    func getObservable() -> Observable<Self>{
+    var getPath:String {
+        switch self {
+        case .GuessWho:
+            return "guessWho"
+        }
+    }
+    
+    func getObservable() -> Observable<Self> {
         return Observable.create { observer in
             observer.onNext(self)
             observer.onCompleted()
