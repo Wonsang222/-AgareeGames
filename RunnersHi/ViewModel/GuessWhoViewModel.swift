@@ -41,7 +41,6 @@ final class GuessWhoViewModel:GameViewModel<GuessWhoPlayModel> {
             .flatMap{ viewModel in  viewModel.0.getArray }
             .subscribe(onNext: { [weak self] model in
             
-                print("loader2")
                 if let model = model {
                     self?.target.accept(model)
                 } else {

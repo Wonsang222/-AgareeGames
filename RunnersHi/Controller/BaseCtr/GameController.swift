@@ -78,4 +78,17 @@ class GameController:BaseController{
     }()
     
     
+    lazy var startCounterRXRX:Completable = {
+       let sub = PublishSubject<Never>()
+        let count = ["3.circle","2.circle","1.circle"]
+        Observable.from(count)
+            .concatMap{ image in
+                UIView.transition(with: <#T##UIView#>, duration: <#T##TimeInterval#>, animations: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
+            }
+        
+        
+        return sub.asCompletable()
+    }()
+    
+    
 }
