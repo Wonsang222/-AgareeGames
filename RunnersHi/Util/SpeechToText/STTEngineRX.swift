@@ -45,8 +45,6 @@ final class STTEngineRX {
     func runRecognizer() -> Completable {
         
         let sub = PublishSubject<Never>()
-        
-        print("start")
         let audioSession = AVAudioSession.sharedInstance()
         do {
             try audioSession.setCategory(AVAudioSession.Category.record)

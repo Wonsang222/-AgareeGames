@@ -8,21 +8,11 @@
 import UIKit
 import CoreData
 
-final class ImageCacheManager{
+final class ImageCacheManager {
     static let shared = NSCache<NSString, UIImage>()
     
     private init(){}
 }
-
-// 이 둘의 차이!!
-
-
-final class TempCache{
-    static let shared = TempCache()
-    var cache:[String:UIImage]  = [:]
-    private init() {}
-}
-
 
 class DataManager {
     static let shared = DataManager()

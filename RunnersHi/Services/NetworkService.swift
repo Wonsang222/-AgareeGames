@@ -73,7 +73,7 @@ final class NetworkService{
     }
 
     func fetchImageRX<T:Playable>(source:Dictionary<String,String>) -> Observable<[T]>  {
-        let ob = source.map{ name, url in
+        let ob = source.map { name, url in
             return Observable<T>.create { [unowned self] observer in
                 guard let url = URL(string: url) else {
                     observer.onError(MyServer(statusCode: 500).getError())
@@ -115,7 +115,7 @@ final class NetworkService{
                 }
                 task.resume()
                 
-                return Disposables.create{
+                return Disposables.create {
                     task.cancel()
                 }
             }

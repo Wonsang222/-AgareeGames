@@ -9,9 +9,9 @@ import UIKit
 import RxSwift
 
 class GameController:BaseController{
-
+    
     //MARK: - Properties
-
+    
     final let countView:UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
@@ -28,67 +28,35 @@ class GameController:BaseController{
         pv.translatesAutoresizingMaskIntoConstraints = false
         return pv
     }()
-
+    
     //MARK: - Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     //MARK: - Methods
-    
-    final func startCounter(handler:@escaping()->Void) {
-        UIView.transition(with: countView, duration: 2, options: [.transitionFlipFromTop]) {
-            self.countView.image = UIImage(systemName: "3.circle")
-            self.countView.layoutIfNeeded()
-        } completion: { finished in
-            UIView.transition(with: self.countView, duration: 2, options: [.transitionFlipFromTop]) {
-                self.countView.image = UIImage(systemName: "2.circle")
-                self.countView.layoutIfNeeded()
-            } completion: { finished in
-                UIView.transition(with: self.countView, duration: 2, options: [.transitionFlipFromTop]) {
-                    self.countView.image = UIImage(systemName: "1.circle")
-                    self.countView.layoutIfNeeded()
-                } completion: { finished in
-                    handler()
-                }
-            }
-        }
-    }
-    
-    lazy var startCounterRX:Completable =  {
-        let sub = PublishSubject<Never>()
-        UIView.transition(with: countView, duration: 2, options: [.transitionFlipFromTop]) {
-            self.countView.image = UIImage(systemName: "3.circle")
-            self.countView.layoutIfNeeded()
-        } completion: { finished in
-            UIView.transition(with: self.countView, duration: 2, options: [.transitionFlipFromTop]) {
-                self.countView.image = UIImage(systemName: "2.circle")
-                self.countView.layoutIfNeeded()
-            } completion: { finished in
-                UIView.transition(with: self.countView, duration: 2, options: [.transitionFlipFromTop]) {
-                    self.countView.image = UIImage(systemName: "1.circle")
-                    self.countView.layoutIfNeeded()
-                } completion: { finished in
+
+    lazy var startCounting:Completable =  {
+        let imageNames = ["3.circle", "2.circle", "1.circle"]
+        return Observable.from(imageNames)
+            .withUnretained(self)
+            .concatMap { data -> Completable in
+                let sub = PublishSubject<Never>()
+                let controller = data.0
+                let imageName = data.1
+                
+                UIView.transition(with: controller.countView, duration: 2) {
+                    controller.countView.image = UIImage(systemName: imageName)
+                    controller.countView.layoutIfNeeded()
                     sub.onCompleted()
                 }
+                return sub.asCompletable()
             }
-        }
-        return sub.asCompletable()
+            .asCompletable()
     }()
     
     
-    lazy var startCounterRXRX:Completable = {
-       let sub = PublishSubject<Never>()
-        let count = ["3.circle","2.circle","1.circle"]
-        Observable.from(count)
-            .concatMap{ image in
-                UIView.transition(with: <#T##UIView#>, duration: <#T##TimeInterval#>, animations: <#T##(() -> Void)?##(() -> Void)?##() -> Void#>)
-            }
-        
-        
-        return sub.asCompletable()
-    }()
     
     
 }

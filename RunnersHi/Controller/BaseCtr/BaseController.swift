@@ -17,7 +17,7 @@ class BaseController:UIViewController{
         view.backgroundColor = .black
     }
     
-    final func loaderON(){
+    final func loaderON() {
         view.addSubview(loader)
         loader.translatesAutoresizingMaskIntoConstraints = false
         view.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -26,15 +26,11 @@ class BaseController:UIViewController{
         loader.startAnimating()
     }
     
-    final func loaderOFF(){
+    final func loaderOFF() {
         loader.stopAnimating()
         loader.removeFromSuperview()
     }
-    
-    final func goBackToRoot(){
-        navigationController?.popToRootViewController(animated: true)
-    }
-    
+        
     final func terminateAppAfter(second: Double) {
         DispatchQueue.main.asyncAfter(deadline: .now() + second) {
             UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
@@ -66,7 +62,7 @@ class BaseController:UIViewController{
             // fly io 서버 리부팅에 대한 error 처리
         case is URLError:
             self.alert(message: "현재 서버와 연결이 어렵습니다. \n 잠시 후 다시 시도해주세요.", agree: { alert in
-                self.goBackToRoot()
+//                self.goBackToRoot()
             }, disagree: nil)
         default:
             showAppTerminatingAlert()
@@ -78,15 +74,15 @@ class BaseController:UIViewController{
             switch err{
             case .RateLimit:
                 alert(message: err.rawValue, agree: { alert in
-                    self.goBackToRoot()
+//                    self.goBackToRoot()
                 }, disagree: nil)
             case .OnUpdated:
                 alert(message: err.rawValue, agree: { alert in
-                    self.goBackToRoot()
+//                    self.goBackToRoot()
                 }, disagree: nil)
             case .Unkwown:
                 alert(message: err.rawValue, agree: { alert in
-                    self.goBackToRoot()
+//                    self.goBackToRoot()
                 }, disagree: nil)
             case .WrongAccess:
                 break
@@ -99,7 +95,7 @@ class BaseController:UIViewController{
         switch err{
         case .TotalAudioError:
             alert(message: err.rawValue) { alert in
-                self.goBackToRoot()
+//                self.goBackToRoot()
             }
         case .AudioOff:
             alert(message: err.rawValue) { alert in
@@ -115,7 +111,7 @@ class BaseController:UIViewController{
             }
         case .SpeechError:
             alert(message: err.rawValue) { alert in
-                self.goBackToRoot()
+//                self.goBackToRoot()
             }
         }
     }

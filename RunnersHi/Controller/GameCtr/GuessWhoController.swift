@@ -34,8 +34,6 @@ final class GuessWhoController:GameController {
             .disposed(by: rx.disposeBag)
         
         bindViewModel()
-        
-
     }
     
     func bindViewModel() {

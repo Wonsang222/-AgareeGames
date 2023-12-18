@@ -94,9 +94,9 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
               let rootVC = window.rootViewController as? BaseNavigationController,
               let topVC = rootVC.topViewController else { return }
         
-        if let vc = topVC as? GameController{
+        if let vc = topVC as? GameController {
             vc.alert(message: "앱이 중지 되었습니다. \n 게임을 다시실행해주세요.", agree: { alert in
-                vc.goBackToRoot()
+//                vc.goBackToRoot()
             }, disagree: nil)
         }
     }
@@ -107,9 +107,9 @@ class AgareeDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate{
               let rootVC = window.rootViewController as? BaseNavigationController,
               let topVC = rootVC.topViewController else { return }
         
-        if let vc = topVC as? GameController{
+        if let vc = topVC as? GameController {
             vc.alert(message: "앱이 중지 되었습니다. \n 게임을 다시실행해주세요.", agree: { alert in
-                vc.goBackToRoot()
+//                vc.goBackToRoot()
             }, disagree: nil)
         }
     }
