@@ -55,8 +55,4 @@ class GameController:BaseController{
             }
             .asCompletable()
     }()
-    
-    
-    
-    
 }

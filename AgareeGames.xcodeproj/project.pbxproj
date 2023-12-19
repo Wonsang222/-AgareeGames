@@ -240,7 +240,11 @@
 		7E60DD712A307B1300A511E2 /* etc */ = {
 			isa = PBXGroup;
 			children = (
+				C1FFE7BC29E30425009FFD0B /* Info.plist */,
+				C1649C1E2A47D4260094D56D /* AgareeGames_dev.plist */,
+				C1FFE7B429E30425009FFD0B /* Main.storyboard */,
 				C1FFE7AE29E30425009FFD0B /* AppDelegate.swift */,
+				C1FFE7B929E30425009FFD0B /* LaunchScreen.storyboard */,
 				C1FFE7B029E30425009FFD0B /* SceneDelegate.swift */,
 			);
 			path = etc;
@@ -376,7 +380,6 @@
 			children = (
 				C1FFE7AD29E30425009FFD0B /* RunnersHi */,
 				C1FFE7AC29E30425009FFD0B /* Products */,
-				C1649C1E2A47D4260094D56D /* AgareeGames_dev.plist */,
 				C1F3E80A2A64344D0004619E /* Frameworks */,
 				E935A82933C053B7122A45A5 /* Pods */,
 			);
@@ -404,11 +407,8 @@
 				C1FFE7C529E305C4009FFD0B /* ViewModel */,
 				C1FFE7C429E305BC009FFD0B /* Entity */,
 				7E60DD712A307B1300A511E2 /* etc */,
-				C1FFE7B429E30425009FFD0B /* Main.storyboard */,
 				C1FFE7B729E30425009FFD0B /* Assets.xcassets */,
 				7E60DD6F2A307A6600A511E2 /* AgareeDelegate.swift */,
-				C1FFE7B929E30425009FFD0B /* LaunchScreen.storyboard */,
-				C1FFE7BC29E30425009FFD0B /* Info.plist */,
 				C1F4B7762AF93287009DCF35 /* Documentation.docc */,
 			);
 			path = RunnersHi;

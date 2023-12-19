@@ -32,7 +32,6 @@ final class GuessWhoViewModel:GameViewModel<GuessWhoPlayModel> {
 //                TimerManager.shared.timerControlelr.accept(true)
 //                STTEngineRX.shared.runRecognizer()
             })
-            .take(1)
             .subscribe()
             .disposed(by: rx.disposeBag)
         
@@ -61,7 +60,6 @@ final class GuessWhoViewModel:GameViewModel<GuessWhoPlayModel> {
 //            }
 //            .subscribe(onNext: { [weak self] _ in
 //                    print("right")
-//                // 이거 체크해야함
 //                STTEngineRX.shared.resetText()
 //                loading.onNext(())
 //            })

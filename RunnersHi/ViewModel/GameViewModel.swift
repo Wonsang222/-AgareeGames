@@ -27,7 +27,6 @@ class GameViewModel<T>:BaseViewModel where T:Playable {
     init<V:Networkable>(game:V, coordinator:Coordinator) {
         
         let fetching = PublishSubject<Void>()
-        let fetchImages = PublishSubject<Dictionary<String, String>>()
         let reloading = PublishSubject<Void>()
         
         fetchTargets = fetching.asObserver()
@@ -37,27 +36,16 @@ class GameViewModel<T>:BaseViewModel where T:Playable {
         fetching
             .flatMap{ NetworkService.shared.fetchJsonRX(resource: game.getParam()) }
             .do(onError: { [weak self] err in
-                print("err")
                 self?.errorMessage.onNext(err)
             })
-            .subscribe(onNext: { json in
-                print(json)
-                fetchImages.onNext(json)
-            })
-            .disposed(by: rx.disposeBag)
-        
-        fetchImages
-            .flatMap{ NetworkService.shared.fetchImageRX(source: $0)}
+            .flatMap{ json in NetworkService.shared.fetchImageRX(source: json)}
             .do(onError: { [weak self] err in
                 self?.errorMessage.onNext(err)
             })
-            .subscribe(onNext: { [unowned self] targets in
-                self.targetArr = targets
-                print("done")
-                print(targets)
+            .subscribe(onNext: { [weak self] targets in
+                self?.targetArr = targets
             }, onError: { err in
                 print(err.localizedDescription)
-                    print("에러났어요")
             })
             .disposed(by: rx.disposeBag)
     }
