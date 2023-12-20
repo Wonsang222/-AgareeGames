@@ -50,7 +50,6 @@ final class GuessWhoController:GameController {
             })
             .disposed(by: rx.disposeBag)
         
-        
         viewModel.target
             .map { $0?.getPhoto() ?? UIImage(resource: .joker) }
             .bind(to: guessView.imageView.rx.image)

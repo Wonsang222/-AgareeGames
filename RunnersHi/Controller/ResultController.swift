@@ -13,8 +13,6 @@ import UIKit
 final class ResultController:BaseController {
     
     var viewmodel:ResultViewModel!
-
-    var isWin:Bool
     
     let resultLabel:UILabel = {
         let label = UILabel()
@@ -25,19 +23,24 @@ final class ResultController:BaseController {
     }()
 
     override func viewDidLoad() {
-        
-        let dataContainer = URL(filePath: NSHomeDirectory())
-        
         super.viewDidLoad()
+        configureUI()
+        configureBackBtn()
         
+        
+
+
+    }
+    
+    private func configureBackBtn() {
         var backButton = UIBarButtonItem(title: "처음으로", style: .done, target: nil, action: nil)
-        
         backButton.rx.action = viewmodel.popAction
 //        navigationItem.backBarButtonItem = backButton
         navigationItem.hidesBackButton = true
         navigationItem.leftBarButtonItem = backButton
-        
-       
+    }
+    
+    private func configureUI() {
         view.addSubview(resultLabel)
         NSLayoutConstraint.activate([
             resultLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -45,31 +48,5 @@ final class ResultController:BaseController {
             resultLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             resultLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
-        resultLabel.updateLabelFontSize(view: view)
-    }
-    
-    init(isWin: Bool) {
-        self.isWin = isWin
-        super.init(nibName: nil, bundle: nil)
-        checkTheResult()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func checkTheResult(){
-        if isWin{
-            resultLabel.text = "통과~!"
-        } else {
-            resultLabel.text = "땡~!"
-        }
-    }
-    
-    
-    deinit{
-        print("---------------")
-        print("off result")
-        print("---------------")
     }
 }

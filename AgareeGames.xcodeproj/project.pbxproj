@@ -14,7 +14,6 @@
 		7E04C8EA2A0342C800357A0F /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E04C8E92A0342C800357A0F /* GameController.swift */; };
 		7E04C8EC2A0342FE00357A0F /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E04C8EB2A0342FE00357A0F /* BaseNavigationController.swift */; };
 		7E0A83812A01F8A30031B3E3 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0A83802A01F8A30031B3E3 /* Extension.swift */; };
-		7E11DBDD2AA6D44D007F4A29 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10362452AA616D800FC65CF /* AppCoordinator.swift */; };
 		7E11DBDE2AA6D44F007F4A29 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10362432AA6164400FC65CF /* Coordinator.swift */; };
 		7E125E7D2A00FF9D0044D881 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E125E7C2A00FF9D0044D881 /* MainView.swift */; };
 		7E159D3529F89FD900C7E601 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E159D3429F89FD900C7E601 /* Global.swift */; };
@@ -43,7 +42,6 @@
 		C1013D5D2B1317A400AFE789 /* Playable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1013D5C2B1317A400AFE789 /* Playable.swift */; };
 		C1013D5E2B1317D500AFE789 /* Playable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1013D5C2B1317A400AFE789 /* Playable.swift */; };
 		C10362442AA6164400FC65CF /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10362432AA6164400FC65CF /* Coordinator.swift */; };
-		C10362462AA616D800FC65CF /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10362452AA616D800FC65CF /* AppCoordinator.swift */; };
 		C108918F2A8739A30014A0EE /* ViewModelBindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C108918E2A8739A30014A0EE /* ViewModelBindableType.swift */; };
 		C10891902A8739A30014A0EE /* ViewModelBindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C108918E2A8739A30014A0EE /* ViewModelBindableType.swift */; };
 		C10891922A8754750014A0EE /* PregameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10891912A8754750014A0EE /* PregameViewModel.swift */; };
@@ -143,7 +141,6 @@
 		A3E1B9A776BB89D8CCFC21D1 /* Pods-AgareeGames_dev.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgareeGames_dev.release.xcconfig"; path = "Target Support Files/Pods-AgareeGames_dev/Pods-AgareeGames_dev.release.xcconfig"; sourceTree = "<group>"; };
 		C1013D5C2B1317A400AFE789 /* Playable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playable.swift; sourceTree = "<group>"; };
 		C10362432AA6164400FC65CF /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		C10362452AA616D800FC65CF /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		C108918E2A8739A30014A0EE /* ViewModelBindableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelBindableType.swift; sourceTree = "<group>"; };
 		C10891912A8754750014A0EE /* PregameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PregameViewModel.swift; sourceTree = "<group>"; };
 		C119CBC629F8033300648638 /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseController.swift; path = RunnersHi/Controller/BaseCtr/BaseController.swift; sourceTree = SOURCE_ROOT; };
@@ -274,7 +271,6 @@
 			children = (
 				7E1837702AC277F9004B506D /* Scene.swift */,
 				C10362432AA6164400FC65CF /* Coordinator.swift */,
-				C10362452AA616D800FC65CF /* AppCoordinator.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -704,7 +700,6 @@
 				C1649BF72A47D4260094D56D /* ImageCacheManager.swift in Sources */,
 				C1649BF92A47D4260094D56D /* ResultController.swift in Sources */,
 				C1649BFA2A47D4260094D56D /* Error.swift in Sources */,
-				7E11DBDD2AA6D44D007F4A29 /* AppCoordinator.swift in Sources */,
 				C1649BFB2A47D4260094D56D /* Reachability.swift in Sources */,
 				C1649BFD2A47D4260094D56D /* BaseView.swift in Sources */,
 				C1649BFE2A47D4260094D56D /* HowToPlayBaseView.swift in Sources */,
@@ -774,7 +769,6 @@
 				7E04C8EC2A0342FE00357A0F /* BaseNavigationController.swift in Sources */,
 				C19683792A88F63C0098774F /* GameKinds.swift in Sources */,
 				C10362442AA6164400FC65CF /* Coordinator.swift in Sources */,
-				C10362462AA616D800FC65CF /* AppCoordinator.swift in Sources */,
 				C1FFE7AF29E30425009FFD0B /* AppDelegate.swift in Sources */,
 				7E04C8E72A033C4800357A0F /* PreGameView.swift in Sources */,
 				C1A2F4942AF138C500AD3DB9 /* GameViewModel.swift in Sources */,

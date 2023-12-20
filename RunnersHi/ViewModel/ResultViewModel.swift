@@ -15,8 +15,6 @@ import Action
 final class ResultViewModel:BaseViewModel {
     var isWin:Bool
     
-    
-    
     init(isWin: Bool, sc:Coordinator) {
         self.isWin = isWin
         super.init(sceneCoordinator: sc)

@@ -17,10 +17,8 @@ class GameViewModel<T>:BaseViewModel where T:Playable {
     
     //MARK: - PROPERTIES
     private var targetArr = [T]()
-    
     //MARK: - INPUT
     let fetchTargets:AnyObserver<Void>
-    
     //MARK: - OUTPUT
     let target:BehaviorRelay<T?> = BehaviorRelay(value: nil)
     

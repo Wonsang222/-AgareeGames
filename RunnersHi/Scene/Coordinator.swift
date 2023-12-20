@@ -89,14 +89,4 @@ class Coordinator {
         }
         return subject.asCompletable()
     }
-    
-    @discardableResult
-    func start() -> Completable {
-        return Completable.create { observer in
-            
-            // Abstract
-            
-            return Disposables.create()
-        }
-    }
 }

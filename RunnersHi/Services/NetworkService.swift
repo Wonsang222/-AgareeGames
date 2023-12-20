@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-final class NetworkService{
+final class NetworkService {
     
     static let shared = NetworkService()
     private init () {}

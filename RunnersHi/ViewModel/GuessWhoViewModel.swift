@@ -13,7 +13,6 @@ import RxCocoa
 final class GuessWhoViewModel:GameViewModel<GuessWhoPlayModel> {
     
     private let timeLimit = 5.0
-    // observable로 바꿔야하나 -> oop
     let timeSubject = PublishSubject<Double>()
     let gameStart:AnyObserver<Void>
 
